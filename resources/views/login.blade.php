@@ -49,11 +49,12 @@
         <div class="auth-wrapper v3">
             <div class="auth-form">
                 <div class="auth-header">
-                    {{-- <a href="#"><img src="{{ asset('assets_admin/images/logo-dark.svg') }}" alt="img"></a> --}}
+                    <a href="#"><img src="{{ asset('assets_admin/images/logo.svg') }}" alt="img"
+                            style="width:40px; height:auto;"></a>
                 </div>
                 <div class="card my-5">
                     <div class="card-body">
-                        <form action="{{ route('admin.login.process') }}" class="form-horizontal" method="POST">
+                        <form action="{{ route('login.process') }}" class="form-horizontal" method="POST">
                             @if (session('error'))
                                 <div class="alert alert-danger">
                                     {{ session('error') }}
@@ -62,6 +63,18 @@
                             <div class="d-flex justify-content-between align-items-end mb-4">
                                 <h3 class="mb-0"><b>Sign In</b></h3>
                                 <a href="#" class="link-primary">Don't have an account?</a>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="role" class="form-label">What's Your Role</label>
+                                <select name="role" id="role" class="form-control" required>
+                                    <option value="" selected disabled>Pilih Role</option>
+                                    <option value="1">Ketua RW</option>
+                                    <option value="2">PKK</option>
+                                    <option value="3">Karang Taruna</option>
+                                </select>
+                                @error('role')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group mb-3">
                                 @csrf
@@ -74,7 +87,8 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control" placeholder="Password">
+                                <input type="password" name="password" class="form-control" placeholder="Password"
+                                    required aria-describedby="password">
                                 @error('record')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -115,7 +129,8 @@
                                     <div class="d-grid">
                                         <button type="button" class="btn mt-2 btn-light-primary bg-light text-muted">
                                             <img src="{{ asset('assets_admin/images/authentication/facebook.svg') }}"
-                                                alt="img"> <span class="d-none d-sm-inline-block"> Facebook</span>
+                                                alt="img"> <span class="d-none d-sm-inline-block">
+                                                Facebook</span>
                                         </button>
                                     </div>
                                 </div>

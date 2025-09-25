@@ -10,7 +10,7 @@ class AuthController extends Controller
     // Menampilkan form login
     public function showLoginForm()
     {
-        return view('admin/login');
+        return view('/login');
     }
 
     // Memproses login
@@ -23,7 +23,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended('/admin/dashboard'); // redirect setelah login
+            return redirect()->intended('/admin_rw/dashboard'); // redirect setelah login
         }
 
         return back()->withErrors([
