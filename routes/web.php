@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\DashboardController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 //route for home
 Route::get('/', function () {
@@ -16,9 +18,21 @@ Route::get('/landing', [HomeController::class, 'HomeLanding'])->name('landing');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.process');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/admin_rw/dashboard', function () {
-    return view('admin_rw/dashboard');
-})->middleware('auth');
+Route::middleware(['auth', 'role:ketua_rw'])->group(function () {
+    Route::get('/rw/dashboard', [DashboardController::class, 'index'])->name('rw.dashboard');
+});
+
+Route::middleware(['auth', 'role:pkk'])->group(function () {
+    Route::get('/pkk/dashboard', [DashboardController::class, 'index'])->name('pkk.dashboard');
+});
+
+Route::middleware(['auth', 'role:katar'])->group(function () {
+    Route::get('/katar/dashboard', [DashboardController::class, 'index'])->name('katar.dashboard');
+});
+
+// Route::get('/rw/dashboard', function () {
+//     return view('rw/dashboard');
+// })->middleware('auth');
 
 
 //route for news

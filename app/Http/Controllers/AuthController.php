@@ -19,15 +19,40 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
+            'role' => ['required'],
         ]);
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended('/admin_rw/dashboard'); // redirect setelah login
+
+            $user = Auth::user();
+            $selectRole = $request->role;
+
+            if ($user -> role !== $selectRole){
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return redirect('/login')->with('error', 'Authentication failed. You are not authorized for the selected role.');
+            }
+
+            // arahkan sesuai role
+            switch ($user->role) {
+                case 'ketua_rw':
+                    return redirect()->intended('rw/dashboard');
+                case 'pkk':
+                    return redirect()->intended('pkk/dashboard');
+                case 'katar':
+                    return redirect()->intended('katar/dashboard');
+                default:
+                    // fallback jika tidak ada role
+                    Auth::logout();
+                    return redirect('/login')->with('error', 'You Dont Have Any Permission');
+            }
         }
 
         return back()->withErrors([
-            'email' => 'Email atau password salah.',
+            'email' => 'Email or Password are incorrect.',
         ])->onlyInput('email');
     }
 
