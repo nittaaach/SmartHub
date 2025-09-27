@@ -54,11 +54,19 @@
                 <ul>
                     <li><a href="landing" class="{{ Request::is('landing') ? 'active' : '' }}">Beranda</a></li>
                     <li><a href="#about" class="{{ Request::is('about') ? 'active' : '' }}">Tentang Kami</a></li>
+<<<<<<< HEAD
+                    <li><a href="#values" class="{{ Request::is('values') ? 'active' : '' }}">Layanan</a></li>
+                    <li><a href="#stats" class="{{ Request::is('stats') ? 'active' : '' }}">Informasi</a></li>
+                    {{-- <li><a href="#team" class="{{ Request::is('team') ? 'active' : '' }}">Team</a></li> --}}
+                    <li><a href="#recent-posts" class="{{ Request::is('recent-posts') ? 'active' : '' }}">Berita</a></li>
+                    {{-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i
+=======
                     <li><a href="#services" class="{{ Request::is('services') ? 'active' : '' }}">Layanan</a></li>
                     <li><a href="#portfolio" class="{{ Request::is('portfolio') ? 'active' : '' }}">Portfolio</a></li>
                     <li><a href="#team" class="{{ Request::is('team') ? 'active' : '' }}">Team</a></li>
                     <li><a href="/news" class="{{ Request::is('news') ? 'active' : '' }}">News</a></li>
                     <li class="dropdown"><a href="#"><span>Dropdown</span> <i
+>>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             <li><a href="#">Dropdown 1</a></li>
@@ -76,7 +84,11 @@
                             <li><a href="#">Dropdown 3</a></li>
                             <li><a href="#">Dropdown 4</a></li>
                         </ul>
+<<<<<<< HEAD
+                    </li> --}}
+=======
                     </li>
+>>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
                     {{-- <li class="listing-dropdown"><a href="#"><span>Listing Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li>
@@ -106,12 +118,20 @@
               </li>
             </ul>
           </li> --}}
+<<<<<<< HEAD
+                    <li><a href="#contact" class="{{ Request::is('contact') ? 'active' : '' }}">Hubungi Kami</a></li>
+=======
                     <li><a href="#contact">Contact</a></li>
+>>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
+<<<<<<< HEAD
+            <a class="btn-getstarted flex-md-shrink-0" href="/admin/login">Sign In</a>
+=======
             <a class="btn-getstarted flex-md-shrink-0" href="/login">Sign In</a>
+>>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
 
         </div>
     </header>

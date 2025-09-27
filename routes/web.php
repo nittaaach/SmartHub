@@ -5,8 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
+<<<<<<< HEAD
+use App\Http\Controllers\LayananController;
+=======
 use App\Http\Controllers\DashboardController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+>>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
 
 //route for home
 Route::get('/', function () {
@@ -24,6 +28,14 @@ Route::middleware(['auth'])->group(function () {
 });
 
 //route for auth
+<<<<<<< HEAD
+Route::get('/admin/login', [AuthController::class, 'showLoginForm'])->name('admin/login');
+Route::post('/admin/login', [AuthController::class, 'login'])->name('admin.login.process');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/admin/dashboard', function () {
+    return view('admin/dashboard');
+})->middleware('auth');
+=======
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.process');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -37,6 +49,15 @@ Route::middleware(['auth', 'role:katar'])->group(function () {
     Route::get('/katar/dashboard', [DashboardController::class, 'index'])->name('katar.dashboard');
 });
 
+<<<<<<< HEAD
+=======
+// Route::get('/rw/dashboard', function () {
+//     return view('rw/dashboard');
+// })->middleware('auth');
+>>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
+
+
+>>>>>>> d5e7715029aea9028481ab66398b87cd0eabe8a0
 //route for news
 //route news (user)
 Route::get('/news', [NewsController::class, 'userView'])->name('news');
@@ -47,3 +68,12 @@ Route::get('/admin/news', [NewsController::class, 'showNews'])->name('news.index
 Route::post('/admin/news', [NewsController::class, 'store'])->name('news.store');
 Route::put('/admin/news/{id}', [NewsController::class, 'update'])->name('news.update');
 Route::delete('/admin/news/{id}', [NewsController::class, 'destroy'])->name('news.destroy');
+<<<<<<< HEAD
+=======
+Route::get('/news', [NewsController::class, 'userView'])->name('News.user');
+<<<<<<< HEAD
+//routes for layanan
+Route::get('/layanan', [LayananController::class, 'layanan'])->name('layanan');
+=======
+>>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
+>>>>>>> d5e7715029aea9028481ab66398b87cd0eabe8a0

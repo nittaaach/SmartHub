@@ -8,7 +8,11 @@
 
   <footer id="footer" class="footer"> @yield('footer')
 
+<<<<<<< HEAD
+    {{-- <div class="footer-newsletter">
+=======
     <div class="footer-newsletter">
+>>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
       <div class="container">
         <div class="row justify-content-center text-center">
           <div class="col-lg-6">
@@ -23,7 +27,11 @@
           </div>
         </div>
       </div>
+<<<<<<< HEAD
+    </div> --}}
+=======
     </div>
+>>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
 
     <div class="container footer-top">
       <div class="row gy-4">

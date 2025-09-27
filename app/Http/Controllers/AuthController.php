@@ -10,7 +10,11 @@ class AuthController extends Controller
     // Menampilkan form login
     public function showLoginForm()
     {
+<<<<<<< HEAD
+        return view('admin/login');
+=======
         return view('/login');
+>>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
     }
 
     // Memproses login
@@ -19,11 +23,21 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
+<<<<<<< HEAD
+=======
             'role' => ['required'],
+>>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
         ]);
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
+<<<<<<< HEAD
+            return redirect()->intended('/admin/dashboard'); // redirect setelah login
+        }
+
+        return back()->withErrors([
+            'email' => 'Email atau password salah.',
+=======
 
             $user = Auth::user();
             $selectRole = $request->role;
@@ -53,6 +67,7 @@ class AuthController extends Controller
 
         return back()->withErrors([
             'email' => 'Email or Password are incorrect.',
+>>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
         ])->onlyInput('email');
     }
 
