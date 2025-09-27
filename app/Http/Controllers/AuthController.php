@@ -28,7 +28,7 @@ class AuthController extends Controller
             $user = Auth::user();
             $selectRole = $request->role;
 
-            if ($user -> role !== $selectRole){
+            if ($user->role !== $selectRole) {
                 Auth::logout();
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
@@ -39,7 +39,7 @@ class AuthController extends Controller
             // arahkan sesuai role
             switch ($user->role) {
                 case 'ketua_rw':
-                    return redirect()->intended('rw/dashboard');
+                    return redirect()->intended('ketua_rw/dashboard');
                 case 'pkk':
                     return redirect()->intended('pkk/dashboard');
                 case 'katar':

@@ -4,7 +4,7 @@
 <!-- [Head] start -->
 
 <head>
-    <title>Home | Mantis Bootstrap 5 Admin Template</title>
+    <title>SmartHub | RW 12, PKK Anyelir, Katar</title>
     <!-- [Meta] -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -17,9 +17,11 @@
 
     <!-- [Favicon] icon -->
     <link rel="icon" href="../assets_admin/images/favicon.svg" type="image/x-icon"> <!-- [Google Font] Family -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
-        id="main-font-link">
+    <link rel="stylesheet" ="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" id="main-font-link">
+     <!-- data tables css -->
+    <link rel="stylesheet" href="../assets_admin/css/plugins/dataTables.bootstrap5.min.css">
+    <!-- [Google Font] Family -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" id="main-font-link">
     <!-- [Tabler Icons] https://tablericons.com -->
     <link rel="stylesheet" href="../assets_admin/fonts/tabler-icons.min.css">
     <!-- [Feather Icons] https://feathericons.com -->
