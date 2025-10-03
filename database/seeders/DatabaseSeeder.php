@@ -15,11 +15,17 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'admin-smarthub',
-            'email' => 'admin12@gmail.com', 
-            'password' => bcrypt('passwordBaru123')
+        // User::factory()->create([
+        //     'name' => 'admin-smarthub',
+        //     'email' => 'admin12@gmail.com', 
+        //     'password' => bcrypt('passwordBaru123')
+        // ]);
+
+        $this->call([
+            DroleSeeder::class,
+            UserSeeder::class,
+            DataDiriSeeder::class,
+            RoleSeeder::class,
         ]);
-        
     }
 }

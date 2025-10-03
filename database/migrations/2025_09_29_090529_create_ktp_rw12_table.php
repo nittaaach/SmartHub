@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('drole', function (Blueprint $table) {
+        Schema::create('ktp_rw12', function (Blueprint $table) {
             $table->id();
-            $table->string('role')->unique();
+            $table->string('rt');
+            $table->integer('jumlah');
+            $table->integer('laki_laki');   // gunakan underscore, bukan tanda minus
+            $table->integer('perempuan');
+            $table->integer('jumlah_kk');
             $table->timestamps();
         });
     }
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('drole');
+        Schema::dropIfExists('ktp_rw12');
     }
 };

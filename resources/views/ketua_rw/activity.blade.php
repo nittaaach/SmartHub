@@ -93,4 +93,4 @@
     </div>
     <!-- Alternative Pagination table end -->
 @endsection
-@extends('admin-temp.footer')
+@extends('admin-temp.footer_rw')

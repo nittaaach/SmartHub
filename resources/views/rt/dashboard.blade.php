@@ -316,5 +316,4 @@
     </div>
     <!-- [ Main Content ] end -->
 @endsection
-@extends('admin-temp.footer_rw')
-@extends('admin-temp.main_js')
+@extends('admin-temp.footer_rt')

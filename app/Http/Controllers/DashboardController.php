@@ -18,6 +18,8 @@ class DashboardController extends Controller
                     return view('pkk/dashboard'); // Replace with your actual view path
                 case 'katar':
                     return view('katar/dashboard'); // Replace with your actual view path
+                case 'rt':
+                    return view('rt/dashboard'); // Replace with your actual view path
                 default:
                     // Fallback, though the middleware should prevent this
                     return redirect('/login');

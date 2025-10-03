@@ -19,4 +19,10 @@ class AuthModel extends Model
     protected $hidden = [
         'password', // Hide password from array and JSON representations
     ];
+
+     public function chaptas()
+    {
+        // relasi ke tabel chapta
+        return $this->hasMany(ChaptaModels::class, 'id_users');
+    }
 }

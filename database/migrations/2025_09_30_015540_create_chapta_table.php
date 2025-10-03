@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('datadiri', function (Blueprint $table) {
+        Schema::create('chapta', function (Blueprint $table) {
             $table->id();
+            // tambahkan kolom foreign key lebih dulu
             $table->unsignedBigInteger('id_users');
-            $table->string('nama');
-            $table->string('email')->unique();
-            $table->string('notelp')->unique();
-            $table->text('alamat')->nullable();
+            $table->foreign('id_users')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->integer('number');
             $table->timestamps();
-
-            $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('datadiri');
+        Schema::dropIfExists('chapta');
     }
 };
