@@ -11,17 +11,14 @@ class StatistikController extends Controller
 {
     public function index()
     {
-        $data = KtpModels::all();
-        return view('ketua_rw.statispend', compact('data'));
+        $data_ktp = KtpModels::all();
+        $data_nonktp = NonktpModels::all();
+
+        return view('ketua_rw.statispend', compact('data_ktp', 'data_nonktp'));
     }
 
-    public function ktpView()
-    {
-        $data = KtpModels::all(); // ambil semua data
-        return view('ketua_rw.statispend', compact('data')); // arahkan ke view user
-    }
 
-    public function store(Request $request)
+    public function store_ktp(Request $request)
     {
         $request->validate([
             'rt' => 'required',
@@ -40,7 +37,7 @@ class StatistikController extends Controller
         return redirect()->back()->with('success', 'Data berhasil ditambahkan.');
     }
 
-    public function update(Request $request, $id)
+    public function update_ktp(Request $request, $id)
     {
         $ktprw12 = KtpModels::findOrFail($id);
 
@@ -59,12 +56,6 @@ class StatistikController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Data berhasil diupdate.');
-    }
-
-    public function nonktpView()
-    {
-        $data = NonktpModels::all(); // ambil semua data
-        return view('ketua_rw.statispend', compact('data')); // arahkan ke view user
     }
 
     public function store_nonktp(Request $request)

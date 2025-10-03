@@ -34,19 +34,19 @@
                     </li>
 
                     <li class="pc-item pc-caption">
-                        <label>UI Components</label>
+                        <label>Data</label>
                         <i class="ti ti-dashboard"></i>
                     </li>
                     <li class="pc-item">
                         <a href="" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-device-analytics"></i></span>
-                            <span class="pc-mtext">Statistika</span>
+                            <span class="pc-micon"><i class="ti ti-layout-grid-add"></i></span>
+                            <span class="pc-mtext">Management Pengguna</span>
                         </a>
                     </li>
                     <li class="pc-item">
                         <a href="../elements/bc_color.html" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-color-swatch"></i></span>
-                            <span class="pc-mtext">Color</span>
+                            <span class="pc-micon"><i class="ti ti-report"></i></span>
+                            <span class="pc-mtext">Layanan</span>
                         </a>
                     </li>
                     <li class="pc-item">
@@ -132,12 +132,12 @@
                             <li class="pc-item"><a class="pc-link" href="#!">Bank Sampah</a></li>
                         </ul>
                     </li>
-                    <li class="pc-item">
+                    {{-- <li class="pc-item">
                         <a href="../other/sample-page.html" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-brand-chrome"></i></span>
                             <span class="pc-mtext">Sample page</span>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>

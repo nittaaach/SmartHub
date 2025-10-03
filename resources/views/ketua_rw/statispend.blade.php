@@ -54,17 +54,19 @@
                                             <th>Rukun Tetangga</th>
                                             <th>laki-laki</th>
                                             <th>Perempuan</th>
+                                            <th>Jumlah</th>
                                             <th>Jumlah Kartu Keluarga</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data as $item)
+                                        @foreach ($data_ktp as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->rt }}</td>
                                                 <td>{{ $item->laki_laki }}</td>
                                                 <td>{{ $item->perempuan }}</td>
+                                                <td>{{ $item->jumlah }}</td>
                                                 <td>{{ $item->jumlah_kk }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary me-3"
@@ -78,12 +80,13 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Rukun Tetangga</th>
-                                            <th>Laki-Laki</th>
-                                            <th>Perempuan</th>
-                                            <th>Jumlah Kartu Keluarga</th>
-                                            <th>Action</th>
+                                            {{-- <th>No</th> --}}
+                                            <th colspan="2">Total</th>
+                                            <th>{{ $data_ktp->sum('laki_laki') }}</th>
+                                            <th>{{ $data_ktp->sum('perempuan') }}</th>
+                                            <th>{{ $data_ktp->sum('jumlah') }}</th>
+                                            <th>{{ $data_ktp->sum('jumlah_kk') }}</th>
+                                            {{-- <th>Action</th> --}}
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -91,52 +94,54 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="tab-pane fade" id="non-ktp" role="tabpanel" aria-labelledby="non-ktp-tab">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="dt-responsive table-responsive">
-                            <h5 class="mb-3">Non KTP RW 12</h5>
-                            <table id="basic-btn-nonktp" class="table table-striped table-bordered nowrap">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Rukun Tetangga</th>
-                                        <th>laki-laki</th>
-                                        <th>Perempuan</th>
-                                        <th>Jumlah Kartu Keluarga</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($data as $item)
+                <div class="tab-pane fade" id="non-ktp" role="tabpanel" aria-labelledby="non-ktp-tab">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="dt-responsive table-responsive">
+                                <h5 class="mb-3">Non KTP RW 12</h5>
+                                <table id="basic-btn-nonktp" class="table table-striped table-bordered nowrap">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->rt }}</td>
-                                            <td>{{ $item->laki_laki }}</td>
-                                            <td>{{ $item->perempuan }}</td>
-                                            <td>{{ $item->jumlah_kk }}</td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal"
-                                                    data-bs-target="#UpdatenonModal-{{ $item->id }}">
-                                                    Update
-                                                </button>
-                                            </td>
+                                            <th>No</th>
+                                            <th>Rukun Tetangga</th>
+                                            <th>laki-laki</th>
+                                            <th>Perempuan</th>
+                                            <th>Jumlah</th>
+                                            <th>Jumlah Kartu Keluarga</th>
+                                            <th>Action</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Rukun Tetangga</th>
-                                        <th>Laki-Laki</th>
-                                        <th>Perempuan</th>
-                                        <th>Jumlah Kartu Keluarga</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($data_nonktp as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->rt }}</td>
+                                                <td>{{ $item->laki_laki }}</td>
+                                                <td>{{ $item->perempuan }}</td>
+                                                <td>{{ $item->jumlah }}</td>
+                                                <td>{{ $item->jumlah_kk }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary me-3"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#UpdatenonModal-{{ $item->id }}">
+                                                        Update
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="2">Total</th>
+                                            <th>{{ $data_nonktp->sum('laki_laki') }}</th>
+                                            <th>{{ $data_nonktp->sum('perempuan') }}</th>
+                                            <th>{{ $data_nonktp->sum('jumlah') }}</th>
+                                            <th>{{ $data_nonktp->sum('jumlah_kk') }}</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -146,7 +151,7 @@
     <!-- Alternative Pagination table end -->
 
     <!-- Modal Update KTP -->
-    @foreach ($data as $item)
+    @foreach ($data_ktp as $item)
         <div id="UpdatektpModal-{{ $item->id }}" class="modal fade" tabindex="-1" role="dialog"
             aria-labelledby="UpdatektpModalTitlem-{{ $item->id }}" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -158,7 +163,7 @@
                     <div class="modal-body">
                         <div class="card">
 
-                            <form action="{{ route('statispend.update', $item->id) }}" method="POST"
+                            <form action="{{ route('statispend.update_ktp', $item->id) }}" method="POST"
                                 enctype="multipart/form-data" class="modal-content">
 
                                 @csrf
@@ -221,7 +226,7 @@
     @endforeach
 
     <!-- Modal Update Non KTP -->
-    @foreach ($data as $item)
+    @foreach ($data_nonktp as $item)
         <div id="UpdatenonModal-{{ $item->id }}" class="modal fade" tabindex="-1" role="dialog"
             aria-labelledby="UpdatenonModalTitlem-{{ $item->id }}" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
