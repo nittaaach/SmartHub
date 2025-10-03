@@ -12,7 +12,14 @@ class NewsController extends Controller
         return view('/news');
     }
 
-    public function newsDetail(){
+    public function newsDetail()
+    {
         return view('/news_detail');
+    }
+
+
+    public function news_RW()
+    {
+        return view('/ketua_rw/news');
     }
 }

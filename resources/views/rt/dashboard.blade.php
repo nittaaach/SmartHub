@@ -11,7 +11,7 @@
                             <h5 class="m-b-10">Home</h5>
                         </div>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="../dashboard/index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="ketua_rw/dashboard">Home</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0)">Dashboard</a></li>
                             <li class="breadcrumb-item" aria-current="page">Home</li>
                         </ul>
@@ -316,4 +316,4 @@
     </div>
     <!-- [ Main Content ] end -->
 @endsection
-@extends('admin-temp.footer')
+@extends('admin-temp.footer_rt')

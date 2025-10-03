@@ -14,7 +14,8 @@ class DroleSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('drole')->truncate();
+        DB::table('drole')->delete();
+        DB::statement('ALTER TABLE drole AUTO_INCREMENT = 1');
 
         $now = Carbon::now();
 
@@ -22,6 +23,7 @@ class DroleSeeder extends Seeder
             ['role' => 'ketua_rw', 'created_at' => $now, 'updated_at' => $now],
             ['role' => 'pkk',      'created_at' => $now, 'updated_at' => $now],
             ['role' => 'katar',    'created_at' => $now, 'updated_at' => $now],
+            ['role' => 'rt',    'created_at' => $now, 'updated_at' => $now],
         ]);
     }
 }

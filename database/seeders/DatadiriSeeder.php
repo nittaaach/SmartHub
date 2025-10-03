@@ -16,7 +16,7 @@ class DatadiriSeeder extends Seeder
     {
         // Replace 1 with the actual user ID you want to associate
         $datadiri = DB::table('datadiri')->insertGetId([
-            'user_id' => 1,
+            'id_users' => 1,
             'nama' => 'Admin RW',
             'email' => 'admin@gmail.com',
             'notelp' => '08123456789',

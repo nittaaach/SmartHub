@@ -71,6 +71,7 @@
                                     <option value="ketua_rw">Ketua RW</option>
                                     <option value="pkk">PKK</option>
                                     <option value="katar">Karang Taruna</option>
+                                    <option value="rt">Ketua RT</option>
                                 </select>
                                 @error('role')
                                     <span class="text-danger">{{ $message }}</span>
@@ -93,6 +94,16 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
+                            <div class="form-group mb-3">
+                                <label class="form-label">
+                                    Hitung: {{ $a }} + {{ $b }} = ?
+                                </label>
+                                <input type="text" name="chapta_answer" class="form-control" placeholder="Jawaban"
+                                    required>
+                                @error('chapta_answer')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
                             <div class="d-flex mt-1 justify-content-between">
                                 <div class="form-check">
                                     <input class="form-check-input input-primary" type="checkbox" id="customCheckc1"
@@ -105,7 +116,7 @@
                             <div class="d-grid mt-4">
                                 <button type="submit" class="btn btn-primary">Login</button>
                             </div>
-                            <div class="saprator mt-3">
+                            {{-- <div class="saprator mt-3">
                                 <span>Login with</span>
                             </div>
                             <div class="row">
@@ -134,7 +145,7 @@
                                         </button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </form>
                     </div>
                 </div>

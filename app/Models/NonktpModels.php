@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class DroleModels extends Model
+class NonktpModels extends Model
 {
     use HasFactory;
 
-    protected $table = 'drole';
+    protected $table = 'nonktp_rw12';
 
-    protected $fillable = ['role'];
+    protected $fillable = ['rt', 'laki_laki', 'perempuan', 'jumlah_kk'];
 }
