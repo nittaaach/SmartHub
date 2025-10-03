@@ -32,14 +32,9 @@
 
                     <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
                         <div class="content">
-<<<<<<< HEAD
-                            <h3>TENTANG KAMI</h3>
-                            <h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet nulla quam iusto deserunt optio ad minus ullam numquam atque. Distinctio autem eos perferendis ipsam id voluptates ullam praesentium nulla dicta!</h2>
-=======
                             <h3>Who We Are</h3>
                             <h2>Expedita voluptas omnis cupiditate totam eveniet nobis sint iste. Dolores est repellat
                                 corrupti reprehenderit.</h2>
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
                             <p>
                                 Quisquam vel ut sint cum eos hic dolores aperiam. Sed deserunt et. Inventore et et dolor
                                 consequatur itaque ut voluptate sed et. Magnam nam ipsum tenetur suscipit voluptatum nam et
@@ -69,14 +64,9 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-<<<<<<< HEAD
 
                 <p>LAYANAN<br></p>
                 <h2>Yang Kami Sediakan</h2>
-=======
-                <h2>Our Values</h2>
-                <p>What we value most<br></p>
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
             </div><!-- End Section Title -->
 
             <div class="container">
@@ -88,11 +78,8 @@
                             <img src="assets-user/img/values-1.png" class="img-fluid" alt="">
                             <h3>Ad cupiditate sed est odio</h3>
                             <p>Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit. Et veritatis id.</p>
-<<<<<<< HEAD
                             <a href="/layanan" class="readmore stretched-link"><span>Read More</span><i
                                         class="bi bi-arrow-right"></i></a>
-=======
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
                         </div>
                     </div><!-- End Card Item -->
 
@@ -101,11 +88,8 @@
                             <img src="assets-user/img/values-2.png" class="img-fluid" alt="">
                             <h3>Voluptatem voluptatum alias</h3>
                             <p>Repudiandae amet nihil natus in distinctio suscipit id. Doloremque ducimus ea sit non.</p>
-<<<<<<< HEAD
                             <a href="/layanan" class="readmore stretched-link"><span>Read More</span><i
                                         class="bi bi-arrow-right"></i></a>
-=======
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
                         </div>
                     </div><!-- End Card Item -->
 
@@ -114,16 +98,11 @@
                             <img src="assets-user/img/values-3.png" class="img-fluid" alt="">
                             <h3>Fugit cupiditate alias nobis.</h3>
                             <p>Quam rem vitae est autem molestias explicabo debitis sint. Vero aliquid quidem commodi.</p>
-<<<<<<< HEAD
                             <a href="/layanan" class="readmore stretched-link"><span>Read More</span><i
                                         class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Card Item -->
                     
-=======
-                        </div>
-                    </div><!-- End Card Item -->
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
 
                 </div>
 
@@ -133,87 +112,51 @@
 
         <!-- Stats Section -->
         <section id="stats" class="stats section">
-<<<<<<< HEAD
             <div class="container section-title" data-aos="fade-up">
 
                 <p>INFORMASI<br></p>
                 <h2>Yang Kami Sediakan</h2>
             </div><!-- End Section Title -->
-=======
-
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
                 <div class="row gy-4">
 
                     <div class="col-lg-3 col-md-6">
                         <div class="stats-item d-flex align-items-center w-100 h-100">
-<<<<<<< HEAD
                             {{-- <i class="bi bi-emoji-smile color-blue flex-shrink-0"></i> --}}
                             <div>
                                 <h3>Statistik</h3>
                                 <p>Statistik penduduk & bangunan</p>
-=======
-                            <i class="bi bi-emoji-smile color-blue flex-shrink-0"></i>
-                            <div>
-                                <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
-                                    class="purecounter"></span>
-                                <p>Happy Clients</p>
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
                             </div>
                         </div>
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-3 col-md-6">
                         <div class="stats-item d-flex align-items-center w-100 h-100">
-<<<<<<< HEAD
                             {{-- <i class="bi bi-journal-richtext color-orange flex-shrink-0" style="color: #ee6c20;"></i> --}}
                             <div>
                                 <h3>Fasilitas</h3>
                                 <p>Fasilitas penunjang di sekitar</p>
-=======
-                            <i class="bi bi-journal-richtext color-orange flex-shrink-0" style="color: #ee6c20;"></i>
-                            <div>
-                                <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
-                                    class="purecounter"></span>
-                                <p>Projects</p>
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
                             </div>
                         </div>
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-3 col-md-6">
                         <div class="stats-item d-flex align-items-center w-100 h-100">
-<<<<<<< HEAD
                             {{-- <i class="bi bi-headset color-green flex-shrink-0" style="color: #15be56;"></i> --}}
                             <div>
                                 <h3>Siaga Banjir</h3>
                                 <p>Status ketinggian air & pompa</p>
-=======
-                            <i class="bi bi-headset color-green flex-shrink-0" style="color: #15be56;"></i>
-                            <div>
-                                <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1"
-                                    class="purecounter"></span>
-                                <p>Hours Of Support</p>
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
                             </div>
                         </div>
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-3 col-md-6">
                         <div class="stats-item d-flex align-items-center w-100 h-100">
-<<<<<<< HEAD
                             {{-- <i class="bi bi-people color-pink flex-shrink-0" style="color: #bb0852;"></i> --}}
                             <div>
                                 <h3>Galeri</h3>
                                 <p>Dokumentasi kegiatan kemasyarakatan</p>
-=======
-                            <i class="bi bi-people color-pink flex-shrink-0" style="color: #bb0852;"></i>
-                            <div>
-                                <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1"
-                                    class="purecounter"></span>
-                                <p>Hard Workers</p>
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
                             </div>
                         </div>
                     </div><!-- End Stats Item -->
@@ -224,11 +167,7 @@
 
         </section><!-- /Stats Section -->
 
-<<<<<<< HEAD
         {{-- <!-- Features Section -->
-=======
-        <!-- Features Section -->
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
         <section id="features" class="features section">
 
             <!-- Section Title -->
@@ -858,26 +797,15 @@
 
             </div>
 
-<<<<<<< HEAD
         </section><!-- /Portfolio Section --> --}}
 
         {{-- <!-- Testimonials Section -->
-=======
-        </section><!-- /Portfolio Section -->
-
-        <!-- Testimonials Section -->
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
         <section id="testimonials" class="testimonials section">
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-<<<<<<< HEAD
                 <p>BERITA<br></p>
                 <h2>Informasi Terbaru</h2>
-=======
-                <h2>Testimonials</h2>
-                <p>What they are saying about us<br></p>
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -1189,25 +1117,16 @@
 
             </div>
 
-<<<<<<< HEAD
         </section><!-- /Clients Section --> --}}
-=======
-        </section><!-- /Clients Section -->
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
 
         <!-- Recent Posts Section -->
         <section id="recent-posts" class="recent-posts section">
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-<<<<<<< HEAD
                 <p>BERITA</p>
                 <h2>Informasi Terkini</h2>
 
-=======
-                <h2>Recent Posts</h2>
-                <p>Recent posts form our Blog</p>
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
             </div><!-- End Section Title -->
 
             <div class="container">
@@ -1238,11 +1157,7 @@
 
                                 <hr>
 
-<<<<<<< HEAD
                                 <a href="/news_detail" class="readmore stretched-link"><span>Read More</span><i
-=======
-                                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
                                         class="bi bi-arrow-right"></i></a>
 
                             </div>
@@ -1274,11 +1189,7 @@
 
                                 <hr>
 
-<<<<<<< HEAD
                                 <a href="/news_detail" class="readmore stretched-link"><span>Read More</span><i
-=======
-                                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
                                         class="bi bi-arrow-right"></i></a>
 
                             </div>
@@ -1310,11 +1221,7 @@
 
                                 <hr>
 
-<<<<<<< HEAD
                                 <a href="/news_detail" class="readmore stretched-link"><span>Read More</span><i
-=======
-                                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
                                         class="bi bi-arrow-right"></i></a>
 
                             </div>
@@ -1333,13 +1240,8 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-<<<<<<< HEAD
                 <p>HUBUNGI KAMI</p>
                 <h2>Informasi Kontak</h2>
-=======
-                <h2>Contact</h2>
-                <p>Contact Us</p>
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
