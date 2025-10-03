@@ -57,7 +57,7 @@ class AuthController extends Controller
         //             Auth::logout();
         //             return redirect('/login')->with('error', 'You Dont Have Any Permission');
         //     }
-        // }
+        }
 
         // autentikasi user
         $credentials = $request->only('email', 'password');
