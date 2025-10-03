@@ -37,8 +37,8 @@
                         <label>Data</label>
                         <i class="ti ti-dashboard"></i>
                     </li>
-                    <li class="pc-item">
-                        <a href="" class="pc-link">
+                    <li class="pc-item  {{ request()->routeIs('ketua_rw.management_pengguna') ? 'pc-active' : '' }}">
+                        <a href="{{ route('ketua_rw.management_pengguna') }}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-layout-grid-add"></i></span>
                             <span class="pc-mtext">Management Pengguna</span>
                         </a>
