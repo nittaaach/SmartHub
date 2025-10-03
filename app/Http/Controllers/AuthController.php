@@ -26,38 +26,38 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
 
-        //     $user = Auth::user();
-        //     $selectRole = $request->role;
+            $user = Auth::user();
+            $selectRole = $request->role;
 
-        //     if ($user->role !== $selectRole) {
-        //         Auth::logout();
-        //         $request->session()->invalidate();
-        //         $request->session()->regenerateToken();
+            if ($user->role !== $selectRole) {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
 
-        //         return redirect('/login')->with('error', 'Authentication failed. You are not authorized for the selected role.');
-        //     }
+                return redirect('/login')->with('error', 'Authentication failed. You are not authorized for the selected role.');
+            }
 
-        //     ChaptaModels::create([
-        //         'id_users' => $user->id,
-        //         'number'  => session('chapta_sum'), // atau bisa $request->captcha_answer
-        //     ]);
+            ChaptaModels::create([
+                'id_users' => $user->id,
+                'number'  => session('chapta_sum'), // atau bisa $request->captcha_answer
+            ]);
 
-        //     // arahkan sesuai role
-        //     switch ($user->role) {
-        //         case 'ketua_rw':
-        //             return redirect()->intended('ketua_rw/dashboard');
-        //         case 'pkk':
-        //             return redirect()->intended('pkk/dashboard');
-        //         case 'katar':
-        //             return redirect()->intended('katar/dashboard');
-        //         case 'rt':
-        //             return redirect()->intended('rt/dashboard');
-        //         default:
-        //             // fallback jika tidak ada role
-        //             Auth::logout();
-        //             return redirect('/login')->with('error', 'You Dont Have Any Permission');
-        //     }
-        // }
+            // arahkan sesuai role
+            switch ($user->role) {
+                case 'ketua_rw':
+                    return redirect()->intended('ketua_rw/dashboard');
+                case 'pkk':
+                    return redirect()->intended('pkk/dashboard');
+                case 'katar':
+                    return redirect()->intended('katar/dashboard');
+                case 'rt':
+                    return redirect()->intended('rt/dashboard');
+                default:
+                    // fallback jika tidak ada role
+                    Auth::logout();
+                    return redirect('/login')->with('error', 'You Dont Have Any Permission');
+            }
+        }
 
         // autentikasi user
         $credentials = $request->only('email', 'password');
