@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('struktural', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_datadiri'); // relasi ke tabel datadiri
+            $table->string('jabatan'); // misalnya: sekretaris, bendahara
+            $table->string('tingkatan'); // misalnya: rt, rw, pkk
+            $table->string('gambar')->nullable(); // foto/gambar opsional
             $table->timestamps();
+
+            $table->foreign('id_datadiri')
+                ->references('id')->on('datadiri')
+                ->onDelete('cascade');
         });
     }
 
