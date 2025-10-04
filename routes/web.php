@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StatistikController;
+use App\Http\Controllers\VMController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 //route for home
@@ -13,6 +15,9 @@ Route::get('/', function () {
     return view('landing');
 });
 Route::get('/landing', [HomeController::class, 'HomeLanding'])->name('landing');
+Route::get('/statistika', [StatistikController::class, 'stat'])->name('statistika');
+Route::get('/visimisi', [VMController::class, 'visimisi'])->name('visimisi');
+
 
 //route for auth
 Route::get('/admin/login', [AuthController::class, 'showLoginForm'])->name('admin/login');
