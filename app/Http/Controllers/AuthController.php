@@ -37,7 +37,7 @@ class AuthController extends Controller
                 ->withInput()
                 ->withErrors(['chapta_answer' => 'Jawaban penjumlahan salah.']);
         }
-
+        
         // autentikasi user
         $credentials = $request->only('email', 'password');
         if (! Auth::attempt($credentials, $request->filled('remember'))) {
