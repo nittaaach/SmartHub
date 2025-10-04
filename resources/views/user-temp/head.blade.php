@@ -59,6 +59,14 @@
                     {{-- <li><a href="#team" class="{{ Request::is('team') ? 'active' : '' }}">Team</a></li> --}}
                     <li><a href="#recent-posts" class="{{ Request::is('recent-posts') ? 'active' : '' }}">Berita</a></li>
                     {{-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i
+<<<<<<< HEAD
+=======
+                    <li><a href="#services" class="{{ Request::is('services') ? 'active' : '' }}">Layanan</a></li>
+                    <li><a href="#portfolio" class="{{ Request::is('portfolio') ? 'active' : '' }}">Portfolio</a></li>
+                    <li><a href="#team" class="{{ Request::is('team') ? 'active' : '' }}">Team</a></li>
+                    <li><a href="/news" class="{{ Request::is('news') ? 'active' : '' }}">News</a></li>
+                    <li class="dropdown"><a href="#"><span>Dropdown</span> <i
+>>>>>>> a7c2e8051a58eb1714551c91be1751d46591b2a7
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             <li><a href="#">Dropdown 1</a></li>
@@ -77,6 +85,10 @@
                             <li><a href="#">Dropdown 4</a></li>
                         </ul>
                     </li> --}}
+<<<<<<< HEAD
+=======
+                    </li>
+>>>>>>> a7c2e8051a58eb1714551c91be1751d46591b2a7
                     {{-- <li class="listing-dropdown"><a href="#"><span>Listing Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li>

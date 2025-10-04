@@ -1,8 +1,4 @@
 @extends('user-temp.head')
-<<<<<<< HEAD
-=======
-
->>>>>>> 87ce82732d632cdb7f3956ba3d1115b4cf0b1caa
 @section('content')
     <!-- Page Title -->
     <div class="page-title">

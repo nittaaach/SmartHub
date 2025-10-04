@@ -97,4 +97,9 @@ class StatistikController extends Controller
 
         return redirect()->back()->with('success', 'Data berhasil diupdate.');
     }
+
+    public function stat()
+    {
+        return view('/statistika');
+    }
 }

@@ -5,19 +5,38 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\LayananController;
+<<<<<<< HEAD
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ManagementPenggunaController;
 use App\Http\Controllers\StatistikController;
 use App\Http\Controllers\StrukturalController;
+=======
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StatistikController;
+use App\Http\Controllers\VMController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+>>>>>>> a7c2e8051a58eb1714551c91be1751d46591b2a7
 
 //route for home
 Route::get('/', function () {
     return view('landing');
 });
 Route::get('/landing', [HomeController::class, 'HomeLanding'])->name('landing');
+Route::get('/statistika', [StatistikController::class, 'stat'])->name('statistika');
+Route::get('/visimisi', [VMController::class, 'visimisi'])->name('visimisi');
+
 
 //route for auth
+<<<<<<< HEAD
+=======
+Route::get('/admin/login', [AuthController::class, 'showLoginForm'])->name('admin/login');
+Route::post('/admin/login', [AuthController::class, 'login'])->name('admin.login.process');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/admin/dashboard', function () {
+    return view('admin/dashboard');
+})->middleware('auth');
+>>>>>>> a7c2e8051a58eb1714551c91be1751d46591b2a7
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.process');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -34,6 +53,7 @@ Route::middleware(['auth', 'role:rt'])->group(function () {
     Route::get('/rt/dashboard', [DashboardController::class, 'index'])->name('rt.dashboard');
 });
 
+<<<<<<< HEAD
 //Route middleware for sidebar
 Route::middleware(['auth'])->group(function () {
     Route::get('/ketua_rw/news', [NewsController::class, 'news_RW'])->name('ketua_rw.news');
@@ -60,6 +80,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/ketua_rw/struktural', [StrukturalController::class, 'store_rw'])->name('struktural.store_rw');
     Route::put('/ketua_rw/struktural/{id}', [StrukturalController::class, 'update_rw'])->name('struktural.update_rw');
 });
+=======
+// Route::get('/rw/dashboard', function () {
+//     return view('rw/dashboard');
+// })->middleware('auth');
+>>>>>>> a7c2e8051a58eb1714551c91be1751d46591b2a7
 
 
 //route for news
@@ -72,5 +97,9 @@ Route::get('/admin/news', [NewsController::class, 'showNews'])->name('news.index
 Route::post('/admin/news', [NewsController::class, 'store'])->name('news.store');
 Route::put('/admin/news/{id}', [NewsController::class, 'update'])->name('news.update');
 Route::delete('/admin/news/{id}', [NewsController::class, 'destroy'])->name('news.destroy');
+<<<<<<< HEAD
+=======
+Route::get('/news', [NewsController::class, 'userView'])->name('News.user');
+>>>>>>> a7c2e8051a58eb1714551c91be1751d46591b2a7
 //routes for layanan
 Route::get('/layanan', [LayananController::class, 'layanan'])->name('layanan');
