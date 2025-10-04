@@ -51,8 +51,8 @@
                     </li>
                     <li class="pc-item">
                         <a href="../elements/icon-tabler.html" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-plant-2"></i></span>
-                            <span class="pc-mtext">Icons</span>
+                            <span class="pc-micon"><i class="ti ti-archive"></i></span>
+                            <span class="pc-mtext">Berkas Berkas</span>
                         </a>
                     </li>
 
@@ -82,7 +82,8 @@
                                     class="ti ti-layout-grid"></i></span><span class="pc-mtext">Struktural</span><span
                                 class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
                         <ul class="pc-submenu">
-                            <li class="pc-item"><a class="pc-link" href="#!">Struktur Rukun Warga</a></li>
+                            <li class="pc-item {{ request()->routeIs('ketua_rw.struktural') ? 'pc-active' : '' }}"><a
+                                    class="pc-link" href="{{ route('ketua_rw.struktural') }}">Struktur Rukun Warga</a></li>
                             <li class="pc-item"><a class="pc-link" href="#!">Struktur Rukun Tetangga</a></li>
                             <li class="pc-item"><a class="pc-link" href="#!">Struktur PKK Anyelir</a></li>
                             <li class="pc-item"><a class="pc-link" href="#!">Struktur Karang Taruna</a></li>

@@ -20,7 +20,7 @@ class DataDiriModels extends Model
     ];
 
     // Relasi ke tabel struktural
-    public function strukturnya()
+    public function struktural()
     {
         return $this->hasOne(StrukturalModels::class, 'id_datadiri');
     }

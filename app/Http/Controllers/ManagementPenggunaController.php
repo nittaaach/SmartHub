@@ -4,81 +4,61 @@ namespace App\Http\Controllers;
 
 use App\Models\DataDiriModels;
 use App\Models\StrukturalModels;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ManagementPenggunaController extends Controller
 {
     public function index()
     {
-        $struktural = StrukturalModels::with('datadiri')->get();
-        return view('ketua_rw.management_pengguna', compact('struktural'));
+        $management = User::all();
+        return view('ketua_rw.management_pengguna', compact('management'));
     }
 
-    // Form tambah
-    public function create()
-    {
-        $datadiri = DataDiriModels::all(); // supaya bisa pilih orang
-        return view('struktural.create', compact('datadiri'));
-    }
-
-    // Simpan data baru
-    public function store(Request $request)
+    public function store_rw(Request $request)
     {
         $request->validate([
-            'id_datadiri' => 'required|exists:datadiri,id',
-            'jabatan' => 'required|string|max:100',
-            'tingkatan' => 'required|string|max:50',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'name' => 'required',
+            'email' => 'required',
+            'perempuan' => 'required',
+            'created_at' => 'required',
         ]);
 
-        $data = $request->all();
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'created_at' => $request->created_at
+        ]);
 
-        if ($request->hasFile('gambar')) {
-            $data['gambar'] = $request->file('gambar')->store('struktural', 'public');
-        }
-
-        StrukturalModels::create($data);
-
-        return redirect()->route('struktural.index')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->back()->with('success', 'Data berhasil ditambahkan.');
     }
 
-    // Form edit
-    public function edit($id)
+    public function update_rw(Request $request, $id)
     {
-        $struktural = StrukturalModels::findOrFail($id);
-        $datadiri = DataDiriModels::all();
-        return view('struktural.edit', compact('struktural', 'datadiri'));
-    }
+        $ktprw12 = User::findOrFail($id);
 
-    // Update data
-    public function update(Request $request, $id)
-    {
         $request->validate([
-            'id_datadiri' => 'required|exists:datadiri,id',
-            'jabatan' => 'required|string|max:100',
-            'tingkatan' => 'required|string|max:50',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'created_at' => 'required',
         ]);
 
-        $struktural = StrukturalModels::findOrFail($id);
+        $ktprw12->update([
+            'name' => $request->name,
+            'email' => $request->laki_laki,
+            'password' => $request->password,
+            'created_at' => $request->created_at
+        ]);
 
-        $data = $request->all();
-
-        if ($request->hasFile('gambar')) {
-            $data['gambar'] = $request->file('gambar')->store('struktural', 'public');
-        }
-
-        $struktural->update($data);
-
-        return redirect()->route('struktural.index')->with('success', 'Data berhasil diperbarui');
+        return redirect()->back()->with('success', 'Data berhasil diupdate.');
     }
 
-    // Hapus data
     public function destroy($id)
     {
-        $struktural = StrukturalModels::findOrFail($id);
-        $struktural->delete();
-
-        return redirect()->route('struktural.index')->with('success', 'Data berhasil dihapus');
+        $management = User::findOrFail($id);
+        $management->delete();
+        return redirect()->back()->with('success', 'Data berhasil dihapus.');
     }
 }

@@ -10,12 +10,12 @@
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="../dashboard/index.html">Home</a></li>
                         <li class="breadcrumb-item"><a href="javascript: void(0)">Pages</a></li>
-                        <li class="breadcrumb-item" aria-current="page">Management Pengguna</li>
+                        <li class="breadcrumb-item" aria-current="page">Struktural Rukun Warga</li>
                     </ul>
                 </div>
                 <div class="col-md-12">
                     <div class="page-header-title">
-                        <h2 class="mb-0">Management Pengguna.</h2>
+                        <h2 class="mb-0">Struktural Rukun Warga.</h2>
                     </div>
                 </div>
             </div>
@@ -57,21 +57,31 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Gambar</th>
                                             <th>Nama</th>
                                             <th>Email</th>
-                                            <th>Password</th>
-                                            <th>Created At</th>
+                                            <th>Jabatan</th>
+                                            <th>Tingkatan</th>
+                                            <th>No. Telp</th>
+                                            <th>Alamat</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($management as $item)
+                                        @foreach ($struktural as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $item->name }}</td>
-                                                <td>{{ $item->email }}</td>
-                                                <td>{{ $item->password }}</td>
-                                                <td>{{ $item->created_at }}</td>
+                                                <td>
+                                                    @if ($item->gambar)
+                                                        <img src="{{ asset('storage/' . $item->gambar) }}" width="60">
+                                                    @endif
+                                                </td>
+                                                <td>{{ $item->datadiri->nama }}</td>
+                                                <td>{{ $item->datadiri->email }}</td>
+                                                <td>{{ $item->jabatan }}</td>
+                                                <td>{{ $item->tingkatan }}</td>
+                                                <td>{{ $item->datadiri->notelp }}</td>
+                                                <td>{{ $item->datadiri->alamat }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary me-3"
                                                         data-bs-toggle="modal"
@@ -90,10 +100,13 @@
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
+                                            <th>Gambar</th>
                                             <th>Nama</th>
                                             <th>Email</th>
-                                            <th>Password</th>
-                                            <th>Created At</th>
+                                            <th>Jabatan</th>
+                                            <th>Tingkatan</th>
+                                            <th>No. Telp</th>
+                                            <th>Alamat</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -170,38 +183,44 @@
                 <div class="modal-body">
                     <div class="card">
 
-                        <form action="{{ route('management_pengguna.store_rw') }}" method="POST"
-                            enctype="multipart/form-data" class="modal-content">
+                        <form action="{{ route('struktural.store_rw') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
                             <div class="card-body">
                                 <div class="form-group">
+                                    <label class="form-label">Gambar</label>
+                                    <input type="file" class="form-control" name="gambar" required>
+                                </div>
+                                <div class="form-group">
                                     <label class="form-label">Nama</label>
-                                    <input type="text" class="form-control form-control"
-                                        placeholder="Masukan Nama Pengguna" name="name" required>
+                                    <input type="text" class="form-control" name="nama" required>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">Email Address</label>
-                                    <input type="email" class="form-control form-control"
-                                        placeholder="Masukan Nama Pengguna" name="name" required>
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" name="email" required>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">Password</label>
-                                    <input type="password" class="form-control form-control"
-                                        placeholder="Masukan Password" name="password" required>
+                                    <label class="form-label">No. Telp</label>
+                                    <input type="text" class="form-control" name="notelp" required>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label" for="role">Role</label>
-                                    <select class="form-select" id="role" name="role" required>
-                                        <option value="">-- Pilih Kategori Role --</option>
-                                        <option value="ketua_rw">Ketua RW
-                                        </option>
-                                        <option value="rt">Ketua RT
-                                        </option>
-                                        <option value="pkk">Ketua PKK
-                                        </option>
-                                        <option value="katar">Ketua Katar
+                                    <label class="form-label">Alamat</label>
+                                    <textarea class="form-control" name="alamat" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Jabatan</label>
+                                    <input type="text" class="form-control" name="jabatan" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Tingkatan</label>
+                                    <select class="form-select" name="tingkatan" required>
+                                        <option value="">-- Pilih Kategori --</option>
+                                        <option value="Ketua RW">Ketua RW</option>
+                                        <option value="Ketua RT">Ketua RT</option>
+                                        <option value="Ketua PKK">Ketua PKK</option>
+                                        <option value="Ketua Katar">Ketua Katar</option>
                                     </select>
                                 </div>
-
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
@@ -216,7 +235,7 @@
     </div>
 
     <!-- Modal Update KTP -->
-    @foreach ($management as $item)
+    @foreach ($struktural as $item)
         <div id="UpdatepenggunaModal-{{ $item->id }}" class="modal fade" tabindex="-1" role="dialog"
             aria-labelledby="UpdatepenggunaModalTitle-{{ $item->id }}" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -228,7 +247,7 @@
                     <div class="modal-body">
                         <div class="card">
 
-                            <form action="{{ route('management_pengguna.update_rw', $item->id) }}" method="POST"
+                            <form action="{{ route('statispend.update_ktp', $item->id) }}" method="POST"
                                 enctype="multipart/form-data" class="modal-content">
 
                                 @csrf

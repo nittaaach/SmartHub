@@ -50,92 +50,6 @@
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
-            </div>
-
-        </section><!-- /Hero Section -->
-
-        <!-- About Section -->
-        <section id="about" class="about section">
-
-            <div class="container" data-aos="fade-up">
-                <div class="row gx-0">
-
-                    <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
-                        <div class="content">
-                            <h3>Who We Are</h3>
-                            <h2>Expedita voluptas omnis cupiditate totam eveniet nobis sint iste. Dolores est repellat
-                                corrupti reprehenderit.</h2>
-                            <p>
-                                Quisquam vel ut sint cum eos hic dolores aperiam. Sed deserunt et. Inventore et et dolor
-                                consequatur itaque ut voluptate sed et. Magnam nam ipsum tenetur suscipit voluptatum nam et
-                                est corrupti.
-                            </p>
-                            <div class="text-center text-lg-start">
-                                <a href="#"
-                                    class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
-                                    <span>Read More</span>
-                                    <i class="bi bi-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-                        <img src="assets-user/img/about.jpg" class="img-fluid" alt="">
-                    </div>
-
-                </div>
-            </div>
-
-        </section><!-- /About Section -->
-
-        <!-- Values Section -->
-        <section id="values" class="values section">
-
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-
-                <p>LAYANAN<br></p>
-                <h2>Yang Kami Sediakan</h2>
-            </div><!-- End Section Title -->
-
-            <div class="container">
-
-                <div class="row gy-4">
-
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card">
-                            <img src="assets-user/img/values-1.png" class="img-fluid" alt="">
-                            <h3>Ad cupiditate sed est odio</h3>
-                            <p>Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit. Et veritatis id.</p>
-                            <a href="/layanan" class="readmore stretched-link"><span>Read More</span><i
-                                        class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div><!-- End Card Item -->
-
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="card">
-                            <img src="assets-user/img/values-2.png" class="img-fluid" alt="">
-                            <h3>Voluptatem voluptatum alias</h3>
-                            <p>Repudiandae amet nihil natus in distinctio suscipit id. Doloremque ducimus ea sit non.</p>
-                            <a href="/layanan" class="readmore stretched-link"><span>Read More</span><i
-                                        class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div><!-- End Card Item -->
-
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card">
-                            <img src="assets-user/img/values-3.png" class="img-fluid" alt="">
-                            <h3>Fugit cupiditate alias nobis.</h3>
-                            <p>Quam rem vitae est autem molestias explicabo debitis sint. Vero aliquid quidem commodi.</p>
-                            <a href="/layanan" class="readmore stretched-link"><span>Read More</span><i
-                                        class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div><!-- End Card Item -->
-                    
-=======
->>>>>>> 48e710125124d44c28cebfa1ff3e710a51d43118
 
                 <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
                     <img src="assets-user/img/about.jpg" class="img-fluid" alt="">
@@ -146,16 +60,6 @@
 
     </section><!-- /About Section -->
 
-<<<<<<< HEAD
-        <!-- Stats Section -->
-        <section id="stats" class="stats section">
-            <div class="container section-title" data-aos="fade-up">
-
-                <p>INFORMASI<br></p>
-                <h2>Yang Kami Sediakan</h2>
-            </div><!-- End Section Title -->
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-=======
     <!-- Values Section -->
     <section id="values" class="values section">
 
@@ -165,51 +69,9 @@
             <p>LAYANAN<br></p>
             <h2>Yang Kami Sediakan</h2>
         </div><!-- End Section Title -->
->>>>>>> 48e710125124d44c28cebfa1ff3e710a51d43118
 
         <div class="container">
 
-<<<<<<< HEAD
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stats-item d-flex align-items-center w-100 h-100">
-                            {{-- <i class="bi bi-emoji-smile color-blue flex-shrink-0"></i> --}}
-                            <div>
-                                <h3>Statistik</h3>
-                                <p>Statistik penduduk & bangunan</p>
-                            </div>
-                        </div>
-                    </div><!-- End Stats Item -->
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stats-item d-flex align-items-center w-100 h-100">
-                            {{-- <i class="bi bi-journal-richtext color-orange flex-shrink-0" style="color: #ee6c20;"></i> --}}
-                            <div>
-                                <h3>Fasilitas</h3>
-                                <p>Fasilitas penunjang di sekitar</p>
-                            </div>
-                        </div>
-                    </div><!-- End Stats Item -->
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stats-item d-flex align-items-center w-100 h-100">
-                            {{-- <i class="bi bi-headset color-green flex-shrink-0" style="color: #15be56;"></i> --}}
-                            <div>
-                                <h3>Siaga Banjir</h3>
-                                <p>Status ketinggian air & pompa</p>
-                            </div>
-                        </div>
-                    </div><!-- End Stats Item -->
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stats-item d-flex align-items-center w-100 h-100">
-                            {{-- <i class="bi bi-people color-pink flex-shrink-0" style="color: #bb0852;"></i> --}}
-                            <div>
-                                <h3>Galeri</h3>
-                                <p>Dokumentasi kegiatan kemasyarakatan</p>
-                            </div>
-                        </div>
-                    </div><!-- End Stats Item -->
-=======
             <div class="row gy-4">
 
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
@@ -241,16 +103,12 @@
                                 class="bi bi-arrow-right"></i></a>
                     </div>
                 </div><!-- End Card Item -->
->>>>>>> 48e710125124d44c28cebfa1ff3e710a51d43118
 
 
             </div>
 
         </div>
 
-<<<<<<< HEAD
-        {{-- <!-- Features Section -->
-=======
     </section><!-- /Values Section -->
 
     <!-- Stats Section -->
@@ -311,7 +169,6 @@
     </section><!-- /Stats Section -->
 
     {{-- <!-- Features Section -->
->>>>>>> 48e710125124d44c28cebfa1ff3e710a51d43118
         <section id="features" class="features section">
 
             <!-- Section Title -->
@@ -946,11 +803,7 @@
 
         </section><!-- /Portfolio Section --> --}}
 
-<<<<<<< HEAD
-        {{-- <!-- Testimonials Section -->
-=======
     {{-- <!-- Testimonials Section -->
->>>>>>> 48e710125124d44c28cebfa1ff3e710a51d43118
         <section id="testimonials" class="testimonials section">
 
             <!-- Section Title -->
@@ -1276,59 +1129,19 @@
     <!-- Recent Posts Section -->
     <section id="recent-posts" class="recent-posts section">
 
-<<<<<<< HEAD
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <p>BERITA</p>
-                <h2>Informasi Terkini</h2>
-
-            </div><!-- End Section Title -->
-=======
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <p>BERITA</p>
             <h2>Informasi Terkini</h2>
 
         </div><!-- End Section Title -->
->>>>>>> 48e710125124d44c28cebfa1ff3e710a51d43118
 
         <div class="container">
 
             <div class="row gy-5">
 
-<<<<<<< HEAD
-                    <div class="col-xl-4 col-md-6">
-                        <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
-
-                            <div class="post-img position-relative overflow-hidden">
-                                <img src="assets-user/img/blog/blog-1.jpg" class="img-fluid" alt="">
-                                <span class="post-date">December 12</span>
-                            </div>
-
-                            <div class="post-content d-flex flex-column">
-
-                                <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis</h3>
-
-                                <div class="meta d-flex align-items-center">
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-person"></i> <span class="ps-2">Julia Parker</span>
-                                    </div>
-                                    <span class="px-3 text-black-50">/</span>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <a href="/news_detail" class="readmore stretched-link"><span>Read More</span><i
-                                        class="bi bi-arrow-right"></i></a>
-
-                            </div>
-=======
                 <div class="col-xl-4 col-md-6">
                     <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
->>>>>>> 48e710125124d44c28cebfa1ff3e710a51d43118
 
                         <div class="post-img position-relative overflow-hidden">
                             <img src="assets-user/img/blog/blog-1.jpg" class="img-fluid" alt="">
@@ -1351,122 +1164,8 @@
 
                             <hr>
 
-<<<<<<< HEAD
-                                <h3 class="post-title">Et repellendus molestiae qui est sed omnis</h3>
-
-                                <div class="meta d-flex align-items-center">
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-person"></i> <span class="ps-2">Mario Douglas</span>
-                                    </div>
-                                    <span class="px-3 text-black-50">/</span>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-folder2"></i> <span class="ps-2">Sports</span>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <a href="/news_detail" class="readmore stretched-link"><span>Read More</span><i
-                                        class="bi bi-arrow-right"></i></a>
-
-                            </div>
-
-                        </div>
-                    </div><!-- End post item -->
-
-                    <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="post-item position-relative h-100">
-
-                            <div class="post-img position-relative overflow-hidden">
-                                <img src="assets-user/img/blog/blog-3.jpg" class="img-fluid" alt="">
-                                <span class="post-date">September 05</span>
-                            </div>
-
-                            <div class="post-content d-flex flex-column">
-
-                                <h3 class="post-title">Quia assumenda est et veritati tirana ploder</h3>
-
-                                <div class="meta d-flex align-items-center">
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-person"></i> <span class="ps-2">Lisa Hunter</span>
-                                    </div>
-                                    <span class="px-3 text-black-50">/</span>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-folder2"></i> <span class="ps-2">Economics</span>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <a href="/news_detail" class="readmore stretched-link"><span>Read More</span><i
-                                        class="bi bi-arrow-right"></i></a>
-
-                            </div>
-
-                        </div>
-                    </div><!-- End post item -->
-
-                </div>
-
-            </div>
-
-        </section><!-- /Recent Posts Section -->
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact section">
-
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <p>HUBUNGI KAMI</p>
-                <h2>Informasi Kontak</h2>
-            </div><!-- End Section Title -->
-
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="row gy-4">
-
-                    <div class="col-lg-6">
-
-                        <div class="row gy-4">
-                            <div class="col-md-6">
-                                <div class="info-item" data-aos="fade" data-aos-delay="200">
-                                    <i class="bi bi-geo-alt"></i>
-                                    <h3>Address</h3>
-                                    <p>A108 Adam Street</p>
-                                    <p>New York, NY 535022</p>
-                                </div>
-                            </div><!-- End Info Item -->
-
-                            <div class="col-md-6">
-                                <div class="info-item" data-aos="fade" data-aos-delay="300">
-                                    <i class="bi bi-telephone"></i>
-                                    <h3>Call Us</h3>
-                                    <p>+1 5589 55488 55</p>
-                                    <p>+1 6678 254445 41</p>
-                                </div>
-                            </div><!-- End Info Item -->
-
-                            <div class="col-md-6">
-                                <div class="info-item" data-aos="fade" data-aos-delay="400">
-                                    <i class="bi bi-envelope"></i>
-                                    <h3>Email Us</h3>
-                                    <p>info@example.com</p>
-                                    <p>contact@example.com</p>
-                                </div>
-                            </div><!-- End Info Item -->
-
-                            <div class="col-md-6">
-                                <div class="info-item" data-aos="fade" data-aos-delay="500">
-                                    <i class="bi bi-clock"></i>
-                                    <h3>Open Hours</h3>
-                                    <p>Monday - Friday</p>
-                                    <p>9:00AM - 05:00PM</p>
-                                </div>
-                            </div><!-- End Info Item -->
-=======
                             <a href="/news_detail" class="readmore stretched-link"><span>Read More</span><i
                                     class="bi bi-arrow-right"></i></a>
->>>>>>> 48e710125124d44c28cebfa1ff3e710a51d43118
 
                         </div>
 

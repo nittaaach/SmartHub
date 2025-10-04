@@ -11,6 +11,13 @@ class AuthController extends Controller
     // Menampilkan form login
     public function showLoginForm()
     {
+        $a = rand(1, 10);
+        $b = rand(1, 10);
+
+        // simpan hasilnya ke session agar bisa diverifikasi
+        session(['chapta_sum' => $a + $b]);
+
+        return view('/login', compact('a', 'b'));
         return view('/login');
     }
 
@@ -18,45 +25,17 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-            'role' => ['required'],
+            'email'          => ['required', 'email'],
+            'password'       => ['required'],
+            'role'           => ['required'],
+            'chapta_answer'  => ['required', 'numeric'],
         ]);
 
-        if (Auth::attempt($credentials, $request->filled('remember'))) {
-            $request->session()->regenerate();
-
-            $user = Auth::user();
-            $selectRole = $request->role;
-
-            if ($user->role !== $selectRole) {
-                Auth::logout();
-                $request->session()->invalidate();
-                $request->session()->regenerateToken();
-
-                return redirect('/login')->with('error', 'Authentication failed. You are not authorized for the selected role.');
-            }
-
-            ChaptaModels::create([
-                'id_users' => $user->id,
-                'number'  => session('chapta_sum'), // atau bisa $request->captcha_answer
-            ]);
-
-            // arahkan sesuai role
-            switch ($user->role) {
-                case 'ketua_rw':
-                    return redirect()->intended('ketua_rw/dashboard');
-                case 'pkk':
-                    return redirect()->intended('pkk/dashboard');
-                case 'katar':
-                    return redirect()->intended('katar/dashboard');
-                case 'rt':
-                    return redirect()->intended('rt/dashboard');
-                default:
-                    // fallback jika tidak ada role
-                    Auth::logout();
-                    return redirect('/login')->with('error', 'You Dont Have Any Permission');
-            }
+        // cek captcha
+        if ((int)$request->chapta_answer !== (int)session('chapta_sum')) {
+            return back()
+                ->withInput()
+                ->withErrors(['chapta_answer' => 'Jawaban penjumlahan salah.']);
         }
 
         // autentikasi user

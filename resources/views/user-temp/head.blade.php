@@ -59,14 +59,6 @@
                     {{-- <li><a href="#team" class="{{ Request::is('team') ? 'active' : '' }}">Team</a></li> --}}
                     <li><a href="#recent-posts" class="{{ Request::is('recent-posts') ? 'active' : '' }}">Berita</a></li>
                     {{-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i
-<<<<<<< HEAD
-                    <li><a href="#services" class="{{ Request::is('services') ? 'active' : '' }}">Layanan</a></li>
-                    <li><a href="#portfolio" class="{{ Request::is('portfolio') ? 'active' : '' }}">Portfolio</a></li>
-                    <li><a href="#team" class="{{ Request::is('team') ? 'active' : '' }}">Team</a></li>
-                    <li><a href="/news" class="{{ Request::is('news') ? 'active' : '' }}">News</a></li>
-                    <li class="dropdown"><a href="#"><span>Dropdown</span> <i
-=======
->>>>>>> 48e710125124d44c28cebfa1ff3e710a51d43118
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             <li><a href="#">Dropdown 1</a></li>
@@ -85,10 +77,6 @@
                             <li><a href="#">Dropdown 4</a></li>
                         </ul>
                     </li> --}}
-<<<<<<< HEAD
-                    </li>
-=======
->>>>>>> 48e710125124d44c28cebfa1ff3e710a51d43118
                     {{-- <li class="listing-dropdown"><a href="#"><span>Listing Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li>
@@ -118,11 +106,7 @@
               </li>
             </ul>
           </li> --}}
-<<<<<<< HEAD
                     <li><a href="#contact" class="{{ Request::is('contact') ? 'active' : '' }}">Hubungi Kami</a></li>
-=======
-                    <li><a href="#contact">Contact</a></li>
->>>>>>> 48e710125124d44c28cebfa1ff3e710a51d43118
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
