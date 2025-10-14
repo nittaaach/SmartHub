@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('datadiri', function (Blueprint $table) {
+        Schema::create('facilities', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_users');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('notelp')->unique();
+            $table->string('name')->unique();
+            $table->string('kategori', 100);
             $table->text('alamat')->nullable();
+            $table->string('lokasi_rt');
+            $table->string('condition', 50)->default('Baik');
             $table->timestamps();
-
-            $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('datadiri');
+        Schema::dropIfExists('fasilitas');
     }
 };

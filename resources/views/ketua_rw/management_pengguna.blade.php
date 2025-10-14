@@ -59,7 +59,7 @@
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>Email</th>
-                                            <th>Password</th>
+                                            <th>Role</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
@@ -70,7 +70,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->email }}</td>
-                                                <td>{{ $item->password }}</td>
+                                                <td>{{ $item->displayed_role }}</td>
                                                 <td>{{ $item->created_at }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary me-3"
@@ -80,8 +80,13 @@
                                                     </button>
                                                     <button type="button" class="btn btn-danger me-3"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#DeletpenggunaModal-{{ $item->id }}">
+                                                        data-bs-target="#DeletepenggunaModal-{{ $item->id }}">
                                                         Delete
+                                                    </button>
+                                                    <button type="button" class="btn btn-secondary me-3"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#DetailpenggunaModal-{{ $item->id }}">
+                                                        Detail
                                                     </button>
                                                 </td>
                                             </tr>
@@ -92,7 +97,7 @@
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>Email</th>
-                                            <th>Password</th>
+                                            <th>Role</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
@@ -172,33 +177,45 @@
 
                         <form action="{{ route('management_pengguna.store_rw') }}" method="POST"
                             enctype="multipart/form-data" class="modal-content">
+                            @csrf
                             <div class="card-body">
+
                                 <div class="form-group">
                                     <label class="form-label">Nama</label>
-                                    <input type="text" class="form-control form-control"
-                                        placeholder="Masukan Nama Pengguna" name="name" required>
+                                    <input type="text" class="form-control" placeholder="Masukan name Pengguna"
+                                        name="name" required>
                                 </div>
+
                                 <div class="form-group">
                                     <label class="form-label">Email Address</label>
-                                    <input type="email" class="form-control form-control"
-                                        placeholder="Masukan Nama Pengguna" name="name" required>
+                                    <input type="email" class="form-control" placeholder="Masukan Email Pengguna"
+                                        name="email" required>
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">No. Telepon</label>
+                                    <input type="text" class="form-control" placeholder="Masukan Nomor Telepon"
+                                        name="notelp" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Alamat</label>
+                                    <textarea class="form-control" placeholder="Masukan Alamat" name="alamat" required></textarea>
+                                </div>
+
                                 <div class="form-group">
                                     <label class="form-label">Password</label>
-                                    <input type="password" class="form-control form-control"
-                                        placeholder="Masukan Password" name="password" required>
+                                    <input type="password" class="form-control" placeholder="Masukan Password"
+                                        name="password" required>
                                 </div>
+
                                 <div class="form-group">
                                     <label class="form-label" for="role">Role</label>
                                     <select class="form-select" id="role" name="role" required>
-                                        <option value="">-- Pilih Kategori Role --</option>
-                                        <option value="ketua_rw">Ketua RW
-                                        </option>
-                                        <option value="rt">Ketua RT
-                                        </option>
-                                        <option value="pkk">Ketua PKK
-                                        </option>
-                                        <option value="katar">Ketua Katar
+                                        <option value="">-- Pilih Role --</option>
+                                        @foreach ($drole as $item)
+                                            <option value="{{ $item->id }}">{{ ucfirst($item->role) }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -209,71 +226,71 @@
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Update KTP -->
+    <!-- Modal Update Pengguna -->
     @foreach ($management as $item)
         <div id="UpdatepenggunaModal-{{ $item->id }}" class="modal fade" tabindex="-1" role="dialog"
             aria-labelledby="UpdatepenggunaModalTitle-{{ $item->id }}" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="UpdatepenggunaModalTitle">Form Update Kependudukan RW 12</h5>
+                        <h5 class="modal-title" id="UpdatepenggunaModalTitle">Form Update Pengguna RW 12</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="card">
-
                             <form action="{{ route('management_pengguna.update_rw', $item->id) }}" method="POST"
                                 enctype="multipart/form-data" class="modal-content">
 
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
+                                    <div class="form-group">
+                                        <label class="form-label">Nama</label>
+                                        <input type="text" class="form-control" name="name"
+                                            value="{{ $item->name }}" required>
+                                    </div>
 
                                     <div class="form-group">
-                                        <label class="form-label" for="select rt">Select RT</label>
-                                        <select class="form-select" id="select_rt" name="rt" required>
-                                            <option value="">-- Pilih Kategori --</option>
-                                            <option value="1" {{ $item->rt == '1' ? 'selected' : '' }}>Rukun Warga 01
-                                            </option>
-                                            <option value="2" {{ $item->rt == '2' ? 'selected' : '' }}>Rukun Warga 02
-                                            </option>
-                                            <option value="3" {{ $item->rt == '3' ? 'selected' : '' }}>Rukun Warga 03
-                                            </option>
-                                            <option value="4" {{ $item->rt == '4' ? 'selected' : '' }}>Rukun Warga 04
-                                            </option>
-                                            <option value="5" {{ $item->rt == '5' ? 'selected' : '' }}>Rukun Warga 05
-                                            </option>
-                                            <option value="6" {{ $item->rt == '6' ? 'selected' : '' }}>Rukun Warga 06
-                                            </option>
-                                            <option value="7" {{ $item->rt == '7' ? 'selected' : '' }}>Rukun Warga 07
-                                            </option>
-                                            <option value="8" {{ $item->rt == '8' ? 'selected' : '' }}>Rukun Warga 08
-                                            </option>
+                                        <label class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" name="email"
+                                            value="{{ $item->email }}" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">No. Telepon</label>
+                                        <input type="text" class="form-control" name="notelp"
+                                            value="{{ $item->datadiri?->notelp }}" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Alamat</label>
+                                        <textarea class="form-control" name="alamat" required>{{ $item->datadiri?->alamat }}</textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Password (opsional)</label>
+                                        <input type="password" class="form-control" name="password"
+                                            placeholder="Kosongkan jika tidak ingin mengubah password">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label" for="role">Role</label>
+                                        <select class="form-select" id="role" name="role" required>
+                                            <option value="">-- Pilih Role --</option>
+                                            @foreach ($drole as $role)
+                                                <option value="{{ $role->id }}"
+                                                    {{ $role->id == ($item->drole->role ?? null) ? 'selected' : '' }}>
+                                                    {{ ucfirst($role->role) }}
+                                                </option>
+                                            @endforeach
                                         </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Laki-Laki</label>
-                                        <input type="number" class="form-control form-control"
-                                            placeholder="Masukan Jumlah Penduduk Laki-Laki"
-                                            value="{{ $item->laki_laki }}" name="laki_laki" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Perempuan</label>
-                                        <input type="number" class="form-control form-control"
-                                            placeholder="Masukan Jumlah Penduduk Perempuan"
-                                            value="{{ $item->perempuan }}" name="perempuan" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Total Kartu Keluarga</label>
-                                        <input type="number" class="form-control form-control"
-                                            placeholder="Masukan Jumlah Kartu Keluarga" value="{{ $item->jumlah_kk }}"
-                                            name="jumlah_kk" required>
                                     </div>
 
                                     <div class="modal-footer">
@@ -283,6 +300,93 @@
                                     </div>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+
+    <!-- Modal Delete Pengguna -->
+    @foreach ($management as $item)
+        <div id="DeletepenggunaModal-{{ $item->id }}" class="modal fade" tabindex="-1" role="dialog"
+            aria-labelledby="DeletepenggunaModalTitle-{{ $item->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="DeletepenggunaModalTitle-{{ $item->id }}">Hapus Pengguna</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('management_pengguna.destroy_rw', $item->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <div class="p-3">
+                                <h5>Yakin ingin menghapus pengguna
+                                    <strong>{{ $item->name }}</strong>?
+                                </h5>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+
+    <!-- Modal Detail Pengguna -->
+    @foreach ($management as $item)
+        <div id="DetailpenggunaModal-{{ $item->id }}" class="modal fade" tabindex="-1" role="dialog"
+            aria-labelledby="DetailpenggunaModalTitle-{{ $item->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="DeletelayananModalTitle-{{ $item->id }}">Hapus Layanan</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Nama</label>
+                                    <input type="text" class="form-control" value="{{ $item->name ?? '-' }}"
+                                        readonly>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" value="{{ $item->email ?? '-' }}"
+                                        readonly>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label class="form-label">No. Telepon</label>
+                                    <input type="text" class="form-control"
+                                        value="{{ $item->datadiri?->notelp ?? '-' }}" readonly>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Alamat</label>
+                                    <textarea class="form-control" readonly>{{ $item->datadiri?->alamat ?? '-' }}</textarea>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Role</label>
+                                    <input type="text" class="form-control"
+                                        value="{{ $item->userRolePivot?->drole['role'] ?? '-' }}" readonly>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Tutup</button>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>

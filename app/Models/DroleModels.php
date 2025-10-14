@@ -12,4 +12,10 @@ class DroleModels extends Model
     protected $table = 'drole';
 
     protected $fillable = ['role'];
+
+
+    public function role()
+    {
+        return $this->hasMany(RoleModels::class, 'id_drole', 'id');
+    }
 }

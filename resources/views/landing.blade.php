@@ -168,7 +168,6 @@
     </div>
 </section><!-- /Stats Section -->
 
-<<<<<<< HEAD
     </section><!-- /Stats Section -->
 
     {{-- <!-- Features Section -->
@@ -1128,8 +1127,6 @@
             </div>
 
         </section><!-- /Clients Section --> --}}
-=======
->>>>>>> a7c2e8051a58eb1714551c91be1751d46591b2a7
 
     <!-- Recent Posts Section -->
     <section id="recent-posts" class="recent-posts section">

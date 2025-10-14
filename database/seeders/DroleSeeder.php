@@ -20,10 +20,10 @@ class DroleSeeder extends Seeder
         $now = Carbon::now();
 
         DB::table('drole')->insert([
-            ['role' => 'ketua_rw', 'created_at' => $now, 'updated_at' => $now],
-            ['role' => 'pkk',      'created_at' => $now, 'updated_at' => $now],
-            ['role' => 'katar',    'created_at' => $now, 'updated_at' => $now],
-            ['role' => 'rt',    'created_at' => $now, 'updated_at' => $now],
+            ['role' => 'Ketua_RW', 'created_at' => $now, 'updated_at' => $now],
+            ['role' => 'Ketua_PKK',      'created_at' => $now, 'updated_at' => $now],
+            ['role' => 'Ketua_Katar',    'created_at' => $now, 'updated_at' => $now],
+            ['role' => 'Ketua_RT',    'created_at' => $now, 'updated_at' => $now],
         ]);
     }
 }

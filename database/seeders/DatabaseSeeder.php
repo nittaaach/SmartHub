@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             ktp_rw12Seeder::class,
             non_ktpSeeder::class,
+            StrukturalSeeder::class,
         ]);
     }
 }

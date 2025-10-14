@@ -53,12 +53,12 @@
                                         Tambah Pengguna
                                     </button>
                                 </div>
-                                <table id="basic-btn-ktprw" class="table table-striped table-bordered nowrap">
+                                <table id="basic-btn-rw" class="table table-striped table-bordered nowrap">
                                     <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>Gambar</th>
-                                            <th>Nama</th>
+                                            <th>Nama Petugas</th>
                                             <th>Email</th>
                                             <th>Jabatan</th>
                                             <th>Tingkatan</th>
@@ -76,7 +76,7 @@
                                                         <img src="{{ asset('storage/' . $item->gambar) }}" width="60">
                                                     @endif
                                                 </td>
-                                                <td>{{ $item->datadiri->nama }}</td>
+                                                <td>{{ $item->datadiri->name }}</td>
                                                 <td>{{ $item->datadiri->email }}</td>
                                                 <td>{{ $item->jabatan }}</td>
                                                 <td>{{ $item->tingkatan }}</td>
@@ -90,7 +90,7 @@
                                                     </button>
                                                     <button type="button" class="btn btn-danger me-3"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#DeletpenggunaModal-{{ $item->id }}">
+                                                        data-bs-target="#DeletepenggunaModal-{{ $item->id }}">
                                                         Delete
                                                     </button>
                                                 </td>
@@ -101,7 +101,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Gambar</th>
-                                            <th>Nama</th>
+                                            <th>Nama Petugas</th>
                                             <th>Email</th>
                                             <th>Jabatan</th>
                                             <th>Tingkatan</th>
@@ -171,59 +171,61 @@
     </div>
     <!-- Alternative Pagination table end -->
 
-    <!-- Modal Tambah Pengguna -->
+    <!-- Modal Tambah Struktural -->
     <div id="AddpenggunaModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="AddpenggunaModalTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="AddpenggunaModalTitle">Form Tambah Pengguna RW 12</h5>
+                    <h5 class="modal-title" id="AddpenggunaModalTitle">Form Tambah Struktural RW 12</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="card">
-
-                        <form action="{{ route('struktural.store_rw') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('struktural.store_rw') }}" method="POST" enctype="multipart/form-data"
+                            class="modal-content">
                             @csrf
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label class="form-label">Gambar</label>
-                                    <input type="file" class="form-control" name="gambar" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Nama</label>
-                                    <input type="text" class="form-control" name="nama" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Email</label>
-                                    <input type="email" class="form-control" name="email" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">No. Telp</label>
-                                    <input type="text" class="form-control" name="notelp" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Alamat</label>
-                                    <textarea class="form-control" name="alamat" required></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Jabatan</label>
-                                    <input type="text" class="form-control" name="jabatan" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Tingkatan</label>
-                                    <select class="form-select" name="tingkatan" required>
-                                        <option value="">-- Pilih Kategori --</option>
-                                        <option value="Ketua RW">Ketua RW</option>
-                                        <option value="Ketua RT">Ketua RT</option>
-                                        <option value="Ketua PKK">Ketua PKK</option>
-                                        <option value="Ketua Katar">Ketua Katar</option>
+
+                                {{-- Pilih Data Diri --}}
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Pilih Nama Petugas</label>
+                                    <select name="id_datadiri" class="form-select" required>
+                                        <option value="">-- Pilih Nama --</option>
+                                        @foreach ($datadiri as $diri)
+                                            <option value="{{ $diri->id }}">{{ $diri->name }} ({{ $diri->email }})
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
+
+                                {{-- Jabatan --}}
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Jabatan</label>
+                                    <input type="text" class="form-control" name="jabatan" placeholder="Masukan Jabatan"
+                                        required>
+                                </div>
+
+                                {{-- Tingkatan --}}
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Tingkatan</label>
+                                    <select class="form-select" id="tingkatan" name="tingkatan" required>
+                                        <option value="">-- Pilih Kategori RT --</option>
+                                        <option value="RT">Rukun Tetangga (RT)
+                                        </option>
+                                        <option value="RW">Rukun Warga (RW)
+                                        </option>
+                                    </select>
+                                </div>
+
+                                {{-- Upload Gambar --}}
+                                <div class="form-group mb-4">
+                                    <label class="form-label">Gambar</label>
+                                    <input type="file" name="gambar" class="form-control" accept="image/*" required>
+                                </div>
+
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
@@ -241,60 +243,77 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="UpdatepenggunaModalTitle">Form Update Kependudukan RW 12</h5>
+                        <h5 class="modal-title" id="UpdatepenggunaModalTitle">Form Update Struktural RW 12</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="card">
-
-                            <form action="{{ route('statispend.update_ktp', $item->id) }}" method="POST"
+                            <form action="{{ route('struktural.update_rw', $item->id) }}" method="POST"
                                 enctype="multipart/form-data" class="modal-content">
 
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
+                                    <div class="form-group">
+                                        <label class="form-label">Nama Petugas</label>
+                                        <select name="id_datadiri" class="form-select" required>
+                                            {{-- Opsi default: tampilkan nama petugas yang sedang dipilih --}}
+                                            <option value="{{ $item->id_datadiri }}" selected>
+                                                {{ $item->datadiri->name ?? 'Nama tidak ditemukan' }}
+                                                ({{ $item->datadiri->email ?? '-' }})
+                                            </option>
+
+                                            {{-- Garis pembatas opsional agar terlihat lebih rapi --}}
+                                            <option disabled>──────────────────────────────────────</option>
+
+                                            {{-- Daftar petugas lain untuk diganti --}}
+                                            @foreach ($datadiri as $diri)
+                                                {{-- Jangan tampilkan lagi jika sama dengan yang terpilih --}}
+                                                @if ($diri->id != $item->id_datadiri)
+                                                    <option value="{{ $diri->id }}">
+                                                        {{ $diri->name }} ({{ $diri->email }})
+                                                    </option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+
 
                                     <div class="form-group">
-                                        <label class="form-label" for="select rt">Select RT</label>
-                                        <select class="form-select" id="select_rt" name="rt" required>
-                                            <option value="">-- Pilih Kategori --</option>
-                                            <option value="1" {{ $item->rt == '1' ? 'selected' : '' }}>Rukun Warga 01
+                                        <label class="form-label">Jabatan</label>
+                                        <input type="text" class="form-control" placeholder="Masukan Jabatan"
+                                            name="jabatan" value="{{ $item->jabatan }}" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Tingkatan</label>
+                                        <select class="form-select" id="tingkatan" name="tingkatan" required>
+                                            <option value="">-- Pilih Tingkatan Petugas --</option>
+                                            <option value="RT" {{ $item->tingkatan == 'RT' ? 'selected' : '' }}>Rukun
+                                                Tetangga (RT)
                                             </option>
-                                            <option value="2" {{ $item->rt == '2' ? 'selected' : '' }}>Rukun Warga 02
-                                            </option>
-                                            <option value="3" {{ $item->rt == '3' ? 'selected' : '' }}>Rukun Warga 03
-                                            </option>
-                                            <option value="4" {{ $item->rt == '4' ? 'selected' : '' }}>Rukun Warga 04
-                                            </option>
-                                            <option value="5" {{ $item->rt == '5' ? 'selected' : '' }}>Rukun Warga 05
-                                            </option>
-                                            <option value="6" {{ $item->rt == '6' ? 'selected' : '' }}>Rukun Warga 06
-                                            </option>
-                                            <option value="7" {{ $item->rt == '7' ? 'selected' : '' }}>Rukun Warga 07
-                                            </option>
-                                            <option value="8" {{ $item->rt == '8' ? 'selected' : '' }}>Rukun Warga 08
+                                            <option value="RW" {{ $item->tingkatan == 'RW' ? 'selected' : '' }}>Rukun
+                                                Warga (RW)
                                             </option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label">Laki-Laki</label>
-                                        <input type="number" class="form-control form-control"
-                                            placeholder="Masukan Jumlah Penduduk Laki-Laki"
-                                            value="{{ $item->laki_laki }}" name="laki_laki" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Perempuan</label>
-                                        <input type="number" class="form-control form-control"
-                                            placeholder="Masukan Jumlah Penduduk Perempuan"
-                                            value="{{ $item->perempuan }}" name="perempuan" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Total Kartu Keluarga</label>
-                                        <input type="number" class="form-control form-control"
-                                            placeholder="Masukan Jumlah Kartu Keluarga" value="{{ $item->jumlah_kk }}"
-                                            name="jumlah_kk" required>
-                                    </div>
+                                        <label class="form-label">Gambar (biarkan kosong jika tidak diganti)</label>
+                                        <input type="file" name="gambar" class="form-control" accept="image/*">
+                                        {{-- Jika ada gambar lama, tampilkan preview --}}
+                                        @if ($item->gambar)
+                                            <div class="mt-2 text-center">
+                                                <img src="{{ asset('storage/' . $item->gambar) }}" alt="Gambar lama"
+                                                    width="150" class="img-thumbnail">
+                                                <p class="text-muted mt-1">Gambar saat ini</p>
+                                            </div>
+                                        @endif
 
+                                        {{-- Tampilkan error jika validasi gagal --}}
+                                        @error('gambar')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
@@ -303,6 +322,53 @@
                                 </div>
                             </form>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+
+    <!-- Modal Delete struktural -->
+    @foreach ($struktural as $item)
+        <div id="DeletepenggunaModal-{{ $item->id }}" class="modal fade" tabindex="-1" role="dialog"
+            aria-labelledby="DeletepenggunaModalTitle-{{ $item->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="DeletelayananModalTitle-{{ $item->id }}">Hapus Layanan</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('struktural.destroy_rw', $item->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <div class="p-3">
+                                <div class="form-group">
+                                    <label class="form-label">Gambar Petugas</label>
+                                    {{-- Jika ada gambar lama, tampilkan preview --}}
+                                    @if ($item->gambar)
+                                        <div class="mt-2 text-center">
+                                            <img src="{{ asset('storage/' . $item->gambar) }}" alt="Gambar lama"
+                                                width="150" class="img-thumbnail">
+                                            <p class="text-muted mt-1">Gambar saat ini</p>
+                                        </div>
+                                    @endif
+
+                                    {{-- Tampilkan error jika validasi gagal --}}
+                                    @error('gambar')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <h5>Yakin ingin menghapus struktural
+                                    <strong>{{ $item->datadiri?->name }}</strong>?
+                                </h5>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

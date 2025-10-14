@@ -12,13 +12,13 @@ class DashboardController extends Controller
 
         if ($user) {
             switch ($user->role) {
-                case 'ketua_rw':
+                case 'Ketua_RW':
                     return view('ketua_rw/dashboard'); // Replace with your actual view path
-                case 'pkk':
+                case 'Ketua_PKK':
                     return view('pkk/dashboard'); // Replace with your actual view path
-                case 'katar':
+                case 'Ketua_Katar':
                     return view('katar/dashboard'); // Replace with your actual view path
-                case 'rt':
+                case 'Ketua_RT':
                     return view('rt/dashboard'); // Replace with your actual view path
                 default:
                     // Fallback, though the middleware should prevent this
