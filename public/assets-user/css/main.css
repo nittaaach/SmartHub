@@ -1034,7 +1034,7 @@ section,
 
 .stats .stats-item i {
   color: var(--accent-color);
-  font-size: 42px;
+  font-size: 24px;
   line-height: 0;
   margin-right: 20px;
 }

@@ -142,4 +142,19 @@ class NewsController extends Controller
         $news->delete();
         return redirect()->back()->with('success', 'Berita berhasil dihapus.');
     }
+
+    public function news()
+    {
+        return view('/news');
+    }
+
+    public function pengumuman()
+    {
+        return view('/pengumuman');
+    }
+
+    public function aktivitas()
+    {
+        return view('/aktivitas');
+    }
 }

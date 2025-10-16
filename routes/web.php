@@ -11,8 +11,19 @@ use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\StatistikController;
+<<<<<<< HEAD
 use App\Http\Controllers\StrukturalController;
 use App\Http\Controllers\ManagementPenggunaController;
+=======
+use App\Http\Controllers\VMController;
+use App\Http\Controllers\KatalogController;
+use App\Http\Controllers\AdministrasiController;
+use App\Http\Controllers\StrukturalController;
+use App\Http\Controllers\FasilitasController;
+use App\Http\Controllers\GaleriController;
+
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+>>>>>>> bada
 
 //route for home
 Route::get('/', function () {
@@ -20,7 +31,9 @@ Route::get('/', function () {
 });
 Route::get('/landing', [HomeController::class, 'HomeLanding'])->name('landing');
 Route::get('/statistika', [StatistikController::class, 'stat'])->name('statistika');
-Route::get('/visimisi', [VMController::class, 'visimisi'])->name('visimisi');
+Route::get('/profil', [VMController::class, 'profil'])->name('profil');
+Route::get('/katalog', [KatalogController::class, 'katalog'])->name('katalog');
+Route::get('/detail_katalog', [KatalogController::class, 'detail_katalog'])->name('detail_katalog');
 
 
 //route for auth
@@ -97,4 +110,21 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/news', [NewsController::class, 'userView'])->name('news');
 Route::get('/news_detail', [NewsController::class, 'newsDetail'])->name('news_detail');
 //routes for layanan
+Route::get('/detaillayanan', [LayananController::class, 'detaillayanan'])->name('detaillayanan');
 Route::get('/layanan', [LayananController::class, 'layanan'])->name('layanan');
+//zdministrasi
+Route::get('/administrasi', [AdministrasiController::class, 'administrasi'])->name('administrasi');
+//stuktural
+Route::get('/struktural', [StrukturalController::class, 'struktural'])->name('struktural');
+Route::get('/rw', [StrukturalController::class, 'rw'])->name('rw');
+Route::get('/katar', [StrukturalController::class, 'katar'])->name('katar');
+Route::get('/pkk', [StrukturalController::class, 'pkk'])->name('pkk');
+//fasilitas
+Route::get('/fasilitas', [FasilitasController::class, 'fasilitas'])->name('fasilitas');
+//news
+Route::get('/news', [NewsController::class, 'news'])->name('news');
+Route::get('/pengumuman', [NewsController::class, 'pengumuman'])->name('pengumuman');
+Route::get('/aktivitas', [NewsController::class, 'aktivitas'])->name('aktivitas');
+
+Route::get('/galeri', [GaleriController::class, 'galeri'])->name('galeri');
+Route::get('/detailgaleri', [GaleriController::class, 'detailgaleri'])->name('detailgaleri');
