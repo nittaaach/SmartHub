@@ -7,7 +7,7 @@
         <div class="container">
           <div class="row d-flex justify-content-center text-center">
             <div class="col-lg-8">
-              <h1>Berita</h1>
+              <h1>Aktivitas</h1>
               <p class="mb-0">Informasi Terkini</p>
             </div>
           </div>
@@ -18,6 +18,7 @@
           <ol>
             <li><a href="/landing">Home</a></li>
             <li class="current">Berita</li>
+            <li class="current">Aktivitas</li>
           </ol>
         </div>
       </nav>

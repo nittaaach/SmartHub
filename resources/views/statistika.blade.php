@@ -1,13 +1,30 @@
 @extends('user-temp.head')
 @section('content')
 
+    <!-- Page Title -->
+    <div class="page-title">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>Statistik</h1>
+              <p class="mb-0">Statistik penduduk dan bangunan di RW 12 Jatiwaringin</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="/landing">Home</a></li>
+            <li class="current">Informasi</li>
+            <li class="current">Statistik</li>
+          </ol>
+        </div>
+      </nav>
+    </div><!-- End Page Title -->
 <!-- Stats Section -->
-<section id="stats" class="stats section" style="margin-top: 50px;">
-  <div class="container section-title text-center" data-aos="fade-up">
-    <p style="font-size: 20px; color: #000000; margin-bottom: 5px;">STATISTIKA</p>
-    <p style="font-size: 14px; color: #848484; margin-bottom: 5px;">Statistik penduduk dan bangunan di RW 12 Jatiwaringin</p>
-  </div><!-- End Section Title -->
-
+<section id="stats" class="stats section">
   <div class="container" data-aos="fade-up" data-aos-delay="100">
     <div class="row gy-4 text-center">
 

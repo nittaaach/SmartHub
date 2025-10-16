@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class VMController extends Controller
 {
-    public function visimisi()
+    public function profil()
     {
-        return view('/visimisi');
+        return view('/profil');
     }
 }

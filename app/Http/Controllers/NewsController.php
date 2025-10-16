@@ -22,4 +22,19 @@ class NewsController extends Controller
     {
         return view('/ketua_rw/news');
     }
+
+    public function news()
+    {
+        return view('/news');
+    }
+
+    public function pengumuman()
+    {
+        return view('/pengumuman');
+    }
+
+    public function aktivitas()
+    {
+        return view('/aktivitas');
+    }
 }
