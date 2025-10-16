@@ -177,9 +177,9 @@
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="AddfasilitasModalTitle">Form Tambah Fasilitas RW 12</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Form Tambah Fasilitas RW 12</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div class="card">
@@ -193,6 +193,7 @@
                                     <label class="form-label">Gambar</label>
                                     <input type="file" name="gambar" class="form-control"
                                         placeholder="Masukan Gambar Fasilitas" required>
+                                    <small class="text-muted">Format: .jpg, .jpeg, .png (max 2048)</small>
                                 </div>
 
                                 <div class="form-group">
@@ -285,9 +286,9 @@
             aria-labelledby="UpdatefasilitasModalTitle-{{ $item->id }}" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="UpdatefasilitasModalTitle">Form Update fasilitas RW 12</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title">Form Update Fasilitas RW 12</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
                         <div class="card">
@@ -300,6 +301,7 @@
                                     <div class="form-group">
                                         <label class="form-label">Gambar (biarkan kosong jika tidak diganti)</label>
                                         <input type="file" name="gambar" class="form-control" accept="image/*">
+                                        <small class="text-muted">Format: .jpg, .jpeg, .png (max 2048)</small>
                                         {{-- Jika ada gambar lama, tampilkan preview --}}
                                         @if ($item->gambar)
                                             <div class="mt-2 text-center">
