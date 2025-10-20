@@ -51,6 +51,67 @@
             </a>
 
             <nav id="navmenu" class="navmenu">
+<<<<<<< HEAD
+                <ul>
+                    <li><a href="landing" class="{{ Request::is('landing') ? 'active' : '' }}">Beranda</a></li>
+                    <li><a href="#about" class="{{ Request::is('about') ? 'active' : '' }}">Tentang Kami</a></li>
+                    <li><a href="#values" class="{{ Request::is('values') ? 'active' : '' }}">Layanan</a></li>
+                    <li><a href="#stats" class="{{ Request::is('stats') ? 'active' : '' }}">Informasi</a></li>
+                    {{-- <li><a href="#team" class="{{ Request::is('team') ? 'active' : '' }}">Team</a></li> --}}
+                    <li><a href="#recent-posts" class="{{ Request::is('recent-posts') ? 'active' : '' }}">Berita</a></li>
+                    {{-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i
+                                class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+                            <li><a href="#">Dropdown 1</a></li>
+                            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i
+                                        class="bi bi-chevron-down toggle-dropdown"></i></a>
+                                <ul>
+                                    <li><a href="#">Deep Dropdown 1</a></li>
+                                    <li><a href="#">Deep Dropdown 2</a></li>
+                                    <li><a href="#">Deep Dropdown 3</a></li>
+                                    <li><a href="#">Deep Dropdown 4</a></li>
+                                    <li><a href="#">Deep Dropdown 5</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Dropdown 2</a></li>
+                            <li><a href="#">Dropdown 3</a></li>
+                            <li><a href="#">Dropdown 4</a></li>
+                        </ul>
+                    </li> --}}
+                    {{-- <li class="listing-dropdown"><a href="#"><span>Listing Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li>
+                <a href="#">Column 1 link 1</a>
+                <a href="#">Column 1 link 2</a>
+                <a href="#">Column 1 link 3</a>
+              </li>
+              <li>
+                <a href="#">Column 2 link 1</a>
+                <a href="#">Column 2 link 2</a>
+                <a href="#">Column 3 link 3</a>
+              </li>
+              <li>
+                <a href="#">Column 3 link 1</a>
+                <a href="#">Column 3 link 2</a>
+                <a href="#">Column 3 link 3</a>
+              </li>
+              <li>
+                <a href="#">Column 4 link 1</a>
+                <a href="#">Column 4 link 2</a>
+                <a href="#">Column 4 link 3</a>
+              </li>
+              <li>
+                <a href="#">Column 5 link 1</a>
+                <a href="#">Column 5 link 2</a>
+                <a href="#">Column 5 link 3</a>
+              </li>
+            </ul>
+          </li> --}}
+                    <li><a href="#contact" class="{{ Request::is('contact') ? 'active' : '' }}">Hubungi Kami</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+=======
   <ul>
     <li><a href="/landing" class="{{ Request::is('landing') ? 'active' : '' }}">Beranda</a></li>
 
@@ -104,6 +165,7 @@
   <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
 </nav>
 
+>>>>>>> bada
 
             <a class="btn-getstarted flex-md-shrink-0" href="/login">Sign In</a>
 

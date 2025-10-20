@@ -13,7 +13,7 @@
 
     @php
         $role = auth()->user()->role;
-        $dashboardUrl = url("/{$role}/dashboard"); // Menghasilkan /ketua_rw/dashboard, /pkk/dashboard, dll.
+        $dashboardUrl = url("/{$role}/dashboard"); // Menghasilkan /Ketua_RT/dashboard, /pkk/dashboard, dll.
     @endphp
     <nav class="pc-sidebar">
         <div class="navbar-wrapper">
@@ -60,14 +60,16 @@
                         <label>Pages</label>
                         <i class="ti ti-news"></i>
                     </li>
-                    <li class="pc-item {{ request()->routeIs('ketua_rw.news') ? 'pc-active' : '' }}">
-                        <a href="{{ route('ketua_rw.news') }}" class="pc-link">
+                    <li class="pc-item {{ request()->routeIs('') ? 'pc-active' : '' }}">
+                        {{-- <a href="{{ route('') }}" class="pc-link"> --}}
+                        <a href="" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-news"></i></span>
                             <span class="pc-mtext">News</span>
                         </a>
                     </li>
-                    <li class="pc-item {{ request()->routeIs('ketua_rw.activity') ? 'pc-active' : '' }}">
-                        <a href="{{ route('ketua_rw.activity') }}" class="pc-link">
+                    <li class="pc-item {{ request()->routeIs('') ? 'pc-active' : '' }}">
+                        {{-- <a href="{{ route('') }}" class="pc-link"> --}}
+                        <a href="" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-activity"></i></span>
                             <span class="pc-mtext">Activities</span>
                         </a>

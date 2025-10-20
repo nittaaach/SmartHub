@@ -12,47 +12,65 @@
     <!-- [ Sidebar Menu ] start -->
 
     @php
-        $role = auth()->user()->role;
-        $dashboardUrl = url("/{$role}/dashboard"); // Menghasilkan /ketua_rw/dashboard, /pkk/dashboard, dll.
+        // Get the authenticated user's role
+$role = auth()->user()->role;
+
+// Define the base route name prefix for this role
+// Assuming your routes are named like 'ketua_rw.dashboard', 'pkk.dashboard', etc.
+$routePrefix = "{$role}.";
+
+// Define the dashboard URL using a named route for robustness
+// This is safer than constructing the URL manually.
+$dashboardRoute = $routePrefix . 'dashboard';
     @endphp
+
     <nav class="pc-sidebar">
         <div class="navbar-wrapper">
             <div class="m-header">
-                <a href="{{ $dashboardUrl }}" class="b-brand text-primary">
-                    <!-- ========   Change your logo from here   ============ -->
+                {{-- Use the named route for the logo link as well --}}
+                <a href="{{ route($dashboardRoute) }}" class="b-brand text-primary">
                     {{-- <img src="../assets_admin/images/logo-dark.svg" class="img-fluid logo-lg" alt="logo"> --}}
                     <h2>SmartHub</h2>
                 </a>
             </div>
             <div class="navbar-content">
                 <ul class="pc-navbar">
-                    <li class="pc-item">
-                        <a href="{{ $dashboardUrl }}" class="pc-link">
+
+                    {{-- 1. DASHBOARD: The FIX --}}
+                    {{-- Use the correct route name and check if the current route is the dashboard route --}}
+                    <li class="pc-item {{ request()->routeIs($dashboardRoute) ? 'pc-active' : '' }}">
+                        <a href="{{ route($dashboardRoute) }}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
                             <span class="pc-mtext">Dashboard</span>
                         </a>
                     </li>
+                    {{-- END OF FIX --}}
 
                     <li class="pc-item pc-caption">
                         <label>Data</label>
                         <i class="ti ti-dashboard"></i>
                     </li>
-                    <li class="pc-item  {{ request()->routeIs('ketua_rw.management_pengguna') ? 'pc-active' : '' }}">
-                        <a href="{{ route('ketua_rw.management_pengguna') }}" class="pc-link">
+
+                    {{-- Use $routePrefix for other role-specific routes --}}
+                    <li
+                        class="pc-item {{ request()->routeIs($routePrefix . 'management_pengguna') ? 'pc-active' : '' }}">
+                        <a href="{{ route($routePrefix . 'management_pengguna') }}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-layout-grid-add"></i></span>
                             <span class="pc-mtext">Management Pengguna</span>
                         </a>
                     </li>
-                    <li class="pc-item">
-                        <a href="../elements/bc_color.html" class="pc-link">
+
+                    {{-- Links that seem generic or need routes defined --}}
+                    <li class="pc-item {{ request()->routeIs($routePrefix . 'layanan') ? 'pc-active' : '' }}">
+                        <a href="{{ route($routePrefix . 'layanan') }}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-report"></i></span>
                             <span class="pc-mtext">Layanan</span>
                         </a>
                     </li>
-                    <li class="pc-item">
-                        <a href="../elements/icon-tabler.html" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-plant-2"></i></span>
-                            <span class="pc-mtext">Icons</span>
+                    <li class="pc-item {{ request()->routeIs($routePrefix . 'berkas') ? 'pc-active' : '' }}">
+                        <a href="{{ route($routePrefix . 'berkas') }}" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-archive"></i></span>
+                            <span class="pc-mtext">Berkas Berkas</span>
                         </a>
                     </li>
 
@@ -60,14 +78,16 @@
                         <label>Pages</label>
                         <i class="ti ti-news"></i>
                     </li>
-                    <li class="pc-item {{ request()->routeIs('ketua_rw.news') ? 'pc-active' : '' }}">
-                        <a href="{{ route('ketua_rw.news') }}" class="pc-link">
+
+                    {{-- Consistent use of $routePrefix --}}
+                    <li class="pc-item {{ request()->routeIs($routePrefix . 'news') ? 'pc-active' : '' }}">
+                        <a href="{{ route($routePrefix . 'news') }}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-news"></i></span>
                             <span class="pc-mtext">News</span>
                         </a>
                     </li>
-                    <li class="pc-item {{ request()->routeIs('ketua_rw.activity') ? 'pc-active' : '' }}">
-                        <a href="{{ route('ketua_rw.activity') }}" class="pc-link">
+                    <li class="pc-item {{ request()->routeIs($routePrefix . 'activity') ? 'pc-active' : '' }}">
+                        <a href="{{ route($routePrefix . 'activity') }}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-activity"></i></span>
                             <span class="pc-mtext">Activities</span>
                         </a>
@@ -77,67 +97,44 @@
                         <label>Other</label>
                         <i class="ti ti-brand-chrome"></i>
                     </li>
+
                     <li class="pc-item pc-hasmenu">
-                        <a href="#!" class="pc-link"><span class="pc-micon"><i
-                                    class="ti ti-layout-grid"></i></span><span class="pc-mtext">Struktural</span><span
-                                class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
+                        {{-- The 'Struktural' menu itself doesn't have an active state; the sub-items do --}}
+                        <a href="#!" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-layout-grid"></i></span>
+                            <span class="pc-mtext">Struktural</span>
+                            <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                        </a>
                         <ul class="pc-submenu">
-                            <li class="pc-item"><a class="pc-link" href="#!">Struktur Rukun Warga</a></li>
+                            <li
+                                class="pc-item {{ request()->routeIs($routePrefix . 'struktural') ? 'pc-active' : '' }}">
+                                <a class="pc-link" href="{{ route($routePrefix . 'struktural') }}">Struktur Rukun
+                                    Warga</a>
+                            </li>
                             <li class="pc-item"><a class="pc-link" href="#!">Struktur Rukun Tetangga</a></li>
                             <li class="pc-item"><a class="pc-link" href="#!">Struktur PKK Anyelir</a></li>
                             <li class="pc-item"><a class="pc-link" href="#!">Struktur Karang Taruna</a></li>
-                            {{-- <li class="pc-item pc-hasmenu">
-                                <a href="#!" class="pc-link">Level 2.2<span class="pc-arrow"><i
-                                            data-feather="chevron-right"></i></span></a>
-                                <ul class="pc-submenu">
-                                    <li class="pc-item"><a class="pc-link" href="#!">Level 3.1</a></li>
-                                    <li class="pc-item"><a class="pc-link" href="#!">Level 3.2</a></li>
-                                    <li class="pc-item pc-hasmenu">
-                                        <a href="#!" class="pc-link">Level 3.3<span class="pc-arrow"><i
-                                                    data-feather="chevron-right"></i></span></a>
-                                        <ul class="pc-submenu">
-                                            <li class="pc-item"><a class="pc-link" href="#!">Level 4.1</a></li>
-                                            <li class="pc-item"><a class="pc-link" href="#!">Level 4.2</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="pc-item pc-hasmenu">
-                                <a href="#!" class="pc-link">Level 2.3<span class="pc-arrow"><i
-                                            data-feather="chevron-right"></i></span></a>
-                                <ul class="pc-submenu">
-                                    <li class="pc-item"><a class="pc-link" href="#!">Level 3.1</a></li>
-                                    <li class="pc-item"><a class="pc-link" href="#!">Level 3.2</a></li>
-                                    <li class="pc-item pc-hasmenu">
-                                        <a href="#!" class="pc-link">Level 3.3<span class="pc-arrow"><i
-                                                    data-feather="chevron-right"></i></span></a>
-                                        <ul class="pc-submenu">
-                                            <li class="pc-item"><a class="pc-link" href="#!">Level 4.1</a></li>
-                                            <li class="pc-item"><a class="pc-link" href="#!">Level 4.2</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li> --}}
                         </ul>
                     </li>
+
                     <li class="pc-item pc-hasmenu">
-                        <a href="#!" class="pc-link"><span class="pc-micon"><i
-                                    class="ti ti-device-analytics"></i></span><span
-                                class="pc-mtext">Statistika</span><span class="pc-arrow"><i
-                                    data-feather="chevron-right"></i></span></a>
+                        <a href="#!" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-device-analytics"></i></span>
+                            <span class="pc-mtext">Statistika</span>
+                            <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                        </a>
                         <ul class="pc-submenu">
-                            <li class="pc-item  {{ request()->routeIs('ketua_rw.statispend') ? 'pc-active' : '' }}"><a
-                                    class="pc-link" href="{{ route('ketua_rw.statispend') }}">Penduduk</a></li>
-                            <li class="pc-item"><a class="pc-link" href="#!">Wilayah</a></li>
+                            <li
+                                class="pc-item {{ request()->routeIs($routePrefix . 'statispend') ? 'pc-active' : '' }}">
+                                <a class="pc-link" href="{{ route($routePrefix . 'statispend') }}">Penduduk</a>
+                            </li>
+                            <li
+                                class="pc-item {{ request()->routeIs($routePrefix . 'fasilitas') ? 'pc-active' : '' }}">
+                                <a class="pc-link" href="{{ route($routePrefix . 'fasilitas') }}">Fasilitas</a>
+                            </li>
                             <li class="pc-item"><a class="pc-link" href="#!">Bank Sampah</a></li>
                         </ul>
                     </li>
-                    {{-- <li class="pc-item">
-                        <a href="../other/sample-page.html" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-brand-chrome"></i></span>
-                            <span class="pc-mtext">Sample page</span>
-                        </a>
-                    </li> --}}
                 </ul>
             </div>
         </div>
@@ -430,6 +427,10 @@
     </script>
 
     <script>
+        $('#basic-btn-rw').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['copy', 'csv', 'excel', 'print']
+        });
         $('#basic-btn-ktprw').DataTable({
             dom: 'Bfrtip',
             buttons: ['copy', 'csv', 'excel', 'print']

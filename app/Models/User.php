@@ -3,14 +3,26 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+    use SoftDeletes;
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($user) {
+            $user->datadiri()->delete();
+            $user->userRolePivot()->delete(); // pastikan relasi ini ada di model
+        });
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +33,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'email_verified_at',
     ];
 
     /**
@@ -44,5 +57,24 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function datadiri()
+    {
+        return $this->hasOne(DataDiriModels::class, 'id_users', 'id');
+    }
+
+    public function userRolePivot()
+    {
+        return $this->hasOne(RoleModels::class, 'id_users', 'id');
+    }
+
+    public function getDisplayedRoleAttribute()
+    {
+        if ($this->userRolePivot && $this->userRolePivot->drole) {
+            return $this->userRolePivot->drole->role;
+        }
+
+        return $this->attributes['role'] ?? 'Role Not Set';
     }
 }

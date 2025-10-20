@@ -63,10 +63,10 @@ class AuthController extends Controller
 
         // redirect sesuai role
         return match ($user->role) {
-            'ketua_rw' => redirect('ketua_rw/dashboard'),
-            'pkk'      => redirect('pkk/dashboard'),
-            'katar'    => redirect('katar/dashboard'),
-            'rt'       => redirect('rt/dashboard'),
+            'Ketua_RW' => redirect('ketua_rw/dashboard'),
+            'Ketua_PKK'      => redirect('pkk/dashboard'),
+            'Ketua_Katar'    => redirect('katar/dashboard'),
+            'Ketua_RT'       => redirect('rt/dashboard'),
             default    => tap(back(), fn() => Auth::logout())
                 ->with('error', 'Tidak ada hak akses'),
         };
