@@ -31,36 +31,34 @@
 
         <div class="row gy-4">
 
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item d-flex flex-column w-100 h-100 p-3">
-                <a href="/detaillayanan" class="text-decoration-none text-dark">
-              <h6 class="fw-bold mb-2">Ahli Waris</h6>
-              <p class="fw-semibold mb-2 fs-6">Persyaratan Dokumen</p>
-              <ul class="list-unstyled mb-0 fs-6">
-                <li class="d-flex align-items-center mb-2">
-                  <i class="bi bi-file-earmark-text text-success me-2 fs-5"></i>
-                  <small>Surat Pengantar RT</small>
-                </li>
-                <li class="d-flex align-items-center mb-2">
-                  <i class="bi bi-file-earmark-text text-success me-2 fs-5"></i>
-                  <small>Fotokopi KTP Anggota Ahli Waris</small>
-                </li>
-                <li class="d-flex align-items-center mb-2">
-                  <i class="bi bi-file-earmark-text text-success me-2 fs-5"></i>
-                  <small>Fotokopi Kartu Keluarga</small>
-                </li>
-                <li class="d-flex align-items-center mb-2">
-                  <i class="bi bi-file-earmark-text text-success me-2 fs-5"></i>
-                  <small>Fotokopi Akta Kematian</small>
-                </li>
-                <li class="d-flex align-items-center">
-                  <i class="bi bi-file-earmark-text text-success me-2 fs-5"></i>
-                  <small>Fotokopi Akta Kelahiran Anggota Ahli Waris</small>
-                </li>
-              </ul>
+          <div class="row">
+  @foreach($layanan as $item)
+  <div class="col-lg-3 col-md-6">
+    <div class="stats-item d-flex flex-column w-100 h-100 p-3">
+      <a href="/detaillayanan/{{ $item->id }}" class="text-decoration-none text-dark">
+        <h6 class="fw-bold mb-2">{{ $item->nama_layanan }}</h6>
+        <p class="fw-semibold mb-2 fs-6">Persyaratan Dokumen</p>
+        <ul class="list-unstyled mb-0 fs-6">
+          @foreach($syarat_layanan->where('id_layanan', $item->id) as $syarat)
+          <li class="d-flex flex-column mb-2">
+            <div class="d-flex align-items-center">
+              <i class="bi bi-file-earmark-text text-success me-2 fs-5"></i>
+              <small>{{ $syarat->nama_syarat }}</small>
             </div>
-            </a>
-          </div>
+            @if(!empty($syarat->file_path))
+              <a href="{{ asset('storage/' . $syarat->file_path) }}" target="_blank" class="text-primary small">
+                Lihat berkas
+              </a>
+            @endif
+          </li>
+          @endforeach
+        </ul>
+      </a>
+    </div>
+  </div>
+  @endforeach
+</div>
+
 
 
         </div>

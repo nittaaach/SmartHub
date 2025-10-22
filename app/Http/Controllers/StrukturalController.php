@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -93,11 +92,6 @@ class StrukturalController extends Controller
         $struktural->delete();
         return redirect()->back()->with('success', 'Data struktural berhasil dihapus!');
     }
-=======
-use Illuminate\Http\Request;
-
-class StrukturalController extends Controller
-{
     //view
     public function struktural()
     {
@@ -117,8 +111,5 @@ class StrukturalController extends Controller
     public function pkk()
     {
         return view('/pkk');
-    }
-
-    
->>>>>>> bada
+    }  
 }

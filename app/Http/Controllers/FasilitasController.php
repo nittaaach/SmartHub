@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use App\Models\FasilitasModels;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -102,14 +101,11 @@ class FasilitasController extends Controller
         $fasilitas->delete();
 
         return redirect()->back()->with('success', 'Pengguna berhasil dihapus.');
-=======
+    }
 
-class FasilitasController extends Controller
-{
     //
     public function fasilitas()
     {
         return view('/fasilitas');
->>>>>>> bada
     }
 }

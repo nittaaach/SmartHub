@@ -10,10 +10,10 @@
                     <p data-aos="fade-up" data-aos-delay="100">Situs Resmi Sekretariat RW 12 Jatiwaringin, Jakarta Timur
                     </p>
                     <div class="d-flex flex-column flex-md-row" data-aos="fade-up" data-aos-delay="200">
-                        <a href="#about" class="btn-get-started">Get Started <i class="bi bi-arrow-right"></i></a>
+                        <a href="#about" class="btn-get-started">Mulai Sekarang <i class="bi bi-arrow-right"></i></a>
                         <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
                             class="glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0"><i
-                                class="bi bi-play-circle"></i><span>Watch Now</span></a>
+                                class="bi bi-play-circle"></i><span>Nonton Sekarang!</span></a>
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out">
@@ -33,18 +33,17 @@
                 <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="content">
                         <h3>TENTANG KAMI</h3>
-                        <h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet nulla quam iusto deserunt
-                            optio ad minus ullam numquam atque. Distinctio autem eos perferendis ipsam id voluptates ullam
-                            praesentium nulla dicta!</h2>
+                        <h2>RW Smart Hub adalah portal digital resmi RW 012 Jatiwaringin, Kota Bekasi.</h2>
                         <p>
-                            Quisquam vel ut sint cum eos hic dolores aperiam. Sed deserunt et. Inventore et et dolor
-                            consequatur itaque ut voluptate sed et. Magnam nam ipsum tenetur suscipit voluptatum nam et
-                            est corrupti.
+                            Website ini dikembangkan untuk meningkatkan partisipasi warga dalam berbagai kegiatan sosial, ekonomi, dan administrasi RW secara lebih cepat, transparan, dan mudah diakses oleh semua lapisan masyarakat.
+Melalui platform ini, warga dapat memperoleh informasi kegiatan Karang Taruna, promosi produk UMKM binaan PKK, hingga menyampaikan aspirasi secara langsung kepada pengurus RW.
+
+Kami percaya bahwa digitalisasi komunitas adalah langkah penting untuk membangun lingkungan yang lebih aktif, inklusif, dan sejahtera.
                         </p>
                         <div class="text-center text-lg-start">
                             <a href="/profil"
                                 class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
-                                <span>Read More</span>
+                                <span>Lihat Selengkapnya</span>
                                 <i class="bi bi-arrow-right"></i>
                             </a>
                         </div>
@@ -78,7 +77,7 @@
           <h3>Ad cupiditate sed est odio</h3>
           <p>Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit. Et veritatis id.</p>
           <a href="/layanan" class="readmore stretched-link">
-            <span>Read More</span><i class="bi bi-arrow-right"></i>
+            <span>Lihat Selengkapnya</span><i class="bi bi-arrow-right"></i>
           </a>
         </div>
       </div><!-- End Card Item -->
@@ -89,7 +88,7 @@
           <h3>Voluptatem voluptatum alias</h3>
           <p>Repudiandae amet nihil natus in distinctio suscipit id. Doloremque ducimus ea sit non.</p>
           <a href="/layanan" class="readmore stretched-link">
-            <span>Read More</span><i class="bi bi-arrow-right"></i>
+            <span>Lihat Selengkapnya</span><i class="bi bi-arrow-right"></i>
           </a>
         </div>
       </div><!-- End Card Item -->
@@ -100,7 +99,7 @@
           <h3>Fugit cupiditate alias nobis.</h3>
           <p>Quam rem vitae est autem molestias explicabo debitis sint. Vero aliquid quidem commodi.</p>
           <a href="/layanan" class="readmore stretched-link">
-            <span>Read More</span><i class="bi bi-arrow-right"></i>
+            <span>Lihat Selengkapnya</span><i class="bi bi-arrow-right"></i>
           </a>
         </div>
       </div><!-- End Card Item -->
@@ -337,7 +336,7 @@
                             <h3>Nesciunt Mete</h3>
                             <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure
                                 perferendis tempore et consequatur.</p>
-                            <a href="#" class="read-more stretched-link"><span>Read More</span> <i
+                            <a href="#" class="read-more stretched-link"><span>Lihat Selengkapnya</span> <i
                                     class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -349,7 +348,7 @@
                             <h3>Eosle Commodi</h3>
                             <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic
                                 non ut nesciunt dolorem.</p>
-                            <a href="#" class="read-more stretched-link"><span>Read More</span> <i
+                            <a href="#" class="read-more stretched-link"><span>Lihat Selengkapnya</span> <i
                                     class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -361,7 +360,7 @@
                             <h3>Ledo Markt</h3>
                             <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas
                                 adipisci eos earum corrupti.</p>
-                            <a href="#" class="read-more stretched-link"><span>Read More</span> <i
+                            <a href="#" class="read-more stretched-link"><span>Lihat Selengkapnya</span> <i
                                     class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Service Item -->
@@ -372,7 +371,7 @@
                             <h3>Asperiores Commodi</h3>
                             <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit
                                 provident adipisci neque.</p>
-                            <a href="#" class="read-more stretched-link"><span>Read More</span> <i
+                            <a href="#" class="read-more stretched-link"><span>Lihat Selengkapnya</span> <i
                                     class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Service Item -->
@@ -383,7 +382,7 @@
                             <h3>Velit Doloremque.</h3>
                             <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi
                                 at autem alias eius labore.</p>
-                            <a href="#" class="read-more stretched-link"><span>Read More</span> <i
+                            <a href="#" class="read-more stretched-link"><span>Lihat Selengkapnya</span> <i
                                     class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Service Item -->
@@ -394,7 +393,7 @@
                             <h3>Dolori Architecto</h3>
                             <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure.
                                 Corrupti recusandae ducimus enim.</p>
-                            <a href="#" class="read-more stretched-link"><span>Read More</span> <i
+                            <a href="#" class="read-more stretched-link"><span>Lihat Selengkapnya</span> <i
                                     class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Service Item -->
@@ -1166,7 +1165,7 @@
 
                             <hr>
 
-                            <a href="/news" class="readmore stretched-link"><span>Read More</span><i
+                            <a href="/news" class="readmore stretched-link"><span>Lihat Selengkapnya</span><i
                                     class="bi bi-arrow-right"></i></a>
 
                         </div>
@@ -1198,7 +1197,7 @@
 
                             <hr>
 
-                            <a href="/news" class="readmore stretched-link"><span>Read More</span><i
+                            <a href="/news" class="readmore stretched-link"><span>Lihat Selengkapnya</span><i
                                     class="bi bi-arrow-right"></i></a>
 
                         </div>
@@ -1230,7 +1229,7 @@
 
                             <hr>
 
-                            <a href="/news" class="readmore stretched-link"><span>Read More</span><i
+                            <a href="/news" class="readmore stretched-link"><span>Lihat Selengkapnya</span><i
                                     class="bi bi-arrow-right"></i></a>
 
                         </div>

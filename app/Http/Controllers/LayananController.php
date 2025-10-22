@@ -10,9 +10,6 @@ use Illuminate\Http\Request;
 
 class LayananController extends Controller
 {
-<<<<<<< HEAD
-    public function index()
-=======
     //for show home landing
     public function detaillayanan()
     {
@@ -22,7 +19,6 @@ class LayananController extends Controller
 
      //for show home landing
     public function layanan()
->>>>>>> bada
     {
         $layanan = LayananModels::with(['syarat_layanan', 'template_surat'])->get();
         $syarat_layanan = SyaratLayananModels::all();
@@ -135,5 +131,10 @@ class LayananController extends Controller
         $layanan->delete();
 
         return redirect()->back()->with('success', 'Layanan berhasil dihapus.');
+    }
+
+    public function showLayanan()
+    {
+        return view('/layanan');
     }
 }

@@ -5,25 +5,20 @@ use App\Http\Controllers\VMController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\BerkasController;
+use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\StatistikController;
-<<<<<<< HEAD
 use App\Http\Controllers\StrukturalController;
-use App\Http\Controllers\ManagementPenggunaController;
-=======
-use App\Http\Controllers\VMController;
-use App\Http\Controllers\KatalogController;
-use App\Http\Controllers\AdministrasiController;
-use App\Http\Controllers\StrukturalController;
-use App\Http\Controllers\FasilitasController;
-use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\DokumentasiController;
 
+use App\Http\Controllers\AdministrasiController;
+use App\Http\Controllers\ManagementPenggunaController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
->>>>>>> bada
 
 //route for home
 Route::get('/', function () {
@@ -44,7 +39,7 @@ Route::middleware(['auth', 'role:Ketua_RW'])->group(function () {
     Route::get('/ketua_rw/dashboard', [DashboardController::class, 'index'])->name('Ketua_RW.dashboard');
 });
 Route::middleware(['auth', 'role:Ketua_PKK'])->group(function () {
-    Route::get('/pkk/dashboard', [DashboardController::class, 'index'])->name('pkk.dashboard');
+    Route::get('/pkk/dashboard', [DashboardController::class, 'index'])->name('Ketua_PKK.dashboard');
 });
 Route::middleware(['auth', 'role:Ketua_Katar'])->group(function () {
     Route::get('/katar/dashboard', [DashboardController::class, 'index'])->name('katar.dashboard');
@@ -55,11 +50,15 @@ Route::middleware(['auth', 'role:Ketua_RT'])->group(function () {
 
 //Route middleware for sidebar
 Route::middleware(['auth'])->group(function () {
+    //ketua rw
     Route::get('/ketua_rw/news', [NewsController::class, 'news_RW'])->name('Ketua_RW.news');
     Route::get('/ketua_rw/activity', [ActivityController::class, 'activity_RW'])->name('Ketua_RW.activity');
     Route::get('/ketua_rw/statispend', [StatistikController::class, 'index'])->name('Ketua_RW.statispend');
     Route::get('/ketua_rw/management_pengguna', [ManagementPenggunaController::class, 'index'])->name('Ketua_RW.management_pengguna');
     Route::get('/ketua_rw/struktural', [StrukturalController::class, 'index'])->name('Ketua_RW.struktural');
+    Route::get('/ketua_rw/strukturalrt', [StrukturalController::class, 'indexrt'])->name('Ketua_RW.strukturalrt');
+    Route::get('/ketua_rw/strukturalpkk', [StrukturalController::class, 'indexpkk'])->name('Ketua_RW.strukturalpkk');
+    Route::get('/ketua_rw/strukturalkatar', [StrukturalController::class, 'indexkatar'])->name('Ketua_RW.strukturalkatar');
     Route::get('/ketua_rw/fasilitas', [FasilitasController::class, 'index'])->name('Ketua_RW.fasilitas');
     Route::get('/ketua_rw/layanan', [layananController::class, 'index'])->name('Ketua_RW.layanan');
     Route::get('/ketua_rw/berkas', [BerkasController::class, 'index'])->name('Ketua_RW.berkas');
@@ -104,6 +103,29 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/ketua_rw/news/kt', [NewsController::class, 'store_kt'])->name('news.store_kt');
     Route::put('/ketua_rw/news/{id}', [NewsController::class, 'update_rw'])->name('news.update_rw');
     Route::delete('/ketua_rw/news/{id}', [NewsController::class, 'destroy_rw'])->name('news.destroy_rw');
+
+    //ketua pkk
+    Route::get('/pkk/struktural', [StrukturalController::class, 'strukturpkk'])->name('Ketua_PKK.struktural');
+    Route::get('/pkk/katalog', [KatalogController::class, 'index'])->name('Ketua_PKK.katalog');
+    Route::get('/pkk/activitypkk', [ActivityController::class, 'index'])->name('Ketua_PKK.activitypkk');
+    Route::get('/pkk/dokumentasipkk', [DokumentasiController::class, 'indexpkk'])->name('Ketua_PKK.dokumentasipkk');
+    // Route::get('/ketua_pkk/news', [NewsController::class, 'index'])->name('Ketua_RW.news');
+
+    //katalog
+    Route::post('/pkk/katalog', [KatalogController::class, 'store_pkk'])->name('katalog.store_pkk');
+    Route::put('/pkk/katalog/{id}', [KatalogController::class, 'update_pkk'])->name('katalog.update_pkk');
+    Route::delete('/pkk/katalog/{id}', [KatalogController::class, 'destroy_pkk'])->name('katalog.destroy_pkk');
+
+    //activity
+    Route::post('/pkk/activitypkk', [ActivityController::class, 'store_pkk'])->name('activitypkk.store_pkk');
+    Route::post('/pkk/activitypkk/ft', [ActivityController::class, 'store_ft'])->name('activitypkk.store_ft');
+    Route::put('/pkk/activitypkk/{id}', [ActivityController::class, 'update_pkk'])->name('activitypkk.update_pkk');
+    Route::delete('/pkk/activitypkk/{id}', [ActivityController::class, 'destroy_pkk'])->name('activitypkk.destroy_pkk');
+
+    //dokumentasi
+    Route::post('/pkk/dokumentasipkk', [DokumentasiController::class, 'store_pkk'])->name('dokumentasipkk.store_pkk');
+    Route::put('/pkk/dokumentasipkk/{id}', [DokumentasiController::class, 'update_pkk'])->name('dokumentasipkk.update_pkk');
+    Route::delete('/pkk/dokumentasipkk/{id}', [DokumentasiController::class, 'destroy_pkk'])->name('dokumentasipkk.destroy_pkk');
 });
 
 //route news (user)
