@@ -31,4 +31,9 @@ class NewsModels extends Model
     {
         return $this->belongsTo(User::class, 'id_users');
     }
+
+    public function kategori()
+    {
+        return $this->belongsToMany(K_NewsModels::class, 'news_kategori', 'news_id', 'k_news_id');
+    }
 }

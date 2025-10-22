@@ -12,11 +12,11 @@ class K_NewsModels extends Model
     protected $table = 'k_news'; // Nama tabel kategori
     protected $fillable = [
         'kategori_news',
-        'slug'
+        // 'slug'
     ];
 
     public function news()
     {
-        return $this->hasMany(NewsModels::class, 'id_knews');
+        return $this->belongsToMany(NewsModels::class, 'news_kategori', 'k_news_id', 'news_id');
     }
 }

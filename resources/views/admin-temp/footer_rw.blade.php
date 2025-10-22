@@ -111,9 +111,21 @@ $dashboardRoute = $routePrefix . 'dashboard';
                                 <a class="pc-link" href="{{ route($routePrefix . 'struktural') }}">Struktur Rukun
                                     Warga</a>
                             </li>
-                            <li class="pc-item"><a class="pc-link" href="#!">Struktur Rukun Tetangga</a></li>
-                            <li class="pc-item"><a class="pc-link" href="#!">Struktur PKK Anyelir</a></li>
-                            <li class="pc-item"><a class="pc-link" href="#!">Struktur Karang Taruna</a></li>
+                            <li
+                                class="pc-item {{ request()->routeIs($routePrefix . 'strukturalrt') ? 'pc-active' : '' }}">
+                                <a class="pc-link" href="{{ route($routePrefix . 'strukturalrt') }}">Struktur Rukun
+                                    Tetangga</a>
+                            </li>
+                            <li
+                                class="pc-item {{ request()->routeIs($routePrefix . 'strukturalpkk') ? 'pc-active' : '' }}">
+                                <a class="pc-link" href="{{ route($routePrefix . 'strukturalpkk') }}">Struktur PKK
+                                    Anyelir</a>
+                            </li>
+                            <li
+                                class="pc-item {{ request()->routeIs($routePrefix . 'strukturalkatar') ? 'pc-active' : '' }}">
+                                <a class="pc-link" href="{{ route($routePrefix . 'strukturalkatar') }}">Struktur Karang
+                                    Taruna</a>
+                            </li>
                         </ul>
                     </li>
 
@@ -132,7 +144,7 @@ $dashboardRoute = $routePrefix . 'dashboard';
                                 class="pc-item {{ request()->routeIs($routePrefix . 'fasilitas') ? 'pc-active' : '' }}">
                                 <a class="pc-link" href="{{ route($routePrefix . 'fasilitas') }}">Fasilitas</a>
                             </li>
-                            <li class="pc-item"><a class="pc-link" href="#!">Bank Sampah</a></li>
+                            {{-- <li class="pc-item"><a class="pc-link" href="#!">Bank Sampah</a></li> --}}
                         </ul>
                     </li>
                 </ul>
@@ -183,7 +195,7 @@ $dashboardRoute = $routePrefix . 'dashboard';
             <!-- [Mobile Media Block end] -->
             <div class="ms-auto">
                 <ul class="list-unstyled">
-                    <li class="dropdown pc-h-item">
+                    {{-- <li class="dropdown pc-h-item">
                         <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown"
                             href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <i class="ti ti-bell"></i>
@@ -266,30 +278,76 @@ $dashboardRoute = $routePrefix . 'dashboard';
                             data-bs-target="#offcanvas_pc_layout">
                             <i class="ti ti-settings"></i>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="dropdown pc-h-item header-user-profile">
                         <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown"
                             href="#" role="button" aria-haspopup="false" data-bs-auto-close="outside"
                             aria-expanded="false">
-                            <img src="../assets_admin/images/user/avatar-2.jpg" alt="user-image" class="user-avtar">
-                            <span>Stebin Ben</span>
+                            @if ($user && $user->gambar)
+                                <img src="{{ asset('storage/' . $user->gambar) }}" alt="user-image"
+                                    class="user-avtar">
+                            @else
+                                <img src="{{ asset('assets_admin/images/user/avatar-2.jpg') }}" alt="user-image"
+                                    class="user-avtar">
+                            @endif
+                            <span>{{ $user->name ?? 'Guest' }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                             <div class="dropdown-header">
                                 <div class="d-flex mb-1">
                                     <div class="flex-shrink-0">
-                                        <img src="../assets_admin/images/user/avatar-2.jpg" alt="user-image"
-                                            class="user-avtar wid-35">
+                                        @if ($user && $user->gambar)
+                                            <img src="{{ asset('storage/' . $user->gambar) }}" alt="user-image"
+                                                class="user-avtar wid-35">
+                                        @else
+                                            <img src="{{ asset('assets_admin/images/user/avatar-2.jpg') }}"
+                                                alt="user-image" class="user-avtar wid-35">
+                                        @endif
                                     </div>
                                     <div class="flex-grow-1 ms-3">
-                                        <h6 class="mb-1">Stebin Ben</h6>
-                                        <span>UI/UX Designer</span>
+                                        <h6 class="mb-1">{{ $user->name ?? 'Guest' }}</h6>
+                                        <span>{{ $user->role ?? 'Tidak Ada Role' }}</span>
                                     </div>
-                                    <a href="#!" class="pc-head-link bg-transparent"><i
-                                            class="ti ti-power text-danger"></i></a>
+                                    <a href="{{ route('logout') }}" class="pc-head-link bg-transparent">
+                                        <i class="ti ti-power text-danger"></i>
+                                    </a>
                                 </div>
                             </div>
-                            <ul class="nav drp-tabs nav-fill nav-tabs" id="mydrpTab" role="tablist">
+
+                            <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
+                                <div class="dropdown-header">
+                                    <div class="d-flex mb-1 align-items-center">
+                                        <div class="flex-shrink-0">
+                                            @if ($user && $user->gambar)
+                                                <img src="{{ asset('storage/' . $user->gambar) }}" alt="user-image"
+                                                    class="user-avtar wid-35">
+                                            @else
+                                                <img src="{{ asset('assets_admin/images/user/avatar-2.jpg') }}"
+                                                    alt="user-image" class="user-avtar wid-35">
+                                            @endif
+                                        </div>
+
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="mb-1">{{ $user->name ?? 'Guest' }}</h6>
+                                            <span>{{ $user->role ?? 'Tidak Ada Role' }}</span>
+                                        </div>
+
+                                        <a href="{{ route('logout') }}" class="pc-head-link bg-transparent"
+                                            title="Logout">
+                                            <i class="ti ti-power text-danger fs-5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown-item">
+                                    <a href="{{ route('logout') }}" class="d-flex align-items-center text-danger">
+                                        <i class="ti ti-power me-2"></i> Logout
+                                    </a>
+                                </div>
+                            </div>
+
+
+                            {{-- <ul class="nav drp-tabs nav-fill nav-tabs" id="mydrpTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="drp-t1" data-bs-toggle="tab"
                                         data-bs-target="#drp-tab-1" type="button" role="tab"
@@ -303,11 +361,11 @@ $dashboardRoute = $routePrefix . 'dashboard';
                                             class="ti ti-settings"></i>
                                         Setting</button>
                                 </li>
-                            </ul>
+                            </ul> --}}
                             <div class="tab-content" id="mysrpTabContent">
                                 <div class="tab-pane fade show active" id="drp-tab-1" role="tabpanel"
                                     aria-labelledby="drp-t1" tabindex="0">
-                                    <a href="#!" class="dropdown-item">
+                                    {{-- <a href="#!" class="dropdown-item">
                                         <i class="ti ti-edit-circle"></i>
                                         <span>Edit Profile</span>
                                     </a>
@@ -322,13 +380,13 @@ $dashboardRoute = $routePrefix . 'dashboard';
                                     <a href="#!" class="dropdown-item">
                                         <i class="ti ti-wallet"></i>
                                         <span>Billing</span>
-                                    </a>
+                                    </a> --}}
                                     <a href="/" class="dropdown-item">
                                         <i class="ti ti-power"></i>
                                         <span>Logout</span>
                                     </a>
                                 </div>
-                                <div class="tab-pane fade" id="drp-tab-2" role="tabpanel" aria-labelledby="drp-t2"
+                                {{-- <div class="tab-pane fade" id="drp-tab-2" role="tabpanel" aria-labelledby="drp-t2"
                                     tabindex="0">
                                     <a href="#!" class="dropdown-item">
                                         <i class="ti ti-help"></i>
@@ -350,7 +408,7 @@ $dashboardRoute = $routePrefix . 'dashboard';
                                         <i class="ti ti-list"></i>
                                         <span>History</span>
                                     </a>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </li>
@@ -409,7 +467,8 @@ $dashboardRoute = $routePrefix . 'dashboard';
     <script src="../assets_admin/js/plugins/vfs_fonts.js"></script>
     <script src="../assets_admin/js/plugins/buttons.html5.min.js"></script>
     <script src="../assets_admin/js/plugins/buttons.bootstrap5.min.js"></script>
-
+    <script src="../assets_admin/js/plugins/datepicker-full.min.js"></script>
+    <script src="../assets_admin/js/plugins/choices.min.js"></script>
     <script>
         layout_change('light');
     </script>
@@ -426,6 +485,12 @@ $dashboardRoute = $routePrefix . 'dashboard';
         font_change("Public-Sans");
     </script>
 
+    <script>
+        var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+            removeItemButton: true
+        });
+    </script>
+    
     <script>
         $('#basic-btn-rw').DataTable({
             dom: 'Bfrtip',

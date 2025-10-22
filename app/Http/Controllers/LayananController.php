@@ -10,19 +10,18 @@ use Illuminate\Http\Request;
 
 class LayananController extends Controller
 {
-<<<<<<< HEAD
-    public function index()
-=======
     //for show home landing
     public function detaillayanan()
     {
         return view('/detaillayanan');
     }
-
-
-     //for show home landing
+    
     public function layanan()
->>>>>>> bada
+    {
+        return view('/layanan');
+    }
+    //for show home landing
+    public function index()
     {
         $layanan = LayananModels::with(['syarat_layanan', 'template_surat'])->get();
         $syarat_layanan = SyaratLayananModels::all();

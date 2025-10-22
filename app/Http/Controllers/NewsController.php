@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\NewsModels;
 use Illuminate\Support\Str;
 use App\Models\K_NewsModels;
@@ -39,36 +40,46 @@ class NewsController extends Controller
     public function store_rw(Request $request)
     {
         $request->validate([
-            'id_knews' => 'required|exists:k_news,id', // pastikan kategori valid
+            'id_knews' => 'required|array',
+            'id_knews.*' => 'exists:k_news,id',
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:news,slug',
             'content' => 'required|string',
             'gambar' => 'required|image|mimes:jpg,jpeg,png|max:2048',
             'status' => 'required|in:draft,published,archived',
+            'published_at' => 'nullable|date',
         ]);
 
-        // Cek apakah slug diawali http:// atau https://
+        // Slug: biarkan jika URL penuh
         $slugInput = trim($request->slug);
-        if (Str::startsWith($slugInput, ['http://', 'https://'])) {
-            $slug = $slugInput; // biarkan tetap jadi URL penuh
-        } else {
-            $slug = Str::slug($slugInput); // kalau bukan URL, baru di-slug-kan
-        }
+        $slug = Str::startsWith($slugInput, ['http://', 'https://'])
+            ? $slugInput
+            : Str::slug($slugInput);
 
-        // Simpan gambar ke storage
+        // Upload gambar
         $gambarPath = $request->file('gambar')->store('news', 'public');
 
-        // Simpan data ke tabel news
-        NewsModels::create([
-            'id_users' => Auth::id(), // user login
-            'id_knews' => $request->id_knews,
+        // Tanggal posting
+        $publishedAt = null;
+        if ($request->status === 'published') {
+            $publishedAt = $request->filled('published_at')
+                ? Carbon::parse($request->published_at)->format('Y-m-d H:i:s')
+                : now();
+        }
+
+        // Simpan berita
+        $news = NewsModels::create([
+            'id_users' => Auth::id(),
             'title' => $request->title,
-            'slug' => Str::slug($request->slug),
+            'slug' => $slug,
             'content' => $request->content,
             'gambar' => $gambarPath,
             'status' => $request->status,
-            'published_at' => $request->status === 'published' ? now() : null,
+            'published_at' => $publishedAt,
         ]);
+
+        // Simpan relasi kategori (many-to-many)
+        $news->kategori()->attach($request->id_knews);
 
         return redirect()->back()->with('success', 'Berita berhasil ditambahkan!');
     }
@@ -77,12 +88,12 @@ class NewsController extends Controller
     {
         $request->validate([
             'kategori_news' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:k_news,slug',
+            // 'slug' => 'required|string|max:255|unique:k_news,slug',
         ]);
 
         K_NewsModels::create([
             'kategori_news' => $request->kategori_news,
-            'slug' => Str::slug($request->slug),
+            // 'slug' => Str::slug($request->slug),
         ]);
 
         return redirect()->back()->with('success', 'Kategori berita baru berhasil ditambahkan!');
@@ -98,25 +109,29 @@ class NewsController extends Controller
             'content' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'status' => 'required|in:draft,published,archived',
+            'published_at' => $request->status === 'published' ? 'nullable|date' : 'nullable',
         ]);
 
         // Cek apakah slug URL eksternal atau slug lokal
         $slugInput = trim($request->slug);
-        if (Str::startsWith($slugInput, ['http://', 'https://'])) {
-            $slug = $slugInput; // biarkan tetap URL penuh
-        } else {
-            $slug = Str::slug($slugInput); // ubah jadi slug lokal
-        }
+        $slug = Str::startsWith($slugInput, ['http://', 'https://'])
+            ? $slugInput
+            : Str::slug($slugInput);
 
         // Update gambar kalau diupload baru
         if ($request->hasFile('gambar')) {
-            // hapus gambar lama kalau ada
             if ($news->gambar && Storage::disk('public')->exists($news->gambar)) {
                 Storage::disk('public')->delete($news->gambar);
             }
             $gambarPath = $request->file('gambar')->store('news', 'public');
         } else {
             $gambarPath = $news->gambar;
+        }
+
+        // Tentukan nilai published_at
+        $publishedAt = null;
+        if ($request->status === 'published') {
+            $publishedAt = $request->published_at ?? now();
         }
 
         // Simpan update ke database
@@ -126,7 +141,7 @@ class NewsController extends Controller
             'content' => $request->content,
             'gambar' => $gambarPath,
             'status' => $request->status,
-            'published_at' => $request->status === 'published' ? now() : $news->published_at,
+            'published_at' => $publishedAt,
         ]);
 
         return redirect()->back()->with('success', 'Berita berhasil diperbarui!');

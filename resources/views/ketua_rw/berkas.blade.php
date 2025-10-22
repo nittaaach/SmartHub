@@ -159,7 +159,7 @@
 
                 <form action="{{ route('berkas.store_rw') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
+                    {{-- @method('PUT') --}}
                     <div class="modal-body">
 
                         {{-- Data syarat_layanan --}}

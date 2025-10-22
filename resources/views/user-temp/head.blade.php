@@ -51,121 +51,65 @@
             </a>
 
             <nav id="navmenu" class="navmenu">
-<<<<<<< HEAD
                 <ul>
-                    <li><a href="landing" class="{{ Request::is('landing') ? 'active' : '' }}">Beranda</a></li>
-                    <li><a href="#about" class="{{ Request::is('about') ? 'active' : '' }}">Tentang Kami</a></li>
-                    <li><a href="#values" class="{{ Request::is('values') ? 'active' : '' }}">Layanan</a></li>
-                    <li><a href="#stats" class="{{ Request::is('stats') ? 'active' : '' }}">Informasi</a></li>
-                    {{-- <li><a href="#team" class="{{ Request::is('team') ? 'active' : '' }}">Team</a></li> --}}
-                    <li><a href="#recent-posts" class="{{ Request::is('recent-posts') ? 'active' : '' }}">Berita</a></li>
-                    {{-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i
+                    <li><a href="/landing" class="{{ Request::is('landing') ? 'active' : '' }}">Beranda</a></li>
+
+                    <!-- Tentang Kami -->
+                    <li class="dropdown">
+                        <a href="/landing#about"><span>Tentang Kami</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
-                            <li><a href="#">Dropdown 1</a></li>
-                            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i
+                            <li class="dropdown">
+                                <a href="/struktural"><span>Struktural</span> <i
                                         class="bi bi-chevron-down toggle-dropdown"></i></a>
                                 <ul>
-                                    <li><a href="#">Deep Dropdown 1</a></li>
-                                    <li><a href="#">Deep Dropdown 2</a></li>
-                                    <li><a href="#">Deep Dropdown 3</a></li>
-                                    <li><a href="#">Deep Dropdown 4</a></li>
-                                    <li><a href="#">Deep Dropdown 5</a></li>
+                                    <li><a href="/rw">RW</a></li>
+                                    <li><a href="/pkk">PKK</a></li>
+                                    <li><a href="/katar">Katar</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Dropdown 2</a></li>
-                            <li><a href="#">Dropdown 3</a></li>
-                            <li><a href="#">Dropdown 4</a></li>
+                            <li><a href="/profil">Profil</a></li>
                         </ul>
-                    </li> --}}
-                    {{-- <li class="listing-dropdown"><a href="#"><span>Listing Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li>
-                <a href="#">Column 1 link 1</a>
-                <a href="#">Column 1 link 2</a>
-                <a href="#">Column 1 link 3</a>
-              </li>
-              <li>
-                <a href="#">Column 2 link 1</a>
-                <a href="#">Column 2 link 2</a>
-                <a href="#">Column 3 link 3</a>
-              </li>
-              <li>
-                <a href="#">Column 3 link 1</a>
-                <a href="#">Column 3 link 2</a>
-                <a href="#">Column 3 link 3</a>
-              </li>
-              <li>
-                <a href="#">Column 4 link 1</a>
-                <a href="#">Column 4 link 2</a>
-                <a href="#">Column 4 link 3</a>
-              </li>
-              <li>
-                <a href="#">Column 5 link 1</a>
-                <a href="#">Column 5 link 2</a>
-                <a href="#">Column 5 link 3</a>
-              </li>
-            </ul>
-          </li> --}}
-                    <li><a href="#contact" class="{{ Request::is('contact') ? 'active' : '' }}">Hubungi Kami</a></li>
+                    </li>
+
+                    <!-- Layanan -->
+                    <li class="dropdown">
+                        <a href="/landing#values"><span>Layanan</span> <i
+                                class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+                            <li><a href="/administrasi">Administrasi Kependudukan</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Informasi -->
+                    <li class="dropdown">
+                        <a href="/landing#stats"><span>Informasi</span> <i
+                                class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+                            <li><a href="/katalog">Katalog PKK</a></li>
+                            <li><a href="/galeri">Galeri</a></li>
+                            <li><a href="/statistika">Statistik</a></li>
+                            <li><a href="/fasilitas">Fasilitas</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Berita -->
+                    <li class="dropdown">
+                        <a href="/landing#news"><span>Berita</span> <i
+                                class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+                            <li><a href="/pengumuman">Pengumuman</a></li>
+                            <li><a href="/aktivitas">Aktivitas</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="/landing#contact" class="{{ Request::is('contact') ? 'active' : '' }}">Hubungi Kami</a>
+                    </li>
                 </ul>
+
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
-=======
-  <ul>
-    <li><a href="/landing" class="{{ Request::is('landing') ? 'active' : '' }}">Beranda</a></li>
 
-    <!-- Tentang Kami -->
-    <li class="dropdown">
-      <a href="/landing#about"><span>Tentang Kami</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-      <ul>
-        <li class="dropdown">
-          <a href="/struktural"><span>Struktural</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-          <ul>
-            <li><a href="/rw">RW</a></li>
-            <li><a href="/pkk">PKK</a></li>
-            <li><a href="/katar">Katar</a></li>
-          </ul>
-        </li>
-        <li><a href="/profil">Profil</a></li>
-      </ul>
-    </li>
-
-    <!-- Layanan -->
-    <li class="dropdown">
-      <a href="/landing#values"><span>Layanan</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-      <ul>
-        <li><a href="/administrasi">Administrasi Kependudukan</a></li>
-      </ul>
-    </li>
-
-    <!-- Informasi -->
-    <li class="dropdown">
-      <a href="/landing#stats"><span>Informasi</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-      <ul>
-        <li><a href="/katalog">Katalog PKK</a></li>
-        <li><a href="/galeri">Galeri</a></li>
-        <li><a href="/statistika">Statistik</a></li>
-        <li><a href="/fasilitas">Fasilitas</a></li>
-      </ul>
-    </li>
-
-    <!-- Berita -->
-    <li class="dropdown">
-      <a href="/landing#news"><span>Berita</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-      <ul>
-        <li><a href="/pengumuman">Pengumuman</a></li>
-        <li><a href="/aktivitas">Aktivitas</a></li>
-      </ul>
-    </li>
-
-    <li><a href="/landing#contact" class="{{ Request::is('contact') ? 'active' : '' }}">Hubungi Kami</a></li>
-  </ul>
-
-  <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-</nav>
-
->>>>>>> bada
 
             <a class="btn-getstarted flex-md-shrink-0" href="/login">Sign In</a>
 
