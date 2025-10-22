@@ -462,7 +462,9 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="ti ti-trash"></i> Hapus
+                                </button>
                             </div>
                         </form>
                     </div>

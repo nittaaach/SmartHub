@@ -61,9 +61,15 @@
                                         @foreach ($news as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $item->k_news->kategori_news }}</td>
-                                                <td>{{ $item->title }}</td>
                                                 <td>
+                                                    @forelse ($item->kategori as $kategori)
+                                                        {{ $kategori->kategori_news }}{{ !$loop->last ? ', ' : '' }}
+                                                    @empty
+                                                        <span class="text-danger">N/A</span>
+                                                    @endforelse
+                                                </td>
+                                                <td>{{ $item->title }}</td>
+                                                <td style="max-width: 200px; word-wrap: break-word; white-space: normal;">
                                                     @php
                                                         // cek apakah slug mengandung http atau https
                                                         $isExternal = Str::startsWith($item->slug, [
@@ -72,7 +78,7 @@
                                                         ]);
                                                         $url = $isExternal ? $item->slug : url('/news/' . $item->slug);
                                                     @endphp <a href="{{ $url }}" target="_blank">
-                                                        {{ $url }}
+                                                        {{ Str::limit($url, 50) }}
                                                     </a>
                                                 </td>
                                                 <td>{{ $item->content }}</td>
@@ -135,77 +141,82 @@
                 </div>
                 <div class="modal-body">
                     <div class="card">
-
-                        <form action="{{ route('news.store_rw') }}" method="POST" enctype="multipart/form-data"
-                            class="modal-content">
+                        <form action="{{ route('news.store_rw') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <div class="card-body">
 
-                                {{-- DROPDOWN SYARAT LAYANAN --}}
-                                <div class="form-group mb-4">
-                                    <label class="form-label">Kategori Berita</label>
-                                    <select class="form-select" name="id_knews" required>
-                                        <option value="">-- Pilih Kategori Berita --</option>
-                                        @foreach ($k_news as $kategori)
-                                            <option value="{{ $kategori->id }}">
-                                                {{ $kategori->kategori_news }} - {{ $kategori->slug }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="text-end">
-                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#AddkategoriModal">
-                                        + Tambah Kategori Berita Baru
-                                    </button>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-label">Judul Berita</label>
-                                    <input type="text" class="form-control" placeholder="Masukan Judul Berita"
-                                        name="title" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-label">Link Berita</label>
-                                    <input type="text" class="form-control" placeholder="Masukan Link Berita"
-                                        name="slug" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-label">Isi Content</label>
-                                    <textarea class="form-control" placeholder="Masukan isi content" name="content" required></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-label">Thumbnail</label>
-                                    <input type="file" name="gambar" class="form-control"
-                                        placeholder="Masukan Thumbnail atau Cover Berita" required>
-                                    <small class="text-muted">Format: .jpg, .jpeg, .png (max 2048)</small>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-label" for="status">Status Berita</label>
-                                    <select class="form-select" id="status" name="status" required>
-                                        <option value="">-- Pilih Status Berita --</option>
-                                        <option value="draft">Draft
+                            <div class="form-group mb-4">
+                                <label class="form-label">Kategori Berita</label>
+                                <select class="form-control" name="id_knews" id="choices-multiple-remove-button" multiple
+                                    required>
+                                    <option value="">-- Pilih Kategori Berita --</option>
+                                    @foreach ($k_news as $kategori)
+                                        <option value="{{ $kategori->id }}">
+                                            {{ $kategori->kategori_news }} - {{ $kategori->slug }}
                                         </option>
-                                        <option value="published">Published
-                                        </option>
-                                        <option value="archived">Archived
-                                        </option>
-                                    </select>
-                                </div>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                </div>
+                            <div class="text-end">
+                                <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#AddkategoriModal">
+                                    + Tambah Kategori Berita Baru
+                                </button>
+                            </div>
+
+                            <!-- Judul -->
+                            <div class="form-group mb-3">
+                                <label>Judul Berita</label>
+                                <input type="text" name="title" class="form-control" required>
+                            </div>
+
+                            <!-- Slug -->
+                            <div class="form-group mb-3">
+                                <label>Slug / Link Berita</label>
+                                <input type="text" name="slug" class="form-control" required>
+                                <small class="text-muted">
+                                    Bisa isi slug biasa (contoh: <b>kegiatan-rw12</b>) atau link eksternal (contoh:
+                                    <b>https://cnn.com/...</b>)
+                                </small>
+                            </div>
+
+                            <!-- Isi -->
+                            <div class="form-group mb-3">
+                                <label>Isi Berita</label>
+                                <textarea name="content" class="form-control" rows="4" required></textarea>
+                            </div>
+
+                            <!-- Status -->
+                            <div class="form-group mb-3">
+                                <label>Status</label>
+                                <select name="status" class="form-control" onchange="togglePublishedAtCreate(this.value)"
+                                    required>
+                                    <option value="draft">Draft</option>
+                                    <option value="published">Published</option>
+                                    <option value="archived">Archived</option>
+                                </select>
+                            </div>
+
+                            <!-- Tanggal Posting -->
+                            <div class="form-group mb-3" id="publishedAtCreateGroup" style="display: none;">
+                                <label>Tanggal Posting</label>
+                                <input type="datetime-local" name="published_at" class="form-control">
+                            </div>
+
+                            <!-- Gambar -->
+                            <div class="form-group mb-3">
+                                <label>Gambar</label>
+                                <input type="file" name="gambar" class="form-control" accept="image/*">
+                                @error('gambar')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -230,10 +241,6 @@
                             <label>Kategori Berita</label>
                             <input type="text" class="form-control" name="kategori_news" required>
                         </div>
-                        <div class="form-group mb-3">
-                            <label>Link Kategori</label>
-                            <input type="text" class="form-control" name="slug" required>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -251,73 +258,77 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="UpdatenewsModalTitle">Form Update news RW 12</h5>
+                        <h5 class="modal-title" id="UpdatenewsModalTitle-{{ $item->id }}">Form Update Berita RW 12
+                        </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <div class="card">
-                            <form action="{{ route('news.update_rw', $item->id) }}" method="POST"
-                                enctype="multipart/form-data">
-                                @csrf
-                                @method('PUT')
 
-                                <div class="form-group">
-                                    <label>Judul Berita</label>
-                                    <input type="text" name="title" class="form-control"
-                                        value="{{ $item->title }}" required>
-                                </div>
+                    <form action="{{ route('news.update_rw', $item->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
 
-                                <div class="form-group">
-                                    <label>Slug / Link Berita</label>
-                                    <input type="text" name="slug" class="form-control"
-                                        value="{{ $item->slug }}" required>
-                                    <small class="text-muted">
-                                        Bisa isi slug biasa (contoh: <b>kegiatan-rw12</b>) atau link eksternal (contoh:
-                                        <b>https://cnn.com/...</b>)
-                                    </small>
-                                </div>
+                        <div class="modal-body">
+                            <div class="form-group mb-3">
+                                <label>Judul Berita</label>
+                                <input type="text" name="title" class="form-control" value="{{ $item->title }}"
+                                    required>
+                            </div>
 
-                                <div class="form-group">
-                                    <label>Isi Berita</label>
-                                    <textarea name="content" class="form-control" rows="4" required>{{ $item->content }}</textarea>
-                                </div>
+                            <div class="form-group mb-3">
+                                <label>Slug / Link Berita</label>
+                                <input type="text" name="slug" class="form-control" value="{{ $item->slug }}"
+                                    required>
+                                <small class="text-muted">
+                                    Bisa isi slug biasa (contoh: <b>kegiatan-rw12</b>) atau link eksternal (contoh:
+                                    <b>https://cnn.com/...</b>)
+                                </small>
+                            </div>
 
-                                <div class="form-group">
-                                    <label>Status</label>
-                                    <select name="status" class="form-control" required>
-                                        <option value="draft" {{ $item->status == 'draft' ? 'selected' : '' }}>Draft
-                                        </option>
-                                        <option value="published" {{ $item->status == 'published' ? 'selected' : '' }}>
-                                            Published</option>
-                                        <option value="archived" {{ $item->status == 'archived' ? 'selected' : '' }}>
-                                            Archived</option>
-                                    </select>
-                                </div>
+                            <div class="form-group mb-3">
+                                <label>Isi Berita</label>
+                                <textarea name="content" class="form-control" rows="4" required>{{ $item->content }}</textarea>
+                            </div>
 
-                                <div class="form-group">
-                                    <label class="form-label">Gambar (biarkan kosong jika tidak diganti)</label>
-                                    <input type="file" name="gambar" class="form-control" accept="image/*">
-                                    @if ($item->gambar)
-                                        <div class="mt-2 text-center">
-                                            <img src="{{ asset('storage/' . $item->gambar) }}" alt="Gambar lama"
-                                                width="150" class="img-thumbnail">
-                                            <p class="text-muted mt-1">Gambar saat ini</p>
-                                        </div>
-                                    @endif
+                            <div class="form-group mb-3">
+                                <label>Status</label>
+                                <select name="status" class="form-control"
+                                    onchange="togglePublishedAt(this.value, {{ $item->id }})" required>
+                                    <option value="draft" {{ $item->status == 'draft' ? 'selected' : '' }}>Draft</option>
+                                    <option value="published" {{ $item->status == 'published' ? 'selected' : '' }}>
+                                        Published</option>
+                                    <option value="archived" {{ $item->status == 'archived' ? 'selected' : '' }}>Archived
+                                    </option>
+                                </select>
+                            </div>
 
-                                    @error('gambar')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
+                            <div class="form-group mb-3" id="publishedAtGroup-{{ $item->id }}">
+                                <label>Tanggal Posting</label>
+                                <input type="datetime-local" name="published_at" class="form-control"
+                                    value="{{ $item->published_at ? \Carbon\Carbon::parse($item->published_at)->format('Y-m-d\TH:i') : '' }}">
+                            </div>
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Batal</button>
-                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                                </div>
-                            </form>
+                            <div class="form-group mb-3">
+                                <label>Gambar (biarkan kosong jika tidak diganti)</label>
+                                <input type="file" name="gambar" class="form-control" accept="image/*">
+                                @if ($item->gambar)
+                                    <div class="mt-2 text-center">
+                                        <img src="{{ asset('storage/' . $item->gambar) }}" alt="Gambar lama"
+                                            width="150" class="img-thumbnail">
+                                        <p class="text-muted mt-1">Gambar saat ini</p>
+                                    </div>
+                                @endif
+                                @error('gambar')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -367,5 +378,32 @@
             </div>
         </div>
     @endforeach
+
+    <script>
+        function togglePublishedAt(status, id) {
+            const group = document.getElementById('publishedAtGroup-' + id);
+            if (group) {
+                group.style.display = (status === 'published') ? 'block' : 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            @foreach ($news as $item)
+                togglePublishedAt('{{ $item->status }}', {{ $item->id }});
+            @endforeach
+        });
+
+        function togglePublishedAtCreate(status) {
+            const group = document.getElementById('publishedAtCreateGroup');
+            if (group) {
+                group.style.display = (status === 'published') ? 'block' : 'none';
+            }
+        }
+
+        // Inisialisasi default saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            togglePublishedAtCreate(document.querySelector('select[name="status"]').value);
+        });
+    </script>
 @endsection
 @extends('admin-temp.footer_rw')

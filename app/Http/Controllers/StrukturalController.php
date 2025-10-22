@@ -14,9 +14,72 @@ class StrukturalController extends Controller
     public function index()
     {
         $datadiri = DataDiriModels::all();
-        $struktural = StrukturalModels::with('datadiri')->get();
+        $struktural = StrukturalModels::with('datadiri')
+            ->where('tingkatan', 'RW') // hanya ambil yang tingkatan = RW
+            ->get();
 
         return view('ketua_rw.struktural', compact('datadiri', 'struktural'));
+    }
+
+    public function indexrt()
+    {
+        $datadiri = DataDiriModels::all();
+        $strukturalrt = StrukturalModels::with('datadiri')
+            ->where('tingkatan', 'RT') // hanya ambil yang tingkatan = RW
+            ->get();
+
+        return view('ketua_rw.strukturalrt', compact('datadiri', 'strukturalrt'));
+    }
+
+    public function indexpkk()
+    {
+        $datadiri = DataDiriModels::all();
+        $strukturalpkk = StrukturalModels::with('datadiri')
+            ->where('tingkatan', 'PKK') 
+            ->get();
+
+        return view('ketua_rw.strukturalpkk', compact('datadiri', 'strukturalpkk'));
+    }
+
+    public function strukturpkk()
+    {
+        $datadiri = DataDiriModels::all();
+        $struktural = StrukturalModels::with('datadiri')
+            ->where('tingkatan', 'PKK') 
+            ->get();
+
+        return view('pkk.struktural', compact('datadiri', 'struktural'));
+    }
+
+    public function indexkatar()
+    {
+        $datadiri = DataDiriModels::all();
+        $strukturalkatar = StrukturalModels::with('datadiri')
+            ->where('tingkatan', 'KATAR') // hanya ambil yang tingkatan = RW
+            ->get();
+
+        return view('ketua_rw.strukturalkatar', compact('datadiri', 'strukturalkatar'));
+    }
+
+    //view
+    public function struktural()
+    {
+        return view('/struktural');
+    }
+
+    public function rw()
+    {
+        return view('/rw');
+    }
+
+    public function katar()
+    {
+        return view('/katar');
+    }
+
+    public function pkk()
+    {
+        return view('/pkk');
     }
 
     // Simpan data
@@ -92,6 +155,7 @@ class StrukturalController extends Controller
         $struktural->delete();
         return redirect()->back()->with('success', 'Data struktural berhasil dihapus!');
     }
+<<<<<<< HEAD
     //view
     public function struktural()
     {
@@ -112,4 +176,6 @@ class StrukturalController extends Controller
     {
         return view('/pkk');
     }  
+=======
+>>>>>>> 018bda0b5020705f1fc1e487aa84c67a8e111594
 }

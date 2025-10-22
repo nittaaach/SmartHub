@@ -48,11 +48,12 @@ class ManagementPenggunaController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6',
-            'role' => 'required|exists:drole,id',
+            'role' => 'nullable|exists:drole,id', // role tidak wajib
             'notelp' => 'required|string|max:20',
             'alamat' => 'required|string|max:255',
         ]);
 
+        // 1. Simpan ke tabel users
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -69,50 +70,39 @@ class ManagementPenggunaController extends Controller
             'alamat' => $request->alamat,
         ]);
 
-        // 3. Simpan ke tabel role
-        RoleModels::create([
-            'id_users' => $user->id,
-            'id_datadiri' => $datadiri->id,
-            'id_drole' => $request->role,
-        ]);
+        // 3. Simpan ke tabel role hanya jika diisi
+        if ($request->filled('role')) {
+            RoleModels::create([
+                'id_users' => $user->id,
+                'id_datadiri' => $datadiri->id,
+                'id_drole' => $request->role,
+            ]);
+        }
 
-        return redirect()->back()->with('success', 'Data berhasil ditambahkan.');
+        return redirect()->back()->with('success', 'Data pengguna berhasil ditambahkan.');
     }
 
     public function update_rw(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-
-        // Validasi input
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
+            'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'nullable|string|min:6',
+            'role' => 'nullable|exists:drole,id',
             'notelp' => 'required|string|max:20',
             'alamat' => 'required|string|max:255',
-            'role' => 'required|exists:drole,id',
         ]);
 
-        $userData = [
+        $user = User::findOrFail($id);
+        $user->update([
             'name' => $request->name,
             'email' => $request->email,
-        ];
-        if ($request->filled('password')) {
-            $userData['password'] = Hash::make($request->password);
-        }
-        $user->update($userData);
+            'password' => $request->filled('password')
+                ? Hash::make($request->password)
+                : $user->password,
+        ]);
 
-
-        // Hanya update password kalau diisi
-        if ($request->filled('password')) {
-            $user->password = Hash::make($request->password);
-        }
-
-        $user->save();
-
-
-        // 2️⃣ Update ke tabel datadiri
-        $datadiri = DataDiriModels::where('id_users', $user->id)->first();
+        $datadiri = DataDiriModels::where('id_users', $id)->first();
         if ($datadiri) {
             $datadiri->update([
                 'name' => $request->name,
@@ -122,16 +112,27 @@ class ManagementPenggunaController extends Controller
             ]);
         }
 
-        // 3️⃣ Update ke tabel role
-        DB::table('role')
-            ->where('id_users', $user->id)
-            // Tambahkan kondisi lain jika ada lebih dari satu baris per user di tabel role
-            ->update([
-                'id_drole' => $request->role,
-                'updated_at' => now(),
-            ]);
+        // Update atau tambahkan role jika diisi
+        if ($request->filled('role')) {
+            $existingRole = RoleModels::where('id_users', $id)->first();
 
-        return redirect()->back()->with('success', 'Data berhasil diupdate.');
+            if ($existingRole) {
+                $existingRole->update([
+                    'id_drole' => $request->role,
+                ]);
+            } else {
+                RoleModels::create([
+                    'id_users' => $user->id,
+                    'id_datadiri' => $datadiri->id,
+                    'id_drole' => $request->role,
+                ]);
+            }
+        }
+
+        // Jika role tidak diisi dan sebelumnya ada, biarkan tetap atau bisa hapus tergantung kebutuhan:
+        // RoleModels::where('id_users', $id)->delete();
+
+        return redirect()->back()->with('success', 'Data pengguna berhasil diperbarui.');
     }
 
     public function destroy_rw($id)

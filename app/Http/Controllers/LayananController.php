@@ -15,10 +15,16 @@ class LayananController extends Controller
     {
         return view('/detaillayanan');
     }
-
-
-     //for show home landing
+    
     public function layanan()
+<<<<<<< HEAD
+=======
+    {
+        return view('/layanan');
+    }
+    //for show home landing
+    public function index()
+>>>>>>> 018bda0b5020705f1fc1e487aa84c67a8e111594
     {
         $layanan = LayananModels::with(['syarat_layanan', 'template_surat'])->get();
         $syarat_layanan = SyaratLayananModels::all();
