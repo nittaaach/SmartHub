@@ -486,11 +486,15 @@ $dashboardRoute = $routePrefix . 'dashboard';
     </script>
 
     <script>
-        var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
-            removeItemButton: true
+        document.addEventListener('DOMContentLoaded', function() {
+
+            var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+                removeItemButton: true,
+                allowHTML: true // Ini untuk menghilangkan peringatan (deprecation warning)
+            });
         });
     </script>
-    
+
     <script>
         $('#basic-btn-rw').DataTable({
             dom: 'Bfrtip',

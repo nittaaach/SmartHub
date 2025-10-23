@@ -17,6 +17,7 @@ use App\Http\Controllers\StrukturalController;
 use App\Http\Controllers\DokumentasiController;
 
 use App\Http\Controllers\AdministrasiController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\ManagementPenggunaController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -109,6 +110,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pkk/katalog', [KatalogController::class, 'index'])->name('Ketua_PKK.katalog');
     Route::get('/pkk/activitypkk', [ActivityController::class, 'index'])->name('Ketua_PKK.activitypkk');
     Route::get('/pkk/dokumentasipkk', [DokumentasiController::class, 'indexpkk'])->name('Ketua_PKK.dokumentasipkk');
+    Route::get('/pkk/jadwalpkk', [JadwalController::class, 'indexpkk'])->name('Ketua_PKK.jadwalpkk');
     // Route::get('/ketua_pkk/news', [NewsController::class, 'index'])->name('Ketua_RW.news');
 
     //katalog
@@ -126,6 +128,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/pkk/dokumentasipkk', [DokumentasiController::class, 'store_pkk'])->name('dokumentasipkk.store_pkk');
     Route::put('/pkk/dokumentasipkk/{id}', [DokumentasiController::class, 'update_pkk'])->name('dokumentasipkk.update_pkk');
     Route::delete('/pkk/dokumentasipkk/{id}', [DokumentasiController::class, 'destroy_pkk'])->name('dokumentasipkk.destroy_pkk');
+    
+    //dokumentasi
+    Route::post('/pkk/jadwalpkk', [JadwalController::class, 'store_pkk'])->name('jadwalpkk.store_pkk');
+    Route::put('/pkk/jadwalpkk/{id}', [JadwalController::class, 'update_pkk'])->name('jadwalpkk.update_pkk');
+    Route::delete('/pkk/jadwalpkk/{id}', [JadwalController::class, 'destroy_pkk'])->name('jadwalpkk.destroy_pkk');
 });
 
 //route news (user)

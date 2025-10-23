@@ -146,12 +146,12 @@
 
                             <div class="form-group mb-4">
                                 <label class="form-label">Kategori Berita</label>
-                                <select class="form-control" name="id_knews" id="choices-multiple-remove-button" multiple
+                                <select class="form-control" name="id_knews[]" id="choices-multiple-remove-button" multiple
                                     required>
                                     <option value="">-- Pilih Kategori Berita --</option>
                                     @foreach ($k_news as $kategori)
                                         <option value="{{ $kategori->id }}">
-                                            {{ $kategori->kategori_news }} - {{ $kategori->slug }}
+                                            {{ $kategori->kategori_news }}
                                         </option>
                                     @endforeach
                                 </select>
