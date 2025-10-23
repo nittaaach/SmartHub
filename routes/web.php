@@ -129,7 +129,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 //route news (user)
-Route::get('/news', [NewsController::class, 'userView'])->name('news');
+Route::get('/news', [NewsController::class, 'news'])->name('news');
 Route::get('/news_detail', [NewsController::class, 'newsDetail'])->name('news_detail');
 //routes for layanan
 Route::get('/detaillayanan', [LayananController::class, 'detaillayanan'])->name('detaillayanan');

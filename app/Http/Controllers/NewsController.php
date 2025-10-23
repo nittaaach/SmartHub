@@ -160,7 +160,14 @@ class NewsController extends Controller
 
     public function news()
     {
-        return view('/news');
+        // Ambil semua data berita
+        $news = NewsModels::with('k_news')->get();
+
+        // Ambil semua kategori berita untuk dropdown
+        $k_news = K_NewsModels::all();
+
+        // Kirim ke view
+        return view('/news', compact('news', 'k_news'));
     }
 
     public function pengumuman()
