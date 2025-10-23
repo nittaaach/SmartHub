@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('deskripsi')->nullable();
             $table->string('penyelenggara');
             $table->string('lokasi')->nullable();
-            $table->date('tanggal_acara')->nullable();
+            $table->datetime('tanggal_acara')->nullable();
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
             $table->timestamps();
         });

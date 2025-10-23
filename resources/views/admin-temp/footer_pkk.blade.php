@@ -44,8 +44,8 @@
                     </li>
 
                     {{-- Consistent use of $routePrefix --}}
-                    <li class="pc-item {{ request()->routeIs($routePrefix . 'katalog') ? 'pc-active' : '' }}">
-                        <a href="{{ route($routePrefix . 'katalog') }}" class="pc-link">
+                    <li class="pc-item {{ request()->routeIs($routePrefix . 'jadwalpkk') ? 'pc-active' : '' }}">
+                        <a href="{{ route($routePrefix . 'jadwalpkk') }}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-clipboard-list"></i></span>
                             <span class="pc-mtext">Penjadwalan Kegiatan</span>
                         </a>
@@ -75,12 +75,12 @@
                         </a>
                     </li>
 
-                    <li class="pc-item {{ request()->routeIs($routePrefix . 'struktural') ? 'pc-active' : '' }}">
-                        <a class="pc-link" href="{{ route($routePrefix . 'struktural') }}">
+                    {{-- <li class="pc-item {{ request()->routeIs($routePrefix . 'rekapitulasipkk') ? 'pc-active' : '' }}">
+                        <a class="pc-link" href="{{ route($routePrefix . 'rekapitulasipkk') }}">
                             <span class="pc-micon"><i class="ti ti-report-money"></i></span>
                             <span class="pc-mtext">Rekapitulasi Keuangan</span></a>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="pc-item pc-caption">
                         <label>Pemasaran</label>
@@ -373,6 +373,4 @@
     </script>
 
 </body>
-<!-- [Body] end -->
-
 </html>

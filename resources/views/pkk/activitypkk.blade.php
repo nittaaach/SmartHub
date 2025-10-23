@@ -63,7 +63,15 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->kategori }}</td>
                                                 <td>{{ $item->judul }}</td>
-                                                <td>{{ $item->tanggal_acara }}</td>
+
+                                                <td>:
+                                                    {{-- Format tanggal agar lebih mudah dibaca --}}
+                                                    @if ($item->tanggal_acara)
+                                                        {{ \Carbon\Carbon::parse($item->tanggal_acara)->isoFormat('dddd, D MMMM YYYY [pukul] HH:mm') }}
+                                                    @else
+                                                        <span class="text-muted fst-italic">Belum diatur</span>
+                                                    @endif
+                                                </td>
                                                 <td>{{ $item->penyelenggara }}</td>
                                                 <td>{{ $item->lokasi }}</td>
                                                 <td>{{ $item->status }}</td>
@@ -89,6 +97,10 @@
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#DeleteactivitypkkModal-{{ $item->id }}">
                                                         Delete
+                                                    </button>
+                                                    <button type="button" class="btn btn-info me-3" data-bs-toggle="modal"
+                                                        data-bs-target="#DetailactivitypkkModal-{{ $item->id }}">
+                                                        Detail
                                                     </button>
                                                 </td>
                                             </tr>
@@ -490,6 +502,104 @@
                                 <button type="submit" class="btn btn-danger">Ya, Hapus</button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+
+    @foreach ($activities as $item)
+        {{-- ====================================================== --}}
+        {{-- 7. MODAL DETAIL (READ ONLY) --}}
+        {{-- ====================================================== --}}
+        <div class="modal fade" id="DetailactivitypkkModal-{{ $item->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="DetailactivitypkkModalLabel-{{ $item->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-info text-white">
+                        <h5 class="modal-title" id="DetailactivitypkkModalLabel-{{ $item->id }}">
+                            Detail Aktivitas: {{ $item->judul }}
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        {{-- Bagian Foto Dokumentasi --}}
+                        <div class="mb-3">
+                            <strong class="d-block mb-2">Foto Dokumentasi:</strong>
+                            <div class="d-flex flex-wrap gap-2 justify-content-center"
+                                id="detailCurrentPhotos-{{ $item->id }}">
+                                @forelse ($item->dokumentasi as $foto)
+                                    <div class="text-center">
+                                        <img src="{{ asset('storage/' . $foto->fotopkk) }}"
+                                            alt="{{ $foto->caption ?? 'Foto' }}" title="{{ $foto->caption ?? 'Foto' }}"
+                                            style="width: 120px; height: 120px; object-fit: cover; border-radius: 5px;">
+                                        <small class="d-block text-muted mt-1">{{ $foto->caption ?? '' }}</small>
+                                    </div>
+                                @empty
+                                    <span class="text-muted small fst-italic">Belum ada foto dokumentasi.</span>
+                                @endforelse
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        {{-- Bagian Detail Data --}}
+                        <table class="table table-borderless table-sm">
+                            <tbody>
+                                <tr>
+                                    <th style="width: 150px;">Judul Kegiatan</th>
+                                    <td>: {{ $item->judul }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Kategori</th>
+                                    <td>: {{ $item->kategori }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Deskripsi</th>
+                                    {{-- Menggunakan nl2br(e(...)) agar line break (enter) di deskripsi tetap tampil --}}
+                                    <td>: {!! nl2br(e($item->deskripsi)) !!}</td>
+                                </tr>
+                                <tr>
+                                    <th>Penyelenggara</th>
+                                    <td>: {{ $item->penyelenggara }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Lokasi</th>
+                                    <td>: {{ $item->lokasi ?? '-' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Status</th>
+                                    <td>:
+                                        @if ($item->status == 'published')
+                                            <span class="badge bg-success">Published</span>
+                                        @elseif ($item->status == 'draft')
+                                            <span class="badge bg-secondary">Draft</span>
+                                        @elseif ($item->status == 'archived')
+                                            <span class="badge bg-warning text-dark">Archived</span>
+                                        @else
+                                            <span class="badge bg-light text-dark">{{ $item->status }}</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Tanggal Acara</th>
+                                    <td>:
+                                        {{-- Format tanggal agar lebih mudah dibaca --}}
+                                        @if ($item->tanggal_acara)
+                                            {{ \Carbon\Carbon::parse($item->tanggal_acara)->isoFormat('dddd, D MMMM YYYY [pukul] HH:mm') }}
+                                        @else
+                                            <span class="text-muted fst-italic">Belum diatur</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                     </div>
                 </div>
             </div>
