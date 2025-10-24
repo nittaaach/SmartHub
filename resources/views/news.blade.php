@@ -33,9 +33,15 @@
                         <div class="col-xl-4 col-md-6">
                             <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
 
+<<<<<<< HEAD
                                 <div class="post-img position-relative overflow-hidden" style="height: 250px;">
                                     <img src="{{ asset('storage/' . $item->gambar) }} " style="object-fit: cover;"class="img-fluid"
                                         alt="{{ $item->title }}">
+=======
+                                <div class="post-img position-relative overflow-hidden" style="height: 300px;">
+                                    <img src="{{ asset('storage/' . $item->gambar) }}" class="img-fluid"
+                                        style="width: 100%; height: 100%; object-fit: cover;" alt="{{ $item->title }}">
+>>>>>>> origin/main
                                     <span
                                         class="post-date">{{ \Carbon\Carbon::parse($item->published_at)->format('F d, Y') }}</span>
                                 </div>
@@ -46,30 +52,61 @@
                                     <div class="meta d-flex align-items-center">
                                         <div class="d-flex align-items-center">
                                             <i class="bi bi-person"></i>
+<<<<<<< HEAD
                                             <span class="ps-2">{{ $item->user->datadiri->name ?? '-' }}</span>
+=======
+                                            <span class="ps-2">Admin</span>
+>>>>>>> origin/main
                                         </div>
                                         <span class="px-3 text-black-50">/</span>
                                         <div class="d-flex align-items-center">
                                             <i class="bi bi-folder2"></i>
                                             <span class="ps-2">
+<<<<<<< HEAD
                                                 {{ $item->k_news->kategori_news ?? 'Tidak ada kategori' }}
+=======
+                                                @if ($item->kategori && $item->kategori->count() > 0)
+                                                    {{ $item->kategori->pluck('kategori_news')->implode(', ') }}
+                                                @else
+                                                    Tidak ada kategori
+                                                @endif
+>>>>>>> origin/main
                                             </span>
                                         </div>
                                     </div>
 
                                     <hr>
+<<<<<<< HEAD
                                     <a href="{{ url('/news_detail/' . $item->id) }}" class="readmore stretched-link">
                                         <span>Read More</span><i class="bi bi-arrow-right"></i>
                                     </a>
 
+=======
+                                    @if (!empty($item->slug))
+                                        {{-- Jika ada link eksternal, arahkan ke sana (buka di tab baru) --}}
+                                        <a href="{{ $item->slug }}" class="readmore stretched-link" target="_blank"
+                                            rel="noopener noreferrer">
+                                            <span>Read More</span><i class="bi bi-arrow-right"></i>
+                                        </a>
+                                    @else
+                                        {{-- Jika tidak ada, arahkan ke halaman detail internal --}}
+                                        <a href="{{ url('/news_detail/') }}" class="readmore stretched-link">
+                                            <span>Read More</span><i class="bi bi-arrow-right"></i>
+                                        </a>
+                                    @endif
+>>>>>>> origin/main
                                 </div>
 
                             </div>
                         </div>
                     @endforeach
                 </div>
+<<<<<<< HEAD
 
 
+=======
+                
+>>>>>>> origin/main
 
                 <div class="col-xl-4 col-md-6">
                     <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="200">
@@ -141,4 +178,8 @@
 
     </section><!-- /Recent Posts Section -->
 @endsection
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
 @extends('user-temp.footer')

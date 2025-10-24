@@ -155,7 +155,7 @@
                         <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                             <div class="dropdown-header">
                                 <div class="d-flex mb-1">
-                                    <div class="flex-shrink-0">
+                                    <div class="shrink-0">
                                         @if ($user && $user->gambar)
                                             <img src="{{ asset('storage/' . $user->gambar) }}" alt="user-image"
                                                 class="user-avtar wid-35">
@@ -164,7 +164,7 @@
                                                 alt="user-image" class="user-avtar wid-35">
                                         @endif
                                     </div>
-                                    <div class="flex-grow-1 ms-3">
+                                    <div class="grow ms-3">
                                         <h6 class="mb-1">{{ $user->name ?? 'Guest' }}</h6>
                                         <span>{{ $user->role ?? 'Tidak Ada Role' }}</span>
                                     </div>
@@ -177,7 +177,7 @@
                             <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                                 <div class="dropdown-header">
                                     <div class="d-flex mb-1 align-items-center">
-                                        <div class="flex-shrink-0">
+                                        <div class="shrink-0">
                                             @if ($user && $user->gambar)
                                                 <img src="{{ asset('storage/' . $user->gambar) }}" alt="user-image"
                                                     class="user-avtar wid-35">
@@ -187,7 +187,7 @@
                                             @endif
                                         </div>
 
-                                        <div class="flex-grow-1 ms-3">
+                                        <div class="grow ms-3">
                                             <h6 class="mb-1">{{ $user->name ?? 'Guest' }}</h6>
                                             <span>{{ $user->role ?? 'Tidak Ada Role' }}</span>
                                         </div>

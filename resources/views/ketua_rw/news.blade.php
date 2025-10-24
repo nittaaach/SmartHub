@@ -76,7 +76,7 @@
                                                             'http://',
                                                             'https://',
                                                         ]);
-                                                        $url = $isExternal ? $item->slug : url('/news/' . $item->slug);
+                                                        $url = $isExternal ? $item->slug : url('/news_detail/' . $item->slug);
                                                     @endphp <a href="{{ $url }}" target="_blank">
                                                         {{ Str::limit($url, 50) }}
                                                     </a>
@@ -144,6 +144,18 @@
                         <form action="{{ route('news.store_rw') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
+                            <!-- ==== BLOK UNTUK MENAMPILKAN SEMUA ERROR ==== -->
+                            @if ($errors->any())
+                                <div class="alert alert-danger mx-3">
+                                    <h5 class="alert-heading">Validasi Gagal!</h5>
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
                             <div class="form-group mb-4">
                                 <label class="form-label">Kategori Berita</label>
                                 <select class="form-control" name="id_knews[]" id="choices-multiple-remove-button" multiple
@@ -173,7 +185,7 @@
                             <!-- Slug -->
                             <div class="form-group mb-3">
                                 <label>Slug / Link Berita</label>
-                                <input type="text" name="slug" class="form-control" required>
+                                <input type="text" name="slug" class="form-control">
                                 <small class="text-muted">
                                     Bisa isi slug biasa (contoh: <b>kegiatan-rw12</b>) atau link eksternal (contoh:
                                     <b>https://cnn.com/...</b>)
@@ -189,8 +201,8 @@
                             <!-- Status -->
                             <div class="form-group mb-3">
                                 <label>Status</label>
-                                <select name="status" class="form-control" onchange="togglePublishedAtCreate(this.value)"
-                                    required>
+                                <select name="status" class="form-control"
+                                    onchange="togglePublishedAtCreate(this.value)" required>
                                     <option value="draft">Draft</option>
                                     <option value="published">Published</option>
                                     <option value="archived">Archived</option>
@@ -277,8 +289,7 @@
 
                             <div class="form-group mb-3">
                                 <label>Slug / Link Berita</label>
-                                <input type="text" name="slug" class="form-control" value="{{ $item->slug }}"
-                                    required>
+                                <input type="text" name="slug" class="form-control" value="{{ $item->slug }}">
                                 <small class="text-muted">
                                     Bisa isi slug biasa (contoh: <b>kegiatan-rw12</b>) atau link eksternal (contoh:
                                     <b>https://cnn.com/...</b>)

@@ -339,4 +339,4 @@
         </div>
     @endforeach
 @endsection
-@extends('admin-temp.footer_pkk')
+@extends('admin-temp.footer_rw')

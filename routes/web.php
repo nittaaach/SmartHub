@@ -29,7 +29,7 @@ Route::get('/landing', [HomeController::class, 'HomeLanding'])->name('landing');
 Route::get('/statistika', [StatistikController::class, 'stat'])->name('statistika');
 Route::get('/profil', [VMController::class, 'profil'])->name('profil');
 Route::get('/katalog', [KatalogController::class, 'katalog'])->name('katalog');
-Route::get('/detail_katalog', [KatalogController::class, 'detail_katalog'])->name('detail_katalog');
+Route::get('/detail_katalog/{id}', [KatalogController::class, 'detail_katalog'])->name('detail_katalog');
 
 
 //route for auth
