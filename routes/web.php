@@ -137,7 +137,7 @@ Route::middleware(['auth'])->group(function () {
 
 //route news (user)
 Route::get('/news', [NewsController::class, 'news'])->name('news');
-Route::get('/news_detail', [NewsController::class, 'newsDetail'])->name('news_detail');
+Route::get('/news_detail/{id}', [NewsController::class, 'detail_news'])->name('detail_news');
 //routes for layanan
 Route::get('/detaillayanan', [LayananController::class, 'detaillayanan'])->name('detaillayanan');
 Route::get('/layanan', [LayananController::class, 'layanan'])->name('layanan');

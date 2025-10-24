@@ -189,7 +189,7 @@
 
                             <!-- ================= KANAN ================= -->
                             <div class="col-md-6">
-                                <h6 class="fw-bold mb-3">🗂️ Data Penjual</h6>
+                                <h6 class="fw-bold mb-3">🗂 Data Penjual</h6>
 
                                 <div class="form-group mb-3">
                                     <label class="form-label">Nama Penjual</label>
@@ -570,7 +570,7 @@
                             <!-- ================= KANAN ================= -->
                             <div class="col-md-6">
                                 <div class="border-start ps-3">
-                                    <h6 class="fw-bold mb-3 text-primary">🗂️ Data Penjual</h6>
+                                    <h6 class="fw-bold mb-3 text-primary">🗂 Data Penjual</h6>
 
                                     <div class="mb-3">
                                         <label class="form-label fw-semibold">Nama Penjual</label>
@@ -693,8 +693,8 @@
                 addedPlatforms.add(selected);
 
                 const label = selected.charAt(0).toUpperCase() + selected.slice(1);
-                const placeholder = `Masukkan link ${label}`;
-                const name = `link_${selected}`;
+                const placeholder = Masukkan link ${label};
+                const name = link_${selected};
 
                 const div = document.createElement('div');
                 div.classList.add('form-group', 'mb-3');

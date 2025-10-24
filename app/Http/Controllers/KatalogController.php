@@ -12,8 +12,28 @@ class KatalogController extends Controller
     //for show home landing
     public function katalog()
     {
-        return view('/katalog');
+        $katalog = KatalogModels::where('status', 'published')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $kategori = [
+            'Makanan',
+            'Minuman',
+            'Pakaian',
+            'Kerajinan Tangan',
+            'Aksesoris',
+            'Kecantikan',
+            'Kesehatan',
+            'Pertanian',
+            'Peternakan',
+            'Olahan Rumah Tangga',
+            'Digital',
+            'Lainnya'
+        ];
+
+        return view('katalog', compact('katalog', 'kategori'));
     }
+
 
     public function detail_katalog()
     {

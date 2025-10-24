@@ -37,6 +37,22 @@ class NewsController extends Controller
         return view('ketua_rw.news', compact('news', 'k_news'));
     }
 
+    public function detail_news($id)
+    {
+        $news = NewsModels::with(['user', 'k_news'])->findOrFail($id);
+        $k_news = K_NewsModels::all(); // Ambil semua kategori
+
+        $recentPosts = NewsModels::where('id', '!=', $id)
+            ->where('status', 'published')
+            ->whereNotNull('published_at')
+            ->orderBy('published_at', 'desc')
+            ->take(5)
+            ->get();
+
+
+        return view('news_detail', compact('news', 'k_news', 'recentPosts'));
+    }
+
     public function store_rw(Request $request)
     {
         $request->validate([
@@ -160,14 +176,17 @@ class NewsController extends Controller
 
     public function news()
     {
-        // Ambil semua data berita
-        $news = NewsModels::with('k_news')->get();
+        // Ambil semua berita yang statusnya 'published'
+        $news = NewsModels::with('k_news')
+            ->where('status', 'published')
+            ->orderBy('published_at', 'desc')
+            ->get();
 
-        // Ambil semua kategori berita untuk dropdown
+        // Ambil semua kategori berita
         $k_news = K_NewsModels::all();
 
         // Kirim ke view
-        return view('/news', compact('news', 'k_news'));
+        return view('news', compact('news', 'k_news'));
     }
 
     public function pengumuman()

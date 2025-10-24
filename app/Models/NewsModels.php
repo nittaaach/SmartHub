@@ -32,6 +32,12 @@ class NewsModels extends Model
         return $this->belongsTo(User::class, 'id_users');
     }
 
+    // Relasi ke user (jika ada tabel users)
+    public function datadiri()
+    {
+        return $this->belongsTo(DataDiriModels::class, 'id_users');
+    }
+
     public function kategori()
     {
         return $this->belongsToMany(K_NewsModels::class, 'news_kategori', 'news_id', 'k_news_id');

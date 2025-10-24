@@ -35,10 +35,14 @@
                         <h3>TENTANG KAMI</h3>
                         <h2>RW Smart Hub adalah portal digital resmi RW 012 Jatiwaringin, Kota Bekasi.</h2>
                         <p>
-                            Website ini dikembangkan untuk meningkatkan partisipasi warga dalam berbagai kegiatan sosial, ekonomi, dan administrasi RW secara lebih cepat, transparan, dan mudah diakses oleh semua lapisan masyarakat.
-Melalui platform ini, warga dapat memperoleh informasi kegiatan Karang Taruna, promosi produk UMKM binaan PKK, hingga menyampaikan aspirasi secara langsung kepada pengurus RW.
+                            Website ini dikembangkan untuk meningkatkan partisipasi warga dalam berbagai kegiatan sosial,
+                            ekonomi, dan administrasi RW secara lebih cepat, transparan, dan mudah diakses oleh semua
+                            lapisan masyarakat.
+                            Melalui platform ini, warga dapat memperoleh informasi kegiatan Karang Taruna, promosi produk
+                            UMKM binaan PKK, hingga menyampaikan aspirasi secara langsung kepada pengurus RW.
 
-Kami percaya bahwa digitalisasi komunitas adalah langkah penting untuk membangun lingkungan yang lebih aktif, inklusif, dan sejahtera.
+                            Kami percaya bahwa digitalisasi komunitas adalah langkah penting untuk membangun lingkungan yang
+                            lebih aktif, inklusif, dan sejahtera.
                         </p>
                         <div class="text-center text-lg-start">
                             <a href="/profil"
@@ -59,113 +63,113 @@ Kami percaya bahwa digitalisasi komunitas adalah langkah penting untuk membangun
 
     </section><!-- /About Section -->
 
- <section id="values" class="values section">
+    <section id="values" class="values section">
 
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <p>LAYANAN<br></p>
-    <h2>Yang Kami Sediakan</h2>
-    <a href="/layanan" class="readmore stretched-link"><span></span></a>
-  </div><!-- End Section Title -->
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <p>LAYANAN<br></p>
+            <h2>Yang Kami Sediakan</h2>
+            <a href="/layanan" class="readmore stretched-link"><span></span></a>
+        </div><!-- End Section Title -->
 
-  <div class="container">
-    <div class="row gy-4">
+        <div class="container">
+            <div class="row gy-4">
 
-      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-        <div class="card">
-          <img src="assets-user/img/values-1.png" class="img-fluid" alt="">
-          <h3>Ad cupiditate sed est odio</h3>
-          <p>Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit. Et veritatis id.</p>
-          <a href="/layanan" class="readmore stretched-link">
-            <span>Lihat Selengkapnya</span><i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div><!-- End Card Item -->
-
-      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="card">
-          <img src="assets-user/img/values-2.png" class="img-fluid" alt="">
-          <h3>Voluptatem voluptatum alias</h3>
-          <p>Repudiandae amet nihil natus in distinctio suscipit id. Doloremque ducimus ea sit non.</p>
-          <a href="/layanan" class="readmore stretched-link">
-            <span>Lihat Selengkapnya</span><i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div><!-- End Card Item -->
-
-      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-        <div class="card">
-          <img src="assets-user/img/values-3.png" class="img-fluid" alt="">
-          <h3>Fugit cupiditate alias nobis.</h3>
-          <p>Quam rem vitae est autem molestias explicabo debitis sint. Vero aliquid quidem commodi.</p>
-          <a href="/layanan" class="readmore stretched-link">
-            <span>Lihat Selengkapnya</span><i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div><!-- End Card Item -->
-
-    </div>
-  </div>
-
-</section><!-- /Values Section -->
-
-<!-- Stats Section -->
-<section id="stats" class="stats section">
-    <div class="container section-title" data-aos="fade-up">
-        <p>INFORMASI<br></p>
-        <h2>Yang Kami Sediakan</h2>
-    </div><!-- End Section Title -->
-
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4">
-
-            <div class="col-lg-3 col-md-6">
-                <a href="/statistika" class="text-decoration-none text-dark">
-                    <div class="stats-item d-flex align-items-center w-100 h-100">
-                        <div>
-                            <h3>Statistik</h3>
-                            <p>Statistik penduduk & bangunan</p>
-                        </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card">
+                        <img src="assets-user/img/values-1.png" class="img-fluid" alt="">
+                        <h3>Ad cupiditate sed est odio</h3>
+                        <p>Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit. Et veritatis id.</p>
+                        <a href="/layanan" class="readmore stretched-link">
+                            <span>Lihat Selengkapnya</span><i class="bi bi-arrow-right"></i>
+                        </a>
                     </div>
-                </a>
-            </div><!-- End Stats Item -->
+                </div><!-- End Card Item -->
 
-            <div class="col-lg-3 col-md-6">
-                <a href="" class="text-decoration-none text-dark">
-                    <div class="stats-item d-flex align-items-center w-100 h-100">
-                        <div>
-                            <h3>Fasilitas</h3>
-                            <p>Fasilitas penunjang di sekitar</p>
-                        </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card">
+                        <img src="assets-user/img/values-2.png" class="img-fluid" alt="">
+                        <h3>Voluptatem voluptatum alias</h3>
+                        <p>Repudiandae amet nihil natus in distinctio suscipit id. Doloremque ducimus ea sit non.</p>
+                        <a href="/layanan" class="readmore stretched-link">
+                            <span>Lihat Selengkapnya</span><i class="bi bi-arrow-right"></i>
+                        </a>
                     </div>
-                </a>
-            </div><!-- End Stats Item -->
+                </div><!-- End Card Item -->
 
-            <div class="col-lg-3 col-md-6">
-                <a href="" class="text-decoration-none text-dark">
-                    <div class="stats-item d-flex align-items-center w-100 h-100">
-                        <div>
-                            <h3>Siaga Banjir</h3>
-                            <p>Status ketinggian air & pompa</p>
-                        </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card">
+                        <img src="assets-user/img/values-3.png" class="img-fluid" alt="">
+                        <h3>Fugit cupiditate alias nobis.</h3>
+                        <p>Quam rem vitae est autem molestias explicabo debitis sint. Vero aliquid quidem commodi.</p>
+                        <a href="/layanan" class="readmore stretched-link">
+                            <span>Lihat Selengkapnya</span><i class="bi bi-arrow-right"></i>
+                        </a>
                     </div>
-                </a>
-            </div><!-- End Stats Item -->
+                </div><!-- End Card Item -->
 
-            <div class="col-lg-3 col-md-6">
-                <a href="" class="text-decoration-none text-dark">
-                    <div class="stats-item d-flex align-items-center w-100 h-100">
-                        <div>
-                            <h3>Galeri</h3>
-                            <p>Dokumentasi kegiatan kemasyarakatan</p>
-                        </div>
-                    </div>
-                </a>
-            </div><!-- End Stats Item -->
-
+            </div>
         </div>
-    </div>
-</section><!-- /Stats Section -->
+
+    </section><!-- /Values Section -->
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats section">
+        <div class="container section-title" data-aos="fade-up">
+            <p>INFORMASI<br></p>
+            <h2>Yang Kami Sediakan</h2>
+        </div><!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+            <div class="row gy-4">
+
+                <div class="col-lg-3 col-md-6">
+                    <a href="/statistika" class="text-decoration-none text-dark">
+                        <div class="stats-item d-flex align-items-center w-100 h-100">
+                            <div>
+                                <h3>Statistik</h3>
+                                <p>Statistik penduduk & bangunan</p>
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- End Stats Item -->
+
+                <div class="col-lg-3 col-md-6">
+                    <a href="" class="text-decoration-none text-dark">
+                        <div class="stats-item d-flex align-items-center w-100 h-100">
+                            <div>
+                                <h3>Fasilitas</h3>
+                                <p>Fasilitas penunjang di sekitar</p>
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- End Stats Item -->
+
+                <div class="col-lg-3 col-md-6">
+                    <a href="" class="text-decoration-none text-dark">
+                        <div class="stats-item d-flex align-items-center w-100 h-100">
+                            <div>
+                                <h3>Siaga Banjir</h3>
+                                <p>Status ketinggian air & pompa</p>
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- End Stats Item -->
+
+                <div class="col-lg-3 col-md-6">
+                    <a href="" class="text-decoration-none text-dark">
+                        <div class="stats-item d-flex align-items-center w-100 h-100">
+                            <div>
+                                <h3>Galeri</h3>
+                                <p>Dokumentasi kegiatan kemasyarakatan</p>
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- End Stats Item -->
+
+            </div>
+        </div>
+    </section><!-- /Stats Section -->
 
     </section><!-- /Stats Section -->
 
@@ -1128,13 +1132,13 @@ Kami percaya bahwa digitalisasi komunitas adalah langkah penting untuk membangun
         </section><!-- /Clients Section --> --}}
 
     <!-- Recent Posts Section -->
-    <section id="recent-posts" class="recent-posts section">
+    <section id="news" class="recent-posts section">
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <p>BERITA</p>
             <h2>Informasi Terkini</h2>
-        <a href="/news" class="readmore stretched-link"><span></span></a>
+            <a href="/news" class="readmore stretched-link"><span></span></a>
         </div><!-- End Section Title -->
 
         <div class="container">
@@ -1243,19 +1247,19 @@ Kami percaya bahwa digitalisasi komunitas adalah langkah penting untuk membangun
 
     </section><!-- /Recent Posts Section -->
 
-            <!-- Clients Section -->
-        <section id="clients" class="clients section">
+    <!-- Clients Section -->
+    <section id="clients" class="clients section">
 
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <p>Partner Kami<br></p>
-                <h2>Bekerja sama dengan Instansi Terpercaya</h2>
-            </div><!-- End Section Title -->
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <p>Partner Kami<br></p>
+            <h2>Bekerja sama dengan Instansi Terpercaya</h2>
+        </div><!-- End Section Title -->
 
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-                <div class="swiper init-swiper">
-                    <script type="application/json" class="swiper-config">
+            <div class="swiper init-swiper">
+                <script type="application/json" class="swiper-config">
             {
               "loop": true,
               "speed": 600,
@@ -1288,140 +1292,141 @@ Kami percaya bahwa digitalisasi komunitas adalah langkah penting untuk membangun
               }
             }
           </script>
-                    <div class="swiper-wrapper align-items-center">
-                        <div class="swiper-slide"><img src="assets-user/img/clients/client-1.png" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="assets-user/img/clients/client-2.png" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="assets-user/img/clients/client-3.png" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="assets-user/img/clients/client-4.png" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="assets-user/img/clients/client-5.png" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="assets-user/img/clients/client-6.png" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="assets-user/img/clients/client-7.png" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="assets-user/img/clients/client-8.png" class="img-fluid"
-                                alt=""></div>
+                <div class="swiper-wrapper align-items-center">
+                    <div class="swiper-slide"><img src="assets-user/img/clients/client-1.png" class="img-fluid"
+                            alt=""></div>
+                    <div class="swiper-slide"><img src="assets-user/img/clients/client-2.png" class="img-fluid"
+                            alt=""></div>
+                    <div class="swiper-slide"><img src="assets-user/img/clients/client-3.png" class="img-fluid"
+                            alt=""></div>
+                    <div class="swiper-slide"><img src="assets-user/img/clients/client-4.png" class="img-fluid"
+                            alt=""></div>
+                    <div class="swiper-slide"><img src="assets-user/img/clients/client-5.png" class="img-fluid"
+                            alt=""></div>
+                    <div class="swiper-slide"><img src="assets-user/img/clients/client-6.png" class="img-fluid"
+                            alt=""></div>
+                    <div class="swiper-slide"><img src="assets-user/img/clients/client-7.png" class="img-fluid"
+                            alt=""></div>
+                    <div class="swiper-slide"><img src="assets-user/img/clients/client-8.png" class="img-fluid"
+                            alt=""></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+        </div>
+
+    </section><!-- /Clients Section -->
+
+    <section id="contact" class="contact section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <p>HUBUNGI KAMI</p>
+            <h2>Informasi Kontak</h2>
+        </div><!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row gy-4">
+
+                <div class="col-lg-6">
+
+                    <div class="row gy-4">
+                        <div class="col-md-6">
+                            <div class="info-item" data-aos="fade" data-aos-delay="200">
+                                <i class="bi bi-geo-alt"></i>
+                                <h3>Address</h3>
+                                <p>A108 Adam Street</p>
+                                <p>New York, NY 535022</p>
+                            </div>
+                        </div><!-- End Info Item -->
+
+                        <div class="col-md-6">
+                            <div class="info-item" data-aos="fade" data-aos-delay="300">
+                                <i class="bi bi-telephone"></i>
+                                <h3>Call Us</h3>
+                                <p>+1 5589 55488 55</p>
+                                <p>+1 6678 254445 41</p>
+                            </div>
+                        </div><!-- End Info Item -->
+
+                        <div class="col-md-6">
+                            <div class="info-item" data-aos="fade" data-aos-delay="400">
+                                <i class="bi bi-envelope"></i>
+                                <h3>Email Us</h3>
+                                <p>info@example.com</p>
+                                <p>contact@example.com</p>
+                            </div>
+                        </div><!-- End Info Item -->
+
+                        <div class="col-md-6">
+                            <div class="info-item" data-aos="fade" data-aos-delay="500">
+                                <i class="bi bi-clock"></i>
+                                <h3>Open Hours</h3>
+                                <p>Monday - Friday</p>
+                                <p>9:00AM - 05:00PM</p>
+                            </div>
+                        </div><!-- End Info Item -->
                     </div>
-                    <div class="swiper-pagination"></div>
                 </div>
 
+                <div class="col-lg-6">
+                    <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
+                        data-aos-delay="200">
+                        <div class="row gy-4">
+
+                            <div class="col-md-6">
+                                <input type="text" name="name" class="form-control" placeholder="Your Name"
+                                    required="">
+                            </div>
+
+                            <div class="col-md-6 ">
+                                <input type="email" class="form-control" name="email" placeholder="Your Email"
+                                    required="">
+                            </div>
+
+                            <div class="col-12">
+                                <input type="text" class="form-control" name="subject" placeholder="Subject"
+                                    required="">
+                            </div>
+
+                            <div class="col-12">
+                                <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                            </div>
+
+                            <div class="col-12 text-center">
+                                <div class="loading">Loading</div>
+                                <div class="error-message"></div>
+                                <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                                <button type="submit">Send Message</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div><!-- End Contact Form -->
+
             </div>
 
-        </section><!-- /Clients Section -->
+            <!-- Section Title -->
+    </section><!-- /Contact Section -->
 
-<section id="contact" class="contact section">
+    <section id="contact" class="contact section">
+        <div class="container section-title" data-aos="fade-up" style="margin=top:50px">
+            <p>LOKASI</p>
+            <h2>Sekertariat RW 12</h2>
+        </div><!-- End Section Title -->
+        <!-- Google Maps dengan jarak 100px -->
+        <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
+            <iframe style="border:0; width: 100%; height: 400px;"
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d247.87170514462053!2d106.921437154233!3d-6.270663441211563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMTYnMTQuNiJTIDEwNsKwNTUnMTcuMCJF!5e0!3m2!1sen!2sid!4v1759504656659!5m2!1sen!2sid"
+                frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div><!-- End Google Maps -->
 
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <p>HUBUNGI KAMI</p>
-    <h2>Informasi Kontak</h2>
-  </div><!-- End Section Title -->
-
-  <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-    <div class="row gy-4">
-
-      <div class="col-lg-6">
-
-        <div class="row gy-4">
-          <div class="col-md-6">
-            <div class="info-item" data-aos="fade" data-aos-delay="200">
-              <i class="bi bi-geo-alt"></i>
-              <h3>Address</h3>
-              <p>A108 Adam Street</p>
-              <p>New York, NY 535022</p>
-            </div>
-          </div><!-- End Info Item -->
-
-          <div class="col-md-6">
-            <div class="info-item" data-aos="fade" data-aos-delay="300">
-              <i class="bi bi-telephone"></i>
-              <h3>Call Us</h3>
-              <p>+1 5589 55488 55</p>
-              <p>+1 6678 254445 41</p>
-            </div>
-          </div><!-- End Info Item -->
-
-          <div class="col-md-6">
-            <div class="info-item" data-aos="fade" data-aos-delay="400">
-              <i class="bi bi-envelope"></i>
-              <h3>Email Us</h3>
-              <p>info@example.com</p>
-              <p>contact@example.com</p>
-            </div>
-          </div><!-- End Info Item -->
-
-          <div class="col-md-6">
-            <div class="info-item" data-aos="fade" data-aos-delay="500">
-              <i class="bi bi-clock"></i>
-              <h3>Open Hours</h3>
-              <p>Monday - Friday</p>
-              <p>9:00AM - 05:00PM</p>
-            </div>
-          </div><!-- End Info Item -->
         </div>
-      </div>
 
-      <div class="col-lg-6">
-        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
-          data-aos-delay="200">
-          <div class="row gy-4">
-
-            <div class="col-md-6">
-              <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-            </div>
-
-            <div class="col-md-6 ">
-              <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-            </div>
-
-            <div class="col-12">
-              <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-            </div>
-
-            <div class="col-12">
-              <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-            </div>
-
-            <div class="col-12 text-center">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-
-              <button type="submit">Send Message</button>
-            </div>
-
-          </div>
-        </form>
-      </div><!-- End Contact Form -->
-
-    </div>
-
-      <!-- Section Title -->
-</section><!-- /Contact Section -->
-
-<section id="contact" class="contact section">
-  <div class="container section-title" data-aos="fade-up" style="margin=top:50px">
-    <p>LOKASI</p>
-    <h2>Sekertariat RW 12</h2>
-  </div><!-- End Section Title -->
-    <!-- Google Maps dengan jarak 100px -->
-    <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
-      <iframe style="border:0; width: 100%; height: 400px;"
-        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d247.87170514462053!2d106.921437154233!3d-6.270663441211563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMTYnMTQuNiJTIDEwNsKwNTUnMTcuMCJF!5e0!3m2!1sen!2sid!4v1759504656659!5m2!1sen!2sid"
-        frameborder="0" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div><!-- End Google Maps -->
-
-  </div>
-
-      <!-- Section Title -->
-</section><!-- /Contact Section -->
-
+        <!-- Section Title -->
+    </section><!-- /Contact Section -->
 @endsection
 
 @extends('user-temp.footer')

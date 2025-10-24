@@ -1,32 +1,31 @@
 @extends('user-temp.head')
 
 @section('content')
-
     <!-- Page Title -->
     <div class="page-title">
-      <div class="heading">
-        <div class="container">
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1>Katalog PKK</h1>
-              <p class="mb-0">Produk UMKM RW 12</p>
+        <div class="heading">
+            <div class="container">
+                <div class="row d-flex justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1>Katalog PKK</h1>
+                        <p class="mb-0">Produk UMKM RW 12</p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <nav class="breadcrumbs">
-        <div class="container">
-          <ol>
-            <li><a href="/landing">Home</a></li>
-            <li class="current">Informasi</li>
-            <li class="current">Katalog PKK</li>
-          </ol>
-        </div>
-      </nav>
+        <nav class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/landing">Home</a></li>
+                    <li class="current">Informasi</li>
+                    <li class="current">Katalog PKK</li>
+                </ol>
+            </div>
+        </nav>
     </div><!-- End Page Title -->
 
 
-        <!-- Portfolio Section -->
+    <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio section">
         <div class="container">
 
@@ -34,198 +33,42 @@
 
                 <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
                     <li data-filter="*" class="filter-active">All</li>
-                    <li data-filter=".filter-app">App</li>
-                    <li data-filter=".filter-product">Product</li>
-                    <li data-filter=".filter-branding">Branding</li>
-                    <li data-filter=".filter-books">Books</li>
-                </ul><!-- End Portfolio Filters -->
+                    @foreach ($kategori as $kat)
+                        <li data-filter=".filter-{{ Str::slug($kat, '-') }}">{{ $kat }}</li>
+                    @endforeach
+                </ul>
 
                 <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                        <div class="portfolio-content h-100">
-                            <img src="assets-user/img/portfolio/app-1.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>App 1</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                                <a href="assets-user/img/portfolio/app-1.jpg" title="App 1"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="/detail_katalog" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
+                    @foreach ($katalog as $item)
+                        <div
+                            class="col-lg-4 col-md-6 portfolio-item isotope-item filter-{{ Str::slug($item->kategori, '-') }}">
+                            <div class="portfolio-content h-100">
+                                <img src="{{ asset('storage/' . $item->foto) }}" class="img-fluid"
+                                    alt="{{ $item->nama_produk }}"
+                                    style="width:100%; height:250px; object-fit:cover; border-radius:10px;">
 
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                        <div class="portfolio-content h-100">
-                            <img src="assets-user/img/portfolio/product-1.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Product 1</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                                <a href="assets-user/img/portfolio/product-1.jpg" title="Product 1"
-                                    data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="/detail_katalog" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                                <a href="/detail_katalog" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                                
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
+                                <div class="portfolio-info">
+                                    <h4>{{ $item->nama_produk }}</h4>
+                                    <p>{{ Str::limit($item->deskripsi, 80) }}</p>
 
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                        <div class="portfolio-content h-100">
-                            <img src="assets-user/img/portfolio/branding-1.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Branding 1</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                                <a href="assets-user/img/portfolio/branding-1.jpg" title="Branding 1"
-                                    data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="/detail_katalog" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
+                                    <a href="{{ asset('storage/' . $item->foto) }}" title="{{ $item->nama_produk }}"
+                                        data-gallery="portfolio-gallery-{{ Str::slug($item->kategori, '-') }}"
+                                        class="glightbox preview-link">
+                                        <i class="bi bi-zoom-in"></i>
+                                    </a>
 
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
-                        <div class="portfolio-content h-100">
-                            <img src="assets-user/img/portfolio/books-1.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Books 1</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                                <a href="assets-user/img/portfolio/books-1.jpg" title="Branding 1"
-                                    data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="/detail_katalog" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
+                                    <a href="{{ url('/detail_katalog/' . $item->id) }}" title="More Details"
+                                        class="details-link">
+                                        <i class="bi bi-link-45deg"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                        <div class="portfolio-content h-100">
-                            <img src="assets-user/img/portfolio/app-2.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>App 2</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                                <a href="assets-user/img/portfolio/app-2.jpg" title="App 2"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="/detail_katalog" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                        <div class="portfolio-content h-100">
-                            <img src="assets-user/img/portfolio/product-2.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Product 2</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                                <a href="assets-user/img/portfolio/product-2.jpg" title="Product 2"
-                                    data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="/detail_katalog" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                        <div class="portfolio-content h-100">
-                            <img src="assets-user/img/portfolio/branding-2.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Branding 2</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                                <a href="assets-user/img/portfolio/branding-2.jpg" title="Branding 2"
-                                    data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="/detail_katalog" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
-                        <div class="portfolio-content h-100">
-                            <img src="assets-user/img/portfolio/books-2.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Books 2</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                                <a href="assets-user/img/portfolio/books-2.jpg" title="Branding 2"
-                                    data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="/detail_katalog" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                        <div class="portfolio-content h-100">
-                            <img src="assets-user/img/portfolio/app-3.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>App 3</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                                <a href="assets-user/img/portfolio/app-3.jpg" title="App 3"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="/detail_katalog" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                        <div class="portfolio-content h-100">
-                            <img src="assets-user/img/portfolio/product-3.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Product 3</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                                <a href="assets-user/img/portfolio/product-3.jpg" title="Product 3"
-                                    data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="/detail_katalog" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                        <div class="portfolio-content h-100">
-                            <img src="assets-user/img/portfolio/branding-3.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Branding 3</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                                <a href="assets-user/img/portfolio/branding-3.jpg" title="Branding 2"
-                                    data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="/detail_katalog" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
-                        <div class="portfolio-content h-100">
-                            <img src="assets-user/img/portfolio/books-3.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Books 3</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                                <a href="assets-user/img/portfolio/books-3.jpg" title="Branding 3"
-                                    data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="/detail_katalog" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
+                    @endforeach
 
                 </div><!-- End Portfolio Container -->
+
 
             </div>
 
