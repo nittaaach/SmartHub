@@ -102,11 +102,7 @@ class FasilitasController extends Controller
 
         return redirect()->back()->with('success', 'Pengguna berhasil dihapus.');
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 018bda0b5020705f1fc1e487aa84c67a8e111594
-    //
     public function fasilitas()
     {
         return view('/fasilitas');
