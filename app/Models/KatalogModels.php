@@ -19,7 +19,6 @@ class KatalogModels extends Model
         'harga',
         'stok',
         'kategori',
-        'foto',
         'nama_penjual',
         'kontak_penjual',
         'alamat_penjual',
@@ -32,6 +31,12 @@ class KatalogModels extends Model
         'status_stock',
         'status',
     ];
+
+    public function fotoProduk()
+    {
+        // Parameter kedua 'katalog_pkk_id' adalah foreign key di tabel 'katalog_foto_pkk'
+        return $this->hasMany(FotoKatalogModels::class, 'katalog_pkk_id');
+    }
 
     public function getFotoProdukUrlAttribute()
     {

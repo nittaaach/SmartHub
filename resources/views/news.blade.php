@@ -33,9 +33,9 @@
                         <div class="col-xl-4 col-md-6">
                             <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
 
-                                <div class="post-img position-relative overflow-hidden">
+                                <div class="post-img position-relative overflow-hidden" style="height: 300px;">
                                     <img src="{{ asset('storage/' . $item->gambar) }}" class="img-fluid"
-                                        alt="{{ $item->title }}">
+                                        style="width: 100%; height: 100%; object-fit: cover;" alt="{{ $item->title }}">
                                     <span
                                         class="post-date">{{ \Carbon\Carbon::parse($item->published_at)->format('F d, Y') }}</span>
                                 </div>
@@ -52,23 +52,35 @@
                                         <div class="d-flex align-items-center">
                                             <i class="bi bi-folder2"></i>
                                             <span class="ps-2">
-                                                {{ $item->k_news->kategori_news ?? 'Tidak ada kategori' }}
+                                                @if ($item->kategori && $item->kategori->count() > 0)
+                                                    {{ $item->kategori->pluck('kategori_news')->implode(', ') }}
+                                                @else
+                                                    Tidak ada kategori
+                                                @endif
                                             </span>
                                         </div>
                                     </div>
 
                                     <hr>
-                                    <a href="{{ url('/news_detail/' . $item->slug) }}" class="readmore stretched-link">
-                                        <span>Read More</span><i class="bi bi-arrow-right"></i>
-                                    </a>
+                                    @if (!empty($item->slug))
+                                        {{-- Jika ada link eksternal, arahkan ke sana (buka di tab baru) --}}
+                                        <a href="{{ $item->slug }}" class="readmore stretched-link" target="_blank"
+                                            rel="noopener noreferrer">
+                                            <span>Read More</span><i class="bi bi-arrow-right"></i>
+                                        </a>
+                                    @else
+                                        {{-- Jika tidak ada, arahkan ke halaman detail internal --}}
+                                        <a href="{{ url('/news_detail/') }}" class="readmore stretched-link">
+                                            <span>Read More</span><i class="bi bi-arrow-right"></i>
+                                        </a>
+                                    @endif
                                 </div>
 
                             </div>
                         </div>
                     @endforeach
                 </div>
-
-
+                
 
                 <div class="col-xl-4 col-md-6">
                     <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="200">

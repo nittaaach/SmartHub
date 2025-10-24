@@ -18,7 +18,6 @@ return new class extends Migration
             $table->decimal('harga', 10, 2);
             $table->integer('stok')->default(0);
             $table->string('kategori', 100)->nullable();
-            $table->string('foto')->nullable();
 
             $table->string('nama_penjual');
             $table->string('kontak_penjual', 50)->nullable();

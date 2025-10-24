@@ -10,8 +10,8 @@
     <meta name="keywords" content="">
 
     <!-- Favicons -->
-    <link href="assets-user/img/favicon.png" rel="icon">
-    <link href="assets-user/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="{{ asset ('assets-user/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset ('assets-user/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -21,14 +21,14 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="assets-user/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets-user/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets-user/vendor/aos/aos.css" rel="stylesheet">
-    <link href="assets-user/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets-user/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="{{ asset ('assets-user/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset ('assets-user/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset ('assets-user/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset ('assets-user/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset ('assets-user/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
     <!-- Main CSS File -->
-    <link href="assets-user/css/main.css" rel="stylesheet">
+    <link href="{{ asset ('assets-user/css/main.css') }}" rel="stylesheet">
 
     <!-- =======================================================
   * Template Name: FlexStart
@@ -46,7 +46,7 @@
 
             <a href="/landing" class="logo d-flex align-items-center me-auto">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
-                <img src="assets-user/img/logo.svg" alt="">
+                <img src="{{ asset ('assets-user/img/logo.svg') }}" alt="">
                 <h1 class="sitename">SmartHub</h1>
             </a>
 

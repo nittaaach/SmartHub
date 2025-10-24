@@ -1,32 +1,32 @@
 @extends('user-temp.head')
 
 @section('content')
-    @foreach ($news as $item)
-        <!-- Page Title -->
-        <div class="page-title">
-            <div class="heading">
-                <div class="container">
-                    <div class="row d-flex justify-content-center text-center">
-                        <div class="col-lg-8">
-                            <h1>News Details</h1>
-                            <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint
-                                voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores.
-                                Quasi
-                                ratione sint. Sit quaerat ipsum dolorem.</p>
-                        </div>
+    <!-- Page Title -->
+    <div class="page-title">
+        <div class="heading">
+            <div class="container">
+                <div class="row d-flex justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1>News Details</h1>
+                        <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint
+                            voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores.
+                            Quasi
+                            ratione sint. Sit quaerat ipsum dolorem.</p>
                     </div>
                 </div>
             </div>
-            <nav class="breadcrumbs">
-                <div class="container">
-                    <ol>
-                        <li><a href="/landing">Home</a></li>
-                        <li class="current">Blog Details</li>
-                    </ol>
-                </div>
-            </nav>
-        </div><!-- End Page Title -->
+        </div>
+        <nav class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/landing">Home</a></li>
+                    <li class="current">Blog Details</li>
+                </ol>
+            </div>
+        </nav>
+    </div><!-- End Page Title -->
 
+    @foreach ($news as $item)
         <div class="container">
             <div class="row">
 

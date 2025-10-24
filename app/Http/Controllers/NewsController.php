@@ -23,7 +23,18 @@ class NewsController extends Controller
     {
         return view('/news_detail');
     }
+    
+    public function news()
+    {
+        // Ambil semua data berita
+        $news = NewsModels::with('kategori')->get();
 
+        // Ambil semua kategori berita untuk dropdown
+        $k_news = K_NewsModels::all();
+
+        // Kirim ke view
+        return view('/news', compact('news', 'k_news'));
+    }
 
     public function index()
     {
@@ -43,7 +54,7 @@ class NewsController extends Controller
             'id_knews' => 'required|array',
             'id_knews.*' => 'exists:k_news,id',
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:news,slug',
+            'slug' => 'nullable|string|max:255|unique:news,slug',
             'content' => 'required|string',
             'gambar' => 'required|image|mimes:jpg,jpeg,png|max:2048',
             'status' => 'required|in:draft,published,archived',
@@ -105,7 +116,7 @@ class NewsController extends Controller
 
         $request->validate([
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:news,slug,' . $id,
+            'slug' => 'nullable|string|max:255|unique:news,slug,' . $id,
             'content' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'status' => 'required|in:draft,published,archived',
@@ -156,18 +167,6 @@ class NewsController extends Controller
         }
         $news->delete();
         return redirect()->back()->with('success', 'Berita berhasil dihapus.');
-    }
-
-    public function news()
-    {
-        // Ambil semua data berita
-        $news = NewsModels::with('kategori')->get();
-
-        // Ambil semua kategori berita untuk dropdown
-        $k_news = K_NewsModels::all();
-
-        // Kirim ke view
-        return view('/news', compact('news', 'k_news'));
     }
 
     public function pengumuman()

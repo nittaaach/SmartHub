@@ -47,13 +47,13 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Foto</th>
                                             <th>Kategori</th>
                                             <th>Judul</th>
                                             <th>Tanggal</th>
                                             <th>Penyelenggara</th>
                                             <th>Lokasi</th>
                                             <th>Status</th>
-                                            <th>Foto</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -61,6 +61,17 @@
                                         @foreach ($activities as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
+                                                <td>
+                                                    @if ($item->dokumentasi && $item->dokumentasi->isNotEmpty())
+                                                        @foreach ($item->dokumentasi as $foto)
+                                                            <img src="{{ asset('storage/' . $foto->fotopkk) }}"
+                                                                alt="{{ $foto->caption ?? $item->judul }}"
+                                                                style="width: 80px; height: 80px; object-fit: cover; margin-right: 5px;">
+                                                        @endforeach
+                                                    @else
+                                                        <span class="text-muted small">Tidak ada foto</span>
+                                                    @endif
+                                                </td>
                                                 <td>{{ $item->kategori }}</td>
                                                 <td>{{ $item->judul }}</td>
 
@@ -76,17 +87,7 @@
                                                 <td>{{ $item->lokasi }}</td>
                                                 <td>{{ $item->status }}</td>
                                                 {{-- <td>{{ $item->deskripsi }}</td> --}}
-                                                <td>
-                                                    @if ($item->dokumentasi && $item->dokumentasi->isNotEmpty())
-                                                        @foreach ($item->dokumentasi as $foto)
-                                                            <img src="{{ asset('storage/' . $foto->fotopkk) }}"
-                                                                alt="{{ $foto->caption ?? $item->judul }}"
-                                                                style="width: 80px; height: 80px; object-fit: cover; margin-right: 5px;">
-                                                        @endforeach
-                                                    @else
-                                                        <span class="text-muted small">Tidak ada foto</span>
-                                                    @endif
-                                                </td>
+
                                                 <td>
                                                     <button type="button" class="btn btn-primary me-3"
                                                         data-bs-toggle="modal"

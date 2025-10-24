@@ -61,8 +61,14 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
-                                                    @if ($item->foto)
-                                                        <img src="{{ asset('storage/' . $item->foto) }}" width="60">
+                                                    @if ($item->fotoProduk && $item->fotoProduk->isNotEmpty())
+                                                        @foreach ($item->fotoProduk as $foto)
+                                                            <img src="{{ asset('storage/' . $foto->path_foto) }}"
+                                                                alt="{{ $item->nama_produk }}" width="90"
+                                                                style="height: 90px; object-fit: cover; margin-right: 5px; border-radius: 4px;">
+                                                        @endforeach
+                                                    @else
+                                                        <span class="text-muted small">N/A</span>
                                                     @endif
                                                 </td>
                                                 <td>{{ $item->nama_produk }}</td>
@@ -134,9 +140,10 @@
                             <div class="col-md-6">
 
                                 <div class="form-group mb-4">
-                                    <label class="form-label">Gambar</label>
-                                    <input type="file" name="foto" class="form-control" accept="image/*" required>
-                                    <small class="text-muted">Format: .jpg, .jpeg, .png (max 2048)</small>
+                                    <label class="form-label">Gambar Produk (Maksimal 3)</label>
+                                    <input type="file" name="foto[]" class="form-control" accept="image/*" multiple
+                                        required>
+                                    <small class="text-muted">Format: .jpg, .jpeg, .png (max 2048 per file)</small>
                                 </div>
 
                                 <div class="form-group mb-3">
@@ -267,18 +274,34 @@
                                     <h6 class="fw-bold mb-3 text-primary">📦 Data Produk</h6>
 
                                     <div class="mb-3">
-                                        <label class="form-label fw-semibold">Gambar Produk</label>
-                                        <input type="file" name="foto" class="form-control" accept="image/*">
-                                        <small class="text-muted d-block mt-1">Biarkan kosong jika tidak diganti | Format:
-                                            jpg,
-                                            jpeg, png (maks 2MB)</small>
+                                        <label class="form-label fw-semibold">Gambar Produk (Maks 3)</label>
+                                        <input type="file" name="foto[]" class="form-control" accept="image/*"
+                                            multiple>
 
-                                        @if ($item->foto)
-                                            <div class="mt-3 text-center">
-                                                <img src="{{ asset('storage/' . $item->foto) }}" alt="Foto Produk"
-                                                    class="img-fluid rounded shadow-sm border"
-                                                    style="max-height: 200px; object-fit: cover;">
-                                                <p class="text-muted mt-2 mb-0">Foto Saat Ini</p>
+                                        <small class="text-muted d-block mt-1">Biarkan kosong jika tidak ingin mengubah
+                                            foto.</small>
+                                        <small class="text-danger d-block mt-1 fw-semibold">
+                                            ⚠️ Perhatian: Mengupload foto baru akan MENGGANTI semua foto lama.
+                                        </small>
+                                        @if ($item->fotoProduk && $item->fotoProduk->isNotEmpty())
+                                            <div class="mt-3">
+                                                <p class="text-muted mb-2 fw-semibold">Foto Saat Ini:</p>
+                                                <div class="d-flex flex-wrap justify-content-start">
+
+                                                    @foreach ($item->fotoProduk as $foto)
+                                                        <div class="me-2 mb-2">
+                                                            <img src="{{ asset('storage/' . $foto->path_foto) }}"
+                                                                alt="Foto Produk"
+                                                                class="img-fluid rounded shadow-sm border"
+                                                                style="width: 100px; height: 100px; object-fit: cover;">
+                                                        </div>
+                                                    @endforeach
+
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="mt-3">
+                                                <p class="text-muted mb-2">Belum ada foto untuk produk ini.</p>
                                             </div>
                                         @endif
                                     </div>
@@ -473,21 +496,26 @@
                             @csrf
                             @method('DELETE')
                             <div class="p-3 text-center">
-                                <div class="form-group mb-3">
-                                    <label class="form-label fw-semibold">Foto Produk</label>
-                                    @if ($item->foto)
-                                        <div class="mt-2">
-                                            <img src="{{ asset('storage/' . $item->foto) }}" alt="Foto Produk"
-                                                width="150" class="img-thumbnail shadow-sm border">
-                                            <p class="text-muted mt-1 mb-0">Foto saat ini</p>
+                                <div class="mb-3 text-center">
+                                    <h4 class="text-danger fw-bold">Konfirmasi Hapus</h4>
+                                    <p class="fs-5">Anda yakin ingin menghapus produk ini?</p>
+                                    <p class="text-muted">Data yang sudah dihapus tidak dapat dikembalikan.</p>
+                                    <hr>
+                                    <h5 class="fw-semibold mb-3">{{ $item->nama_produk }}</h5>
+                                    @if ($item->fotoProduk && $item->fotoProduk->isNotEmpty())
+                                        <div class="d-flex flex-wrap justify-content-center">
+                                            @foreach ($item->fotoProduk as $foto)
+                                                <div class="me-2 mb-2">
+                                                    <img src="{{ asset('storage/' . $foto->path_foto) }}"
+                                                        alt="Foto Produk" class="img-fluid rounded shadow-sm border"
+                                                        style="width: 100px; height: 100px; object-fit: cover;">
+                                                </div>
+                                            @endforeach
                                         </div>
+                                    @else
+                                        <p class="text-center text-muted small">(Produk ini tidak memiliki foto)</p>
                                     @endif
-
-                                    @error('foto')
-                                        <small class="text-danger d-block mt-2">{{ $message }}</small>
-                                    @enderror
                                 </div>
-
                                 <h5 class="fw-bold text-danger mt-3">
                                     Yakin ingin menghapus produk
                                     <strong>{{ $item->nama_produk }}</strong>?

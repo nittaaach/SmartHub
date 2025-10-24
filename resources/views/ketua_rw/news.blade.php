@@ -76,7 +76,7 @@
                                                             'http://',
                                                             'https://',
                                                         ]);
-                                                        $url = $isExternal ? $item->slug : url('/news/' . $item->slug);
+                                                        $url = $isExternal ? $item->slug : url('/news_detail/' . $item->slug);
                                                     @endphp <a href="{{ $url }}" target="_blank">
                                                         {{ Str::limit($url, 50) }}
                                                     </a>
@@ -185,7 +185,7 @@
                             <!-- Slug -->
                             <div class="form-group mb-3">
                                 <label>Slug / Link Berita</label>
-                                <input type="text" name="slug" class="form-control" required>
+                                <input type="text" name="slug" class="form-control">
                                 <small class="text-muted">
                                     Bisa isi slug biasa (contoh: <b>kegiatan-rw12</b>) atau link eksternal (contoh:
                                     <b>https://cnn.com/...</b>)
@@ -289,8 +289,7 @@
 
                             <div class="form-group mb-3">
                                 <label>Slug / Link Berita</label>
-                                <input type="text" name="slug" class="form-control" value="{{ $item->slug }}"
-                                    required>
+                                <input type="text" name="slug" class="form-control" value="{{ $item->slug }}">
                                 <small class="text-muted">
                                     Bisa isi slug biasa (contoh: <b>kegiatan-rw12</b>) atau link eksternal (contoh:
                                     <b>https://cnn.com/...</b>)
