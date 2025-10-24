@@ -12,7 +12,7 @@ class NewsModels extends Model
     protected $table = 'news'; // Nama tabel
     protected $fillable = [
         'id_users',
-        'id_knews',
+        // 'id_knews',
         'title',
         'slug',
         'content',
@@ -21,10 +21,10 @@ class NewsModels extends Model
         'published_at'
     ];
 
-    public function k_news()
-    {
-        return $this->belongsTo(K_NewsModels::class, 'id_knews');
-    }
+    // public function k_news()
+    // {
+    //     return $this->belongsTo(K_NewsModels::class, 'id_knews');
+    // }
 
     // Relasi ke user (jika ada tabel users)
     public function user()

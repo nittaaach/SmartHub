@@ -144,6 +144,18 @@
                         <form action="{{ route('news.store_rw') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
+                            <!-- ==== BLOK UNTUK MENAMPILKAN SEMUA ERROR ==== -->
+                            @if ($errors->any())
+                                <div class="alert alert-danger mx-3">
+                                    <h5 class="alert-heading">Validasi Gagal!</h5>
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
                             <div class="form-group mb-4">
                                 <label class="form-label">Kategori Berita</label>
                                 <select class="form-control" name="id_knews[]" id="choices-multiple-remove-button" multiple
@@ -189,8 +201,8 @@
                             <!-- Status -->
                             <div class="form-group mb-3">
                                 <label>Status</label>
-                                <select name="status" class="form-control" onchange="togglePublishedAtCreate(this.value)"
-                                    required>
+                                <select name="status" class="form-control"
+                                    onchange="togglePublishedAtCreate(this.value)" required>
                                     <option value="draft">Draft</option>
                                     <option value="published">Published</option>
                                     <option value="archived">Archived</option>

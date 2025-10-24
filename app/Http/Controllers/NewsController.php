@@ -28,7 +28,7 @@ class NewsController extends Controller
     public function index()
     {
         // Ambil semua data berita
-        $news = NewsModels::with('k_news')->get();
+        $news = NewsModels::with('kategori')->get();
 
         // Ambil semua kategori berita untuk dropdown
         $k_news = K_NewsModels::all();
@@ -161,7 +161,7 @@ class NewsController extends Controller
     public function news()
     {
         // Ambil semua data berita
-        $news = NewsModels::with('k_news')->get();
+        $news = NewsModels::with('kategori')->get();
 
         // Ambil semua kategori berita untuk dropdown
         $k_news = K_NewsModels::all();

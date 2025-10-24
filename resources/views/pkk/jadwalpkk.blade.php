@@ -77,6 +77,10 @@
                                                         data-bs-target="#DeletejadwalModal-{{ $item->id }}">
                                                         Delete
                                                     </button>
+                                                    <button type="button" class="btn btn-info me-3" data-bs-toggle="modal"
+                                                        data-bs-target="#DetailjadwalModal-{{ $item->id }}">
+                                                        Detail
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -423,6 +427,99 @@
                                 </button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+
+    @foreach ($jadwals as $item)
+        <div id="DetailjadwalModal-{{ $item->id }}" class="modal fade" tabindex="-1"
+            aria-labelledby="DetailjadwalModalTitle-{{ $item->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content shadow-lg border-0">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title">Detail Jadwal Kegiatan PKK Anyelir RW 12</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+
+                    {{-- Ganti 'modal-md' menjadi 'modal-body' --}}
+                    <div class="modal-body p-4">
+                        {{-- Tambahkan <div class="row"> untuk memulai grid --}}
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Nama Kegiatan</label>
+                                    <input type="text" class="form-control bg-light"
+                                        value="{{ $item->nama_kegiatan ?? '-' }}" readonly>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Kategori Kegiatan</label>
+                                    <input type="text" class="form-control bg-light"
+                                        value="{{ $item->kategori ?? '-' }}" readonly>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Target Peserta Kegiatan</label>
+                                    <input type="text" class="form-control bg-light"
+                                        value="{{ $item->target_peserta ?? '-' }}" readonly>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Deskripsi Kegiatan</label>
+                                    <textarea class="form-control bg-light" rows="3" readonly>{{ $item->deskripsi ?? '-' }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="border-start ps-3">
+                                    <h6 class="fw-bold mb-3 text-primary">🗂️ Data Tanggal</h6>
+
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold">Tanggal Mulai Kegiatan</label>
+                                        {{-- Gabungkan format Carbon ke dalam 'value' input --}}
+                                        <input type="text" class="form-control bg-light"
+                                            value="{{ $item->tanggal_mulai ? \Carbon\Carbon::parse($item->tanggal_mulai)->isoFormat('dddd, D MMMM YYYY [pukul] HH:mm') : '-' }}"
+                                            readonly>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold">Tanggal Selesai Kegiatan</label>
+                                        {{-- Gabungkan format Carbon ke dalam 'value' input --}}
+                                        <input type="text" class="form-control bg-light"
+                                            value="{{ $item->tanggal_selesai ? \Carbon\Carbon::parse($item->tanggal_selesai)->isoFormat('dddd, D MMMM YYYY [pukul] HH:mm') : '-' }}"
+                                            readonly>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold">Status Kegiatan</label>
+                                        <input type="text" class="form-control bg-light"
+                                            value="{{ $item->status ?? '-' }}" readonly>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold">Tanggal Tunda Kegiatan</label>
+                                        {{-- Gabungkan format Carbon ke dalam 'value' input --}}
+                                        <input type="text" class="form-control bg-light"
+                                            value="{{ $item->tanggal_tunda ? \Carbon\Carbon::parse($item->tanggal_tunda)->isoFormat('dddd, D MMMM YYYY [pukul] HH:mm') : '-' }}"
+                                            readonly>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold">Catatan Kegiatan</label>
+                                        <input type="text" class="form-control bg-light"
+                                            value="{{ $item->catatan ?? '-' }}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> {{-- Penutup <div class="row"> --}}
+                    </div> {{-- Penutup <div class="modal-body"> --}}
+
+                    <div class="modal-footer bg-light">
+                        <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Tutup</button>
                     </div>
                 </div>
             </div>
