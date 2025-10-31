@@ -12,46 +12,31 @@
     <!-- [ Sidebar Menu ] start -->
 
     @php
-        // Get the authenticated user's role
-$role = auth()->user()->role;
-
-// Define the base route name prefix for this role
-// Assuming your routes are named like 'ketua_rw.dashboard', 'pkk.dashboard', etc.
-$routePrefix = "{$role}.";
-
-// Define the dashboard URL using a named route for robustness
-// This is safer than constructing the URL manually.
-$dashboardRoute = $routePrefix . 'dashboard';
+        $role = auth()->user()->role;
+        $routePrefix = "{$role}.";
+        $dashboardRoute = $routePrefix . 'dashboard';
     @endphp
 
     <nav class="pc-sidebar">
         <div class="navbar-wrapper">
             <div class="m-header">
-                {{-- Use the named route for the logo link as well --}}
                 <a href="{{ route($dashboardRoute) }}" class="b-brand text-primary">
-                    {{-- <img src="../assets_admin/images/logo-dark.svg" class="img-fluid logo-lg" alt="logo"> --}}
+                    {{-- <img src="{{ asset('../assets_admin/images/Logov1.png') }}" class="img-fluid logo-lg" alt="logo"> --}}
                     <h2>SmartHub</h2>
                 </a>
             </div>
             <div class="navbar-content">
                 <ul class="pc-navbar">
-
-                    {{-- 1. DASHBOARD: The FIX --}}
-                    {{-- Use the correct route name and check if the current route is the dashboard route --}}
                     <li class="pc-item {{ request()->routeIs($dashboardRoute) ? 'pc-active' : '' }}">
                         <a href="{{ route($dashboardRoute) }}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
                             <span class="pc-mtext">Dashboard</span>
                         </a>
                     </li>
-                    {{-- END OF FIX --}}
-
                     <li class="pc-item pc-caption">
                         <label>Data</label>
                         <i class="ti ti-dashboard"></i>
                     </li>
-
-                    {{-- Use $routePrefix for other role-specific routes --}}
                     <li
                         class="pc-item {{ request()->routeIs($routePrefix . 'management_pengguna') ? 'pc-active' : '' }}">
                         <a href="{{ route($routePrefix . 'management_pengguna') }}" class="pc-link">
@@ -59,8 +44,6 @@ $dashboardRoute = $routePrefix . 'dashboard';
                             <span class="pc-mtext">Management Pengguna</span>
                         </a>
                     </li>
-
-                    {{-- Links that seem generic or need routes defined --}}
                     <li class="pc-item {{ request()->routeIs($routePrefix . 'layanan') ? 'pc-active' : '' }}">
                         <a href="{{ route($routePrefix . 'layanan') }}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-report"></i></span>
@@ -78,20 +61,18 @@ $dashboardRoute = $routePrefix . 'dashboard';
                         <label>Pages</label>
                         <i class="ti ti-news"></i>
                     </li>
-
-                    {{-- Consistent use of $routePrefix --}}
                     <li class="pc-item {{ request()->routeIs($routePrefix . 'news') ? 'pc-active' : '' }}">
                         <a href="{{ route($routePrefix . 'news') }}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-news"></i></span>
                             <span class="pc-mtext">News</span>
                         </a>
                     </li>
-                    <li class="pc-item {{ request()->routeIs($routePrefix . 'activity') ? 'pc-active' : '' }}">
+                    {{-- <li class="pc-item {{ request()->routeIs($routePrefix . 'activity') ? 'pc-active' : '' }}">
                         <a href="{{ route($routePrefix . 'activity') }}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-activity"></i></span>
                             <span class="pc-mtext">Activities</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="pc-item pc-caption">
                         <label>Other</label>
@@ -99,7 +80,6 @@ $dashboardRoute = $routePrefix . 'dashboard';
                     </li>
 
                     <li class="pc-item pc-hasmenu">
-                        {{-- The 'Struktural' menu itself doesn't have an active state; the sub-items do --}}
                         <a href="#!" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-layout-grid"></i></span>
                             <span class="pc-mtext">Struktural</span>
@@ -144,7 +124,6 @@ $dashboardRoute = $routePrefix . 'dashboard';
                                 class="pc-item {{ request()->routeIs($routePrefix . 'fasilitas') ? 'pc-active' : '' }}">
                                 <a class="pc-link" href="{{ route($routePrefix . 'fasilitas') }}">Fasilitas</a>
                             </li>
-                            {{-- <li class="pc-item"><a class="pc-link" href="#!">Bank Sampah</a></li> --}}
                         </ul>
                     </li>
                 </ul>
@@ -213,11 +192,11 @@ $dashboardRoute = $routePrefix . 'dashboard';
                                 <div class="list-group list-group-flush w-100">
                                     <a class="list-group-item list-group-item-action">
                                         <div class="d-flex">
-                                            <div class="flex-shrink-0">
+                                            <div class="shrink-0">
                                                 <div class="user-avtar bg-light-success"><i class="ti ti-gift"></i>
                                                 </div>
                                             </div>
-                                            <div class="flex-grow-1 ms-1">
+                                            <div class="grow ms-1">
                                                 <span class="float-end text-muted">3:00 AM</span>
                                                 <p class="text-body mb-1">It's <b>Cristina danny's</b> birthday today.
                                                 </p>
@@ -227,11 +206,11 @@ $dashboardRoute = $routePrefix . 'dashboard';
                                     </a>
                                     <a class="list-group-item list-group-item-action">
                                         <div class="d-flex">
-                                            <div class="flex-shrink-0">
+                                            <div class="shrink-0">
                                                 <div class="user-avtar bg-light-primary"><i
                                                         class="ti ti-message-circle"></i></div>
                                             </div>
-                                            <div class="flex-grow-1 ms-1">
+                                            <div class="grow ms-1">
                                                 <span class="float-end text-muted">6:00 PM</span>
                                                 <p class="text-body mb-1"><b>Aida Burg</b> commented your post.</p>
                                                 <span class="text-muted">5 August</span>
@@ -240,11 +219,11 @@ $dashboardRoute = $routePrefix . 'dashboard';
                                     </a>
                                     <a class="list-group-item list-group-item-action">
                                         <div class="d-flex">
-                                            <div class="flex-shrink-0">
+                                            <div class="shrink-0">
                                                 <div class="user-avtar bg-light-danger"><i class="ti ti-settings"></i>
                                                 </div>
                                             </div>
-                                            <div class="flex-grow-1 ms-1">
+                                            <div class="grow ms-1">
                                                 <span class="float-end text-muted">2:45 PM</span>
                                                 <p class="text-body mb-1">Your Profile is Complete &nbsp;<b>60%</b></p>
                                                 <span class="text-muted">7 hours ago</span>
@@ -253,11 +232,11 @@ $dashboardRoute = $routePrefix . 'dashboard';
                                     </a>
                                     <a class="list-group-item list-group-item-action">
                                         <div class="d-flex">
-                                            <div class="flex-shrink-0">
+                                            <div class="shrink-0">
                                                 <div class="user-avtar bg-light-primary"><i class="ti ti-headset"></i>
                                                 </div>
                                             </div>
-                                            <div class="flex-grow-1 ms-1">
+                                            <div class="grow ms-1">
                                                 <span class="float-end text-muted">9:10 PM</span>
                                                 <p class="text-body mb-1"><b>Cristina Danny </b> invited to join <b>
                                                         Meeting.</b></p>
@@ -295,7 +274,7 @@ $dashboardRoute = $routePrefix . 'dashboard';
                         <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                             <div class="dropdown-header">
                                 <div class="d-flex mb-1">
-                                    <div class="flex-shrink-0">
+                                    <div class="shrink-0">
                                         @if ($user && $user->gambar)
                                             <img src="{{ asset('storage/' . $user->gambar) }}" alt="user-image"
                                                 class="user-avtar wid-35">
@@ -304,7 +283,7 @@ $dashboardRoute = $routePrefix . 'dashboard';
                                                 alt="user-image" class="user-avtar wid-35">
                                         @endif
                                     </div>
-                                    <div class="flex-grow-1 ms-3">
+                                    <div class="grow ms-3">
                                         <h6 class="mb-1">{{ $user->name ?? 'Guest' }}</h6>
                                         <span>{{ $user->role ?? 'Tidak Ada Role' }}</span>
                                     </div>
@@ -317,7 +296,7 @@ $dashboardRoute = $routePrefix . 'dashboard';
                             <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                                 <div class="dropdown-header">
                                     <div class="d-flex mb-1 align-items-center">
-                                        <div class="flex-shrink-0">
+                                        <div class="shrink-0">
                                             @if ($user && $user->gambar)
                                                 <img src="{{ asset('storage/' . $user->gambar) }}" alt="user-image"
                                                     class="user-avtar wid-35">
@@ -327,7 +306,7 @@ $dashboardRoute = $routePrefix . 'dashboard';
                                             @endif
                                         </div>
 
-                                        <div class="flex-grow-1 ms-3">
+                                        <div class="grow ms-3">
                                             <h6 class="mb-1">{{ $user->name ?? 'Guest' }}</h6>
                                             <span>{{ $user->role ?? 'Tidak Ada Role' }}</span>
                                         </div>

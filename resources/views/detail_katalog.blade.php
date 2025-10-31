@@ -6,9 +6,9 @@
             <div class="container">
                 <div class="row d-flex justify-content-center text-center">
                     <div class="col-lg-8">
-                        @foreach ($katalog as $item)
-                            <h1>{{ $item->nama_produk }}</h1>
-                            <p class="mb-0">{{ $item->deskripsi }}.</p>
+                        {{-- @foreach ($katalog as $katalog) --}}
+                        <h1>{{ $katalog->nama_produk }}</h1>
+                        <p class="mb-0">{{ $katalog->deskripsi }}.</p>
 
                     </div>
                 </div>
@@ -50,10 +50,10 @@
                 }
               </script>
 
-                        <div class="swiper-wrapper align-items-center">
-                            @forelse ($item->fotoProduk as $foto)
+                        <div class="swiper-wrapper align-katalogs-center">
+                            @forelse ($katalog->fotoProduk as $foto)
                                 <div class="swiper-slide">
-                                    <img src="{{ asset('storage/' . $foto->path_foto) }}" alt="{{ $item->nama_produk }}">
+                                    <img src="{{ asset('storage/' . $foto->path_foto) }}" alt="{{ $katalog->nama_produk }}">
                                 </div>
                             @empty
                                 <div class="swiper-slide">
@@ -70,10 +70,10 @@
                     <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
                         <h3>Produk Informasi</h3>
                         <ul>
-                            <li><strong>Category</strong>: {{ $item->kategori }}</li>
-                            <li><strong>Penjual</strong>: {{ $item->nama_penjual }}</li>
-                            <li><strong>Harga</strong>: Rp. {{ number_format($item->harga, 0, ',', '.') }},-</li>
-                            <li><strong>Stock</strong>: {{ $item->stok }}</li>
+                            <li><strong>Category</strong>: {{ $katalog->kategori }}</li>
+                            <li><strong>Penjual</strong>: {{ $katalog->nama_penjual }}</li>
+                            <li><strong>Harga</strong>: Rp. {{ number_format($katalog->harga, 0, ',', '.') }},-</li>
+                            <li><strong>Stock</strong>: {{ $katalog->stok }}</li>
                             {{-- <li><strong>Klik disini untuk pemesanan</strong>: <a href="#">nomor</a></li> --}}
                         </ul>
                     </div>
@@ -81,47 +81,50 @@
                         <h2>Kunjungi Penjual</h2>
                         <div class="mt-3">
 
-                            @if ($item->link_whatsapp)
-                                <a href="{{ $item->link_whatsapp }}" target="_blank" class="btn btn-outline-success m-1">
+                            @if ($katalog->link_whatsapp)
+                                <a href="{{ $katalog->link_whatsapp }}" target="_blank" class="btn btn-outline-success m-1">
                                     <i class="bi bi-whatsapp"></i> WhatsApp
                                 </a>
                             @endif
 
-                            @if ($item->link_instagram)
-                                <a href="{{ $item->link_instagram }}" target="_blank" class="btn btn-outline-danger m-1">
+                            @if ($katalog->link_instagram)
+                                <a href="{{ $katalog->link_instagram }}" target="_blank"
+                                    class="btn btn-outline-danger m-1">
                                     <i class="bi bi-instagram"></i> Instagram
                                 </a>
                             @endif
 
-                            @if ($item->link_tiktok)
-                                <a href="{{ $item->link_tiktok }}" target="_blank" class="btn btn-outline-dark m-1">
+                            @if ($katalog->link_tiktok)
+                                <a href="{{ $katalog->link_tiktok }}" target="_blank" class="btn btn-outline-dark m-1">
                                     <i class="bi bi-tiktok"></i> TikTok
                                 </a>
                             @endif
 
-                            @if ($item->link_facebook)
-                                <a href="{{ $item->link_facebook }}" target="_blank" class="btn btn-outline-primary m-1">
+                            @if ($katalog->link_facebook)
+                                <a href="{{ $katalog->link_facebook }}" target="_blank"
+                                    class="btn btn-outline-primary m-1">
                                     <i class="bi bi-facebook"></i> Facebook
                                 </a>
                             @endif
 
-                            @if ($item->link_tokopedia)
-                                <a href="{{ $item->link_tokopedia }}" target="_blank" class="btn btn-outline-success m-1">
+                            @if ($katalog->link_tokopedia)
+                                <a href="{{ $katalog->link_tokopedia }}" target="_blank"
+                                    class="btn btn-outline-success m-1">
                                     <i class="bi bi-shop"></i> Tokopedia
                                 </a>
                             @endif
 
-                            @if ($item->link_shopee)
-                                <a href="{{ $item->link_shopee }}" target="_blank" class="btn btn-outline-warning m-1">
+                            @if ($katalog->link_shopee)
+                                <a href="{{ $katalog->link_shopee }}" target="_blank" class="btn btn-outline-warning m-1">
                                     <i class="bi bi-cart4"></i> Shopee
                                 </a>
                             @endif
-                            @if (empty($item->link_whatsapp) &&
-                                    empty($item->link_instagram) &&
-                                    empty($item->link_tiktok) &&
-                                    empty($item->link_facebook) &&
-                                    empty($item->link_tokopedia) &&
-                                    empty($item->link_shopee))
+                            @if (empty($katalog->link_whatsapp) &&
+                                    empty($katalog->link_instagram) &&
+                                    empty($katalog->link_tiktok) &&
+                                    empty($katalog->link_facebook) &&
+                                    empty($katalog->link_tokopedia) &&
+                                    empty($katalog->link_shopee))
                                 <p>Penjual belum menambahkan link sosial media atau e-commerce.</p>
                             @endif
 
@@ -134,7 +137,6 @@
         </div>
 
     </section><!-- /Portfolio Details Section -->
-    @endforeach
 @endsection
 
 @extends('user-temp.footer')

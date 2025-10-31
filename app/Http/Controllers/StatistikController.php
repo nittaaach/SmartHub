@@ -100,6 +100,9 @@ class StatistikController extends Controller
 
     public function stat()
     {
-        return view('/statistika');
+        $data_ktp = KtpModels::all();
+        $data_nonktp = NonktpModels::all();
+
+        return view('statistika', compact('data_ktp', 'data_nonktp'));
     }
 }

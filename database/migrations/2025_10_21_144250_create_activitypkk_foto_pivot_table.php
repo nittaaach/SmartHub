@@ -14,18 +14,13 @@ return new class extends Migration
         Schema::create('activitypkk_foto', function (Blueprint $table) {
             $table->id();
             
-            // Foreign key ke tabel activitypkk
             $table->foreignId('activitypkk_id')
-                  ->constrained('activitypkk') // 'activitypkk' adalah nama tabel Anda
+                  ->constrained('activitypkk')
                   ->onDelete('cascade');
             
-            // Foreign key ke tabel activity_fotopkk
             $table->foreignId('activ_fotopkk_id')
-                  ->constrained('activity_fotopkk') // 'activity_fotopkk' adalah nama tabel Anda
+                  ->constrained('activity_fotopkk') 
                   ->onDelete('cascade');
-            
-            // Opsional, tapi bagus
-            // $table->timestamps(); 
         });
     }
 

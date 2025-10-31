@@ -7,30 +7,20 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\StatistikController;
+use App\Http\Controllers\InventarisController;
+
 use App\Http\Controllers\StrukturalController;
 use App\Http\Controllers\DokumentasiController;
-
 use App\Http\Controllers\AdministrasiController;
-use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\ManagementPenggunaController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
-
-//route for home
-Route::get('/', function () {
-    return view('landing');
-});
-Route::get('/landing', [HomeController::class, 'HomeLanding'])->name('landing');
-Route::get('/statistika', [StatistikController::class, 'stat'])->name('statistika');
-Route::get('/profil', [VMController::class, 'profil'])->name('profil');
-Route::get('/katalog', [KatalogController::class, 'katalog'])->name('katalog');
-Route::get('/detail_katalog/{id}', [KatalogController::class, 'detail_katalog'])->name('detail_katalog');
-
 
 //route for auth
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -43,7 +33,7 @@ Route::middleware(['auth', 'role:Ketua_PKK'])->group(function () {
     Route::get('/pkk/dashboard', [DashboardController::class, 'index'])->name('Ketua_PKK.dashboard');
 });
 Route::middleware(['auth', 'role:Ketua_Katar'])->group(function () {
-    Route::get('/katar/dashboard', [DashboardController::class, 'index'])->name('katar.dashboard');
+    Route::get('/katar/dashboard', [DashboardController::class, 'index'])->name('Ketua_Katar.dashboard');
 });
 Route::middleware(['auth', 'role:Ketua_RT'])->group(function () {
     Route::get('/rt/dashboard', [DashboardController::class, 'index'])->name('ketua_rt.dashboard');
@@ -111,7 +101,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pkk/activitypkk', [ActivityController::class, 'index'])->name('Ketua_PKK.activitypkk');
     Route::get('/pkk/dokumentasipkk', [DokumentasiController::class, 'indexpkk'])->name('Ketua_PKK.dokumentasipkk');
     Route::get('/pkk/jadwalpkk', [JadwalController::class, 'indexpkk'])->name('Ketua_PKK.jadwalpkk');
-    // Route::get('/ketua_pkk/news', [NewsController::class, 'index'])->name('Ketua_RW.news');
 
     //katalog
     Route::post('/pkk/katalog', [KatalogController::class, 'store_pkk'])->name('katalog.store_pkk');
@@ -128,12 +117,50 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/pkk/dokumentasipkk', [DokumentasiController::class, 'store_pkk'])->name('dokumentasipkk.store_pkk');
     Route::put('/pkk/dokumentasipkk/{id}', [DokumentasiController::class, 'update_pkk'])->name('dokumentasipkk.update_pkk');
     Route::delete('/pkk/dokumentasipkk/{id}', [DokumentasiController::class, 'destroy_pkk'])->name('dokumentasipkk.destroy_pkk');
-    
-    //dokumentasi
+
+    //jadwal
     Route::post('/pkk/jadwalpkk', [JadwalController::class, 'store_pkk'])->name('jadwalpkk.store_pkk');
     Route::put('/pkk/jadwalpkk/{id}', [JadwalController::class, 'update_pkk'])->name('jadwalpkk.update_pkk');
     Route::delete('/pkk/jadwalpkk/{id}', [JadwalController::class, 'destroy_pkk'])->name('jadwalpkk.destroy_pkk');
+
+    //ketua katar
+    Route::get('/katar/struktural', [StrukturalController::class, 'strukturkatar'])->name('Ketua_Katar.struktural');
+    Route::get('/katar/inventaris', [InventarisController::class, 'index'])->name('Ketua_Katar.inventaris');
+    Route::get('/katar/activitykatar', [ActivityController::class, 'indexkatar'])->name('Ketua_Katar.activitykatar');
+    Route::get('/katar/dokumentasikatar', [DokumentasiController::class, 'indexkatar'])->name('Ketua_Katar.dokumentasikatar');
+    Route::get('/katar/jadwalkatar', [JadwalController::class, 'indexkatar'])->name('Ketua_Katar.jadwalkatar');
+
+    //inventaris
+    Route::post('/katar/inventaris', [InventarisController::class, 'store_ktrinven'])->name('inventaris.store_ktrinven');
+    Route::post('/katar/inventaris/ktriwaya', [InventarisController::class, 'store_ktriwaya'])->name('inventaris.store_ktriwaya');
+    Route::put('/katar/inventaris/{id}', [InventarisController::class, 'update_katar'])->name('inventaris.update_katar');
+    Route::delete('/katar/inventaris/{id}', [InventarisController::class, 'destroy_katar'])->name('inventaris.destroy_katar');
+
+    //activity
+    Route::post('/katar/activitykatar', [ActivityController::class, 'store_katar'])->name('activitykatar.store_katar');
+    Route::post('/katar/activitykatar/kft', [ActivityController::class, 'store_kft'])->name('activitykatar.store_kft');
+    Route::put('/katar/activitykatar/{id}', [ActivityController::class, 'update_katar'])->name('activitykatar.update_katar');
+    Route::delete('/katar/activitykatar/{id}', [ActivityController::class, 'destroy_katar'])->name('activitykatar.destroy_katar');
+
+    //dokumentasi
+    Route::post('/katar/dokumentasikatar', [DokumentasiController::class, 'store_katar'])->name('dokumentasikatar.store_katar');
+    Route::put('/katar/dokumentasikatar/{id}', [DokumentasiController::class, 'update_katar'])->name('dokumentasikatar.update_katar');
+    Route::delete('/katar/dokumentasikatar/{id}', [DokumentasiController::class, 'destroy_katar'])->name('dokumentasikatar.destroy_katar');
+
+    //jadwal
+    Route::post('/katar/jadwalkatar', [JadwalController::class, 'store_katar'])->name('jadwalkatar.store_katar');
+    Route::put('/katar/jadwalkatar/{id}', [JadwalController::class, 'update_katar'])->name('jadwalkatar.update_katar');
+    Route::delete('/katar/jadwalkatar/{id}', [JadwalController::class, 'destroy_katar'])->name('jadwalkatar.destroy_katar');
 });
+
+
+//route for home
+Route::get('/', [HomeController::class, 'HomeLanding'])->name('landing');
+Route::get('/landing', [HomeController::class, 'HomeLanding'])->name('landing');
+Route::get('/statistika', [StatistikController::class, 'stat'])->name('statistika');
+Route::get('/profil', [VMController::class, 'profil'])->name('profil');
+Route::get('/katalog', [KatalogController::class, 'katalog'])->name('katalog');
+Route::get('/detail_katalog/{id}', [KatalogController::class, 'detail_katalog'])->name('detail_katalog');
 
 //route news (user)
 Route::get('/news', [NewsController::class, 'news'])->name('news');
@@ -153,7 +180,13 @@ Route::get('/fasilitas', [FasilitasController::class, 'fasilitas'])->name('fasil
 //news
 Route::get('/news', [NewsController::class, 'news'])->name('news');
 Route::get('/pengumuman', [NewsController::class, 'pengumuman'])->name('pengumuman');
+
 Route::get('/aktivitas', [NewsController::class, 'aktivitas'])->name('aktivitas');
+Route::get('/detail_aktivitas/{id}', [NewsController::class, 'detail_aktivitas'])->name('aktivitas.detail');
 
 Route::get('/galeri', [GaleriController::class, 'galeri'])->name('galeri');
 Route::get('/detailgaleri', [GaleriController::class, 'detailgaleri'])->name('detailgaleri');
+
+//galeri
+Route::get('/galeri', [GaleriController::class, 'galeri'])->name('galeri');
+Route::get('/detailgaleri/{id}', [GaleriController::class, 'detailgaleri'])->name('galeri.detail');

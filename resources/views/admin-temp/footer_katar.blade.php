@@ -13,119 +13,72 @@
 
     @php
         $role = auth()->user()->role;
-        $dashboardUrl = url("/{$role}/dashboard"); // Menghasilkan /Ketua_Katar/dashboard, /pkk/dashboard, dll.
+        $routePrefix = "{$role}.";
+        $dashboardRoute = $routePrefix . 'dashboard';
     @endphp
+
     <nav class="pc-sidebar">
         <div class="navbar-wrapper">
             <div class="m-header">
-                <a href="{{ $dashboardUrl }}" class="b-brand text-primary">
-                    <!-- ========   Change your logo from here   ============ -->
+                {{-- Use the named route for the logo link as well --}}
+                <a href="{{ route($dashboardRoute) }}" class="b-brand text-primary">
                     {{-- <img src="../assets_admin/images/logo-dark.svg" class="img-fluid logo-lg" alt="logo"> --}}
                     <h2>SmartHub</h2>
                 </a>
             </div>
             <div class="navbar-content">
                 <ul class="pc-navbar">
-                    <li class="pc-item">
-                        <a href="{{ $dashboardUrl }}" class="pc-link">
+
+                    {{-- 1. DASHBOARD: The FIX --}}
+                    {{-- Use the correct route name and check if the current route is the dashboard route --}}
+                    <li class="pc-item {{ request()->routeIs($dashboardRoute) ? 'pc-active' : '' }}">
+                        <a href="{{ route($dashboardRoute) }}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
                             <span class="pc-mtext">Dashboard</span>
                         </a>
                     </li>
-
+                    {{-- END OF FIX --}}
                     <li class="pc-item pc-caption">
-                        <label>UI Components</label>
-                        <i class="ti ti-dashboard"></i>
-                    </li>
-                    <li class="pc-item">
-                        <a href="../elements/bc_typography.html" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-typography"></i></span>
-                            <span class="pc-mtext">Typography</span>
-                        </a>
-                    </li>
-                    <li class="pc-item">
-                        <a href="../elements/bc_color.html" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-color-swatch"></i></span>
-                            <span class="pc-mtext">Color</span>
-                        </a>
-                    </li>
-                    <li class="pc-item">
-                        <a href="../elements/icon-tabler.html" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-plant-2"></i></span>
-                            <span class="pc-mtext">Icons</span>
-                        </a>
-                    </li>
-
-                    <li class="pc-item pc-caption">
-                        <label>Pages</label>
+                        <label>Sosial Kemasyarakatan</label>
                         <i class="ti ti-news"></i>
                     </li>
-                    <li class="pc-item {{ request()->routeIs('') ? 'pc-active' : '' }}">
-                        {{-- <a href="{{ route('') }}" class="pc-link"> --}}
-                        <a href="" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-news"></i></span>
-                            <span class="pc-mtext">News</span>
+
+                    {{-- Consistent use of $routePrefix --}}
+                    <li class="pc-item {{ request()->routeIs($routePrefix . 'jadwalkatar') ? 'pc-active' : '' }}">
+                        <a href="{{ route($routePrefix . 'jadwalkatar') }}" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-clipboard-list"></i></span>
+                            <span class="pc-mtext">Penjadwalan Kegiatan</span>
                         </a>
                     </li>
-                    <li class="pc-item {{ request()->routeIs('') ? 'pc-active' : '' }}">
-                        {{-- <a href="{{ route('') }}" class="pc-link"> --}}
-                        <a href="" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-activity"></i></span>
-                            <span class="pc-mtext">Activities</span>
+                    <li class="pc-item {{ request()->routeIs($routePrefix . 'dokumentasikatar') ? 'pc-active' : '' }}">
+                        <a class="pc-link" href="{{ route($routePrefix . 'dokumentasikatar') }}">
+                            <span class="pc-micon"><i class="ti ti-camera"></i></span>
+                            <span class="pc-mtext">Dokumentasi Kegiatan</span></a>
+                        </a>
+                    </li>
+                    <li class="pc-item {{ request()->routeIs($routePrefix . 'activitykatar') ? 'pc-active' : '' }}">
+                        <a href="{{ route($routePrefix . 'activitykatar') }}" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-cloud-upload"></i></span>
+                            <span class="pc-mtext">Publikasi Kegiatan</span>
                         </a>
                     </li>
 
                     <li class="pc-item pc-caption">
-                        <label>Other</label>
-                        <i class="ti ti-brand-chrome"></i>
+                        <label>Management</label>
+                        <i class="ti ti-news"></i>
                     </li>
-                    <li class="pc-item pc-hasmenu">
-                        <a href="#!" class="pc-link"><span class="pc-micon"><i
-                                    class="ti ti-layout-grid"></i></span><span class="pc-mtext">Struktural</span><span
-                                class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
-                        <ul class="pc-submenu">
-                            <li class="pc-item"><a class="pc-link" href="#!">Struktur Rukun Warga</a></li>
-                            <li class="pc-item"><a class="pc-link" href="#!">Struktur Rukun Tetangga</a></li>
-                            <li class="pc-item"><a class="pc-link" href="#!">Struktur PKK Anyelir</a></li>
-                            <li class="pc-item"><a class="pc-link" href="#!">Struktur Karang Taruna</a></li>
-                            {{-- <li class="pc-item pc-hasmenu">
-                                <a href="#!" class="pc-link">Level 2.2<span class="pc-arrow"><i
-                                            data-feather="chevron-right"></i></span></a>
-                                <ul class="pc-submenu">
-                                    <li class="pc-item"><a class="pc-link" href="#!">Level 3.1</a></li>
-                                    <li class="pc-item"><a class="pc-link" href="#!">Level 3.2</a></li>
-                                    <li class="pc-item pc-hasmenu">
-                                        <a href="#!" class="pc-link">Level 3.3<span class="pc-arrow"><i
-                                                    data-feather="chevron-right"></i></span></a>
-                                        <ul class="pc-submenu">
-                                            <li class="pc-item"><a class="pc-link" href="#!">Level 4.1</a></li>
-                                            <li class="pc-item"><a class="pc-link" href="#!">Level 4.2</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="pc-item pc-hasmenu">
-                                <a href="#!" class="pc-link">Level 2.3<span class="pc-arrow"><i
-                                            data-feather="chevron-right"></i></span></a>
-                                <ul class="pc-submenu">
-                                    <li class="pc-item"><a class="pc-link" href="#!">Level 3.1</a></li>
-                                    <li class="pc-item"><a class="pc-link" href="#!">Level 3.2</a></li>
-                                    <li class="pc-item pc-hasmenu">
-                                        <a href="#!" class="pc-link">Level 3.3<span class="pc-arrow"><i
-                                                    data-feather="chevron-right"></i></span></a>
-                                        <ul class="pc-submenu">
-                                            <li class="pc-item"><a class="pc-link" href="#!">Level 4.1</a></li>
-                                            <li class="pc-item"><a class="pc-link" href="#!">Level 4.2</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li> --}}
-                        </ul>
+
+                    <li class="pc-item {{ request()->routeIs($routePrefix . 'struktural') ? 'pc-active' : '' }}">
+                        <a class="pc-link" href="{{ route($routePrefix . 'struktural') }}">
+                            <span class="pc-micon"><i class="ti ti-sitemap"></i></span>
+                            <span class="pc-mtext">Struktural Katar</span></a>
+                        </a>
                     </li>
-                    <li class="pc-item">
-                        <a href="../other/sample-page.html" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-brand-chrome"></i></span>
-                            <span class="pc-mtext">Sample page</span>
+
+                    <li class="pc-item {{ request()->routeIs($routePrefix . 'inventaris') ? 'pc-active' : '' }}">
+                        <a class="pc-link" href="{{ route($routePrefix . 'inventaris') }}">
+                            <span class="pc-micon"><i class="ti ti-report-money"></i></span>
+                            <span class="pc-mtext">Inventaris Barang</span></a>
                         </a>
                     </li>
                 </ul>
@@ -176,172 +129,76 @@
             <!-- [Mobile Media Block end] -->
             <div class="ms-auto">
                 <ul class="list-unstyled">
-                    <li class="dropdown pc-h-item">
-                        <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown"
-                            href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <i class="ti ti-bell"></i>
-                            <span class="badge bg-success pc-h-badge">3</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown">
-                            <div class="dropdown-header d-flex align-items-center justify-content-between">
-                                <h5 class="m-0">Notification</h5>
-                                <a href="#!" class="pc-head-link bg-transparent"><i
-                                        class="ti ti-circle-check text-success"></i></a>
-                            </div>
-                            <div class="dropdown-divider"></div>
-                            <div class="dropdown-header px-0 text-wrap header-notification-scroll position-relative"
-                                style="max-height: calc(100vh - 215px)">
-                                <div class="list-group list-group-flush w-100">
-                                    <a class="list-group-item list-group-item-action">
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0">
-                                                <div class="user-avtar bg-light-success"><i class="ti ti-gift"></i>
-                                                </div>
-                                            </div>
-                                            <div class="flex-grow-1 ms-1">
-                                                <span class="float-end text-muted">3:00 AM</span>
-                                                <p class="text-body mb-1">It's <b>Cristina danny's</b> birthday today.
-                                                </p>
-                                                <span class="text-muted">2 min ago</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="list-group-item list-group-item-action">
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0">
-                                                <div class="user-avtar bg-light-primary"><i
-                                                        class="ti ti-message-circle"></i></div>
-                                            </div>
-                                            <div class="flex-grow-1 ms-1">
-                                                <span class="float-end text-muted">6:00 PM</span>
-                                                <p class="text-body mb-1"><b>Aida Burg</b> commented your post.</p>
-                                                <span class="text-muted">5 August</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="list-group-item list-group-item-action">
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0">
-                                                <div class="user-avtar bg-light-danger"><i class="ti ti-settings"></i>
-                                                </div>
-                                            </div>
-                                            <div class="flex-grow-1 ms-1">
-                                                <span class="float-end text-muted">2:45 PM</span>
-                                                <p class="text-body mb-1">Your Profile is Complete &nbsp;<b>60%</b></p>
-                                                <span class="text-muted">7 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="list-group-item list-group-item-action">
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0">
-                                                <div class="user-avtar bg-light-primary"><i class="ti ti-headset"></i>
-                                                </div>
-                                            </div>
-                                            <div class="flex-grow-1 ms-1">
-                                                <span class="float-end text-muted">9:10 PM</span>
-                                                <p class="text-body mb-1"><b>Cristina Danny </b> invited to join <b>
-                                                        Meeting.</b></p>
-                                                <span class="text-muted">Daily scrum meeting time</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="dropdown-divider"></div>
-                            <div class="text-center py-2">
-                                <a href="#!" class="link-primary">View all</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dropdown pc-h-item">
-                        <a class="pc-head-link me-0" href="#" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvas_pc_layout">
-                            <i class="ti ti-settings"></i>
-                        </a>
-                    </li>
                     <li class="dropdown pc-h-item header-user-profile">
-                        <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown"
-                            href="#" role="button" aria-haspopup="false" data-bs-auto-close="outside"
-                            aria-expanded="false">
-                            <img src="../assets_admin/images/user/avatar-2.jpg" alt="user-image" class="user-avtar">
-                            <span>Stebin Ben</span>
+                        <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
+                            role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
+                            @if ($user && $user->gambar)
+                                <img src="{{ asset('storage/' . $user->gambar) }}" alt="user-image" class="user-avtar">
+                            @else
+                                <img src="{{ asset('assets_admin/images/user/avatar-2.jpg') }}" alt="user-image"
+                                    class="user-avtar">
+                            @endif
+                            <span>{{ $user->name ?? 'Guest' }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                             <div class="dropdown-header">
                                 <div class="d-flex mb-1">
-                                    <div class="flex-shrink-0">
-                                        <img src="../assets_admin/images/user/avatar-2.jpg" alt="user-image"
-                                            class="user-avtar wid-35">
+                                    <div class="shrink-0">
+                                        @if ($user && $user->gambar)
+                                            <img src="{{ asset('storage/' . $user->gambar) }}" alt="user-image"
+                                                class="user-avtar wid-35">
+                                        @else
+                                            <img src="{{ asset('assets_admin/images/user/avatar-2.jpg') }}"
+                                                alt="user-image" class="user-avtar wid-35">
+                                        @endif
                                     </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h6 class="mb-1">Stebin Ben</h6>
-                                        <span>UI/UX Designer</span>
+                                    <div class="grow ms-3">
+                                        <h6 class="mb-1">{{ $user->name ?? 'Guest' }}</h6>
+                                        <span>{{ $user->role ?? 'Tidak Ada Role' }}</span>
                                     </div>
-                                    <a href="#!" class="pc-head-link bg-transparent"><i
-                                            class="ti ti-power text-danger"></i></a>
+                                    <a href="{{ route('logout') }}" class="pc-head-link bg-transparent">
+                                        <i class="ti ti-power text-danger"></i>
+                                    </a>
                                 </div>
                             </div>
-                            <ul class="nav drp-tabs nav-fill nav-tabs" id="mydrpTab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="drp-t1" data-bs-toggle="tab"
-                                        data-bs-target="#drp-tab-1" type="button" role="tab"
-                                        aria-controls="drp-tab-1" aria-selected="true"><i class="ti ti-user"></i>
-                                        Profile</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="drp-t2" data-bs-toggle="tab"
-                                        data-bs-target="#drp-tab-2" type="button" role="tab"
-                                        aria-controls="drp-tab-2" aria-selected="false"><i
-                                            class="ti ti-settings"></i>
-                                        Setting</button>
-                                </li>
-                            </ul>
+
+                            <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
+                                <div class="dropdown-header">
+                                    <div class="d-flex mb-1 align-items-center">
+                                        <div class="shrink-0">
+                                            @if ($user && $user->gambar)
+                                                <img src="{{ asset('storage/' . $user->gambar) }}" alt="user-image"
+                                                    class="user-avtar wid-35">
+                                            @else
+                                                <img src="{{ asset('assets_admin/images/user/avatar-2.jpg') }}"
+                                                    alt="user-image" class="user-avtar wid-35">
+                                            @endif
+                                        </div>
+
+                                        <div class="grow ms-3">
+                                            <h6 class="mb-1">{{ $user->name ?? 'Guest' }}</h6>
+                                            <span>{{ $user->role ?? 'Tidak Ada Role' }}</span>
+                                        </div>
+
+                                        <a href="{{ route('logout') }}" class="pc-head-link bg-transparent"
+                                            title="Logout">
+                                            <i class="ti ti-power text-danger fs-5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown-item">
+                                    <a href="{{ route('logout') }}" class="d-flex align-items-center text-danger">
+                                        <i class="ti ti-power me-2"></i> Logout
+                                    </a>
+                                </div>
+                            </div>
                             <div class="tab-content" id="mysrpTabContent">
                                 <div class="tab-pane fade show active" id="drp-tab-1" role="tabpanel"
                                     aria-labelledby="drp-t1" tabindex="0">
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-edit-circle"></i>
-                                        <span>Edit Profile</span>
-                                    </a>
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-user"></i>
-                                        <span>View Profile</span>
-                                    </a>
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-clipboard-list"></i>
-                                        <span>Social Profile</span>
-                                    </a>
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-wallet"></i>
-                                        <span>Billing</span>
-                                    </a>
                                     <a href="/" class="dropdown-item">
                                         <i class="ti ti-power"></i>
                                         <span>Logout</span>
-                                    </a>
-                                </div>
-                                <div class="tab-pane fade" id="drp-tab-2" role="tabpanel" aria-labelledby="drp-t2"
-                                    tabindex="0">
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-help"></i>
-                                        <span>Support</span>
-                                    </a>
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-user"></i>
-                                        <span>Account Settings</span>
-                                    </a>
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-lock"></i>
-                                        <span>Privacy Center</span>
-                                    </a>
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-messages"></i>
-                                        <span>Feedback</span>
-                                    </a>
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-list"></i>
-                                        <span>History</span>
                                     </a>
                                 </div>
                             </div>
@@ -394,26 +251,52 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../assets_admin/js/plugins/jquery.dataTables.min.js"></script>
     <script src="../assets_admin/js/plugins/dataTables.bootstrap5.min.js"></script>
+    <script src="../assets_admin/js/plugins/buttons.colVis.min.js"></script>
+    <script src="../assets_admin/js/plugins/buttons.print.min.js"></script>
+    <script src="../assets_admin/js/plugins/pdfmake.min.js"></script>
+    <script src="../assets_admin/js/plugins/jszip.min.js"></script>
+    <script src="../assets_admin/js/plugins/dataTables.buttons.min.js"></script>
+    <script src="../assets_admin/js/plugins/vfs_fonts.js"></script>
+    <script src="../assets_admin/js/plugins/buttons.html5.min.js"></script>
+    <script src="../assets_admin/js/plugins/buttons.bootstrap5.min.js"></script>
+
     <script>
         layout_change('light');
     </script>
-
     <script>
         change_box_container('false');
     </script>
-
     <script>
         layout_rtl_change('false');
     </script>
-
     <script>
         preset_change("preset-1");
     </script>
-
     <script>
         font_change("Public-Sans");
     </script>
+
     <script>
+        $('#basic-btn-rw').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['copy', 'csv', 'excel', 'print']
+        });
+        $('#basic-btn-ktprw').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['copy', 'csv', 'excel', 'print']
+        });
+        $('#basic-btn-nonktp').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['copy', 'csv', 'excel', 'print']
+        });
+        $('a[data-bs-toggle="pill"]').on('shown.bs.tab', function(e) {
+            // Find the newly active tab's table and invalidate/redraw it
+            $.fn.dataTable.tables({
+                visible: true,
+                api: true
+            }).columns.adjust();
+        });
+
         // [ Zero Configuration ] start
         $('#simpletable').DataTable();
 
@@ -478,6 +361,5 @@
     </script>
 
 </body>
-<!-- [Body] end -->
 
 </html>

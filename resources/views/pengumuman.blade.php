@@ -1,145 +1,71 @@
 @extends('user-temp.head')
 @section('content')
-
     <!-- Page Title -->
     <div class="page-title">
-      <div class="heading">
-        <div class="container">
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1>Pengumuman</h1>
-              <p class="mb-0">Informasi Terkini</p>
+        <div class="heading">
+            <div class="container">
+                <div class="row d-flex justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1>Pengumuman</h1>
+                        <p class="mb-0">Informasi Terkini</p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <nav class="breadcrumbs">
-        <div class="container">
-          <ol>
-            <li><a href="/landing">Home</a></li>
-            <li class="current">Berita</li>
-            <li class="current">Pengumuman</li>
-          </ol>
-        </div>
-      </nav>
+        <nav class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/landing">Home</a></li>
+                    <li class="current">Berita</li>
+                    <li class="current">Pengumuman</li>
+                </ol>
+            </div>
+        </nav>
     </div><!-- End Page Title -->
 
-<!-- ======= Recent Posts Section ======= -->
-<section id="recent-posts" class="recent-posts section">
-  <div class="container" data-aos="fade-up">
-    <div class="row gy-5">
 
-      <!-- Post Item 1 -->
-      <div class="col-xl-4 col-md-6">
-        <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
+    <!-- ======= Recent Posts Section ======= -->
+    <section id="recent-posts" class="recent-posts section">
+        <div class="container" data-aos="fade-up">
+            <div class="row gy-4">
 
-          <div class="post-img position-relative overflow-hidden">
-            <img src="assets-user/img/blog/blog-1.jpg" class="img-fluid" alt="">
-            <span class="post-date">December 12</span>
-          </div>
+                @foreach ($jadwals as $jadwal)
+                    <div class="col-12">
+                        <div class="post-item d-flex flex-column flex-md-row align-items-start p-3 border rounded-3 shadow-sm"
+                            data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
+                            <div class="post-content grow">
+                                <h3 class="post-title mb-2">{{ $jadwal->nama_kegiatan }}</h3>
+                                <div class="meta d-flex align-items-center mb-2 text-muted small">
+                                    <div class="d-flex align-items-center me-3">
+                                        <i class="bi bi-calendar-event"></i>
+                                        <span class="ps-2">
+                                            {{ $jadwal->tanggal_mulai->format('d M Y') }}
+                                            -
+                                            {{ $jadwal->tanggal_selesai ? $jadwal->tanggal_selesai->format('d M Y') : '-' }}
+                                        </span>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-folder2"></i>
+                                        <span class="ps-2">{{ $jadwal->kategori }}</span>
+                                    </div>
+                                </div>
+                                <p class="mb-0 text-secondary">
+                                    {{ Str::limit($jadwal->deskripsi, 200) }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div><!-- End row -->
 
-          <div class="post-content d-flex flex-column">
-            <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis</h3>
-
-            <div class="meta d-flex align-items-center">
-              <div class="d-flex align-items-center">
-                <i class="bi bi-calendar-event"></i>
-                <span class="ps-2">12 Dec 2025</span>
-              </div>
-              <span class="px-3 text-black-50">/</span>
-              <div class="d-flex align-items-center">
-                <i class="bi bi-folder2"></i>
-                <span class="ps-2">Politics</span>
-              </div>
+            {{-- Pagination --}}
+            <div class="mt-4">
+                {{ $jadwals->links() }}
             </div>
 
-            <hr>
-
-            <a href="/news_detail" class="readmore stretched-link">
-              <span>Read More</span><i class="bi bi-arrow-right"></i>
-            </a>
-          </div>
-
-        </div>
-      </div><!-- End post item -->
-
-      <!-- Post Item 2 -->
-      <div class="col-xl-4 col-md-6">
-        <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="200">
-
-          <div class="post-img position-relative overflow-hidden">
-            <img src="assets-user/img/blog/blog-2.jpg" class="img-fluid" alt="">
-            <span class="post-date">July 5</span>
-          </div>
-
-          <div class="post-content d-flex flex-column">
-            <h3 class="post-title">Et repellendus molestiae qui est sed omnis</h3>
-
-            <div class="meta d-flex align-items-center">
-              <div class="d-flex align-items-center">
-                <i class="bi bi-calendar-event"></i>
-                <span class="ps-2">5 Jul 2025</span>
-              </div>
-              <span class="px-3 text-black-50">/</span>
-              <div class="d-flex align-items-center">
-                <i class="bi bi-folder2"></i>
-                <span class="ps-2">Sports</span>
-              </div>
-            </div>
-
-            <hr>
-
-            <a href="/news_detail" class="readmore stretched-link">
-              <span>Read More</span><i class="bi bi-arrow-right"></i>
-            </a>
-          </div>
-
-        </div>
-      </div><!-- End post item -->
-
-      <!-- Post Item 3 -->
-      <div class="col-xl-4 col-md-6">
-        <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="300">
-
-          <div class="post-img position-relative overflow-hidden">
-            <img src="assets-user/img/blog/blog-3.jpg" class="img-fluid" alt="">
-            <span class="post-date">September 22</span>
-          </div>
-
-          <div class="post-content d-flex flex-column">
-            <h3 class="post-title">Quia assumenda est et veritatis aut quae</h3>
-
-            <div class="meta d-flex align-items-center">
-              <div class="d-flex align-items-center">
-                <i class="bi bi-calendar-event"></i>
-                <span class="ps-2">22 Sept 2025</span>
-              </div>
-              <span class="px-3 text-black-50">/</span>
-              <div class="d-flex align-items-center">
-                <i class="bi bi-folder2"></i>
-                <span class="ps-2">Entertainment</span>
-              </div>
-            </div>
-
-            <hr>
-
-            <a href="/news_detail" class="readmore stretched-link">
-              <span>Read More</span><i class="bi bi-arrow-right"></i>
-            </a>
-          </div>
-
-        </div>
-      </div><!-- End post item -->
-
-    </div><!-- End row -->
-
-  </div><!-- End container -->
-
-</section><!-- End Recent Posts Section -->
-
-
-
-
+        </div><!-- End container -->
+    </section><!-- End Recent Posts Section -->
 @endsection
+
 
 @extends('user-temp.footer')

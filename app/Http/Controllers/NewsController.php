@@ -7,6 +7,8 @@ use App\Models\NewsModels;
 use Illuminate\Support\Str;
 use App\Models\K_NewsModels;
 use Illuminate\Http\Request;
+use App\Models\JadwalpkkModels;
+use App\Models\ActivitypkkModels;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -23,28 +25,35 @@ class NewsController extends Controller
     {
         return view('/news_detail');
     }
-    
+
     public function news()
     {
-        // Ambil semua data berita
-        $news = NewsModels::with('kategori')->get();
-
-        // Ambil semua kategori berita untuk dropdown
+        $news = NewsModels::with('k_news')
+            ->where('status', 'published')
+            ->orderBy('published_at', 'desc')
+            ->get();
         $k_news = K_NewsModels::all();
-
-        // Kirim ke view
-        return view('/news', compact('news', 'k_news'));
+        return view('news', compact('news', 'k_news'));
     }
+
+    public function detail_news($id)
+    {
+        $news = NewsModels::with(['user', 'k_news'])->findOrFail($id);
+        $k_news = K_NewsModels::all(); // Ambil semua kategori
+        $recentPosts = NewsModels::where('id', '!=', $id)
+            ->where('status', 'published')
+            ->whereNotNull('published_at')
+            ->orderBy('published_at', 'desc')
+            ->take(5)
+            ->get();
+        return view('news_detail', compact('news', 'k_news', 'recentPosts'));
+    }
+
 
     public function index()
     {
-        // Ambil semua data berita
-        $news = NewsModels::with('kategori')->get();
-
-        // Ambil semua kategori berita untuk dropdown
+        $news = NewsModels::with('k_news')->get();
         $k_news = K_NewsModels::all();
-
-        // Kirim ke view
         return view('ketua_rw.news', compact('news', 'k_news'));
     }
 
@@ -89,9 +98,7 @@ class NewsController extends Controller
             'published_at' => $publishedAt,
         ]);
 
-        // Simpan relasi kategori (many-to-many)
         $news->kategori()->attach($request->id_knews);
-
         return redirect()->back()->with('success', 'Berita berhasil ditambahkan!');
     }
 
@@ -171,11 +178,32 @@ class NewsController extends Controller
 
     public function pengumuman()
     {
-        return view('/pengumuman');
+        $jadwals = JadwalpkkModels::orderBy('tanggal_mulai', 'desc')->paginate(10);
+        return view('pengumuman', [
+            'jadwals' => $jadwals
+        ]);
+    }
+
+    public function detail_pengumuman($id)
+    {
+        $jadwal = JadwalpkkModels::findOrFail($id);
+        return view('detail_pengumuman', compact('jadwal'));
     }
 
     public function aktivitas()
     {
-        return view('/aktivitas');
+        $activities = ActivitypkkModels::with('dokumentasi')
+            ->where('status', 'published')
+            ->orderBy('tanggal_acara', 'desc')
+            ->get();
+        return view('aktivitas', compact('activities'));
+    }
+
+    public function detail_aktivitas($id)
+    {
+        $activity = ActivitypkkModels::with('dokumentasi')
+            ->where('status', 'published')
+            ->findOrFail($id);
+        return view('detail_aktivitas', compact('activity'));
     }
 }

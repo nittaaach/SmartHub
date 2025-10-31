@@ -105,6 +105,7 @@ class FasilitasController extends Controller
     //
     public function fasilitas()
     {
-        return view('/fasilitas');
+        $fasilitas = FasilitasModels::all();
+        return view('fasilitas', compact('fasilitas'));
     }
 }

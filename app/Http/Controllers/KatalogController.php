@@ -17,11 +17,11 @@ class KatalogController extends Controller
         return view('/katalog', compact('katalog', 'all_categories'));
     }
 
-    public function detail_katalog()
+    public function detail_katalog($id) // 1. Terima $id dari Route
     {
-        $katalog = KatalogModels::orderBy('created_at', 'desc')->get();
-        $all_categories = $katalog->pluck('kategori')->unique();
-        return view('/detail_katalog', compact('katalog', 'all_categories'));
+        $katalog = KatalogModels::with('fotoProduk')->findOrFail($id);
+        // $all_categories = $katalog->pluck('kategori')->unique(); 
+        return view('detail_katalog', compact('katalog'));
     }
 
     public function index()

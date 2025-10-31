@@ -49,8 +49,8 @@
         <div class="auth-wrapper v3">
             <div class="auth-form">
                 <div class="auth-header">
-                    <a href="#"><img src="{{ asset('assets_admin/images/logo.svg') }}" alt="img"
-                            style="width:40px; height:auto;"></a>
+                    <a href="#"><img src="{{ asset('assets_admin/images/Logov1.png') }}" alt="img"
+                            style="width:80px; height:auto;"></a>
                 </div>
                 <div class="card my-5">
                     <div class="card-body">

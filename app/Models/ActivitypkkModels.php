@@ -27,9 +27,9 @@ class ActivitypkkModels extends Model
     {
         return $this->belongsToMany(
             Activ_FotopkkModels::class,
-            'activitypkk_foto',      // Nama tabel pivot
-            'activitypkk_id',        // Foreign key untuk model ini
-            'activ_fotopkk_id'     // Foreign key untuk model yang terhubung
+            'activitypkk_foto',     
+            'activitypkk_id',       
+            'activ_fotopkk_id'     
         );
     }
 }

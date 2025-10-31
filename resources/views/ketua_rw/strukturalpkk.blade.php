@@ -166,67 +166,105 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title">Form Tambah Struktural RW 12</h5>
+                    <h5 class="modal-title">Form Tambah Petugas PKK Anyelir RW 12</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="card">
-                        <form action="{{ route('struktural.store_rw') }}" method="POST" enctype="multipart/form-data"
-                            class="modal-content">
-                            @csrf
-                            <div class="card-body">
-
-                                {{-- Pilih Data Diri --}}
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Pilih Nama Petugas</label>
-                                    <select name="id_datadiri" class="form-select" required>
-                                        <option value="">-- Pilih Nama --</option>
-                                        @foreach ($datadiri as $diri)
-                                            <option value="{{ $diri->id }}">{{ $diri->name }} ({{ $diri->email }})
-                                            </option>
-                                        @endforeach
-                                    </select>
+                <form action="{{ route('struktural.store_rw') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="card" style="border: none; box-shadow: none;">
+                            <div class="card-body p-0">
+                                {{-- @if ($errors->any())
+                                    <div class="alert alert-danger" role="alert">
+                                        <strong>Gagal menyimpan! Periksa input Anda:</strong>
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endi
+                                @if (session('error'))
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
+                                @if (session('success'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif --}}
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="is-new-user-checkbox"
+                                        name="is_new_user" value="1">
+                                    <label class="form-check-label" for="is-new-user-checkbox">
+                                        Tambah Petugas Baru? (Centang jika nama tidak ada di daftar)
+                                    </label>
                                 </div>
-
-                                {{-- Jabatan --}}
+                                <div id="pilih-petugas-group">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Pilih Nama Petugas</label>
+                                        <select name="id_datadiri" id="id_datadiri_select" class="form-control" required>
+                                            <option value="">-- Pilih Nama --</option>
+                                            @foreach ($datadiri as $diri)
+                                                <option value="{{ $diri->id }}">{{ $diri->name }}
+                                                    ({{ $diri->email }})
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div id="manual-input-fields" style="display: none;">
+                                    <div class="form-group">
+                                        <label class="form-label">Nama</label>
+                                        <input type="text" class="form-control" placeholder="Masukan name Pengguna"
+                                            id="name_input" name="name">
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <label class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" placeholder="Masukan Email Pengguna"
+                                            id="email_input" name="email">
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <label class="form-label">No. Telepon</label>
+                                        <input type="text" class="form-control" placeholder="Masukan Nomor Telepon"
+                                            id="notelp_input" name="notelp">
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <label class="form-label">Alamat</label>
+                                        <textarea class="form-control" placeholder="Masukan Alamat" id="alamat_input" name="alamat"></textarea>
+                                    </div>
+                                </div>
+                                <hr class="my-4">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Jabatan</label>
-                                    <input type="text" class="form-control" name="jabatan" placeholder="Masukan Jabatan"
-                                        required>
+                                    <input type="text" class="form-control" name="jabatan"
+                                        placeholder="Masukan Jabatan" required>
                                 </div>
-
-                                {{-- Tingkatan --}}
                                 <div class="form-group mb-3">
                                     <label class="form-label">Tingkatan</label>
-                                    <select class="form-select" id="tingkatan" name="tingkatan" required>
+                                    <select class="form-control" id="tingkatan_add" name="tingkatan" required>
                                         <option value="">-- Pilih Kategori Tingkatan --</option>
-                                        <option value="RT">Rukun Tetangga (RT)
-                                        </option>
-                                        <option value="RW">Rukun Tetangga (RW)
-                                        </option>
-                                        <option value="PKK">PKK Anyelir (PKK)
-                                        </option>
-                                        <option value="KATAR">Karang Taruna (KATAR)
-                                        </option>
+                                        <option value="RT">Rukun Tetangga (RT)</option>
+                                        <option value="RW">Rukun Warga (RW)</option>
+                                        <option value="PKK">PKK Anyelir (PKK)</option>
+                                        <option value="KATAR">Karang Taruna (KATAR)</option>
                                     </select>
                                 </div>
-
-                                {{-- Upload Gambar --}}
                                 <div class="form-group mb-4">
                                     <label class="form-label">Gambar</label>
                                     <input type="file" name="gambar" class="form-control" accept="image/*" required>
                                     <small class="text-muted">Format: .jpg, .jpeg, .png (max 2048)</small>
                                 </div>
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -238,93 +276,101 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-primary text-white">
-                        <h5 class="modal-title">Form Update Struktural RW 12</h5>
+                        <h5 class="modal-title">Form Update Petugas PKK Anyelir RW 12</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
-                    <div class="modal-body">
-                        <div class="card">
-                            <form action="{{ route('struktural.update_rw', $item->id) }}" method="POST"
-                                enctype="multipart/form-data" class="modal-content">
 
-                                @csrf
-                                @method('PUT')
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label class="form-label">Nama Petugas</label>
-                                        <select name="id_datadiri" class="form-select" required>
-                                            {{-- Opsi default: tampilkan nama petugas yang sedang dipilih --}}
-                                            <option value="{{ $item->id_datadiri }}" selected>
-                                                {{ $item->datadiri->name ?? 'Nama tidak ditemukan' }}
-                                                ({{ $item->datadiri->email ?? '-' }})
-                                            </option>
+                    <form action="{{ route('struktural.update_rw', $item->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
 
-                                            {{-- Garis pembatas opsional agar terlihat lebih rapi --}}
-                                            <option disabled>──────────────────────────────────────</option>
-
-                                            {{-- Daftar petugas lain untuk diganti --}}
-                                            @foreach ($datadiri as $diri)
-                                                {{-- Jangan tampilkan lagi jika sama dengan yang terpilih --}}
-                                                @if ($diri->id != $item->id_datadiri)
-                                                    <option value="{{ $diri->id }}">
-                                                        {{ $diri->name }} ({{ $diri->email }})
-                                                    </option>
-                                                @endif
-                                            @endforeach
-                                        </select>
+                        <div class="modal-body">
+                            <div class="card" style="border: none; box-shadow: none;">
+                                <div class="card-body p-0">
+                                    {{-- @if ($errors->any())
+                                        <div class="alert alert-danger" role="alert">
+                                            <strong>Gagal menyimpan! Periksa input Anda:</strong>
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                    @if (session('error'))
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif --}}
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Nama</label>
+                                        <input type="text" class="form-control" placeholder="Masukan nama"
+                                            name="name" value="{{ optional($item->datadiri)->name }}" required>
                                     </div>
 
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" placeholder="Masukan email"
+                                            name="email" value="{{ optional($item->datadiri)->email }}" required>
+                                    </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">No. Telepon</label>
+                                        <input type="text" class="form-control" placeholder="Masukan nomor telepon"
+                                            name="notelp" value="{{ optional($item->datadiri)->notelp }}" required>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Alamat</label>
+                                        <textarea class="form-control" placeholder="Masukan alamat" name="alamat" required>{{ optional($item->datadiri)->alamat }}</textarea>
+                                    </div>
+
+                                    <hr class="my-4">
+
+                                    <div class="form-group mb-3">
                                         <label class="form-label">Jabatan</label>
-                                        <input type="text" class="form-control" placeholder="Masukan Jabatan"
-                                            name="jabatan" value="{{ $item->jabatan }}" required>
+                                        <input type="text" class="form-control" name="jabatan"
+                                            placeholder="Masukan Jabatan" value="{{ $item->jabatan }}" required>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group mb-3">
                                         <label class="form-label">Tingkatan</label>
-                                        <select class="form-select" id="tingkatan" name="tingkatan" required>
+                                        {{-- FIX: Ganti class="form-select" jadi "form-control" --}}
+                                        <select class="form-control" id="tingkatan_update-{{ $item->id }}"
+                                            name="tingkatan" required>
                                             <option value="">-- Pilih Kategori Tingkatan --</option>
                                             <option value="RT" {{ $item->tingkatan == 'RT' ? 'selected' : '' }}>Rukun
-                                                Tetangga (RT)
-                                            </option>
+                                                Tetangga (RT)</option>
                                             <option value="RW" {{ $item->tingkatan == 'RW' ? 'selected' : '' }}>Rukun
-                                                Warga (RW)
-                                            </option>
+                                                Warga (RW)</option>
                                             <option value="PKK" {{ $item->tingkatan == 'PKK' ? 'selected' : '' }}>PKK
-                                                Anyelir (PKK)
-                                            </option>
+                                                Anyelir (PKK)</option>
                                             <option value="KATAR" {{ $item->tingkatan == 'KATAR' ? 'selected' : '' }}>
-                                                Karang Taruna (KATAR)
-                                            </option>(RW)
+                                                Karang Taruna (KATAR)</option>
                                         </select>
                                     </div>
-                                    <div class="form-group">
+
+                                    <div class="form-group mb-4">
                                         <label class="form-label">Gambar (biarkan kosong jika tidak diganti)</label>
                                         <input type="file" name="gambar" class="form-control" accept="image/*">
-                                        <small class="text-muted">Format: .jpg, .jpeg, .png (max 2048)</small>
-                                        {{-- Jika ada gambar lama, tampilkan preview --}}
                                         @if ($item->gambar)
                                             <div class="mt-2 text-center">
                                                 <img src="{{ asset('storage/' . $item->gambar) }}" alt="Gambar lama"
                                                     width="150" class="img-thumbnail">
-                                                <p class="text-muted mt-1">Gambar saat ini</p>
                                             </div>
                                         @endif
+                                    </div>
 
-                                        {{-- Tampilkan error jika validasi gagal --}}
-                                        @error('gambar')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
-                                    </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -337,7 +383,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-danger text-white">
-                        <h5 class="modal-title" id="DeletelayananModalTitle-{{ $item->id }}">Hapus Layanan</h5>
+                        <h5 class="modal-title" id="DeletelayananModalTitle-{{ $item->id }}">Hapus Data</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -348,7 +394,6 @@
                             <div class="p-3">
                                 <div class="form-group">
                                     <label class="form-label">Gambar Petugas</label>
-                                    {{-- Jika ada gambar lama, tampilkan preview --}}
                                     @if ($item->gambar)
                                         <div class="mt-2 text-center">
                                             <img src="{{ asset('storage/' . $item->gambar) }}" alt="Gambar lama"
@@ -357,12 +402,11 @@
                                         </div>
                                     @endif
 
-                                    {{-- Tampilkan error jika validasi gagal --}}
                                     @error('gambar')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
-                                <h5>Yakin ingin menghapus struktural
+                                <h5>Yakin ingin menghapus petugas PKK Anyelir?
                                     <strong>{{ $item->datadiri?->name }}</strong>?
                                 </h5>
                             </div>
@@ -378,5 +422,54 @@
             </div>
         </div>
     @endforeach
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('AddpenggunaModal');
+            if (!modal) {
+                return;
+            }
+
+            const checkbox = modal.querySelector('#is-new-user-checkbox');
+            const pilihPetugasGroup = modal.querySelector('#pilih-petugas-group');
+            const manualInputFields = modal.querySelector('#manual-input-fields');
+            const idDiriSelect = modal.querySelector('#id_datadiri_select');
+            const nameInput = modal.querySelector('#name_input');
+            const emailInput = modal.querySelector('#email_input');
+            const notelpInput = modal.querySelector('#notelp_input');
+            const alamatInput = modal.querySelector('#alamat_input');
+
+            function toggleFormMode() {
+                if (checkbox.checked) {
+                    manualInputFields.style.display = 'block';
+                    idDiriSelect.required = false;
+                    nameInput.required = true;
+                    emailInput.required = true;
+                    notelpInput.required = true;
+                    alamatInput.required = true;
+
+                } else {
+                    pilihPetugasGroup.style.display = 'block';
+                    manualInputFields.style.display = 'none';
+                    idDiriSelect.required = true;
+                    nameInput.required = false;
+                    emailInput.required = false;
+                    notelpInput.required = false;
+                    alamatInput.required = false;
+                }
+            }
+            checkbox.addEventListener('change', toggleFormMode);
+            modal.addEventListener('show.bs.modal', function() {
+                checkbox.checked = false;
+                nameInput.value = '';
+                emailInput.value = '';
+                notelpInput.value = '';
+                alamatInput.value = '';
+                idDiriSelect.selectedIndex = 0;
+                toggleFormMode();
+            });
+            toggleFormMode();
+        });
+    </script>
 @endsection
 @extends('admin-temp.footer_rw')

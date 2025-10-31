@@ -555,12 +555,14 @@
                             <div class="col-md-6">
                                 <div class="text-center mb-4">
                                     <label class="form-label fw-bold d-block mb-2">Foto Produk</label>
-                                    @if ($item->foto)
-                                        <img src="{{ asset('storage/' . $item->foto) }}" alt="Foto Produk"
-                                            class="img-fluid rounded shadow-sm border"
-                                            style="max-height: 300px; object-fit: cover;">
+                                    @if ($item->fotoProduk && $item->fotoProduk->isNotEmpty())
+                                        @foreach ($item->fotoProduk as $foto)
+                                            <img src="{{ asset('storage/' . $foto->path_foto) }}"
+                                                alt="{{ $item->nama_produk }}" width="150"
+                                                style="height: 150px; object-fit: cover; margin-right: 5px; border-radius: 4px;">
+                                        @endforeach
                                     @else
-                                        <p class="text-muted">Tidak ada foto</p>
+                                        <span class="text-muted small">N/A</span>
                                     @endif
                                 </div>
 

@@ -225,13 +225,10 @@
                     </div>
                     <div class="modal-body">
                         <div class="card">
-                            {{-- 
-                          Ganti 'jadwalpkk.update_pkk' dengan nama route update kamu.
-                        --}}
                             <form action="{{ route('jadwalpkk.update_pkk', $item->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
-                                @method('PUT') {{-- Penting untuk update --}}
+                                @method('PUT') 
                                 <div class="card-body">
                                     <div class="form-group mb-3">
                                         <label class="form-label" for="nama_kegiatan-{{ $item->id }}">Nama
@@ -240,8 +237,6 @@
                                             id="nama_kegiatan-{{ $item->id }}" value="{{ $item->nama_kegiatan }}"
                                             required>
                                     </div>
-
-                                    {{-- Logika untuk Kategori "Lainnya" --}}
                                     @php
                                         $kategoriOptions = [
                                             'Rapat',
@@ -400,10 +395,6 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        {{-- 
-                      Pastikan nama route ini (jadwalpkk.destroy_pkk) 
-                      sesuai dengan yang ada di web.php kamu 
-                    --}}
                         <form action="{{ route('jadwalpkk.destroy_pkk', $item->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -443,10 +434,7 @@
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-
-                    {{-- Ganti 'modal-md' menjadi 'modal-body' --}}
                     <div class="modal-body p-4">
-                        {{-- Tambahkan <div class="row"> untuk memulai grid --}}
                         <div class="row">
 
                             <div class="col-md-6">
@@ -480,7 +468,6 @@
 
                                     <div class="mb-3">
                                         <label class="form-label fw-semibold">Tanggal Mulai Kegiatan</label>
-                                        {{-- Gabungkan format Carbon ke dalam 'value' input --}}
                                         <input type="text" class="form-control bg-light"
                                             value="{{ $item->tanggal_mulai ? \Carbon\Carbon::parse($item->tanggal_mulai)->isoFormat('dddd, D MMMM YYYY [pukul] HH:mm') : '-' }}"
                                             readonly>
@@ -488,7 +475,6 @@
 
                                     <div class="mb-3">
                                         <label class="form-label fw-semibold">Tanggal Selesai Kegiatan</label>
-                                        {{-- Gabungkan format Carbon ke dalam 'value' input --}}
                                         <input type="text" class="form-control bg-light"
                                             value="{{ $item->tanggal_selesai ? \Carbon\Carbon::parse($item->tanggal_selesai)->isoFormat('dddd, D MMMM YYYY [pukul] HH:mm') : '-' }}"
                                             readonly>
@@ -502,7 +488,6 @@
 
                                     <div class="mb-3">
                                         <label class="form-label fw-semibold">Tanggal Tunda Kegiatan</label>
-                                        {{-- Gabungkan format Carbon ke dalam 'value' input --}}
                                         <input type="text" class="form-control bg-light"
                                             value="{{ $item->tanggal_tunda ? \Carbon\Carbon::parse($item->tanggal_tunda)->isoFormat('dddd, D MMMM YYYY [pukul] HH:mm') : '-' }}"
                                             readonly>
@@ -515,8 +500,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> {{-- Penutup <div class="row"> --}}
-                    </div> {{-- Penutup <div class="modal-body"> --}}
+                        </div> 
+                    </div> 
 
                     <div class="modal-footer bg-light">
                         <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Tutup</button>

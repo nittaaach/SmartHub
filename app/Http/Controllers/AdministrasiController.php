@@ -9,7 +9,7 @@ use App\Models\TemplateSuratModels;
 
 class AdministrasiController extends Controller
 {
-    public function tampilLayanan()
+    public function administrasi()
     {
         // Ambil semua layanan
         $layanan = LayananModels::all();
