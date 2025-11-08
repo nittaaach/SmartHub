@@ -17,16 +17,16 @@
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-                    <img src="assets-user/img/hero-img.png" class="img-fluid animated" alt="">
+                    <img src="assets-user/img/rw12_1.jpg" class="img-fluid animated" alt="">
                 </div>
             </div>
         </div>
 
-    </section><!-- /Hero Section -->
+    </section>
+    <!-- /Hero Section -->
 
     <!-- About Section -->
     <section id="about" class="about section">
-
         <div class="container" data-aos="fade-up">
             <div class="row gx-0">
 
@@ -55,13 +55,13 @@
                 </div>
 
                 <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="assets-user/img/about.jpg" class="img-fluid" alt="">
+                    <img src="assets-user/img/katar12.jpg" class="img-fluid" alt="">
                 </div>
 
             </div>
         </div>
-
-    </section><!-- /About Section -->
+    </section>
+    <!-- /About Section -->
 
     <section id="values" class="values section">
 
@@ -89,8 +89,9 @@
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="card">
                         <img src="assets-user/img/values-2.png" class="img-fluid" alt="">
-                        <h3>Voluptatem voluptatum alias</h3>
-                        <p>Repudiandae amet nihil natus in distinctio suscipit id. Doloremque ducimus ea sit non.</p>
+                        <h3>Bank Sampah</h3>
+                        <p>Tempat pengelolaan sampah berbasis komunitas yang menukar sampah menjadi nilai ekonomi sekaligus
+                            menjaga kebersihan lingkungan.</p>
                         <a href="/layanan" class="readmore stretched-link">
                             <span>Lihat Selengkapnya</span><i class="bi bi-arrow-right"></i>
                         </a>
@@ -100,8 +101,9 @@
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="card">
                         <img src="assets-user/img/values-3.png" class="img-fluid" alt="">
-                        <h3>Fugit cupiditate alias nobis.</h3>
-                        <p>Quam rem vitae est autem molestias explicabo debitis sint. Vero aliquid quidem commodi.</p>
+                        <h3>Kampung KB</h3>
+                        <p>Program pemberdayaan masyarakat yang berfokus pada peningkatan kualitas hidup keluarga melalui
+                            perencanaan, pendidikan, dan kesehatan.</p>
                         <a href="/layanan" class="readmore stretched-link">
                             <span>Lihat Selengkapnya</span><i class="bi bi-arrow-right"></i>
                         </a>
@@ -111,7 +113,8 @@
             </div>
         </div>
 
-    </section><!-- /Values Section -->
+    </section>
+    <!-- /Values Section -->
 
     <!-- Stats Section -->
     <section id="stats" class="stats section">
@@ -135,7 +138,7 @@
                 </div><!-- End Stats Item -->
 
                 <div class="col-lg-3 col-md-6">
-                    <a href="" class="text-decoration-none text-dark">
+                    <a href="/galeri" class="text-decoration-none text-dark">
                         <div class="stats-item d-flex align-items-center w-100 h-100">
                             <div>
                                 <h3>Galeri</h3>
@@ -157,7 +160,7 @@
                 </div><!-- End Stats Item -->
 
                 <div class="col-lg-3 col-md-6">
-                    <a href="" class="text-decoration-none text-dark">
+                    <a href="/fasilitas" class="text-decoration-none text-dark">
                         <div class="stats-item d-flex align-items-center w-100 h-100">
                             <div>
                                 <h3>Fasilitas</h3>
@@ -168,9 +171,8 @@
                 </div><!-- End Stats Item -->
             </div>
         </div>
-    </section><!-- /Stats Section -->
-
-    </section><!-- /Stats Section -->
+    </section>
+    <!-- /Stats Section -->
 
     {{-- <!-- Features Section -->
         <section id="features" class="features section">
@@ -1130,6 +1132,8 @@
 
         </section><!-- /Clients Section --> --}}
 
+
+
     <!-- Recent Posts Section -->
     <section id="news" class="recent-posts section">
 
@@ -1185,7 +1189,8 @@
 
         </div>
 
-    </section><!-- /Recent Posts Section -->
+    </section>
+    <!-- /Recent Posts Section -->
 
     <!-- Clients Section -->
     <section id="clients" class="clients section">
@@ -1259,7 +1264,8 @@
 
         </div>
 
-    </section><!-- /Clients Section -->
+    </section>
+    <!-- /Clients Section -->
 
     <section id="contact" class="contact section">
 
@@ -1353,7 +1359,8 @@
             </div>
 
             <!-- Section Title -->
-    </section><!-- /Contact Section -->
+    </section>
+    <!-- /Contact Section -->
 
     <section id="contact" class="contact section">
         <div class="container section-title" data-aos="fade-up" style="margin=top:50px">
@@ -1365,12 +1372,9 @@
             <iframe style="border:0; width: 100%; height: 400px;"
                 src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d247.87170514462053!2d106.921437154233!3d-6.270663441211563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMTYnMTQuNiJTIDEwNsKwNTUnMTcuMCJF!5e0!3m2!1sen!2sid!4v1759504656659!5m2!1sen!2sid"
                 frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div><!-- End Google Maps -->
-
         </div>
-
-        <!-- Section Title -->
-    </section><!-- /Contact Section -->
+        <!-- End Google Maps -->
+    </section>
 @endsection
 
 @extends('user-temp.footer')

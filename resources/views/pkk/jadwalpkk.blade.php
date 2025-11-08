@@ -1,4 +1,4 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_pkk')
 @section('content_admin')
     <!-- [ breadcrumb ] start -->
     <div class="page-header">
@@ -228,7 +228,7 @@
                             <form action="{{ route('jadwalpkk.update_pkk', $item->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
-                                @method('PUT') 
+                                @method('PUT')
                                 <div class="card-body">
                                     <div class="form-group mb-3">
                                         <label class="form-label" for="nama_kegiatan-{{ $item->id }}">Nama
@@ -500,8 +500,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> 
-                    </div> 
+                        </div>
+                    </div>
 
                     <div class="modal-footer bg-light">
                         <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Tutup</button>
@@ -510,80 +510,77 @@
             </div>
         </div>
     @endforeach
+    <script>
+        function setupLainnyaToggle(selectId, inputId) {
+            const selectEl = document.getElementById(selectId);
+            const inputEl = document.getElementById(inputId);
+
+            // Pastikan kedua elemen ada
+            if (!selectEl || !inputEl) {
+                console.warn(`Elemen ${selectId} atau ${inputId} tidak ditemukan.`);
+                return;
+            }
+
+            function toggleInput() {
+                if (selectEl.value === 'Lainnya') {
+                    inputEl.classList.remove('d-none');
+                    inputEl.required = true;
+                } else {
+                    inputEl.classList.add('d-none');
+                    inputEl.required = false;
+                    inputEl.value = ''; // Kosongkan nilainya
+                }
+            }
+            selectEl.addEventListener('change', toggleInput);
+            toggleInput();
+        }
+
+        function togglePublishedAtCreate(status) {
+            const group = document.getElementById('publishedAtCreateGroup');
+            if (group) {
+                group.style.display = (status === 'Ditunda') ? 'block' : 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setupLainnyaToggle('select_kategori', 'input_kategori_lainnya');
+            setupLainnyaToggle('select_target', 'input_target_lainnya');
+
+            const statusCreateSelect = document.querySelector('#AddjadwalModal select[name="status"]');
+            if (statusCreateSelect) {
+                togglePublishedAtCreate(statusCreateSelect.value);
+                statusCreateSelect.addEventListener('change', function() {
+                    togglePublishedAtCreate(this.value);
+                });
+            }
+        });
+
+        function togglePublishedAt(status, id) {
+            const group = document.getElementById('publishedAtGroup-' + id);
+            if (group) {
+                group.style.display = (status === 'Ditunda') ? 'block' : 'none';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (isset($jadwals)) // Cek jika variabel $jadwals ada (di halaman index)
+                @foreach ($jadwals as $item)
+                    togglePublishedAt('{{ $item->status }}', {{ $item->id }});
+                @endforeach
+            @endif
+        });
+
+        function togglePublishedAtUpdate(statusValue, itemId) {
+            // Cari grup input tanggal tunda yang spesifik untuk item ini
+            const group = document.getElementById('publishedAtUpdateGroup-' + itemId);
+
+            if (group) {
+                if (statusValue === 'Ditunda') {
+                    group.style.display = 'block';
+                } else {
+                    group.style.display = 'none';
+                }
+            }
+        }
+    </script>
+
 @endsection
-
-<script>
-    function setupLainnyaToggle(selectId, inputId) {
-        const selectEl = document.getElementById(selectId);
-        const inputEl = document.getElementById(inputId);
-
-        // Pastikan kedua elemen ada
-        if (!selectEl || !inputEl) {
-            console.warn(`Elemen ${selectId} atau ${inputId} tidak ditemukan.`);
-            return;
-        }
-
-        function toggleInput() {
-            if (selectEl.value === 'Lainnya') {
-                inputEl.classList.remove('d-none');
-                inputEl.required = true;
-            } else {
-                inputEl.classList.add('d-none');
-                inputEl.required = false;
-                inputEl.value = ''; // Kosongkan nilainya
-            }
-        }
-        selectEl.addEventListener('change', toggleInput);
-        toggleInput();
-    }
-
-    function togglePublishedAtCreate(status) {
-        const group = document.getElementById('publishedAtCreateGroup');
-        if (group) {
-            group.style.display = (status === 'Ditunda') ? 'block' : 'none';
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        setupLainnyaToggle('select_kategori', 'input_kategori_lainnya');
-        setupLainnyaToggle('select_target', 'input_target_lainnya');
-
-        const statusCreateSelect = document.querySelector('#AddjadwalModal select[name="status"]');
-        if (statusCreateSelect) {
-            togglePublishedAtCreate(statusCreateSelect.value);
-            statusCreateSelect.addEventListener('change', function() {
-                togglePublishedAtCreate(this.value);
-            });
-        }
-    });
-
-    function togglePublishedAt(status, id) {
-        const group = document.getElementById('publishedAtGroup-' + id);
-        if (group) {
-            group.style.display = (status === 'Ditunda') ? 'block' : 'none';
-        }
-    }
-    document.addEventListener('DOMContentLoaded', function() {
-        @if (isset($jadwals)) // Cek jika variabel $jadwals ada (di halaman index)
-            @foreach ($jadwals as $item)
-                togglePublishedAt('{{ $item->status }}', {{ $item->id }});
-            @endforeach
-        @endif
-    });
-
-    function togglePublishedAtUpdate(statusValue, itemId) {
-        // Cari grup input tanggal tunda yang spesifik untuk item ini
-        const group = document.getElementById('publishedAtUpdateGroup-' + itemId);
-
-        if (group) {
-            if (statusValue === 'Ditunda') {
-                group.style.display = 'block';
-            } else {
-                group.style.display = 'none';
-            }
-        }
-    }
-</script>
-
-
-@extends('admin-temp.footer_pkk')

@@ -1,4 +1,4 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_katar')
 @section('content_admin')
     <!-- [ breadcrumb ] start -->
     <div class="page-header">
@@ -113,7 +113,6 @@
         </div>
     @endforeach
 
-
     <!-- Modal Tambah dokumentasi -->
     <div id="AdddokumModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="AdddokumModalTitle"
         aria-hidden="true">
@@ -125,8 +124,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="card">
-                        <form action="{{ route('dokumentasikatar.store_katar') }}" method="POST" enctype="multipart/form-data"
-                            class="modal-content">
+                        <form action="{{ route('dokumentasikatar.store_katar') }}" method="POST"
+                            enctype="multipart/form-data" class="modal-content">
                             @csrf
                             <div class="card-body">
 
@@ -256,4 +255,3 @@
         </div>
     @endforeach
 @endsection
-@extends('admin-temp.footer_katar')

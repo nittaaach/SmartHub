@@ -16693,7 +16693,7 @@ pre[class*="language-"] > code {
 .pc-sidebar .m-header {
   height: 60px;
   display: flex;
-  align-items: center;
+  align-items: left;
   padding: 16px 24px;
 }
 .pc-sidebar .m-header .logo-sm {

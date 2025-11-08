@@ -1,4 +1,4 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_rw')
 @section('content_admin')
     <!-- Alternative Pagination table start -->
 
@@ -72,71 +72,59 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    {{ $item->syarat_layanan->nama_dokumen ?? '-' }}
+                                                    <ul>
+                                                        @foreach ($item->syaratLayanans as $syarat)
+                                                            <li>{{ $syarat->nama_dokumen }}</li>
+                                                        @endforeach
+                                                    </ul>
                                                 </td>
                                                 <td>
-                                                    {{ $item->syarat_layanan->lembaran ?? '-' }}
-                                                    {{-- @foreach ($item->syarat_layanan as $syarat)
-                                                        <div>{{ $syarat->lembaran }}</div>
-                                                    @endforeach --}}
+                                                    <ul>
+                                                        @foreach ($item->syaratLayanans as $syarat)
+                                                            <li>{{ $syarat->lembaran ?? '-' }} lembar</li>
+                                                        @endforeach
+                                                    </ul>
                                                 </td>
                                                 <td>
-                                                    {{ $item->syarat_layanan->jenis_berkas == 1 ? 'Asli' : 'Foto Copy' ?? '-' }}
-                                                    {{-- @foreach ($item->syarat_layanan as $syarat)
-                                                        <div>
-                                                            {{ $syarat->jenis_berkas == 1 ? 'Asli' : 'Foto Copy' }}
-                                                        </div>
-                                                    @endforeach --}}
+                                                    <ul>
+                                                        @foreach ($item->syaratLayanans as $syarat)
+                                                            <li>{{ $syarat->jenis_berkas == 1 ? 'Asli' : 'Foto Copy' }}</li>
+                                                        @endforeach
+                                                    </ul>
                                                 </td>
                                                 <td>
-                                                    {{ $item->syarat_layanan->status == 1 ? 'Wajib' : 'Optional' ?? '-' }}
-                                                    {{-- @foreach ($item->syarat_layanan as $syarat)
-                                                        <div>
-                                                            {{ $syarat->status == 1 ? 'Wajib' : 'Optional' }}
-                                                        </div>
-                                                    @endforeach --}}
+                                                    <ul>
+                                                        @foreach ($item->syaratLayanans as $syarat)
+                                                            <li>{{ $syarat->status == 1 ? 'Wajib' : 'Optional' }}</li>
+                                                        @endforeach
+                                                    </ul>
                                                 </td>
                                                 <td>
-                                                    {{ $item->template_surat->nama_template ?? '-' }}
-                                                    {{-- @foreach ($item->template_surat as $template)
-                                                        <div>{{ $template->nama_template }}</div>
-                                                    @endforeach --}}
+                                                    <ul>
+                                                        @foreach ($item->syaratLayanans as $syarat)
+                                                            @foreach ($syarat->template_surat as $template)
+                                                                <li>{{ $template->nama_template }}</li>
+                                                            @endforeach
+                                                        @endforeach
+                                                    </ul>
                                                 </td>
                                                 <td>
-                                                    @php
-                                                        $filePath = $item->template_surat->file ?? null;
-                                                        $fileName = $filePath ? basename($filePath) : '-';
-                                                        // Potong nama file jadi max 30 karakter
-                                                        $shortName =
-                                                            strlen($fileName) > 30
-                                                                ? substr($fileName, 0, 30) . '...'
-                                                                : $fileName;
-                                                    @endphp
-
-                                                    @if ($filePath)
-                                                        <span title="{{ $fileName }}">{{ $shortName }}</span>
-                                                        <div>
-                                                            <a href="{{ asset('storage/' . $filePath) }}" target="_blank"
-                                                                class="text-primary">
-                                                                Lihat File
-                                                            </a>
-                                                        </div>
-                                                    @else
-                                                        <div class="text-muted">Tidak ada file</div>
-                                                    @endif
-
-                                                    {{-- @foreach ($item->template_surat as $template)
-                                                        @if ($template->file)
-                                                            <div>
-                                                                <a href="{{ asset('storage/' . $template->file) }}"
-                                                                    target="_blank">
-                                                                    Lihat File
-                                                                </a>
-                                                            </div>
-                                                        @else
-                                                            <div>Tidak ada file</div>
-                                                        @endif
-                                                    @endforeach --}}
+                                                    <ul>
+                                                        @foreach ($item->syaratLayanans as $syarat)
+                                                            @foreach ($syarat->template_surat as $template)
+                                                                <li>
+                                                                    @if ($template->file)
+                                                                        <a href="{{ asset('storage/' . $template->file) }}"
+                                                                            target="_blank" class="text-primary">
+                                                                            Lihat File
+                                                                        </a>
+                                                                    @else
+                                                                        <div class="text-muted">Tidak ada file</div>
+                                                                    @endif
+                                                                </li>
+                                                            @endforeach
+                                                        @endforeach
+                                                    </ul>
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary me-3"
@@ -153,8 +141,6 @@
                                             </tr>
                                         @endforeach
                                     </tbody>
-
-
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
@@ -193,21 +179,15 @@
                     @csrf
                     <div class="modal-body">
                         <div class="card-body">
-
-                            {{-- NAMA LAYANAN --}}
                             <div class="form-group mb-3">
                                 <label class="form-label">Nama Layanan</label>
                                 <input type="text" class="form-control" name="nama_layanan"
                                     placeholder="Masukan Nama Layanan" required>
                             </div>
-
-                            {{-- DESKRIPSI LAYANAN --}}
                             <div class="form-group mb-3">
                                 <label class="form-label">Deskripsi Layanan</label>
                                 <textarea class="form-control" placeholder="Masukan Deskripsi Layanan" name="deskripsi" required></textarea>
                             </div>
-
-                            {{-- STATUS LAYANAN --}}
                             <div class="form-group mb-4">
                                 <label class="form-label">Status Layanan</label>
                                 <select class="form-select" name="status_aktif" required>
@@ -219,35 +199,16 @@
 
                             <hr>
                             <h6 class="fw-bold mb-3">🗂️ Pilih Syarat Layanan</h6>
-
-                            {{-- DROPDOWN SYARAT LAYANAN --}}
                             <div class="form-group mb-4">
                                 <label class="form-label">Syarat Dokumen/Berkas</label>
-                                <select class="form-select" name="id_syarat" required>
-                                    <option value="">-- Pilih Syarat Layanan --</option>
+                                <select class="form-control choices-multiple-remove-button" name="id_syarat[]" multiple
+                                    required>
                                     @foreach ($syarat_layanan as $syarat)
                                         <option value="{{ $syarat->id }}">
                                             {{ $syarat->nama_dokumen }}
                                             - {{ $syarat->lembaran }} lembar
                                             ({{ $syarat->jenis_berkas == 1 ? 'Asli' : 'Fotokopi' }})
-                                            -
-                                            ({{ $syarat->status == 1 ? 'Wajib' : 'Optional' }})
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <hr>
-                            <h6 class="fw-bold mb-3">📄 Pilih Template Surat</h6>
-
-                            {{-- DROPDOWN TEMPLATE SURAT --}}
-                            <div class="form-group mb-4">
-                                <label class="form-label">Template Surat</label>
-                                <select class="form-select" name="id_template" required>
-                                    <option value="">-- Pilih Template Surat --</option>
-                                    @foreach ($template_surat as $template)
-                                        <option value="{{ $template->id }}">
-                                            {{ $template->nama_template }} - {{ $template->keterangan }}
+                                            - ({{ $syarat->status == 1 ? 'Wajib' : 'Optional' }})
                                         </option>
                                     @endforeach
                                 </select>
@@ -280,7 +241,6 @@
                 <form action="{{ route('layanan.store_st') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
-
                     <div class="modal-header bg-primary text-white">
                         <h5 class="modal-title" id="AddTemplateModalLabel">Tambah Syarat Layanan dan Template Surat Baru
                         </h5>
@@ -289,7 +249,7 @@
 
                     <div class="modal-body">
 
-                        {{-- Data syarat_layanan --}}
+                        {{-- Data syarat_layanan (INI WAJIB DIISI) --}}
                         <h6 class="fw-bold text-primary">Data Syarat Layanan</h6>
 
                         <div class="form-group mb-3">
@@ -298,14 +258,15 @@
                         </div>
                         <div class="form-group mb-3">
                             <label>Banyak Lembaran</label>
-                            <input type="text" class="form-control" name="lembaran" required>
+                            {{-- 'required' DIHAPUS agar fleksibel --}}
+                            <input type="text" class="form-control" name="lembaran" placeholder="Contoh: 1">
                         </div>
                         <div class="form-group mb-3">
                             <label>Jenis Berkas</label>
                             <select class="form-select" name="jenis_berkas" required>
                                 <option value="">-- Pilih Jenis Berkas --</option>
                                 <option value="1">Asli</option>
-                                <option value="0">Fotocopy</option>
+                                <option value="0">Fotokopi</option>
                             </select>
                         </div>
                         <div class="mb-4">
@@ -317,13 +278,15 @@
                             </select>
                         </div>
 
-                        {{-- Data template_surat --}}
+                        {{-- Data template_surat (INI OPSIONAL) --}}
                         <hr>
-                        <h6 class="fw-bold text-primary">Data Template Surat</h6>
+                        <h6 class="fw-bold text-primary">Data Template Surat (Opsional)</h6>
 
                         <div class="form-group mb-3">
                             <label>Nama Template</label>
-                            <input type="text" class="form-control" name="nama_template" required>
+                            {{-- 'required' DIHAPUS --}}
+                            <input type="text" class="form-control" name="nama_template"
+                                placeholder="Kosongkan jika tidak ada template">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Upload File</label>
@@ -332,7 +295,8 @@
                         </div>
                         <div class="form-group mb-3">
                             <label>Keterangan</label>
-                            <textarea class="form-control" name="keterangan" placeholder="Masukkan Keterangan Template" required></textarea>
+                            {{-- 'required' DIHAPUS --}}
+                            <textarea class="form-control" name="keterangan" placeholder="Masukkan Keterangan Template"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -344,11 +308,11 @@
         </div>
     </div>
 
-    <!-- Modal Update KTP -->
+    <!-- Modal Update layanan -->
     @foreach ($layanan as $item)
         <div id="UpdatelayananModal-{{ $item->id }}" class="modal fade" tabindex="-1" role="dialog"
             aria-labelledby="UpdatelayananModalTitle-{{ $item->id }}" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-primary text-white">
                         <h5 class="modal-title">Form Update Layanan RW 12</h5>
@@ -360,8 +324,6 @@
                         @method('PUT')
                         <div class="modal-body">
                             <div class="card-body">
-
-                                {{-- === Data Layanan === --}}
                                 <div class="form-group mb-3">
                                     <label class="form-label">Nama Layanan</label>
                                     <input type="text" class="form-control" name="nama_layanan"
@@ -383,73 +345,34 @@
                                     </select>
                                 </div>
 
-                                {{-- === Data Persyaratan === --}}
+                                <hr>
+                                <h6 class="fw-bold mb-3">🗂️ Pilih Syarat Layanan</h6>
+
                                 @php
-                                    $syarat = $item->syarat_layanan->first();
+                                    $attachedSyaratIds = $item->syaratLayanans->pluck('id');
                                 @endphp
 
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Nama Dokumen/Berkas</label>
-                                    <input type="text" class="form-control" name="nama_dokumen"
-                                        value="{{ $syarat?->nama_dokumen }}" required>
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Lembaran</label>
-                                    <input type="text" class="form-control" name="lembaran"
-                                        value="{{ $syarat?->lembaran }}" required>
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Jenis Berkas</label>
-                                    <select class="form-select" name="jenis_berkas" required>
-                                        <option value="1" {{ $syarat?->jenis_berkas == 1 ? 'selected' : '' }}>Asli
-                                        </option>
-                                        <option value="2" {{ $syarat?->jenis_berkas == 2 ? 'selected' : '' }}>
-                                            Foto Copy</option>
-                                    </select>
-                                </div>
-
-                                {{-- === Template Surat === --}}
-                                @php
-                                    $template = $item->template_surat->first();
-                                @endphp
-
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Nama Template Surat</label>
-                                    <input type="text" class="form-control" name="nama_template"
-                                        value="{{ $template?->nama_template }}" required>
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <label class="form-label">File Template (kosongkan jika tidak diubah)</label>
-                                    <input type="file" name="file" class="form-control">
-                                    @if ($template?->file)
-                                        <span>File saat ini: <a href="{{ asset('storage/' . $template->file) }}"
-                                                target="_blank">Lihat</a></span>
-                                    @endif
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Keterangan</label>
-                                    <textarea class="form-control" name="keterangan" required>{{ $template?->keterangan }}</textarea>
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Status Aktif Template</label>
-                                    <select class="form-select" name="status_aktif_template" required>
-                                        <option value="1" {{ $template?->status_aktif == 1 ? 'selected' : '' }}>Aktif
-                                        </option>
-                                        <option value="0" {{ $template?->status_aktif == 0 ? 'selected' : '' }}>Tidak
-                                            Aktif</option>
+                                <div class="form-group mb-4">
+                                    <label class="form-label">Syarat Dokumen/Berkas</label>
+                                    <select class="form-control choices-multiple-remove-button" name="id_syarat[]"
+                                        multiple required>
+                                        @foreach ($syarat_layanan as $syarat)
+                                            <option value="{{ $syarat->id }}"
+                                                @if ($attachedSyaratIds->contains($syarat->id)) selected @endif>
+                                                {{ $syarat->nama_dokumen }}
+                                                - {{ $syarat->lembaran }} lembar
+                                                ({{ $syarat->jenis_berkas == 1 ? 'Asli' : 'Fotokopi' }})
+                                                - ({{ $syarat->status == 1 ? 'Wajib' : 'Optional' }})
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                         </div>
                     </form>
                 </div>
@@ -497,4 +420,3 @@
         </div>
     @endforeach
 @endsection
-@extends('admin-temp.footer_rw')

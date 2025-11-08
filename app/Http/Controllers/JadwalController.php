@@ -170,7 +170,7 @@ class JadwalController extends Controller
 
     //for jadwal katar
     public function indexkatar()
-    {
+    {       
         $jadwals = JadwalkatarModels::orderBy('tanggal_mulai', 'desc')->paginate(10);
         return view('katar.jadwalkatar', [
             'jadwals' => $jadwals

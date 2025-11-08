@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LayananModels;
-use App\Models\SyaratLayananModels;
-use App\Models\Template_suratModels;
-use App\Models\TemplateSuratModels;
 use Illuminate\Http\Request;
+use App\Models\LayananModels;
+use Illuminate\Support\Facades\DB;
+use App\Models\SyaratLayananModels;
+use App\Models\TemplateSuratModels;
+use App\Models\Template_suratModels;
+use Illuminate\Support\Facades\Validator;
 
 class LayananController extends Controller
 {
@@ -15,7 +17,7 @@ class LayananController extends Controller
     {
         return view('/detaillayanan');
     }
-    
+
     public function layanan()
     {
         return view('/layanan');
@@ -23,32 +25,42 @@ class LayananController extends Controller
     //for show home landing
     public function index()
     {
-        $layanan = LayananModels::with(['syarat_layanan', 'template_surat'])->get();
+        $layanan = LayananModels::with(['syaratLayanans'])->get();
         $syarat_layanan = SyaratLayananModels::all();
-        $template_surat = TemplateSuratModels::all();
+        // $template_surat = TemplateSuratModels::all();
 
-        return view('ketua_rw.layanan', compact('layanan', 'syarat_layanan', 'template_surat'));
+        return view('ketua_rw.layanan', compact('layanan', 'syarat_layanan'));
     }
 
     public function store_rw(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'nama_layanan' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'status_aktif' => 'required|boolean',
-            'id_syarat' => 'required|exists:syarat_layanan,id',
-            'id_template' => 'required|exists:template_surat,id',
+            'status_aktif' => 'required|in:0,1',
+            'id_syarat' => 'required|array',
+            'id_syarat.*' => 'exists:syarat_layanan,id',
         ]);
 
-        LayananModels::create([
-            'nama_layanan' => $request->nama_layanan,
-            'deskripsi' => $request->deskripsi,
-            'status_aktif' => $request->status_aktif,
-            'id_syarat' => $request->id_syarat,
-            'id_template' => $request->id_template,
-        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        DB::beginTransaction();
+        try {
+            $layanan = new LayananModels();
+            $layanan->nama_layanan = $request->nama_layanan;
+            $layanan->deskripsi = $request->deskripsi;
+            $layanan->status_aktif = $request->status_aktif;
+            $layanan->save();
+            $layanan->syaratLayanans()->attach($request->id_syarat);
 
-        return redirect()->back()->with('success', 'Data layanan berhasil ditambahkan!');
+            DB::commit();
+            return redirect()->back()->with('success', 'Layanan baru berhasil ditambahkan!');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            // dd($e->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan.');
+        }
     }
 
     public function store_st(Request $request)
@@ -58,12 +70,11 @@ class LayananController extends Controller
             'lembaran' => 'nullable|string|max:50',
             'jenis_berkas' => 'required|boolean',
             'status' => 'required|boolean',
-            'nama_template' => 'required|string|max:100',
+            'nama_template' => 'nullable|string|max:100',
             'file' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
             'keterangan' => 'nullable|string',
         ]);
 
-        // Simpan ke syarat_layanan
         $syarat = SyaratLayananModels::create([
             'nama_dokumen' => $validated['nama_dokumen'],
             'lembaran' => $validated['lembaran'],
@@ -71,61 +82,54 @@ class LayananController extends Controller
             'status' => $validated['status'],
         ]);
 
-        // Simpan file template jika ada
-        $filePath = null;
-        if ($request->hasFile('file')) {
-            $filePath = $request->file('file')->store('template_surat', 'public');
+        if ($request->filled('nama_template')) {
+
+            $filePath = null;
+            if ($request->hasFile('file')) {
+                $filePath = $request->file('file')->store('template_surat', 'public');
+            }
+
+            TemplateSuratModels::create([
+                'id_syarat' => $syarat->id,
+                'nama_template' => $validated['nama_template'],
+                'file' => $filePath,
+                'keterangan' => $validated['keterangan'] ?? null,
+            ]);
         }
-
-        // Simpan ke template_surat
-        TemplateSuratModels::create([
-            'id_syarat' => $syarat->id,
-            'nama_template' => $validated['nama_template'],
-            'file' => $filePath,
-            'keterangan' => $validated['keterangan'] ?? null,
-        ]);
-
-        return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
+        return redirect()->back()->with('success', 'Data syarat layanan berhasil ditambahkan!');
     }
 
     public function update_rw(Request $request, $id)
     {
-        $layanan = LayananModels::findOrFail($id);
-
-        // --- Update layanan utama ---
-        $layanan->update([
-            'nama_layanan' => $request->nama_layanan,
-            'deskripsi' => $request->deskripsi,
-            'status_aktif' => $request->status_aktif,
+        $validator = Validator::make($request->all(), [
+            'nama_layanan' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'status_aktif' => 'required|boolean',
+            'id_syarat' => 'required|array',
+            'id_syarat.*' => 'exists:syarat_layanan,id',
         ]);
 
-        // --- Update syarat_layanan (jika ada) ---
-        if ($layanan->syarat_layanan()->exists()) {
-            $layanan->syarat_layanan()->update([
-                'nama_dokumen' => $request->nama_dokumen,
-                'lembaran' => $request->lembaran,
-                'jenis_berkas' => $request->jenis_berkas,
-            ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // --- Update template surat (jika ada) ---
-        if ($layanan->template_surat()->exists()) {
-            $template = $layanan->template_surat()->first();
-
-            // kalau upload file baru
-            if ($request->hasFile('file')) {
-                $path = $request->file('file')->store('templates', 'public');
-                $template->update(['file' => $path]);
-            }
-
-            $template->update([
-                'nama_template' => $request->nama_template,
-                'keterangan' => $request->keterangan,
-                'status_aktif' => $request->status_aktif_template,
+        DB::beginTransaction();
+        try {
+            $layanan = LayananModels::findOrFail($id);
+            $layanan->update([
+                'nama_layanan' => $request->nama_layanan,
+                'deskripsi' => $request->deskripsi,
+                'status_aktif' => $request->status_aktif,
             ]);
-        }
 
-        return redirect()->back()->with('success', 'Layanan berhasil diperbarui.');
+            $layanan->syaratLayanans()->sync($request->id_syarat);
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Layanan berhasil diperbarui.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Terjadi kesalahan.');
+        }
     }
 
     public function destroy_rw($id)

@@ -1,239 +1,123 @@
 @extends('user-temp.head')
 @section('content')
-
     <!-- Page Title -->
     <div class="page-title">
-      <div class="heading">
-        <div class="container">
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1>RW</h1>
-              <p class="mb-0">Susunan kepengurusan RW 12 Jatiwaringin</p>
+        <div class="heading">
+            <div class="container">
+                <div class="row d-flex justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1>RW</h1>
+                        <p class="mb-0">Susunan kepengurusan RW 12 Jatiwaringin</p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <nav class="breadcrumbs">
-        <div class="container">
-          <ol>
-            <li><a href="/landing">Home</a></li>
-            <li class="current">Struktural</li>
-            <li class="current">RW</li>
-          </ol>
-        </div>
-      </nav>
+        <nav class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/landing">Home</a></li>
+                    <li class="current">Struktural</li>
+                    <li class="current">RW</li>
+                </ol>
+            </div>
+        </nav>
     </div><!-- End Page Title -->
 
-        <!-- Team Section -->
+    <!-- Team Section -->
     <section id="team" class="team section">
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <p>Struktur RW 12</p>
-        <h2>Susunan kepengurusan RW 12 Jatiwaringin</h2>
-      </div><!-- End Section Title -->
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <p>Struktur RW 12</p>
+            <h2>Susunan kepengurusan RW 12 Jatiwaringin</h2>
+        </div><!-- End Section Title -->
 
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="assets-user/img/team/team-1.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-whatsapp"></i></a>
+        <div class="container">
+            <div class="row gy-4">
+                <div class="container">
+                    <div class="row gy-4">
+                        @forelse ($strukturalrw as $item)
+                            <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+                                <div class="team-member">
+                                    <div class="member-img">
+                                        <img src="{{ asset('storage/' . $item->gambar) }}" class="img-fluid"
+                                            alt="{{ $item->datadiri->name ?? 'Tidak ada nama' }}" width="300">
+                                        <div class="social">
+                                            @if ($item->datadiri && $item->datadiri->notelp)
+                                                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $item->datadiri->notelp) }}"
+                                                    target="_blank">
+                                                    <i class="bi bi-whatsapp"></i>
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="member-info">
+                                        <h4>{{ $item->datadiri->name ?? 'Tidak ada nama' }}</h4>
+                                        <span>{{ $item->jabatan ?? 'Jabatan belum diatur' }}</span>
+                                        <p>{{ $item->datadiri->alamat ?? 'Alamat tidak tersedia' }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <p class="text-center">Belum ada data RT untuk jabatan BPH.</p>
+                        @endforelse
+                    </div>
                 </div>
-              </div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
-                <p>Velit aut quia fugit et et. Dolorum ea voluptate vel tempore tenetur ipsa quae aut. Ipsum exercitationem iure minima enim corporis et voluptate.</p>
-              </div>
             </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="assets-user/img/team/team-2.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-whatsapp"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
-                <p>Quo esse repellendus quia id. Est eum et accusantium pariatur fugit nihil minima suscipit corporis. Voluptate sed quas reiciendis animi neque sapiente.</p>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="assets-user/img/team/team-3.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-whatsapp"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>CTO</span>
-                <p>Vero omnis enim consequatur. Voluptas consectetur unde qui molestiae deserunt. Voluptates enim aut architecto porro aspernatur molestiae modi.</p>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="assets-user/img/team/team-4.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-whatsapp"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Accountant</span>
-                <p>Rerum voluptate non adipisci animi distinctio et deserunt amet voluptas. Quia aut aliquid doloremque ut possimus ipsum officia.</p>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
         </div>
-      </div>
     </section><!-- /Team Section -->
 
     <section id="stat" class="stats section">
 
-  <div class="container" data-aos="fade-up" data-aos-delay="100">
-    <div class="row gy-4">
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+            <div class="row gy-4">
+                <div class="row gy-3">
+                    @forelse ($anggotaLain as $item)
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stats-item d-flex justify-content-start align-items-center w-100 h-100">
+                                <img src="{{ asset('storage/' . $item->gambar) }}" alt="foto"
+                                    class="me-2 rounded-circle" style="width:50px; height:50px; object-fit:cover;">
+                                <div>
+                                    <p style="margin: 0; font-weight: bold;">{{ $item->jabatan ?? 'Jabatan belum diatur' }}
+                                    </p>
+                                    <p style="margin: 0;">{{ $item->datadiri->name ?? 'Tidak ada nama' }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <p class="text-center">Belum ada data anggota RW lainnya.</p>
+                    @endforelse
+                </div>
 
-      <div class="col-lg-3 col-md-6">
-        <div class="stats-item d-flex justify-content-start align-items-center w-100 h-100">
-          <img src="assets-user/img/testimonials/testimonials-1.jpg" alt="foto" class="me-2 rounded-circle" style="width:50px; height:50px; object-fit:cover;">
-          <div>
-            <p style="margin: 0; font-weight: bold;">Ketua</p>
-            <p style="margin: 0;">Ahmad Fauzi</p>
-          </div>
+
+            </div>
         </div>
-      </div><!-- End Item -->
+    </section><!-- /Stats Section -->
 
-      <div class="col-lg-3 col-md-6">
-        <div class="stats-item d-flex justify-content-start align-items-center w-100 h-100">
-          <img src="assets-user/img/testimonials/testimonials-1.jpg" alt="foto" class="me-2 rounded-circle" style="width:50px; height:50px; object-fit:cover;">
-          <div>
-            <p style="margin: 0; font-weight: bold;">Wakil Ketua I</p>
-            <p style="margin: 0;">Bambang Saputra</p>
-          </div>
+    <!-- Bagan Struktur Section -->
+    <section id="bagan" class="section bg-light">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title">
+                <p>Bagan Struktur RW 12</p>
+                <h2>Struktur visual kepengurusan RW 12 Jatiwaringin</h2>
+            </div>
+            <div class="row justify-content-center">
+                @forelse ($bagan as $item)
+                    <div class="col-lg-8 col-md-10 text-center mb-4">
+                        <img src="{{ asset('storage/' . $item->fotobagan) }}" alt="Bagan Struktur RW"
+                            class="img-fluid rounded"
+                            style="object-fit: cover; object-position: center; width: 100%; height: auto;">
+
+                        @if ($item->deskripsi)
+                            <p class="text-muted mt-2">{{ $item->deskripsi }}</p>
+                        @endif
+                    </div>
+                @empty
+                    <p class="text-center">Belum ada bagan struktur RW yang diunggah.</p>
+                @endforelse
+            </div>
         </div>
-      </div><!-- End Item -->
-
-      <div class="col-lg-3 col-md-6">
-        <div class="stats-item d-flex justify-content-start align-items-center w-100 h-100">
-          <img src="assets-user/img/testimonials/testimonials-1.jpg" alt="foto" class="me-2 rounded-circle" style="width:50px; height:50px; object-fit:cover;">
-          <div>
-            <p style="margin: 0; font-weight: bold;">Wakil Ketua II</p>
-            <p style="margin: 0;">Siti Marlina</p>
-          </div>
-        </div>
-      </div><!-- End Item -->
-
-      <div class="col-lg-3 col-md-6">
-        <div class="stats-item d-flex justify-content-start align-items-center w-100 h-100">
-          <img src="assets-user/img/testimonials/testimonials-1.jpg" alt="foto" class="me-2 rounded-circle" style="width:50px; height:50px; object-fit:cover;">
-          <div>
-            <p style="margin: 0; font-weight: bold;">Wakil Ketua III</p>
-            <p style="margin: 0;">Rizky Pratama</p>
-          </div>
-        </div>
-      </div><!-- End Item -->
-
-      <div class="col-lg-3 col-md-6">
-        <div class="stats-item d-flex justify-content-start align-items-center w-100 h-100">
-          <img src="assets-user/img/testimonials/testimonials-1.jpg" alt="foto" class="me-2 rounded-circle" style="width:50px; height:50px; object-fit:cover;">
-          <div>
-            <p style="margin: 0; font-weight: bold;">Sekretaris</p>
-            <p style="margin: 0;">Dewi Anggraini</p>
-          </div>
-        </div>
-      </div><!-- End Item -->
-
-      <div class="col-lg-3 col-md-6">
-        <div class="stats-item d-flex justify-content-start align-items-center w-100 h-100">
-          <img src="assets-user/img/testimonials/testimonials-1.jpg" alt="foto" class="me-2 rounded-circle" style="width:50px; height:50px; object-fit:cover;">
-          <div>
-            <p style="margin: 0; font-weight: bold;">Bendahara</p>
-            <p style="margin: 0;">Yusuf Kurniawan</p>
-          </div>
-        </div>
-      </div><!-- End Item -->
-
-      <div class="col-lg-3 col-md-6">
-        <div class="stats-item d-flex justify-content-start align-items-center w-100 h-100">
-          <img src="assets-user/img/testimonials/testimonials-1.jpg" alt="foto" class="me-2 rounded-circle" style="width:50px; height:50px; object-fit:cover;">
-          <div>
-            <p style="margin: 0; font-weight: bold;">Bidang Keamanan</p>
-            <p style="margin: 0;">Andi Wijaya</p>
-          </div>
-        </div>
-      </div><!-- End Item -->
-
-      <div class="col-lg-3 col-md-6">
-        <div class="stats-item d-flex justify-content-start align-items-center w-100 h-100">
-          <img src="assets-user/img/testimonials/testimonials-1.jpg" alt="foto" class="me-2 rounded-circle" style="width:50px; height:50px; object-fit:cover;">
-          <div>
-            <p style="margin: 0; font-weight: bold;">Bidang Kesra & Sosial</p>
-            <p style="margin: 0;">Nurhayati</p>
-          </div>
-        </div>
-      </div><!-- End Item -->
-
-      <div class="col-lg-3 col-md-6">
-        <div class="stats-item d-flex justify-content-start align-items-center w-100 h-100">
-          <img src="assets-user/img/testimonials/testimonials-1.jpg" alt="foto" class="me-2 rounded-circle" style="width:50px; height:50px; object-fit:cover;">
-          <div>
-            <p style="margin: 0; font-weight: bold;">Penasehat</p>
-            <p style="margin: 0;">Gunawan Hadi</p>
-          </div>
-        </div>
-      </div><!-- End Item -->
-
-      <div class="col-lg-3 col-md-6">
-        <div class="stats-item d-flex justify-content-start align-items-center w-100 h-100">
-          <img src="assets-user/img/testimonials/testimonials-1.jpg" alt="foto" class="me-2 rounded-circle" style="width:50px; height:50px; object-fit:cover;">
-          <div>
-            <p style="margin: 0; font-weight: bold;">Penasehat</p>
-            <p style="margin: 0;">Maria Yuliana</p>
-          </div>
-        </div>
-      </div><!-- End Item -->
-
-      <div class="col-lg-3 col-md-6">
-        <div class="stats-item d-flex justify-content-start align-items-center w-100 h-100">
-          <img src="assets-user/img/testimonials/testimonials-1.jpg" alt="foto" class="me-2 rounded-circle" style="width:50px; height:50px; object-fit:cover;">
-          <div>
-            <p style="margin: 0; font-weight: bold;">Penasehat</p>
-            <p style="margin: 0;">Hari Setiawan</p>
-          </div>
-        </div>
-      </div><!-- End Item -->
-
-      <div class="col-lg-3 col-md-6">
-        <div class="stats-item d-flex justify-content-start align-items-center w-100 h-100">
-          <img src="assets-user/img/testimonials/testimonials-1.jpg" alt="foto" class="me-2 rounded-circle" style="width:50px; height:50px; object-fit:cover;">
-          <div>
-            <p style="margin: 0; font-weight: bold;">Tokoh Masyarakat</p>
-            <p style="margin: 0;">Teguh Santoso</p>
-          </div>
-        </div>
-      </div><!-- End Item -->
-
-    </div>
-  </div>
-</section><!-- /Stats Section -->
-
-
-
+    </section>
+    <!-- /Bagan Struktur Section -->
 @endsection
 
 @extends('user-temp.footer')

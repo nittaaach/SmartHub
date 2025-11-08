@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
+    @yield('sidebar_katar')
     <!-- [ Pre-loader ] start -->
     <div class="loader-bg">
         <div class="loader-track">
@@ -10,13 +8,11 @@
     </div>
     <!-- [ Pre-loader ] End -->
     <!-- [ Sidebar Menu ] start -->
-
     @php
         $role = auth()->user()->role;
         $routePrefix = "{$role}.";
         $dashboardRoute = $routePrefix . 'dashboard';
     @endphp
-
     <nav class="pc-sidebar">
         <div class="navbar-wrapper">
             <div class="m-header">
@@ -39,25 +35,25 @@
                     </li>
                     {{-- END OF FIX --}}
                     <li class="pc-item pc-caption">
-                        <label>Produksi</label>
+                        <label>Sosial Kemasyarakatan</label>
                         <i class="ti ti-news"></i>
                     </li>
 
                     {{-- Consistent use of $routePrefix --}}
-                    <li class="pc-item {{ request()->routeIs($routePrefix . 'jadwalpkk') ? 'pc-active' : '' }}">
-                        <a href="{{ route($routePrefix . 'jadwalpkk') }}" class="pc-link">
+                    <li class="pc-item {{ request()->routeIs($routePrefix . 'jadwalkatar') ? 'pc-active' : '' }}">
+                        <a href="{{ route($routePrefix . 'jadwalkatar') }}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-clipboard-list"></i></span>
                             <span class="pc-mtext">Penjadwalan Kegiatan</span>
                         </a>
                     </li>
-                    <li class="pc-item {{ request()->routeIs($routePrefix . 'dokumentasipkk') ? 'pc-active' : '' }}">
-                        <a class="pc-link" href="{{ route($routePrefix . 'dokumentasipkk') }}">
+                    <li class="pc-item {{ request()->routeIs($routePrefix . 'dokumentasikatar') ? 'pc-active' : '' }}">
+                        <a class="pc-link" href="{{ route($routePrefix . 'dokumentasikatar') }}">
                             <span class="pc-micon"><i class="ti ti-camera"></i></span>
                             <span class="pc-mtext">Dokumentasi Kegiatan</span></a>
                         </a>
                     </li>
-                    <li class="pc-item {{ request()->routeIs($routePrefix . 'activitypkk') ? 'pc-active' : '' }}">
-                        <a href="{{ route($routePrefix . 'activitypkk') }}" class="pc-link">
+                    <li class="pc-item {{ request()->routeIs($routePrefix . 'activitykatar') ? 'pc-active' : '' }}">
+                        <a href="{{ route($routePrefix . 'activitykatar') }}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-cloud-upload"></i></span>
                             <span class="pc-mtext">Publikasi Kegiatan</span>
                         </a>
@@ -71,26 +67,14 @@
                     <li class="pc-item {{ request()->routeIs($routePrefix . 'struktural') ? 'pc-active' : '' }}">
                         <a class="pc-link" href="{{ route($routePrefix . 'struktural') }}">
                             <span class="pc-micon"><i class="ti ti-sitemap"></i></span>
-                            <span class="pc-mtext">Struktural PKK</span></a>
+                            <span class="pc-mtext">Struktural Katar</span></a>
                         </a>
                     </li>
 
-                    {{-- <li class="pc-item {{ request()->routeIs($routePrefix . 'rekapitulasipkk') ? 'pc-active' : '' }}">
-                        <a class="pc-link" href="{{ route($routePrefix . 'rekapitulasipkk') }}">
+                    <li class="pc-item {{ request()->routeIs($routePrefix . 'inventaris') ? 'pc-active' : '' }}">
+                        <a class="pc-link" href="{{ route($routePrefix . 'inventaris') }}">
                             <span class="pc-micon"><i class="ti ti-report-money"></i></span>
-                            <span class="pc-mtext">Rekapitulasi Keuangan</span></a>
-                        </a>
-                    </li> --}}
-
-                    <li class="pc-item pc-caption">
-                        <label>Pemasaran</label>
-                        <i class="ti ti-news"></i>
-                    </li>
-
-                    <li class="pc-item {{ request()->routeIs($routePrefix . 'katalog') ? 'pc-active' : '' }}">
-                        <a href="{{ route($routePrefix . 'katalog') }}" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-shopping-cart"></i></span>
-                            <span class="pc-mtext">Katalog Produk</span>
+                            <span class="pc-mtext">Inventaris Barang</span></a>
                         </a>
                     </li>
                 </ul>
@@ -145,7 +129,8 @@
                         <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
                             role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
                             @if ($user && $user->gambar)
-                                <img src="{{ asset('storage/' . $user->gambar) }}" alt="user-image" class="user-avtar">
+                                <img src="{{ asset('storage/' . $user->gambar) }}" alt="user-image"
+                                    class="user-avtar">
                             @else
                                 <img src="{{ asset('assets_admin/images/user/avatar-2.jpg') }}" alt="user-image"
                                     class="user-avtar">
@@ -221,156 +206,4 @@
         </div>
     </header>
     <!-- [ Header ] end -->
-
-    {{-- main content --}}
-    <section class="pc-container">
-        <div class="pc-content">
-            @yield('content_admin')
-
-        </div>
-    </section>
-    {{-- end content --}}
-
-    <footer class="pc-footer">@yield('footer_admin')
-        <div class="footer-wrapper container-fluid">
-            <div class="row">
-                <div class="col-sm my-1">
-                    <p class="m-0">SmartHub &#9829; crafted by Team <a
-                            href="https://themeforest.net/user/codedthemes" target="_blank">PM - BEM</a>
-                        Distributed by <a href="https://www.nusamandiri.ac.id/nuri/index.js">Universitas Nusa
-                            Mandiri</a>.</p>
-                </div>
-                <div class="col-auto my-1">
-                    <ul class="list-inline footer-link mb-0">
-                        <li class="list-inline-item"><a href="../index.html">Home</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- [Page Specific JS] start -->
-    <script src="../assets_admin/js/plugins/apexcharts.min.js"></script>
-    <script src="../assets_admin/js/pages/dashboard-default.js"></script>
-    <!-- [Page Specific JS] end -->
-    <!-- Required Js -->
-    <script src="../assets_admin/js/plugins/popper.min.js"></script>
-    <script src="../assets_admin/js/plugins/simplebar.min.js"></script>
-    <script src="../assets_admin/js/plugins/bootstrap.min.js"></script>
-    <script src="../assets_admin/js/fonts/custom-font.js"></script>
-    <script src="../assets_admin/js/pcoded.js"></script>
-    <script src="../assets_admin/js/plugins/feather.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="../assets_admin/js/plugins/jquery.dataTables.min.js"></script>
-    <script src="../assets_admin/js/plugins/dataTables.bootstrap5.min.js"></script>
-    <script src="../assets_admin/js/plugins/buttons.colVis.min.js"></script>
-    <script src="../assets_admin/js/plugins/buttons.print.min.js"></script>
-    <script src="../assets_admin/js/plugins/pdfmake.min.js"></script>
-    <script src="../assets_admin/js/plugins/jszip.min.js"></script>
-    <script src="../assets_admin/js/plugins/dataTables.buttons.min.js"></script>
-    <script src="../assets_admin/js/plugins/vfs_fonts.js"></script>
-    <script src="../assets_admin/js/plugins/buttons.html5.min.js"></script>
-    <script src="../assets_admin/js/plugins/buttons.bootstrap5.min.js"></script>
-
-    <script>
-        layout_change('light');
-    </script>
-    <script>
-        change_box_container('false');
-    </script>
-    <script>
-        layout_rtl_change('false');
-    </script>
-    <script>
-        preset_change("preset-1");
-    </script>
-    <script>
-        font_change("Public-Sans");
-    </script>
-
-    <script>
-        $('#basic-btn-rw').DataTable({
-            dom: 'Bfrtip',
-            buttons: ['copy', 'csv', 'excel', 'print']
-        });
-        $('#basic-btn-ktprw').DataTable({
-            dom: 'Bfrtip',
-            buttons: ['copy', 'csv', 'excel', 'print']
-        });
-        $('#basic-btn-nonktp').DataTable({
-            dom: 'Bfrtip',
-            buttons: ['copy', 'csv', 'excel', 'print']
-        });
-        $('a[data-bs-toggle="pill"]').on('shown.bs.tab', function(e) {
-            // Find the newly active tab's table and invalidate/redraw it
-            $.fn.dataTable.tables({
-                visible: true,
-                api: true
-            }).columns.adjust();
-        });
-
-        // [ Zero Configuration ] start
-        $('#simpletable').DataTable();
-
-        // [ Default Ordering ] start
-        $('#order-table').DataTable({
-            order: [
-                [3, 'desc']
-            ]
-        });
-
-        // [ Multi-Column Ordering ]
-        $('#multi-colum-dt').DataTable({
-            columnDefs: [{
-                    targets: [0],
-                    orderData: [0, 1]
-                },
-                {
-                    targets: [1],
-                    orderData: [1, 0]
-                },
-                {
-                    targets: [4],
-                    orderData: [4, 0]
-                }
-            ]
-        });
-
-        // [ Complex Headers ]
-        $('#complex-dt').DataTable();
-
-        // [ DOM Positioning ]
-        $('#DOM-dt').DataTable({
-            dom: '<"top"i>rt<"bottom"flp><"clear">'
-        });
-
-        // [ Alternative Pagination ]
-        $('#alt-pg-dt').DataTable({
-            pagingType: 'full_numbers'
-        });
-
-        // [ Scroll - Vertical ]
-        $('#scr-vrt-dt').DataTable({
-            scrollY: '200px',
-            scrollCollapse: true,
-            paging: false
-        });
-
-        // [ Scroll - Vertical, Dynamic Height ]
-        $('#scr-vtr-dynamic').DataTable({
-            scrollY: '50vh',
-            scrollCollapse: true,
-            paging: false
-        });
-
-        // [ Language - Comma Decimal Place ]
-        $('#lang-dt').DataTable({
-            language: {
-                decimal: ',',
-                thousands: '.'
-            }
-        });
-    </script>
-
 </body>
-</html>

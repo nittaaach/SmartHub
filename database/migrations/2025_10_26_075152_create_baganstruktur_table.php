@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fotostruktural', function (Blueprint $table) {
+        Schema::create('baganstruktur', function (Blueprint $table) {
             $table->id();
-            $table->string('fotostruktur'); // path file
+            $table->string('fotobagan'); // path file
+            $table->string('tingkatan'); // rw, rt, dusun, dll
             $table->string('deskripsi')->nullable();
             $table->timestamps();
         });
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fotostruktural');
+        Schema::dropIfExists('baganstruktur');
     }
 };

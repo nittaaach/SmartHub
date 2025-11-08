@@ -1,4 +1,4 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_rw')
 @section('content_admin')
     <!-- Alternative Pagination table start -->
 
@@ -52,7 +52,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Rukun Tetangga</th>
-                                            <th>laki-laki</th>
+                                            <th>Laki-Laki</th>
                                             <th>Perempuan</th>
                                             <th>Jumlah</th>
                                             <th>Jumlah Kartu Keluarga</th>
@@ -105,7 +105,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Rukun Tetangga</th>
-                                            <th>laki-laki</th>
+                                            <th>Laki-Laki</th>
                                             <th>Perempuan</th>
                                             <th>Jumlah</th>
                                             <th>Jumlah Kartu Keluarga</th>
@@ -300,4 +300,3 @@
         </div>
     @endforeach
 @endsection
-@extends('admin-temp.footer_rw')

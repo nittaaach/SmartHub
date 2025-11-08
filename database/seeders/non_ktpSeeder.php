@@ -15,7 +15,7 @@ class non_ktpSeeder extends Seeder
     {
         DB::table('nonktp_rw12')->insert([
             [
-                'rt' => 1,
+                'rt' => 'RT 001',
                 'jumlah' => 94,
                 'laki_laki' => 50,
                 'perempuan' => 44,
@@ -24,7 +24,7 @@ class non_ktpSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'rt' => 2,
+                'rt' => 'RT 002',
                 'jumlah' => 296,
                 'laki_laki' => 161,
                 'perempuan' => 135,
@@ -33,7 +33,7 @@ class non_ktpSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'rt' => 3,
+                'rt' => 'RT 003',
                 'jumlah' => 103,
                 'laki_laki' => 52,
                 'perempuan' => 51,
@@ -42,7 +42,7 @@ class non_ktpSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'rt' => 4,
+                'rt' => 'RT 004',
                 'jumlah' => 108,
                 'laki_laki' => 53,
                 'perempuan' => 55,
@@ -51,7 +51,7 @@ class non_ktpSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'rt' => 5,
+                'rt' => 'RT 005',
                 'jumlah' => 236,
                 'laki_laki' => 94,
                 'perempuan' => 142,
@@ -60,7 +60,7 @@ class non_ktpSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'rt' => 6,
+                'rt' => 'RT 006',
                 'jumlah' => 144,
                 'laki_laki' => 101,
                 'perempuan' => 43,
@@ -69,7 +69,7 @@ class non_ktpSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'rt' => 7,
+                'rt' => 'RT 007',
                 'jumlah' => 12,
                 'laki_laki' => 6,
                 'perempuan' => 6,
@@ -78,7 +78,7 @@ class non_ktpSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'rt' => 8,
+                'rt' => 'RT 008',
                 'jumlah' => 10,
                 'laki_laki' => 5,
                 'perempuan' => 5,

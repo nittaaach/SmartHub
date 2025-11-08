@@ -1,4 +1,4 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_rw')
 @section('content_admin')
     <!-- Alternative Pagination table start -->
     @php use Illuminate\Support\Str; @endphp
@@ -22,17 +22,6 @@
             </div>
         </div>
     </div>
-    <!-- [ breadcrumb ] end -->
-    {{-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="ktp-rw12-tab" data-bs-toggle="pill" href="#ktp-rw12" role="tab"
-                aria-controls="ktp-rw12" aria-selected="true">KTP RW 12</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="non-ktp-tab" data-bs-toggle="pill" href="#non-ktp" role="tab"
-                aria-controls="non-ktp" aria-selected="false">Non KTP RW 12</a>
-        </li>
-    </ul> --}}
     <div class="row">
         <div class="col-sm-12">
             @if (session('success'))
@@ -427,8 +416,8 @@
 
     <!-- Modal Delete fasilitas -->
     @foreach ($fasilitas as $item)
-        <div id="DeletepenggunaModal-{{ $item->id }}" class="modal fade" tabindex="-1" role="dialog"
-            aria-labelledby="DeletepenggunaModalTitle-{{ $item->id }}" aria-hidden="true">
+        <div id="DeletefasilitasModal-{{ $item->id }}" class="modal fade" tabindex="-1" role="dialog"
+            aria-labelledby="DeletefasilitasModalTitle-{{ $item->id }}" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-danger text-white">
@@ -473,4 +462,3 @@
         </div>
     @endforeach
 @endsection
-@extends('admin-temp.footer_rw')

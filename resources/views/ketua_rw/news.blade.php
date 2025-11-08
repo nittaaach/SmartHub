@@ -1,4 +1,5 @@
-@extends('admin-temp.head')
+{{-- @extends('admin-temp.head') --}}
+@extends('admin-temp.layout_rw')
 @section('content_admin')
     <!-- Alternative Pagination table start -->
     @php use Illuminate\Support\Str; @endphp
@@ -76,7 +77,9 @@
                                                             'http://',
                                                             'https://',
                                                         ]);
-                                                        $url = $isExternal ? $item->slug : url('/news_detail/' . $item->slug);
+                                                        $url = $isExternal
+                                                            ? $item->slug
+                                                            : url('/news_detail/' . $item->slug);
                                                     @endphp <a href="{{ $url }}" target="_blank">
                                                         {{ Str::limit($url, 50) }}
                                                     </a>
@@ -158,7 +161,7 @@
 
                             <div class="form-group mb-4">
                                 <label class="form-label">Kategori Berita</label>
-                                <select class="form-control" name="id_knews[]" id="choices-multiple-remove-button" multiple
+                                <select class="form-control choices-multiple-remove-button" name="id_knews[]" multiple
                                     required>
                                     <option value="">-- Pilih Kategori Berita --</option>
                                     @foreach ($k_news as $kategori)
@@ -201,8 +204,8 @@
                             <!-- Status -->
                             <div class="form-group mb-3">
                                 <label>Status</label>
-                                <select name="status" class="form-control"
-                                    onchange="togglePublishedAtCreate(this.value)" required>
+                                <select name="status" class="form-control" onchange="togglePublishedAtCreate(this.value)"
+                                    required>
                                     <option value="draft">Draft</option>
                                     <option value="published">Published</option>
                                     <option value="archived">Archived</option>
@@ -417,4 +420,3 @@
         });
     </script>
 @endsection
-@extends('admin-temp.footer_rw')

@@ -68,10 +68,10 @@
                                 <label for="role" class="form-label">What's Your Role</label>
                                 <select name="role" id="role" class="form-control" required>
                                     <option value="" selected disabled>Pilih Role</option>
-                                    <option value="Ketua_RW">Ketua RW</option>
-                                    <option value="Ketua_PKK">PKK</option>
-                                    <option value="Ketua_Katar">Karang Taruna</option>
-                                    <option value="Ketua_RT">Ketua RT</option>
+                                    <option value="Ketua_RW">Rukun Warga (RW)</option>
+                                    <option value="Ketua_PKK">PKK Anyelir</option>
+                                    <option value="Ketua_Katar">Karang Taruna (Katar)</option>
+                                    <option value="Ketua_RT">Rukun Tetangga (RT)</option>
                                 </select>
                                 @error('role')
                                     <span class="text-danger">{{ $message }}</span>

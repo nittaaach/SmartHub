@@ -1,4 +1,4 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_rw')
 @section('content_admin')
     <!-- Alternative Pagination table start -->
     <!-- [ breadcrumb ] start -->
@@ -58,70 +58,39 @@
                                     <tbody>
                                         @foreach ($syarat_layanan as $item)
                                             @php
-                                                $templates = $item->template_surat; // relasi hasMany
-                                                $rowspan = max(1, $templates->count()); // supaya kalau ada lebih dari 1 template, rowspan-nya menyesuaikan
+                                                // Ambil HANYA template PERTAMA yang terhubung, atau null jika tidak ada
+                                                $template = $item->template_surat->first();
                                             @endphp
 
-                                            @if ($templates->isEmpty())
-                                                {{-- Jika tidak ada template surat --}}
-                                                <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->nama_dokumen }}</td>
-                                                    <td>{{ $item->lembaran }}</td>
-                                                    <td>{{ $item->jenis_berkas == 1 ? 'Asli' : 'Foto Copy' }}</td>
-                                                    <td colspan="2" class="text-center text-muted">Belum ada template
-                                                        surat</td>
-                                                    <td>{{ $item->status == 1 ? 'Wajib' : 'Optional' }}</td>
-                                                    <td colspan="2" class="text-center text-muted">Belum ada template
-                                                        surat</td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-primary btn-sm"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#UpdateberkasModal-{{ $item->id }}">Update</button>
-                                                        <button type="button" class="btn btn-danger btn-sm"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#DeleteberkasModal-{{ $item->id }}">Delete</button>
-                                                    </td>
-                                                </tr>
-                                            @else
-                                                {{-- Jika ada template surat --}}
-                                                @foreach ($templates as $index => $template)
-                                                    <tr>
-                                                        @if ($index == 0)
-                                                            <td rowspan="{{ $rowspan }}">{{ $loop->iteration }}</td>
-                                                            <td rowspan="{{ $rowspan }}">{{ $item->nama_dokumen }}
-                                                            </td>
-                                                            <td rowspan="{{ $rowspan }}">{{ $item->lembaran }}</td>
-                                                            <td rowspan="{{ $rowspan }}">
-                                                                {{ $item->jenis_berkas == 1 ? 'Asli' : 'Foto Copy' }}</td>
-                                                            <td rowspan="{{ $rowspan }}">
-                                                                {{ $item->status == 1 ? 'Wajib' : 'Optional' }}</td>
-                                                        @endif
-
-                                                        <td>{{ $template->nama_template }}</td>
-                                                        <td>
-                                                            @if ($template->file)
-                                                                <a href="{{ asset('storage/' . $template->file) }}"
-                                                                    target="_blank">Lihat File</a>
-                                                            @else
-                                                                <span class="text-muted">Tidak ada file</span>
-                                                            @endif
-                                                        </td>
-                                                        <td>{{ $template->keterangan }}</td>
-
-                                                        @if ($index == 0)
-                                                            <td rowspan="{{ $rowspan }}">
-                                                                <button type="button" class="btn btn-primary btn-sm me-2"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#UpdateberkasModal-{{ $item->id }}">Update</button>
-                                                                <button type="button" class="btn btn-danger btn-sm"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#DeleteberkasModal-{{ $item->id }}">Delete</button>
-                                                            </td>
-                                                        @endif
-                                                    </tr>
-                                                @endforeach
-                                            @endif
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->nama_dokumen }}</td>
+                                                <td>{{ $item->lembaran }}</td>
+                                                <td>{{ $item->jenis_berkas == 1 ? 'Asli' : 'Foto Copy' }}</td>
+                                                <td>{{ $item->status == 1 ? 'Wajib' : 'Optional' }}</td>
+                                                <td>
+                                                    {{ $template?->nama_template ?? '-' }}
+                                                </td>
+                                                <td>
+                                                    @if ($template?->file)
+                                                        <a href="{{ asset('storage/' . $template->file) }}"
+                                                            target="_blank">Lihat File</a>
+                                                    @else
+                                                        <span class="text-muted">Tidak ada file</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    {{ $template?->keterangan ?? '-' }}
+                                                </td>
+                                                <td>
+                                                     <button type="button" class="btn btn-primary me-3"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#UpdateberkasModal-{{ $item->id }}">Update</button>
+                                                     <button type="button" class="btn btn-danger me-3"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#DeleteberkasModal-{{ $item->id }}">Delete</button>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                     <tfoot>
@@ -200,7 +169,7 @@
 
                         <div class="mb-3">
                             <label class="form-label">Nama Template Surat</label>
-                            <input type="text" name="nama_template" class="form-control" required>
+                            <input type="text" name="nama_template" class="form-control">
                         </div>
 
                         <div class="mb-3">
@@ -325,7 +294,6 @@
         </div>
     @endforeach
 
-
     <!-- Modal Delete berkas -->
     @foreach ($syarat_layanan as $item)
         <div id="DeleteberkasModal-{{ $item->id }}" class="modal fade" tabindex="-1" role="dialog"
@@ -364,4 +332,3 @@
         </div>
     @endforeach
 @endsection
-@extends('admin-temp.footer_rw')

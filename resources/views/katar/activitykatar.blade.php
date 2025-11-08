@@ -1,4 +1,4 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_katar')
 @section('content_admin')
     <!-- Alternative Pagination table start -->
     @php use Illuminate\Support\Str; @endphp
@@ -141,7 +141,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="card">
-                        <form action="{{ route('activitykatar.store_katar') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('activitykatar.store_katar') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
 
                             <!-- 📸 Pilih & Upload Foto Dokumentasi -->
@@ -471,7 +472,8 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-danger text-white">
-                        <h5 class="modal-title" id="DeleteactivitykatarModalTitle-{{ $item->id }}">Hapus Publikasi</h5>
+                        <h5 class="modal-title" id="DeleteactivitykatarModalTitle-{{ $item->id }}">Hapus Publikasi
+                        </h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -510,9 +512,6 @@
     @endforeach
 
     @foreach ($activities as $item)
-        {{-- ====================================================== --}}
-        {{-- 7. MODAL DETAIL (READ ONLY) --}}
-        {{-- ====================================================== --}}
         <div class="modal fade" id="DetailactivitykatarModal-{{ $item->id }}" tabindex="-1" role="dialog"
             aria-labelledby="DetailactivitykatarModalLabel-{{ $item->id }}" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -848,4 +847,3 @@
         });
     </script>
 @endsection
-@extends('admin-temp.footer_katar')

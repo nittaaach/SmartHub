@@ -1,4 +1,4 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_pkk')
 @section('content_admin')
     <!-- Alternative Pagination table start -->
     @php use Illuminate\Support\Str; @endphp
@@ -510,9 +510,6 @@
     @endforeach
 
     @foreach ($activities as $item)
-        {{-- ====================================================== --}}
-        {{-- 7. MODAL DETAIL (READ ONLY) --}}
-        {{-- ====================================================== --}}
         <div class="modal fade" id="DetailactivitypkkModal-{{ $item->id }}" tabindex="-1" role="dialog"
             aria-labelledby="DetailactivitypkkModalLabel-{{ $item->id }}" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -848,4 +845,3 @@
         });
     </script>
 @endsection
-@extends('admin-temp.footer_pkk')

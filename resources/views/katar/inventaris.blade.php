@@ -1,4 +1,4 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_katar')
 @section('content_admin')
     <!-- [ breadcrumb ] start -->
     <div class="page-header">
@@ -626,74 +626,72 @@
             </div>
         </div>
     @endforeach
-@endsection
 
-<script>
-    function setupLainnyaToggle(selectId, inputId) {
-        const selectEl = document.getElementById(selectId);
-        const inputEl = document.getElementById(inputId);
+    <script>
+        function setupLainnyaToggle(selectId, inputId) {
+            const selectEl = document.getElementById(selectId);
+            const inputEl = document.getElementById(inputId);
 
-        if (!selectEl || !inputEl) {
-            return;
-        }
-
-        function toggleInput() {
-            if (selectEl.value === 'Lainnya') {
-                inputEl.classList.remove('d-none');
-                inputEl.required = true;
-            } else {
-                inputEl.classList.add('d-none');
-                inputEl.required = false;
+            if (!selectEl || !inputEl) {
+                return;
             }
-        }
 
-        selectEl.addEventListener('change', () => {
-            if (selectEl.value !== 'Lainnya') {
-                inputEl.value = '';
-            }
-            toggleInput();
-        });
-        toggleInput();
-    }
-
-    function setupFormSubmitGuard(form) {
-        if (form) {
-            form.addEventListener('submit', function() {
-                const submitButton = form.querySelector('button[type="submit"]');
-                if (submitButton) {
-                    submitButton.disabled = true;
-                    submitButton.innerHTML = 'Menyimpan...';
+            function toggleInput() {
+                if (selectEl.value === 'Lainnya') {
+                    inputEl.classList.remove('d-none');
+                    inputEl.required = true;
+                } else {
+                    inputEl.classList.add('d-none');
+                    inputEl.required = false;
                 }
+            }
+
+            selectEl.addEventListener('change', () => {
+                if (selectEl.value !== 'Lainnya') {
+                    inputEl.value = '';
+                }
+                toggleInput();
             });
+            toggleInput();
         }
-    }
 
-    document.addEventListener('DOMContentLoaded', function() {
+        function setupFormSubmitGuard(form) {
+            if (form) {
+                form.addEventListener('submit', function() {
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    if (submitButton) {
+                        submitButton.disabled = true;
+                        submitButton.innerHTML = 'Menyimpan...';
+                    }
+                });
+            }
+        }
 
-        setupLainnyaToggle('select_kategori', 'input_kategori_lainnya');
-        setupLainnyaToggle('select_satuan', 'input_satuan_lainnya');
-        setupLainnyaToggle('select_kondisi', 'input_kondisi_lainnya');
+        document.addEventListener('DOMContentLoaded', function() {
 
-        const formInventaris = document.getElementById('AddinventarisModal')?.querySelector('form');
-        setupFormSubmitGuard(formInventaris);
+            setupLainnyaToggle('select_kategori', 'input_kategori_lainnya');
+            setupLainnyaToggle('select_satuan', 'input_satuan_lainnya');
+            setupLainnyaToggle('select_kondisi', 'input_kondisi_lainnya');
 
-        const formRiwayat = document.getElementById('AddRiwayatInventarisModal')?.querySelector('form');
-        setupFormSubmitGuard(formRiwayat);
+            const formInventaris = document.getElementById('AddinventarisModal')?.querySelector('form');
+            setupFormSubmitGuard(formInventaris);
 
-        @if (isset($inventaris))
-            @foreach ($inventaris as $item)
-                setupLainnyaToggle('select_kategori_{{ $item->id }}',
-                    'input_kategori_lainnya_{{ $item->id }}');
-                setupLainnyaToggle('select_satuan_{{ $item->id }}',
-                    'input_satuan_lainnya_{{ $item->id }}');
-                setupLainnyaToggle('select_kondisi_{{ $item->id }}',
-                    'input_kondisi_lainnya_{{ $item->id }}');
-                const formEdit = document.getElementById('UpdateInventarisModal-{{ $item->id }}')
-                    ?.querySelector('form');
-                setupFormSubmitGuard(formEdit);
-            @endforeach
-        @endif
-    });
-</script>
+            const formRiwayat = document.getElementById('AddRiwayatInventarisModal')?.querySelector('form');
+            setupFormSubmitGuard(formRiwayat);
 
-@extends('admin-temp.footer_katar')
+            @if (isset($inventaris))
+                @foreach ($inventaris as $item)
+                    setupLainnyaToggle('select_kategori_{{ $item->id }}',
+                        'input_kategori_lainnya_{{ $item->id }}');
+                    setupLainnyaToggle('select_satuan_{{ $item->id }}',
+                        'input_satuan_lainnya_{{ $item->id }}');
+                    setupLainnyaToggle('select_kondisi_{{ $item->id }}',
+                        'input_kondisi_lainnya_{{ $item->id }}');
+                    const formEdit = document.getElementById('UpdateInventarisModal-{{ $item->id }}')
+                        ?.querySelector('form');
+                    setupFormSubmitGuard(formEdit);
+                @endforeach
+            @endif
+        });
+    </script>
+@endsection

@@ -1,7 +1,5 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_katar')
 @section('content_admin')
-    <!-- Alternative Pagination table start -->
-
     <!-- [ breadcrumb ] start -->
     <div class="page-header">
         <div class="page-block">
@@ -372,8 +370,6 @@
         </div>
     @endforeach
 
-    {{-- modal detail --}}
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('AddpenggunaModal');
@@ -423,4 +419,3 @@
         });
     </script>
 @endsection
-@extends('admin-temp.footer_katar')

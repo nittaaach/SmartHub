@@ -1,4 +1,4 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_rw')
 @section('content_admin')
     <!-- [ Main Content ] start -->
     <div class="pc-content">
@@ -23,54 +23,35 @@
         <!-- [ Main Content ] start -->
         <div class="row">
             <!-- [ sample-page ] start -->
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">Total Page Views</h6>
-                        <h4 class="mb-3">4,42,236 <span class="badge bg-light-primary border border-primary"><i
-                                    class="ti ti-trending-up"></i> 59.3%</span></h4>
-                        <p class="mb-0 text-muted text-sm">You made an extra <span class="text-primary">35,000</span>
-                            this year
-                        </p>
+            <div class="col-sm-4">
+                <div class="card bg-success text-white widget-visitor-card">
+                    <div class="card-body text-center">
+                        <h2 class="text-white">{{ number_format($totalSeluruhPenduduk ?? 0) }}</h2>
+                        <p class="text-white mb-0">Population Total</p>
+                        <i class="ti ti-users d-block f-46 text-white"></i>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">Total Users</h6>
-                        <h4 class="mb-3">78,250 <span class="badge bg-light-success border border-success"><i
-                                    class="ti ti-trending-up"></i> 70.5%</span></h4>
-                        <p class="mb-0 text-muted text-sm">You made an extra <span class="text-success">8,900</span>
-                            this year</p>
+            <div class="col-sm-4">
+                <div class="card bg-primary text-white widget-visitor-card">
+                    <div class="card-body text-center">
+                        <h2 class="text-white">{{ number_format($totalFacilities ?? 0) }}</h2>
+                        <p class="text-white mb-0">Facilities Total</p>
+                        <i class="ti ti-building-carousel d-block f-46 text-white"></i>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">Total Order</h6>
-                        <h4 class="mb-3">18,800 <span class="badge bg-light-warning border border-warning"><i
-                                    class="ti ti-trending-down"></i> 27.4%</span></h4>
-                        <p class="mb-0 text-muted text-sm">You made an extra <span class="text-warning">1,943</span>
-                            this year</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">Total Sales</h6>
-                        <h4 class="mb-3">$35,078 <span class="badge bg-light-danger border border-danger"><i
-                                    class="ti ti-trending-down"></i> 27.4%</span></h4>
-                        <p class="mb-0 text-muted text-sm">You made an extra <span class="text-danger">$20,395</span>
-                            this year
-                        </p>
+            <div class="col-sm-4">
+                <div class="card bg-danger text-white widget-visitor-card">
+                    <div class="card-body text-center">
+                        <h2 class="text-white">{{ number_format($totalServices ?? 0) }}</h2>
+                        <p class="text-white mb-0">Total Services</p>
+                        <i class="ti ti-file-analytics d-block f-46 text-white"></i>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-12 col-xl-8">
+            {{-- <div class="col-md-12 col-xl-8">
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <h5 class="mb-0">Unique Visitor</h5>
                     <ul class="nav nav-pills justify-content-end mb-0" id="chart-tab-tab" role="tablist">
@@ -100,8 +81,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-12 col-xl-4">
+            </div> --}}
+
+            {{-- <div class="col-md-12 col-xl-4">
                 <h5 class="mb-3">Income Overview</h5>
                 <div class="card">
                     <div class="card-body">
@@ -110,9 +92,9 @@
                         <div id="income-overview-chart"></div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="col-md-12 col-xl-8">
+            {{-- <div class="col-md-12 col-xl-8">
                 <h5 class="mb-3">Recent Orders</h5>
                 <div class="card tbl-card">
                     <div class="card-body">
@@ -242,34 +224,59 @@
                         <div id="analytics-report-chart"></div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="col-md-12 col-xl-8">
-                <h5 class="mb-3">Sales Report</h5>
+            {{-- <div class="col-md-12 col-xl-8 mx-auto">
+                <h5 class="mb-3">Population Report</h5>
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">This Week Statistics</h6>
+                        <h6 class="mb-2 f-w-00 text-muted">This Year Statistics</h6>
                         <h3 class="mb-0">$7,650</h3>
                         <div id="sales-report-chart"></div>
                     </div>
                 </div>
+            </div> --}}
+
+            <div class="row">
+                <div class="col-xl-6 col-md-12">
+                    <h5 class="mb-3">Statistik Penduduk (KTP RW 12)</h5>
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="mb-2 f-w-00 text-muted">Total Penduduk</h6>
+                            <h3 class="mb-0">{{ number_format($jumlahTotalKtp ?? 0) }}</h3>
+                            <div id="chart-ktp-rw12"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-md-12">
+                    <h5 class="mb-3">Statistik Penduduk (Non KTP RW 12)</h5>
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="mb-2 f-w-00 text-muted">Total Penduduk</h6>
+                            <h3 class="mb-0">{{ number_format($jumlahTotalNonKtp ?? 0) }}</h3>
+                            <div id="chart-non-ktp-rw12"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-12 col-xl-4">
+
+            {{-- <div class="col-md-12 col-xl-4">
                 <h5 class="mb-3">Transaction History</h5>
                 <div class="card">
                     <div class="list-group list-group-flush">
                         <a href="#" class="list-group-item list-group-item-action">
                             <div class="d-flex">
-                                <div class="flex-shrink-0">
+                                <div class="shrink-0">
                                     <div class="avtar avtar-s rounded-circle text-success bg-light-success">
                                         <i class="ti ti-gift f-18"></i>
                                     </div>
                                 </div>
-                                <div class="flex-grow-1 ms-3">
+                                <div class="grow ms-3">
                                     <h6 class="mb-1">Order #002434</h6>
                                     <p class="mb-0 text-muted">Today, 2:00 AM</P>
                                 </div>
-                                <div class="flex-shrink-0 text-end">
+                                <div class="shrink-0 text-end">
                                     <h6 class="mb-1">+ $1,430</h6>
                                     <p class="mb-0 text-muted">78%</P>
                                 </div>
@@ -277,16 +284,16 @@
                         </a>
                         <a href="#" class="list-group-item list-group-item-action">
                             <div class="d-flex">
-                                <div class="flex-shrink-0">
+                                <div class="shrink-0">
                                     <div class="avtar avtar-s rounded-circle text-primary bg-light-primary">
                                         <i class="ti ti-message-circle f-18"></i>
                                     </div>
                                 </div>
-                                <div class="flex-grow-1 ms-3">
+                                <div class="grow ms-3">
                                     <h6 class="mb-1">Order #984947</h6>
                                     <p class="mb-0 text-muted">5 August, 1:45 PM</P>
                                 </div>
-                                <div class="flex-shrink-0 text-end">
+                                <div class="shrink-0 text-end">
                                     <h6 class="mb-1">- $302</h6>
                                     <p class="mb-0 text-muted">8%</P>
                                 </div>
@@ -294,16 +301,16 @@
                         </a>
                         <a href="#" class="list-group-item list-group-item-action">
                             <div class="d-flex">
-                                <div class="flex-shrink-0">
+                                <div class="shrink-0">
                                     <div class="avtar avtar-s rounded-circle text-danger bg-light-danger">
                                         <i class="ti ti-settings f-18"></i>
                                     </div>
                                 </div>
-                                <div class="flex-grow-1 ms-3">
+                                <div class="grow ms-3">
                                     <h6 class="mb-1">Order #988784</h6>
                                     <p class="mb-0 text-muted">7 hours ago</P>
                                 </div>
-                                <div class="flex-shrink-0 text-end">
+                                <div class="shrink-0 text-end">
                                     <h6 class="mb-1">- $682</h6>
                                     <p class="mb-0 text-muted">16%</P>
                                 </div>
@@ -311,10 +318,130 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     <!-- [ Main Content ] end -->
 @endsection
-@extends('admin-temp.footer_rw')
-{{-- @extends('admin-temp.main_js') --}}
+
+{{-- ... (di luar @endsection) ... --}}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        let ktpLabels = @json($ktpLabels ?? []);
+        let ktpLakiData = @json($ktpLaki ?? []);
+        let ktpPerempuanData = @json($ktpPerempuan ?? []);
+
+        let nonKtpLabels = @json($nonKtpLabels ?? []);
+        let nonKtpLakiData = @json($nonKtpLaki ?? []);
+        let nonKtpPerempuanData = @json($nonKtpPerempuan ?? []);
+
+        // --- CHART 1: DATA KTP RW 12 (DINAMIS) ---
+        (function() {
+            var options_ktp_rw12 = {
+                chart: {
+                    type: 'bar',
+                    height: 430,
+                    toolbar: {
+                        show: false
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        columnWidth: '45%', // <-- 1. Dibuat sedikit lebih lebar
+                        borderRadius: 4
+                    }
+                },
+                // 2. STROKE DIHILANGKAN AGAR JADI BAR, BUKAN GARIS
+                stroke: {
+                    show: true,
+                    width: 2, // <-- Dikecilkan dari 8 jadi 2
+                    colors: ['transparent']
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                legend: {
+                    position: 'top',
+                    horizontalAlign: 'right',
+                    show: true
+                },
+                // 3. WARNA PEREMPUAN DIUBAH JADI MERAH (#F44336)
+                colors: ['#1890ff', '#F44336'],
+                series: [{
+                    name: 'Laki-Laki',
+                    data: ktpLakiData
+                }, {
+                    name: 'Perempuan',
+                    data: ktpPerempuanData
+                }],
+                xaxis: {
+                    categories: ktpLabels
+                },
+            };
+
+            if (typeof ApexCharts !== 'undefined') {
+                var chart = new ApexCharts(document.querySelector('#chart-ktp-rw12'), options_ktp_rw12);
+                chart.render();
+            } else {
+                console.error("Error: ApexCharts library is not loaded.");
+            }
+        })();
+
+
+        // --- CHART 2: DATA NON KTP RW 12 (DINAMIS) ---
+        (function() {
+            var options_non_ktp_rw12 = {
+                chart: {
+                    type: 'bar',
+                    height: 430,
+                    toolbar: {
+                        show: false
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        columnWidth: '45%', // <-- 1. Dibuat sedikit lebih lebar
+                        borderRadius: 4
+                    }
+                },
+                // 2. STROKE DIHILANGKAN
+                stroke: {
+                    show: true,
+                    width: 2, // <-- Dikecilkan dari 8 jadi 2
+                    colors: ['transparent']
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                legend: {
+                    position: 'top',
+                    horizontalAlign: 'right',
+                    show: true
+                },
+                // 3. WARNA PEREMPUAN DIUBAH JADI MERAH (#F44336)
+                colors: ['#1890ff', '#F44336'],
+                series: [{
+                    name: 'Laki-Laki',
+                    data: nonKtpLakiData
+                }, {
+                    name: 'Perempuan',
+                    data: nonKtpPerempuanData
+                }],
+                xaxis: {
+                    categories: nonKtpLabels
+                },
+            };
+
+            if (typeof ApexCharts !== 'undefined') {
+                var chart = new ApexCharts(document.querySelector('#chart-non-ktp-rw12'),
+                    options_non_ktp_rw12);
+                chart.render();
+            } else {
+                console.error("Error: ApexCharts library is not loaded.");
+            }
+        })();
+
+    });
+</script>

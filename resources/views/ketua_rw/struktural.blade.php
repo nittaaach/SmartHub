@@ -1,4 +1,4 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_rw')
 @section('content_admin')
     <!-- Alternative Pagination table start -->
 
@@ -62,7 +62,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
                                                     @if ($item->gambar)
-                                                        <img src="{{ asset('storage/' . $item->gambar) }}" width="60">
+                                                        <img src="{{ asset('storage/' . $item->gambar) }}" width="100">
                                                     @endif
                                                 </td>
                                                 <td>{{ $item->datadiri->name }}</td>
@@ -435,6 +435,7 @@
             </div>
         </div>
     @endforeach
+@endsection
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -484,5 +485,3 @@
             toggleFormMode();
         });
     </script>
-@endsection
-@extends('admin-temp.footer_rw')

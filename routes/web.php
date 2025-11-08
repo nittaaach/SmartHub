@@ -54,6 +54,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/ketua_rw/layanan', [layananController::class, 'index'])->name('Ketua_RW.layanan');
     Route::get('/ketua_rw/berkas', [BerkasController::class, 'index'])->name('Ketua_RW.berkas');
     Route::get('/ketua_rw/news', [NewsController::class, 'index'])->name('Ketua_RW.news');
+    Route::get('/ketua_rw/bagan', [StrukturalController::class, 'indexbagan'])->name('Ketua_RW.bagan');
 
     // statistika (rw) crud
     // KTP
@@ -77,6 +78,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/ketua_rw/struktural', [StrukturalController::class, 'store_rw'])->name('struktural.store_rw');
     Route::put('/ketua_rw/struktural/{id}', [StrukturalController::class, 'update_rw'])->name('struktural.update_rw');
     Route::delete('/ketua_rw/struktural/{id}', [StrukturalController::class, 'destroy_rw'])->name('struktural.destroy_rw');
+    //bagan struktural
+    Route::post('/ketua_rw/bagan', [StrukturalController::class, 'store_bagan'])->name('bagan.store_bagan');
+    Route::put('/ketua_rw/bagan/{id}', [StrukturalController::class, 'update_bagan'])->name('bagan.update_bagan');
+    Route::delete('/ketua_rw/bagan/{id}', [StrukturalController::class, 'destroy_bagan'])->name('bagan.destroy_bagan');
 
     // layanan (rw) crud
     Route::post('/ketua_rw/layanan/store', [layananController::class, 'store_rw'])->name('layanan.store_rw');
@@ -182,11 +187,8 @@ Route::get('/news', [NewsController::class, 'news'])->name('news');
 Route::get('/pengumuman', [NewsController::class, 'pengumuman'])->name('pengumuman');
 
 Route::get('/aktivitas', [NewsController::class, 'aktivitas'])->name('aktivitas');
-Route::get('/detail_aktivitas/{id}', [NewsController::class, 'detail_aktivitas'])->name('aktivitas.detail');
-
-Route::get('/galeri', [GaleriController::class, 'galeri'])->name('galeri');
-Route::get('/detailgaleri', [GaleriController::class, 'detailgaleri'])->name('detailgaleri');
+Route::get('/aktivitas/{type}/{id}', [NewsController::class, 'detail_aktivitas'])->name('detail.aktivitas');
 
 //galeri
 Route::get('/galeri', [GaleriController::class, 'galeri'])->name('galeri');
-Route::get('/detailgaleri/{id}', [GaleriController::class, 'detailgaleri'])->name('galeri.detail');
+Route::get('/galeri/{id}/{type}', [GaleriController::class, 'detailgaleri'])->name('galeri.detail');

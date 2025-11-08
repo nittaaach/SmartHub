@@ -26,18 +26,52 @@ class BerkasController extends Controller
 
 
     public function store_rw(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'nama_dokumen' => 'required|string|max:255',
+    //         'lembaran' => 'nullable|string|max:50',
+    //         'jenis_berkas' => 'required|boolean',
+    //         'status' => 'required|boolean',
+    //         'nama_template' => 'required|string|max:100',
+    //         'file' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+    //         'keterangan' => 'nullable|string',
+    //     ]);
+
+    //     // Simpan ke syarat_layanan
+    //     $syarat = SyaratLayananModels::create([
+    //         'nama_dokumen' => $validated['nama_dokumen'],
+    //         'lembaran' => $validated['lembaran'],
+    //         'jenis_berkas' => $validated['jenis_berkas'],
+    //         'status' => $validated['status'],
+    //     ]);
+
+    //     // Simpan file template jika ada
+    //     $filePath = null;
+    //     if ($request->hasFile('file')) {
+    //         $filePath = $request->file('file')->store('template_surat', 'public');
+    //     }
+
+    //     // Simpan ke template_surat
+    //     TemplateSuratModels::create([
+    //         'id_syarat' => $syarat->id,
+    //         'nama_template' => $validated['nama_template'],
+    //         'file' => $filePath,
+    //         'keterangan' => $validated['keterangan'] ?? null,
+    //     ]);
+
+    //     return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
+    // }
     {
         $validated = $request->validate([
             'nama_dokumen' => 'required|string|max:255',
             'lembaran' => 'nullable|string|max:50',
             'jenis_berkas' => 'required|boolean',
             'status' => 'required|boolean',
-            'nama_template' => 'required|string|max:100',
+            'nama_template' => 'nullable|string|max:100',
             'file' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
             'keterangan' => 'nullable|string',
         ]);
 
-        // Simpan ke syarat_layanan
         $syarat = SyaratLayananModels::create([
             'nama_dokumen' => $validated['nama_dokumen'],
             'lembaran' => $validated['lembaran'],
@@ -45,21 +79,21 @@ class BerkasController extends Controller
             'status' => $validated['status'],
         ]);
 
-        // Simpan file template jika ada
-        $filePath = null;
-        if ($request->hasFile('file')) {
-            $filePath = $request->file('file')->store('template_surat', 'public');
+        if ($request->filled('nama_template')) {
+
+            $filePath = null;
+            if ($request->hasFile('file')) {
+                $filePath = $request->file('file')->store('template_surat', 'public');
+            }
+
+            TemplateSuratModels::create([
+                'id_syarat' => $syarat->id,
+                'nama_template' => $validated['nama_template'],
+                'file' => $filePath,
+                'keterangan' => $validated['keterangan'] ?? null,
+            ]);
         }
-
-        // Simpan ke template_surat
-        TemplateSuratModels::create([
-            'id_syarat' => $syarat->id,
-            'nama_template' => $validated['nama_template'],
-            'file' => $filePath,
-            'keterangan' => $validated['keterangan'] ?? null,
-        ]);
-
-        return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
+        return redirect()->back()->with('success', 'Data syarat layanan berhasil ditambahkan!');
     }
 
     public function update_rw(Request $request, $id)

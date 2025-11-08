@@ -1,4 +1,4 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_pkk')
 @section('content_admin')
     <!-- [ breadcrumb ] start -->
     <div class="page-header">
@@ -468,4 +468,3 @@
         });
     </script>
 @endsection
-@extends('admin-temp.footer_pkk')

@@ -37,8 +37,9 @@
                         <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
                             <div class="team-member">
                                 <div class="member-img">
-                                    <img src="{{ asset('assets-user/img/team/team-1.jpg') }}" class="img-fluid"
-                                        alt="">
+                                    <img src="{{ asset('storage/' . $item->gambar) }}" class="img-fluid"
+                                        alt="{{ $item->nama }}" width="300">
+
                                     <div class="social">
                                         @if ($item->datadiri && $item->datadiri->notelp)
                                             <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $item->datadiri->notelp) }}"
@@ -76,8 +77,8 @@
                         <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
                             <div class="team-member">
                                 <div class="member-img">
-                                    <img src="{{ asset('assets-user/img/team/team-2.jpg') }}" class="img-fluid"
-                                        alt="">
+                                    <img src="{{ asset('storage/' . $item->gambar) }}" class="img-fluid"
+                                        alt="{{ $item->nama }}">
                                     <div class="social">
                                         @if ($item->datadiri && $item->datadiri->notelp)
                                             <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $item->datadiri->notelp) }}"
@@ -115,8 +116,8 @@
                         <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
                             <div class="team-member">
                                 <div class="member-img">
-                                    <img src="{{ asset('assets-user/img/team/team-3.jpg') }}" class="img-fluid"
-                                        alt="">
+                                    <img src="{{ asset('storage/' . $item->gambar) }}" class="img-fluid"
+                                        alt="{{ $item->nama }}">
                                     <div class="social">
                                         @if ($item->datadiri && $item->datadiri->notelp)
                                             <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $item->datadiri->notelp) }}"

@@ -1,4 +1,4 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_rw')
 @section('content_admin')
     <!-- Alternative Pagination table start -->
 
@@ -57,12 +57,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($struktural as $item)
+                                        @foreach ($strukturalkatar as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
                                                     @if ($item->gambar)
-                                                        <img src="{{ asset('storage/' . $item->gambar) }}" width="60">
+                                                        <img src="{{ asset('storage/' . $item->gambar) }}" width="100">
                                                     @endif
                                                 </td>
                                                 <td>{{ $item->datadiri->name }}</td>
@@ -219,7 +219,7 @@
     </div>
 
     <!-- Modal Update KTP -->
-    @foreach ($struktural as $item)
+    @foreach ($strukturalkatar as $item)
         <div id="UpdatepenggunaModal-{{ $item->id }}" class="modal fade" tabindex="-1" role="dialog"
             aria-labelledby="UpdatepenggunaModalTitle-{{ $item->id }}" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -326,7 +326,7 @@
     @endforeach
 
     <!-- Modal Delete struktural -->
-    @foreach ($struktural as $item)
+    @foreach ($strukturalkatar as $item)
         <div id="DeletepenggunaModal-{{ $item->id }}" class="modal fade" tabindex="-1" role="dialog"
             aria-labelledby="DeletepenggunaModalTitle-{{ $item->id }}" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -421,4 +421,3 @@
         });
     </script>
 @endsection
-@extends('admin-temp.footer_rw')

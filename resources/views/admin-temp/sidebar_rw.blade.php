@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
+    @yield('sidebar_rw')
     <!-- [ Pre-loader ] start -->
     <div class="loader-bg">
         <div class="loader-track">
@@ -10,20 +8,22 @@
     </div>
     <!-- [ Pre-loader ] End -->
     <!-- [ Sidebar Menu ] start -->
-
     @php
         $role = auth()->user()->role;
         $routePrefix = "{$role}.";
         $dashboardRoute = $routePrefix . 'dashboard';
     @endphp
-
     <nav class="pc-sidebar">
         <div class="navbar-wrapper">
             <div class="m-header">
                 <a href="{{ route($dashboardRoute) }}" class="b-brand text-primary">
-                    {{-- <img src="{{ asset('../assets_admin/images/Logov1.png') }}" class="img-fluid logo-lg" alt="logo"> --}}
-                    <h2>SmartHub</h2>
+                    {{-- <img src="{{ asset('assets_admin/images/Logov2.png') }}"
+                        alt="logo"> --}}
+                    <h2>SmartHub RW</h2>
                 </a>
+                    {{-- <img src="../assets_admin/images/logo-dark.svg" >
+                <a href="../dashboard/index.html" class="b-brand text-primary">
+                </a> --}}
             </div>
             <div class="navbar-content">
                 <ul class="pc-navbar">
@@ -78,7 +78,12 @@
                         <label>Other</label>
                         <i class="ti ti-brand-chrome"></i>
                     </li>
-
+                    <li class="pc-item {{ request()->routeIs($routePrefix . 'bagan') ? 'pc-active' : '' }}">
+                        <a href="{{ route($routePrefix . 'bagan') }}" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-chart-circles"></i></span>
+                            <span class="pc-mtext">Bagan Struktural</span>
+                        </a>
+                    </li>
                     <li class="pc-item pc-hasmenu">
                         <a href="#!" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-layout-grid"></i></span>
@@ -92,20 +97,21 @@
                                     Warga</a>
                             </li>
                             <li
-                                class="pc-item {{ request()->routeIs($routePrefix . 'strukturalrt') ? 'pc-active' : '' }}">
-                                <a class="pc-link" href="{{ route($routePrefix . 'strukturalrt') }}">Struktur Rukun
-                                    Tetangga</a>
-                            </li>
-                            <li
                                 class="pc-item {{ request()->routeIs($routePrefix . 'strukturalpkk') ? 'pc-active' : '' }}">
                                 <a class="pc-link" href="{{ route($routePrefix . 'strukturalpkk') }}">Struktur PKK
                                     Anyelir</a>
                             </li>
                             <li
                                 class="pc-item {{ request()->routeIs($routePrefix . 'strukturalkatar') ? 'pc-active' : '' }}">
-                                <a class="pc-link" href="{{ route($routePrefix . 'strukturalkatar') }}">Struktur Karang
+                                <a class="pc-link" href="{{ route($routePrefix . 'strukturalkatar') }}">Struktur
+                                    Karang
                                     Taruna</a>
                             </li>
+                            {{-- <li
+                                class="pc-item {{ request()->routeIs($routePrefix . 'strukturalrt') ? 'pc-active' : '' }}">
+                                <a class="pc-link" href="{{ route($routePrefix . 'strukturalrt') }}">Struktur Rukun
+                                    Tetangga</a>
+                            </li> --}}
                         </ul>
                     </li>
 
@@ -134,10 +140,9 @@
 
     <!-- [ Header Topbar ] start -->
     <header class="pc-header">
-        <div class="header-wrapper"> <!-- [Mobile Media Block] start -->
+        <div class="header-wrapper">
             <div class="me-auto pc-mob-drp">
                 <ul class="list-unstyled">
-                    <!-- ======= Menu collapse Icon ===== -->
                     <li class="pc-h-item pc-sidebar-collapse">
                         <a href="#" class="pc-head-link ms-0" id="sidebar-hide">
                             <i class="ti ti-menu-2"></i>
@@ -396,169 +401,4 @@
         </div>
     </header>
     <!-- [ Header ] end -->
-
-    {{-- main content --}}
-    <section class="pc-container">
-        <div class="pc-content">
-            @yield('content_admin')
-
-        </div>
-    </section>
-    {{-- end content --}}
-
-    <footer class="pc-footer">@yield('footer_admin')
-        <div class="footer-wrapper container-fluid">
-            <div class="row">
-                <div class="col-sm my-1">
-                    <p class="m-0">SmartHub &#9829; crafted by Team <a
-                            href="https://themeforest.net/user/codedthemes" target="_blank">PM - BEM</a>
-                        Distributed by <a href="https://www.nusamandiri.ac.id/nuri/index.js">Universitas Nusa
-                            Mandiri</a>.</p>
-                </div>
-                <div class="col-auto my-1">
-                    <ul class="list-inline footer-link mb-0">
-                        <li class="list-inline-item"><a href="../index.html">Home</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- [Page Specific JS] start -->
-    <script src="../assets_admin/js/plugins/apexcharts.min.js"></script>
-    <script src="../assets_admin/js/pages/dashboard-default.js"></script>
-    <!-- [Page Specific JS] end -->
-    <!-- Required Js -->
-    <script src="../assets_admin/js/plugins/popper.min.js"></script>
-    <script src="../assets_admin/js/plugins/simplebar.min.js"></script>
-    <script src="../assets_admin/js/plugins/bootstrap.min.js"></script>
-    <script src="../assets_admin/js/fonts/custom-font.js"></script>
-    <script src="../assets_admin/js/pcoded.js"></script>
-    <script src="../assets_admin/js/plugins/feather.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="../assets_admin/js/plugins/jquery.dataTables.min.js"></script>
-    <script src="../assets_admin/js/plugins/dataTables.bootstrap5.min.js"></script>
-    <script src="../assets_admin/js/plugins/buttons.colVis.min.js"></script>
-    <script src="../assets_admin/js/plugins/buttons.print.min.js"></script>
-    <script src="../assets_admin/js/plugins/pdfmake.min.js"></script>
-    <script src="../assets_admin/js/plugins/jszip.min.js"></script>
-    <script src="../assets_admin/js/plugins/dataTables.buttons.min.js"></script>
-    <script src="../assets_admin/js/plugins/vfs_fonts.js"></script>
-    <script src="../assets_admin/js/plugins/buttons.html5.min.js"></script>
-    <script src="../assets_admin/js/plugins/buttons.bootstrap5.min.js"></script>
-    <script src="../assets_admin/js/plugins/datepicker-full.min.js"></script>
-    <script src="../assets_admin/js/plugins/choices.min.js"></script>
-    <script>
-        layout_change('light');
-    </script>
-    <script>
-        change_box_container('false');
-    </script>
-    <script>
-        layout_rtl_change('false');
-    </script>
-    <script>
-        preset_change("preset-1");
-    </script>
-    <script>
-        font_change("Public-Sans");
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-
-            var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
-                removeItemButton: true,
-                allowHTML: true // Ini untuk menghilangkan peringatan (deprecation warning)
-            });
-        });
-    </script>
-
-    <script>
-        $('#basic-btn-rw').DataTable({
-            dom: 'Bfrtip',
-            buttons: ['copy', 'csv', 'excel', 'print']
-        });
-        $('#basic-btn-ktprw').DataTable({
-            dom: 'Bfrtip',
-            buttons: ['copy', 'csv', 'excel', 'print']
-        });
-        $('#basic-btn-nonktp').DataTable({
-            dom: 'Bfrtip',
-            buttons: ['copy', 'csv', 'excel', 'print']
-        });
-        $('a[data-bs-toggle="pill"]').on('shown.bs.tab', function(e) {
-            // Find the newly active tab's table and invalidate/redraw it
-            $.fn.dataTable.tables({
-                visible: true,
-                api: true
-            }).columns.adjust();
-        });
-
-        // [ Zero Configuration ] start
-        $('#simpletable').DataTable();
-
-        // [ Default Ordering ] start
-        $('#order-table').DataTable({
-            order: [
-                [3, 'desc']
-            ]
-        });
-
-        // [ Multi-Column Ordering ]
-        $('#multi-colum-dt').DataTable({
-            columnDefs: [{
-                    targets: [0],
-                    orderData: [0, 1]
-                },
-                {
-                    targets: [1],
-                    orderData: [1, 0]
-                },
-                {
-                    targets: [4],
-                    orderData: [4, 0]
-                }
-            ]
-        });
-
-        // [ Complex Headers ]
-        $('#complex-dt').DataTable();
-
-        // [ DOM Positioning ]
-        $('#DOM-dt').DataTable({
-            dom: '<"top"i>rt<"bottom"flp><"clear">'
-        });
-
-        // [ Alternative Pagination ]
-        $('#alt-pg-dt').DataTable({
-            pagingType: 'full_numbers'
-        });
-
-        // [ Scroll - Vertical ]
-        $('#scr-vrt-dt').DataTable({
-            scrollY: '200px',
-            scrollCollapse: true,
-            paging: false
-        });
-
-        // [ Scroll - Vertical, Dynamic Height ]
-        $('#scr-vtr-dynamic').DataTable({
-            scrollY: '50vh',
-            scrollCollapse: true,
-            paging: false
-        });
-
-        // [ Language - Comma Decimal Place ]
-        $('#lang-dt').DataTable({
-            language: {
-                decimal: ',',
-                thousands: '.'
-            }
-        });
-    </script>
-
 </body>
-<!-- [Body] end -->
-
-</html>

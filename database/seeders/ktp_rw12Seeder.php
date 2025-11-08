@@ -15,7 +15,7 @@ class ktp_rw12Seeder extends Seeder
     {
         DB::table('ktp_rw12')->insert([
             [
-                'rt' => 1,
+                'rt' => 'RT 001',
                 'jumlah' => 192,
                 'laki_laki' => 80,
                 'perempuan' => 112,
@@ -24,7 +24,7 @@ class ktp_rw12Seeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'rt' => 2,
+                'rt' => 'RT 002',
                 'jumlah' => 437,
                 'laki_laki' => 229,
                 'perempuan' => 208,
@@ -33,7 +33,7 @@ class ktp_rw12Seeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'rt' => 3,
+                'rt' => 'RT 003',
                 'jumlah' => 313,
                 'laki_laki' => 155,
                 'perempuan' => 158,
@@ -42,7 +42,7 @@ class ktp_rw12Seeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'rt' => 4,
+                'rt' => 'RT 004',
                 'jumlah' => 683,
                 'laki_laki' => 328,
                 'perempuan' => 355,
@@ -51,7 +51,7 @@ class ktp_rw12Seeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'rt' => 5,
+                'rt' => 'RT 005',
                 'jumlah' => 515,
                 'laki_laki' => 227,
                 'perempuan' => 288,
@@ -60,7 +60,7 @@ class ktp_rw12Seeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'rt' => 6,
+                'rt' => 'RT 006',
                 'jumlah' => 995,
                 'laki_laki' => 482,
                 'perempuan' => 513,
@@ -69,7 +69,7 @@ class ktp_rw12Seeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'rt' => 7,
+                'rt' => 'RT 007',
                 'jumlah' => 256,
                 'laki_laki' => 122,
                 'perempuan' => 134,
@@ -78,7 +78,7 @@ class ktp_rw12Seeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'rt' => 8,
+                'rt' => 'RT 008',
                 'jumlah' => 113,
                 'laki_laki' => 49,
                 'perempuan' => 64,

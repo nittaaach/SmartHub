@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BaganModels;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -22,6 +23,13 @@ class StrukturalController extends Controller
             ->get();
 
         return view('ketua_rw.struktural', compact('datadiri', 'struktural'));
+    }
+
+    public function indexbagan()
+    {
+        $bagan = BaganModels::latest()->get();
+
+        return view('ketua_rw.bagan', compact('bagan'));
     }
 
     public function indexrt()
@@ -78,16 +86,20 @@ class StrukturalController extends Controller
     public function struktural()
     {
         $datadiri = DataDiriModels::all();
+
         $rw = StrukturalModels::with('datadiri')
             ->where('tingkatan', 'RW')
+            ->whereIn('jabatan', ['Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'])
             ->get();
 
         $pkk = StrukturalModels::with('datadiri')
             ->where('tingkatan', 'PKK')
+            ->whereIn('jabatan', ['Ketua PKK', 'Wakil Ketua PKK', 'Sekretaris', 'Bendahara'])
             ->get();
 
         $katar = StrukturalModels::with('datadiri')
             ->where('tingkatan', 'KATAR')
+            ->whereIn('jabatan', ['Ketua KATAR', 'Wakil Ketua KATAR', 'Sekretaris', 'Bendahara'])
             ->get();
 
         return view('struktural', compact('datadiri', 'rw', 'pkk', 'katar'));
@@ -95,19 +107,88 @@ class StrukturalController extends Controller
 
     public function rw()
     {
-        return view('/rw');
+        $datadiri = DataDiriModels::all();
+
+        // Daftar jabatan BPH
+        $jabatanBPH = ['Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'];
+
+        // Ambil data RW hanya untuk BPH
+        $bph = StrukturalModels::with('datadiri')
+            ->where('tingkatan', 'RW')
+            ->whereIn('jabatan', $jabatanBPH)
+            ->get();
+
+        // Ambil data RW selain BPH
+        $anggotaLain = StrukturalModels::with('datadiri')
+            ->where('tingkatan', 'RW')
+            ->whereNotIn('jabatan', $jabatanBPH)
+            ->get();
+
+        $bagan = BaganModels::where('tingkatan', 'Rukun Warga')->latest()->get();
+
+        // Tidak mengubah nama variabel lama biar tetap kompatibel
+        $strukturalrw = $bph;
+
+        return view('rw', compact('datadiri', 'strukturalrw', 'anggotaLain', 'bagan'));
     }
 
     public function katar()
     {
-        return view('/katar');
+        $datadiri = DataDiriModels::all();
+
+        // Daftar jabatan BPH
+        $jabatanBPH = ['Ketua KATAR', 'Wakil Ketua KATAR', 'Sekretaris', 'Bendahara'];
+
+        // Ambil data RW hanya untuk BPH
+        $bph = StrukturalModels::with('datadiri')
+            ->where('tingkatan', 'KATAR')
+            ->whereIn('jabatan', $jabatanBPH)
+            ->get();
+
+        // Ambil data RW selain BPH
+        $anggotaLain = StrukturalModels::with('datadiri')
+            ->where('tingkatan', 'KATAR')
+            ->whereNotIn('jabatan', $jabatanBPH)
+            ->get();
+
+        $bagan = BaganModels::where('tingkatan', 'Karang Taruna')->latest()->get();
+        
+
+        // Tidak mengubah nama variabel lama biar tetap kompatibel
+        $strukturalkatar = $bph;
+
+        return view('katar', compact('datadiri', 'strukturalkatar', 'anggotaLain', 'bagan'));
     }
 
     public function pkk()
     {
-        return view('/pkk');
+        $datadiri = DataDiriModels::all();
+
+        // Daftar jabatan BPH
+        $jabatanBPH = ['Ketua PKK', 'Wakil Ketua PKK', 'Sekretaris', 'Bendahara'];
+
+        // Ambil data PKK hanya untuk BPH
+        $bph = StrukturalModels::with('datadiri')
+            ->where('tingkatan', 'PKK')
+            ->whereIn('jabatan', $jabatanBPH)
+            ->get();
+
+        // Ambil data PKK selain BPH
+        $anggotaLain = StrukturalModels::with('datadiri')
+            ->where('tingkatan', 'PKK')
+            ->whereNotIn('jabatan', $jabatanBPH)
+            ->get();
+        
+        $bagan = BaganModels::where('tingkatan', 'PKK Anyelir')->latest()->get();
+        
+
+        // Tidak mengubah nama variabel lama biar tetap kompatibel
+        $strukturalpkk = $bph;
+
+        return view('pkk', compact('datadiri', 'strukturalpkk', 'anggotaLain', 'bagan'));
     }
 
+    //crud struktural
     public function store_rw(Request $request)
     {
         $baseRules = [
@@ -236,5 +317,59 @@ class StrukturalController extends Controller
 
         $struktural->delete();
         return redirect()->back()->with('success', 'Data struktural berhasil dihapus!');
+    }
+
+    public function store_bagan(Request $request)
+    {
+        $request->validate([
+            'fotobagan' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'tingkatan' => 'required|string',
+            'deskripsi' => 'nullable|string|max:255',
+        ]);
+
+        $path = $request->file('fotobagan')->store('fotobagan', 'public');
+
+        BaganModels::create([
+            'fotobagan' => $path,
+            'deskripsi'   => $request->deskripsi,
+            'tingkatan' => $request->tingkatan,
+        ]);
+
+        return redirect()->back()->with('success', 'Dokumentasi berhasil ditambahkan!');
+    }
+
+    public function update_bagan(Request $request, $id)
+    {
+        $request->validate([
+            'fotobagan' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'tingkatan' => 'required|string',
+            'deskripsi' => 'nullable|string|max:255',
+        ]);
+
+        $foto = BaganModels::findOrFail($id);
+
+        $data = [
+            'tingkatan' => $request->tingkatan,
+            'deskripsi' => $request->deskripsi,
+        ];
+
+        if ($request->hasFile('fotobagan')) {
+            Storage::disk('public')->delete($foto->fotobagan);
+            $path = $request->file('fotobagan')->store('fotobagan', 'public');
+            $data['fotobagan'] = $path;
+        }
+
+        $foto->update($data);
+
+        return redirect()->back()->with('success', 'Data bagan berhasil diperbarui.');
+    }
+
+    public function destroy_bagan($id)
+    {
+        $foto = BaganModels::findOrFail($id);
+        Storage::disk('public')->delete($foto->fotobagan);
+        $foto->delete();
+
+        return redirect()->back()->with('success', 'Foto Bagan Berhasil Dihapus.');
     }
 }

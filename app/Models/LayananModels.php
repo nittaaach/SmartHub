@@ -12,22 +12,19 @@ class LayananModels extends Model
     protected $table = 'layanan';
 
     protected $fillable = [
-        'id_syarat',
-        'id_template',
         'nama_layanan',
         'deskripsi',
         'status_aktif',
     ];
 
     // Relasi: satu layanan memiliki banyak persyaratan
-    public function syarat_layanan()
+    public function syaratLayanans()
     {
-        return $this->belongsTo(SyaratLayananModels::class, 'id_syarat');
-    }
-
-    // Relasi: satu layanan bisa punya banyak template surat
-    public function template_surat()
-    {
-        return $this->belongsTo(TemplateSuratModels::class, 'id_template');
+        return $this->belongsToMany(
+            SyaratLayananModels::class,
+            'layanan_syarat',
+            'layanan_id',
+            'syarat_layanan_id'
+        );
     }
 }

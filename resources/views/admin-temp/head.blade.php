@@ -39,7 +39,5 @@
     <link rel="stylesheet" href="../assets_admin/css/plugins/datepicker-bs5.min.css">
     <!-- Choices.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
-
-
 </head>
 <!-- [Head] end -->

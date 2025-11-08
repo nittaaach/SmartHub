@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <body class="index-page">
 
-
-    <main class="main"> @yield('content')
-
-
+    <main class="main">
+        @yield('content')
     </main>
 
-
+    <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="container footer-top">
             <div class="row gy-4">
+
                 <!-- Tentang -->
                 <div class="col-lg-4 col-md-6 footer-about">
                     <a href="{{ route('landing') }}" class="d-flex align-items-center">
@@ -27,7 +25,6 @@
                     </div>
                 </div>
 
-
                 <!-- Navigasi Utama -->
                 <div class="col-lg-2 col-md-3 footer-links">
                     <h4>Menu</h4>
@@ -39,7 +36,6 @@
                         <li><i class="bi bi-chevron-right"></i> <a href="{{ route('katalog') }}">Katalog</a></li>
                     </ul>
                 </div>
-
 
                 <!-- Informasi -->
                 <div class="col-lg-2 col-md-3 footer-links">
@@ -54,7 +50,6 @@
                     </ul>
                 </div>
 
-
                 <!-- Media Sosial -->
                 <div class="col-lg-4 col-md-12">
                     <h4>Ikuti Kami</h4>
@@ -66,40 +61,34 @@
                         <a href="#"><i class="bi bi-youtube"></i></a>
                     </div>
                 </div>
+
             </div>
         </div>
-
 
         <div class="container copyright text-center mt-4">
             <p>© <span>2025</span> <strong class="px-1 sitename">SmartHub</strong> <span>All Rights Reserved</span></p>
         </div>
     </footer>
-
-
-
+    <!-- End Footer -->
 
     <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
 
+    <!-- ======= Vendor JS Files ======= -->
+    <script src="{{ asset('assets-user/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets-user/vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ asset('assets-user/vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('assets-user/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('assets-user/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ asset('assets-user/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets-user/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets-user/vendor/swiper/swiper-bundle.min.js') }}"></script>
 
-    <!-- Vendor JS Files -->
-    <script src="../assets-user/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets-user/vendor/php-email-form/validate.js"></script>
-    <script src="../assets-user/vendor/aos/aos.js"></script>
-    <script src="../assets-user/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="../assets-user/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="../assets-user/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="../assets-user/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="../assets-user/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="{{ asset('../assets-user/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('../assets-user/vendor/aos/aos.js') }}"></script>
-    <script src="{{ asset('../assets-user/js/main.js') }}"></script>
-    <!-- Main JS File -->
-    <script src="../assets-user/js/main.js"></script>
-
+    <!-- ======= Main JS File (penting agar menu titik tiga berfungsi) ======= -->
+    <script src="{{ asset('assets-user/js/main.js') }}"></script>
 
 </body>
-
 
 </html>

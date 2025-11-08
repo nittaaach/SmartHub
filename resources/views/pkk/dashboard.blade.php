@@ -1,4 +1,4 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_pkk')
 @section('content_admin')
     <!-- [ Main Content ] start -->
     <div class="pc-content">
@@ -260,16 +260,16 @@
                     <div class="list-group list-group-flush">
                         <a href="#" class="list-group-item list-group-item-action">
                             <div class="d-flex">
-                                <div class="flex-shrink-0">
+                                <div class="shrink-0">
                                     <div class="avtar avtar-s rounded-circle text-success bg-light-success">
                                         <i class="ti ti-gift f-18"></i>
                                     </div>
                                 </div>
-                                <div class="flex-grow-1 ms-3">
+                                <div class="grow ms-3">
                                     <h6 class="mb-1">Order #002434</h6>
                                     <p class="mb-0 text-muted">Today, 2:00 AM</P>
                                 </div>
-                                <div class="flex-shrink-0 text-end">
+                                <div class="shrink-0 text-end">
                                     <h6 class="mb-1">+ $1,430</h6>
                                     <p class="mb-0 text-muted">78%</P>
                                 </div>
@@ -277,16 +277,16 @@
                         </a>
                         <a href="#" class="list-group-item list-group-item-action">
                             <div class="d-flex">
-                                <div class="flex-shrink-0">
+                                <div class="shrink-0">
                                     <div class="avtar avtar-s rounded-circle text-primary bg-light-primary">
                                         <i class="ti ti-message-circle f-18"></i>
                                     </div>
                                 </div>
-                                <div class="flex-grow-1 ms-3">
+                                <div class="grow ms-3">
                                     <h6 class="mb-1">Order #984947</h6>
                                     <p class="mb-0 text-muted">5 August, 1:45 PM</P>
                                 </div>
-                                <div class="flex-shrink-0 text-end">
+                                <div class="shrink-0 text-end">
                                     <h6 class="mb-1">- $302</h6>
                                     <p class="mb-0 text-muted">8%</P>
                                 </div>
@@ -294,16 +294,16 @@
                         </a>
                         <a href="#" class="list-group-item list-group-item-action">
                             <div class="d-flex">
-                                <div class="flex-shrink-0">
+                                <div class="shrink-0">
                                     <div class="avtar avtar-s rounded-circle text-danger bg-light-danger">
                                         <i class="ti ti-settings f-18"></i>
                                     </div>
                                 </div>
-                                <div class="flex-grow-1 ms-3">
+                                <div class="grow ms-3">
                                     <h6 class="mb-1">Order #988784</h6>
                                     <p class="mb-0 text-muted">7 hours ago</P>
                                 </div>
-                                <div class="flex-shrink-0 text-end">
+                                <div class="shrink-0 text-end">
                                     <h6 class="mb-1">- $682</h6>
                                     <p class="mb-0 text-muted">16%</P>
                                 </div>
@@ -316,4 +316,3 @@
     </div>
     <!-- [ Main Content ] end -->
 @endsection
-@extends('admin-temp.footer_pkk')

@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
+    @yield('sidebar_rt')
     <!-- [ Pre-loader ] start -->
     <div class="loader-bg">
         <div class="loader-track">
@@ -10,7 +8,6 @@
     </div>
     <!-- [ Pre-loader ] End -->
     <!-- [ Sidebar Menu ] start -->
-
     @php
         $role = auth()->user()->role;
         $dashboardUrl = url("/{$role}/dashboard"); // Menghasilkan /Ketua_RT/dashboard, /pkk/dashboard, dll.
@@ -194,11 +191,11 @@
                                 <div class="list-group list-group-flush w-100">
                                     <a class="list-group-item list-group-item-action">
                                         <div class="d-flex">
-                                            <div class="flex-shrink-0">
+                                            <div class="shrink-0">
                                                 <div class="user-avtar bg-light-success"><i class="ti ti-gift"></i>
                                                 </div>
                                             </div>
-                                            <div class="flex-grow-1 ms-1">
+                                            <div class="grow ms-1">
                                                 <span class="float-end text-muted">3:00 AM</span>
                                                 <p class="text-body mb-1">It's <b>Cristina danny's</b> birthday today.
                                                 </p>
@@ -208,11 +205,11 @@
                                     </a>
                                     <a class="list-group-item list-group-item-action">
                                         <div class="d-flex">
-                                            <div class="flex-shrink-0">
+                                            <div class="shrink-0">
                                                 <div class="user-avtar bg-light-primary"><i
                                                         class="ti ti-message-circle"></i></div>
                                             </div>
-                                            <div class="flex-grow-1 ms-1">
+                                            <div class="grow ms-1">
                                                 <span class="float-end text-muted">6:00 PM</span>
                                                 <p class="text-body mb-1"><b>Aida Burg</b> commented your post.</p>
                                                 <span class="text-muted">5 August</span>
@@ -221,11 +218,11 @@
                                     </a>
                                     <a class="list-group-item list-group-item-action">
                                         <div class="d-flex">
-                                            <div class="flex-shrink-0">
+                                            <div class="shrink-0">
                                                 <div class="user-avtar bg-light-danger"><i class="ti ti-settings"></i>
                                                 </div>
                                             </div>
-                                            <div class="flex-grow-1 ms-1">
+                                            <div class="grow ms-1">
                                                 <span class="float-end text-muted">2:45 PM</span>
                                                 <p class="text-body mb-1">Your Profile is Complete &nbsp;<b>60%</b></p>
                                                 <span class="text-muted">7 hours ago</span>
@@ -234,11 +231,11 @@
                                     </a>
                                     <a class="list-group-item list-group-item-action">
                                         <div class="d-flex">
-                                            <div class="flex-shrink-0">
+                                            <div class="shrink-0">
                                                 <div class="user-avtar bg-light-primary"><i class="ti ti-headset"></i>
                                                 </div>
                                             </div>
-                                            <div class="flex-grow-1 ms-1">
+                                            <div class="grow ms-1">
                                                 <span class="float-end text-muted">9:10 PM</span>
                                                 <p class="text-body mb-1"><b>Cristina Danny </b> invited to join <b>
                                                         Meeting.</b></p>
@@ -270,11 +267,11 @@
                         <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                             <div class="dropdown-header">
                                 <div class="d-flex mb-1">
-                                    <div class="flex-shrink-0">
+                                    <div class="shrink-0">
                                         <img src="../assets_admin/images/user/avatar-2.jpg" alt="user-image"
                                             class="user-avtar wid-35">
                                     </div>
-                                    <div class="flex-grow-1 ms-3">
+                                    <div class="grow ms-3">
                                         <h6 class="mb-1">Stebin Ben</h6>
                                         <span>UI/UX Designer</span>
                                     </div>
@@ -352,132 +349,4 @@
         </div>
     </header>
     <!-- [ Header ] end -->
-
-    {{-- main content --}}
-    <section class="pc-container">
-        <div class="pc-content">
-            @yield('content_admin')
-
-        </div>
-    </section>
-    {{-- end content --}}
-
-    <footer class="pc-footer">@yield('footer_admin')
-        <div class="footer-wrapper container-fluid">
-            <div class="row">
-                <div class="col-sm my-1">
-                    <p class="m-0">SmartHub &#9829; crafted by Team <a
-                            href="https://themeforest.net/user/codedthemes" target="_blank">PM - BEM</a>
-                        Distributed by <a href="https://www.nusamandiri.ac.id/nuri/index.js">Universitas Nusa
-                            Mandiri</a>.</p>
-                </div>
-                <div class="col-auto my-1">
-                    <ul class="list-inline footer-link mb-0">
-                        <li class="list-inline-item"><a href="../index.html">Home</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- [Page Specific JS] start -->
-    <script src="../assets_admin/js/plugins/apexcharts.min.js"></script>
-    <script src="../assets_admin/js/pages/dashboard-default.js"></script>
-    <!-- [Page Specific JS] end -->
-    <!-- Required Js -->
-    <script src="../assets_admin/js/plugins/popper.min.js"></script>
-    <script src="../assets_admin/js/plugins/simplebar.min.js"></script>
-    <script src="../assets_admin/js/plugins/bootstrap.min.js"></script>
-    <script src="../assets_admin/js/fonts/custom-font.js"></script>
-    <script src="../assets_admin/js/pcoded.js"></script>
-    <script src="../assets_admin/js/plugins/feather.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="../assets_admin/js/plugins/jquery.dataTables.min.js"></script>
-    <script src="../assets_admin/js/plugins/dataTables.bootstrap5.min.js"></script>
-    <script>
-        layout_change('light');
-    </script>
-
-    <script>
-        change_box_container('false');
-    </script>
-
-    <script>
-        layout_rtl_change('false');
-    </script>
-
-    <script>
-        preset_change("preset-1");
-    </script>
-
-    <script>
-        font_change("Public-Sans");
-    </script>
-    <script>
-        // [ Zero Configuration ] start
-        $('#simpletable').DataTable();
-
-        // [ Default Ordering ] start
-        $('#order-table').DataTable({
-            order: [
-                [3, 'desc']
-            ]
-        });
-
-        // [ Multi-Column Ordering ]
-        $('#multi-colum-dt').DataTable({
-            columnDefs: [{
-                    targets: [0],
-                    orderData: [0, 1]
-                },
-                {
-                    targets: [1],
-                    orderData: [1, 0]
-                },
-                {
-                    targets: [4],
-                    orderData: [4, 0]
-                }
-            ]
-        });
-
-        // [ Complex Headers ]
-        $('#complex-dt').DataTable();
-
-        // [ DOM Positioning ]
-        $('#DOM-dt').DataTable({
-            dom: '<"top"i>rt<"bottom"flp><"clear">'
-        });
-
-        // [ Alternative Pagination ]
-        $('#alt-pg-dt').DataTable({
-            pagingType: 'full_numbers'
-        });
-
-        // [ Scroll - Vertical ]
-        $('#scr-vrt-dt').DataTable({
-            scrollY: '200px',
-            scrollCollapse: true,
-            paging: false
-        });
-
-        // [ Scroll - Vertical, Dynamic Height ]
-        $('#scr-vtr-dynamic').DataTable({
-            scrollY: '50vh',
-            scrollCollapse: true,
-            paging: false
-        });
-
-        // [ Language - Comma Decimal Place ]
-        $('#lang-dt').DataTable({
-            language: {
-                decimal: ',',
-                thousands: '.'
-            }
-        });
-    </script>
-
 </body>
-<!-- [Body] end -->
-
-</html>

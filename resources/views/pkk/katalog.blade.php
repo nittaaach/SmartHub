@@ -1,4 +1,4 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_pkk')
 @section('content_admin')
     <!-- [ breadcrumb ] start -->
     <div class="page-header">
@@ -780,4 +780,3 @@
     <!-- Tambahkan ini di layout kamu jika belum ada -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 @endsection
-@extends('admin-temp.footer_pkk')

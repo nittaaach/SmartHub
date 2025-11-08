@@ -1,4 +1,4 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_rw')
 @section('content_admin')
     <!-- Alternative Pagination table start -->
 
@@ -93,4 +93,3 @@
     </div>
     <!-- Alternative Pagination table end -->
 @endsection
-@extends('admin-temp.footer_rw')

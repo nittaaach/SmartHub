@@ -1,4 +1,4 @@
-@extends('admin-temp.head')
+@extends('admin-temp.layout_rw')
 @section('content_admin')
     <!-- Alternative Pagination table start -->
 
@@ -21,17 +21,6 @@
             </div>
         </div>
     </div>
-    <!-- [ breadcrumb ] end -->
-    {{-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="ktp-rw12-tab" data-bs-toggle="pill" href="#ktp-rw12" role="tab"
-                aria-controls="ktp-rw12" aria-selected="true">KTP RW 12</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="non-ktp-tab" data-bs-toggle="pill" href="#non-ktp" role="tab"
-                aria-controls="non-ktp" aria-selected="false">Non KTP RW 12</a>
-        </li>
-    </ul> --}}
     <div class="row">
         <div class="col-sm-12">
             @if (session('success'))
@@ -339,4 +328,3 @@
         </div>
     @endforeach
 @endsection
-@extends('admin-temp.footer_rw')
