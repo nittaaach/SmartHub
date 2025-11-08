@@ -1,0 +1,19 @@
+---
+deployment:
+  tasks:
+    # Tentukan path utama
+    - export DEPLOYPATH=/home/rwsmarh/
+
+    # 1. Salin semua isi dari folder public proyek ke public_html
+    - /bin/cp -R $DEPLOYPATH/laravel-app/public/* $DEPLOYPATH/public_html/
+
+    # 2. (WAJIB) Perbarui symlink storage agar gambar/file upload muncul
+    #    Hapus link lama dulu (abaikan error jika link belum ada)
+    - /bin/rm -f $DEPLOYPATH/public_html/storage
+    #    Buat link baru
+    - /bin/ln -s $DEPLOYPATH/laravel-app/storage/app/public $DEPLOYPATH/public_html/storage
+
+    # 3. (Opsional tapi bagus) Bersihkan cache Laravel
+    # - php $DEPLOYPATH/laravel-app/artisan cache:clear
+    # - php $DEPLOYPATH/laravel-app/artisan config:cache
+    # - php $DEPLOYPATH/laravel-app/artisan view:clear
