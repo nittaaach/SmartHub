@@ -13,11 +13,6 @@ use Illuminate\Support\Facades\Log;
 
 class ActivityController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('role')->only('load'); // atau ->except(...) atau langsung di route
-    // }
-
     public function activity_RW()
     {
         return view('/ketua_rw/activity');
@@ -55,14 +50,14 @@ class ActivityController extends Controller
         $validatedData = $request->validate([
             'judul' => 'required|string|max:255',
             'kategori' => 'required|string',
-            'kategori_lainnya' => 'nullable|string|max:100', // Untuk kategori custom
+            'kategori_lainnya' => 'nullable|string|max:100', 
             'deskripsi' => 'nullable|string',
             'penyelenggara' => 'required|string',
             'lokasi' => 'nullable|string',
             'status' => 'required|in:draft,published,archived',
             'tanggal_acara' => 'nullable|date',
-            'fotopkk' => 'nullable|array', // Menerima array ID foto
-            'fotopkk.*' => 'exists:activity_fotopkk,id' // Memastikan semua ID foto ada di tabel foto
+            'fotopkk' => 'nullable|array', 
+            'fotopkk.*' => 'exists:activity_fotopkk,id' 
         ]);
         $kategoriFinal = $validatedData['kategori'];
         if ($kategoriFinal === 'Lainnya' && !empty($validatedData['kategori_lainnya'])) {
@@ -82,12 +77,12 @@ class ActivityController extends Controller
         try {
             $activity = ActivitypkkModels::create([
                 'judul' => $validatedData['judul'],
-                'kategori' => $kategoriFinal, // Gunakan nilai kategori yang sudah diproses
+                'kategori' => $kategoriFinal, 
                 'deskripsi' => $validatedData['deskripsi'],
                 'penyelenggara' => $validatedData['penyelenggara'],
                 'lokasi' => $validatedData['lokasi'],
                 'status' => $validatedData['status'],
-                'tanggal_acara' => $tanggal_acara_final, // Gunakan nilai tanggal yang sudah diproses
+                'tanggal_acara' => $tanggal_acara_final, 
             ]);
 
             if (!empty($validatedData['fotopkk'])) {
