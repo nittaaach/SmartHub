@@ -84,7 +84,10 @@
                                                         {{ Str::limit($url, 50) }}
                                                     </a>
                                                 </td>
-                                                <td>{{ $item->content }}</td>
+                                                <td
+                                                    style="max-width: 200px; white-space: normal; overflow-wrap: break-word;">
+                                                    {{ $item->content }}
+                                                </td>
                                                 <td>
                                                     @if ($item->gambar)
                                                         <img src="{{ asset('storage/' . $item->gambar) }}"
@@ -204,8 +207,8 @@
                             <!-- Status -->
                             <div class="form-group mb-3">
                                 <label>Status</label>
-                                <select name="status" class="form-control" onchange="togglePublishedAtCreate(this.value)"
-                                    required>
+                                <select name="status" class="form-control"
+                                    onchange="togglePublishedAtCreate(this.value)" required>
                                     <option value="draft">Draft</option>
                                     <option value="published">Published</option>
                                     <option value="archived">Archived</option>

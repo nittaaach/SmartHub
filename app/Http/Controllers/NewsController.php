@@ -9,6 +9,8 @@ use App\Models\K_NewsModels;
 use Illuminate\Http\Request;
 use App\Models\JadwalpkkModels;
 use App\Models\ActivitypkkModels;
+use App\Models\JadwalkatarModels;
+use App\Models\ActivitykatarModels;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -48,7 +50,6 @@ class NewsController extends Controller
             ->get();
         return view('news_detail', compact('news', 'k_news', 'recentPosts'));
     }
-
 
     public function index()
     {
@@ -178,32 +179,60 @@ class NewsController extends Controller
 
     public function pengumuman()
     {
-        $jadwals = JadwalpkkModels::orderBy('tanggal_mulai', 'desc')->paginate(10);
-        return view('pengumuman', [
-            'jadwals' => $jadwals
-        ]);
+        // 'pkk_page' adalah nama parameter baru untuk PKK
+        $jadwal_pkk = JadwalPkkModels::orderBy('tanggal_mulai', 'desc')
+            ->paginate(5, ['*'], 'pkk_page');
+
+        // 'katar_page' adalah nama parameter baru untuk Katar
+        $jadwal_katar = JadwalKatarModels::orderBy('tanggal_mulai', 'desc')
+            ->paginate(5, ['*'], 'katar_page');
+
+        return view('pengumuman', compact('jadwal_pkk', 'jadwal_katar'));
     }
 
-    public function detail_pengumuman($id)
+    public function detail_pengumuman($kategori, $id)
     {
-        $jadwal = JadwalpkkModels::findOrFail($id);
-        return view('detail_pengumuman', compact('jadwal'));
+        if ($kategori === 'pkk') {
+            $jadwal = JadwalpkkModels::findOrFail($id);
+        } elseif ($kategori === 'katar') {
+            $jadwal = JadwalkatarModels::findOrFail($id);
+        } else {
+            abort(404);
+        }
+
+        return view('detail_pengumuman', compact('jadwal', 'kategori'));
     }
+
 
     public function aktivitas()
     {
-        $activities = ActivitypkkModels::with('dokumentasi')
+        $pkkActivities = ActivitypkkModels::with('dokumentasi')
             ->where('status', 'published')
             ->orderBy('tanggal_acara', 'desc')
             ->get();
-        return view('aktivitas', compact('activities'));
+
+        $katarActivities = ActivitykatarModels::with('dokumentasi')
+            ->where('status', 'published')
+            ->orderBy('tanggal_acara', 'desc')
+            ->get();
+
+        return view('aktivitas', compact('pkkActivities', 'katarActivities'));
     }
 
-    public function detail_aktivitas($id)
+    public function detail_aktivitas($type, $id)
     {
-        $activity = ActivitypkkModels::with('dokumentasi')
-            ->where('status', 'published')
-            ->findOrFail($id);
-        return view('detail_aktivitas', compact('activity'));
+        if ($type === 'pkk') {
+            $activity = ActivitypkkModels::with('dokumentasi')
+                ->where('status', 'published')
+                ->findOrFail($id);
+        } elseif ($type === 'katar') {
+            $activity = ActivitykatarModels::with('dokumentasi')
+                ->where('status', 'published')
+                ->findOrFail($id);
+        } else {
+            abort(404);
+        }
+
+        return view('detail_aktivitas', compact('activity', 'type'));
     }
 }

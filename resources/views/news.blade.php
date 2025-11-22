@@ -1,4 +1,4 @@
-@extends('user-temp.head')
+@extends('user-temp.layout')
 @section('content')
     <!-- Page Title -->
     <div class="page-title">
@@ -70,9 +70,11 @@
                                         </a>
                                     @else
                                         {{-- Jika tidak ada, arahkan ke halaman detail internal --}}
-                                        <a href="{{ url('/news_detail/') }}" class="readmore stretched-link">
+                                        <a href="{{ url('/news_detail', $item->id) }}" class="readmore stretched-link">
                                             <span>Read More</span><i class="bi bi-arrow-right"></i>
                                         </a>
+                                        
+                                        {{-- <a href="{{ route('news_detail', $item->id) }}" class="readmore stretched-link"> --}}
                                     @endif
                                 </div>
 
@@ -84,5 +86,3 @@
         </div>
     </section><!-- /Recent Posts Section -->
 @endsection
-
-@extends('user-temp.footer')

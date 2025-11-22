@@ -61,7 +61,10 @@
                                                             data-bs-target="#PreviewFotoModal-{{ $item->id }}">
                                                     @endif
                                                 </td>
-                                                <td>{{ $item->caption }}</td>
+                                                <td
+                                                    style="max-width: 200px; white-space: normal; overflow-wrap: break-word;">
+                                                    {{ $item->caption }}
+                                                </td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary me-3"
                                                         data-bs-toggle="modal"

@@ -1,318 +1,315 @@
 @extends('admin-temp.layout_pkk')
 @section('content_admin')
-    <!-- [ Main Content ] start -->
-    <div class="pc-content">
-        <!-- [ breadcrumb ] start -->
-        <div class="page-header">
-            <div class="page-block">
-                <div class="row align-items-center">
-                    <div class="col-md-12">
-                        <div class="page-header-title">
-                            <h5 class="m-b-10">Home</h5>
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="ketua_rw/dashboard">Home</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Dashboard</a></li>
-                            <li class="breadcrumb-item" aria-current="page">Home</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- [ breadcrumb ] end -->
-        <!-- [ Main Content ] start -->
-        <div class="row">
-            <!-- [ sample-page ] start -->
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">Total Page Views</h6>
-                        <h4 class="mb-3">4,42,236 <span class="badge bg-light-primary border border-primary"><i
-                                    class="ti ti-trending-up"></i> 59.3%</span></h4>
-                        <p class="mb-0 text-muted text-sm">You made an extra <span class="text-primary">35,000</span>
-                            this year
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">Total Users</h6>
-                        <h4 class="mb-3">78,250 <span class="badge bg-light-success border border-success"><i
-                                    class="ti ti-trending-up"></i> 70.5%</span></h4>
-                        <p class="mb-0 text-muted text-sm">You made an extra <span class="text-success">8,900</span>
-                            this year</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">Total Order</h6>
-                        <h4 class="mb-3">18,800 <span class="badge bg-light-warning border border-warning"><i
-                                    class="ti ti-trending-down"></i> 27.4%</span></h4>
-                        <p class="mb-0 text-muted text-sm">You made an extra <span class="text-warning">1,943</span>
-                            this year</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">Total Sales</h6>
-                        <h4 class="mb-3">$35,078 <span class="badge bg-light-danger border border-danger"><i
-                                    class="ti ti-trending-down"></i> 27.4%</span></h4>
-                        <p class="mb-0 text-muted text-sm">You made an extra <span class="text-danger">$20,395</span>
-                            this year
-                        </p>
-                    </div>
-                </div>
-            </div>
+    @php
+        use Illuminate\Support\Str;
 
-            <div class="col-md-12 col-xl-8">
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="mb-0">Unique Visitor</h5>
-                    <ul class="nav nav-pills justify-content-end mb-0" id="chart-tab-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="chart-tab-home-tab" data-bs-toggle="pill"
-                                data-bs-target="#chart-tab-home" type="button" role="tab"
-                                aria-controls="chart-tab-home" aria-selected="true">Month</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="chart-tab-profile-tab" data-bs-toggle="pill"
-                                data-bs-target="#chart-tab-profile" type="button" role="tab"
-                                aria-controls="chart-tab-profile" aria-selected="false">Week</button>
-                        </li>
+        $kategori_dipilih = $current_categories ?? [];
+        $harga_dipilih = $current_price_range ?? null;
+
+        $kategori_items = $all_categories ?? collect();
+        $harga_items = $price_ranges ?? [];
+
+        $kategori_midpoint = ceil($kategori_items->count() / 2);
+        $kategori_kolom1 = $kategori_items->take($kategori_midpoint);
+        $kategori_kolom2 = $kategori_items->skip($kategori_midpoint);
+
+        $harga_midpoint = ceil(count($harga_items) / 2);
+        $harga_kolom1 = array_slice($harga_items, 0, $harga_midpoint);
+        $harga_kolom2 = array_slice($harga_items, $harga_midpoint);
+    @endphp
+
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-12">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../dashboard/index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0)">E-commerce</a></li>
+                        <li class="breadcrumb-item" aria-current="page">Products</li>
                     </ul>
                 </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="tab-content" id="chart-tab-tabContent">
-                            <div class="tab-pane" id="chart-tab-home" role="tabpanel" aria-labelledby="chart-tab-home-tab"
-                                tabindex="0">
-                                <div id="visitor-chart-1"></div>
-                            </div>
-                            <div class="tab-pane show active" id="chart-tab-profile" role="tabpanel"
-                                aria-labelledby="chart-tab-profile-tab" tabindex="0">
-                                <div id="visitor-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 col-xl-4">
-                <h5 class="mb-3">Income Overview</h5>
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">This Week Statistics</h6>
-                        <h3 class="mb-3">$7,650</h3>
-                        <div id="income-overview-chart"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12 col-xl-8">
-                <h5 class="mb-3">Recent Orders</h5>
-                <div class="card tbl-card">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover table-borderless mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>TRACKING NO.</th>
-                                        <th>PRODUCT NAME</th>
-                                        <th>TOTAL ORDER</th>
-                                        <th>STATUS</th>
-                                        <th class="text-end">TOTAL AMOUNT</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Camera Lens</td>
-                                        <td>40</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-danger f-10 m-r-5"></i>Rejected</span>
-                                        </td>
-                                        <td class="text-end">$40,570</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Laptop</td>
-                                        <td>300</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-warning f-10 m-r-5"></i>Pending</span>
-                                        </td>
-                                        <td class="text-end">$180,139</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Mobile</td>
-                                        <td>355</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-success f-10 m-r-5"></i>Approved</span>
-                                        </td>
-                                        <td class="text-end">$180,139</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Camera Lens</td>
-                                        <td>40</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-danger f-10 m-r-5"></i>Rejected</span>
-                                        </td>
-                                        <td class="text-end">$40,570</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Laptop</td>
-                                        <td>300</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-warning f-10 m-r-5"></i>Pending</span>
-                                        </td>
-                                        <td class="text-end">$180,139</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Mobile</td>
-                                        <td>355</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-success f-10 m-r-5"></i>Approved</span>
-                                        </td>
-                                        <td class="text-end">$180,139</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Camera Lens</td>
-                                        <td>40</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-danger f-10 m-r-5"></i>Rejected</span>
-                                        </td>
-                                        <td class="text-end">$40,570</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Laptop</td>
-                                        <td>300</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-warning f-10 m-r-5"></i>Pending</span>
-                                        </td>
-                                        <td class="text-end">$180,139</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Mobile</td>
-                                        <td>355</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-success f-10 m-r-5"></i>Approved</span>
-                                        </td>
-                                        <td class="text-end">$180,139</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Mobile</td>
-                                        <td>355</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-success f-10 m-r-5"></i>Approved</span>
-                                        </td>
-                                        <td class="text-end">$180,139</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 col-xl-4">
-                <h5 class="mb-3">Analytics Report</h5>
-                <div class="card">
-                    <div class="list-group list-group-flush">
-                        <a href="#"
-                            class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">Company
-                            Finance Growth<span class="h5 mb-0">+45.14%</span></a>
-                        <a href="#"
-                            class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">Company
-                            Expenses Ratio<span class="h5 mb-0">0.58%</span></a>
-                        <a href="#"
-                            class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">Business
-                            Risk Cases<span class="h5 mb-0">Low</span></a>
-                    </div>
-                    <div class="card-body px-2">
-                        <div id="analytics-report-chart"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12 col-xl-8">
-                <h5 class="mb-3">Sales Report</h5>
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">This Week Statistics</h6>
-                        <h3 class="mb-0">$7,650</h3>
-                        <div id="sales-report-chart"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 col-xl-4">
-                <h5 class="mb-3">Transaction History</h5>
-                <div class="card">
-                    <div class="list-group list-group-flush">
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex">
-                                <div class="shrink-0">
-                                    <div class="avtar avtar-s rounded-circle text-success bg-light-success">
-                                        <i class="ti ti-gift f-18"></i>
-                                    </div>
-                                </div>
-                                <div class="grow ms-3">
-                                    <h6 class="mb-1">Order #002434</h6>
-                                    <p class="mb-0 text-muted">Today, 2:00 AM</P>
-                                </div>
-                                <div class="shrink-0 text-end">
-                                    <h6 class="mb-1">+ $1,430</h6>
-                                    <p class="mb-0 text-muted">78%</P>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex">
-                                <div class="shrink-0">
-                                    <div class="avtar avtar-s rounded-circle text-primary bg-light-primary">
-                                        <i class="ti ti-message-circle f-18"></i>
-                                    </div>
-                                </div>
-                                <div class="grow ms-3">
-                                    <h6 class="mb-1">Order #984947</h6>
-                                    <p class="mb-0 text-muted">5 August, 1:45 PM</P>
-                                </div>
-                                <div class="shrink-0 text-end">
-                                    <h6 class="mb-1">- $302</h6>
-                                    <p class="mb-0 text-muted">8%</P>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex">
-                                <div class="shrink-0">
-                                    <div class="avtar avtar-s rounded-circle text-danger bg-light-danger">
-                                        <i class="ti ti-settings f-18"></i>
-                                    </div>
-                                </div>
-                                <div class="grow ms-3">
-                                    <h6 class="mb-1">Order #988784</h6>
-                                    <p class="mb-0 text-muted">7 hours ago</P>
-                                </div>
-                                <div class="shrink-0 text-end">
-                                    <h6 class="mb-1">- $682</h6>
-                                    <p class="mb-0 text-muted">16%</P>
-                                </div>
-                            </div>
-                        </a>
+                <div class="col-md-12">
+                    <div class="page-header-title">
+                        <h2 class="mb-0">Products</h2>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- [ breadcrumb ] end -->
+
+    <!-- [ Main Content ] start -->
+    <div class="row">
+        <!-- [ sample-page ] start -->
+        <div class="col-sm-12">
+            <div class="ecom-wrapper">
+                <div class="offcanvas offcanvas-start ecom-offcanvas" tabindex="-1" id="offcanvas_mail_filter">
+                    <div class="offcanvas-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                            data-bs-target="#offcanvas_mail_filter" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body p-0 sticky-xxl-top">
+                        <div id="ecom-filter" class="show collapse collapse-horizontal">
+                            <div class="ecom-filter">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Filter</h5>
+                                    </div>
+                                    <div class="scroll-block">
+                                        <div class="card-body">
+                                            <form action="{{ url()->current() }}" method="GET">
+                                                @if (request('sort'))
+                                                    <input type="hidden" name="sort" value="{{ request('sort') }}">
+                                                @endif
+
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item px-0 py-2">
+                                                        <a class="btn border-0 px-0 text-start w-100"
+                                                            data-bs-toggle="collapse" href="#filtercollapse2">
+                                                            <div class="float-end"><i class="ti ti-chevron-down"></i></div>
+                                                            Categories
+                                                        </a>
+                                                        <div class="collapse show" id="filtercollapse2">
+                                                            <div class="row py-3">
+                                                                <div class="col-6">
+                                                                    <div class="form-check my-2">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                            name="kategori[]" value=""
+                                                                            id="categoryfilter-all"
+                                                                            {{ empty($kategori_dipilih) || (count($kategori_dipilih) == 1 && $kategori_dipilih[0] == '') ? 'checked' : '' }}>
+                                                                        <label class="form-check-label"
+                                                                            for="categoryfilter-all">All</label>
+                                                                    </div>
+
+                                                                    @foreach ($kategori_kolom1 as $kategori)
+                                                                        @php
+                                                                            $kategori_id =
+                                                                                'kategori-' . Str::slug($kategori);
+                                                                        @endphp
+                                                                        <div class="form-check my-2">
+                                                                            <input class="form-check-input" type="checkbox"
+                                                                                name="kategori[]"
+                                                                                value="{{ $kategori }}"
+                                                                                id="{{ $kategori_id }}"
+                                                                                {{ in_array($kategori, $kategori_dipilih) ? 'checked' : '' }}>
+                                                                            <label class="form-check-label"
+                                                                                for="{{ $kategori_id }}">{{ $kategori }}</label>
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    @foreach ($kategori_kolom2 as $kategori)
+                                                                        @php
+                                                                            $kategori_id =
+                                                                                'kategori-' . Str::slug($kategori);
+                                                                        @endphp
+                                                                        <div class="form-check my-2">
+                                                                            <input class="form-check-input" type="checkbox"
+                                                                                name="kategori[]"
+                                                                                value="{{ $kategori }}"
+                                                                                id="{{ $kategori_id }}"
+                                                                                {{ in_array($kategori, $kategori_dipilih) ? 'checked' : '' }}>
+                                                                            <label class="form-check-label"
+                                                                                for="{{ $kategori_id }}">{{ $kategori }}</label>
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <li class="list-group-item px-0 py-2">
+                                                        <a class="btn border-0 px-0 text-start w-100"
+                                                            data-bs-toggle="collapse" href="#filtercollapse4">
+                                                            <div class="float-end"><i class="ti ti-chevron-down"></i></div>
+                                                            Price
+                                                        </a>
+                                                        <div class="collapse show" id="filtercollapse4">
+                                                            <div class="row py-3">
+                                                                <div class="col-6">
+                                                                    @foreach ($harga_kolom1 as $index => $range)
+                                                                        @php
+                                                                            $price_id = 'pricefilter-' . $index;
+                                                                        @endphp
+                                                                        <div class="form-check my-2">
+                                                                            <input class="form-check-input" type="radio"
+                                                                                name="price_range" id="{{ $price_id }}"
+                                                                                value="{{ $range['value'] }}"
+                                                                                {{ $harga_dipilih == $range['value'] ? 'checked' : '' }}>
+                                                                            <label class="form-check-label"
+                                                                                for="{{ $price_id }}">{{ $range['label'] }}</label>
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    @foreach ($harga_kolom2 as $index_offset => $range)
+                                                                        @php
+                                                                            $price_id =
+                                                                                'pricefilter-' .
+                                                                                ($index_offset + count($harga_kolom1));
+                                                                        @endphp
+                                                                        <div class="form-check my-2">
+                                                                            <input class="form-check-input" type="radio"
+                                                                                name="price_range" id="{{ $price_id }}"
+                                                                                value="{{ $range['value'] }}"
+                                                                                {{ $harga_dipilih == $range['value'] ? 'checked' : '' }}>
+                                                                            <label class="form-check-label"
+                                                                                for="{{ $price_id }}">{{ $range['label'] }}</label>
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <li class="list-group-item px-0 py-2">
+                                                        <button type="submit" class="btn btn-primary w-100">Apply
+                                                            Filter</button>
+                                                    </li>
+                                                    <li class="list-group-item px-0 py-2">
+                                                        <a href="{{ url('pkk/dashboard') }}"
+                                                            class="btn btn-light-danger w-100">Clear All</a>
+                                                    </li>
+                                                </ul>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ecom-content">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="d-sm-flex align-items-center">
+
+                                <form action="{{ url()->current() }}" method="GET"
+                                    class="d-sm-flex w-100 align-items-center">
+
+                                    <ul class="list-inline me-auto my-1">
+                                        <li class="list-inline-item align-bottom">
+                                            <a href="#" class="btn btn-link-secondary" data-bs-toggle="offcanvas"
+                                                data-bs-target="#offcanvas_mail_filter">
+                                                <i class="ti ti-filter f-16"></i> Filter
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <div class="form-search">
+                                                <i class="ti ti-search"></i>
+                                                <input type="search" class="form-control" placeholder="Search Products"
+                                                    name="search" value="{{ request('search') }}">
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                    <ul class="list-inline ms-auto my-1">
+                                        <li class="list-inline-item">
+                                            <select class="form-select" name="sort" onchange="this.form.submit()">
+                                                <option value="created_at_desc"
+                                                    @if (($current_sort ?? 'created_at_desc') == 'created_at_desc') selected @endif>
+                                                    Fresh Arrivals (Default)
+                                                </option>
+                                                <option value="price_desc"
+                                                    @if (($current_sort ?? '') == 'price_desc') selected @endif>
+                                                    Price: High To Low
+                                                </option>
+                                                <option value="price_asc"
+                                                    @if (($current_sort ?? '') == 'price_asc') selected @endif>
+                                                    Price: Low To High
+                                                </option>
+                                            </select>
+
+                                            @if (request('kategori'))
+                                                @foreach (request('kategori') as $k)
+                                                    <input type="hidden" name="kategori[]" value="{{ $k }}">
+                                                @endforeach
+                                            @endif
+
+                                            @if (request('price_range'))
+                                                <input type="hidden" name="price_range"
+                                                    value="{{ request('price_range') }}">
+                                            @endif
+                                        </li>
+                                    </ul>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @foreach ($produks as $produk)
+                            <div class="col-sm-6 col-xl-4">
+                                <div class="card product-card">
+                                    <div class="card-img-top">
+                                        <img src="{{ $produk->fotoProduk->first() ? asset('storage/' . $produk->fotoProduk->first()->path_foto) : '' }}"
+                                            alt="{{ $produk->nama_produk }}" class="img-prod"
+                                            style="width: 100%; height: 200px; object-fit: contain;"
+                                            onerror="this.src='https://placehold.co/600x400/E5E7EB/9CA3AF?text=Foto+Produk';">
+                                        <div class="card-body position-absolute end-0 top-0">
+                                            <div class="form-check prod-likes">
+                                                <input type="checkbox" class="form-check-input">
+                                                <i data-feather="heart" class="prod-likes-icon"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <a href="#">
+                                            <h5 class="mb-1 text-truncate">{{ $produk->nama_produk }}</h5>
+                                        </a>
+                                        <p class="prod-content mb-3 text-muted">
+                                            {{ $produk->nama_penjual ?? 'Nama Penjual' }}</p>
+                                        <div class="d-flex align-items-center justify-content-between mt-3">
+                                            <div class="me-2">
+                                                <h6 class="mb-1">
+                                                    <b>Rp. {{ number_format($produk->harga, 0, ',', '.') }}</b>
+                                                </h6>
+                                            </div>
+                                            <span
+                                                class="badge bg-light-success">{{ $produk->status_stock ?? 'Tersedia' }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ sample-page ] end -->
+    </div>
     <!-- [ Main Content ] end -->
 @endsection
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var clearButton = document.getElementById("btn-clear-filter");
+        var filterContainer = document.getElementById("ecom-filter");
+        if (clearButton && filterContainer) {
+
+            clearButton.addEventListener("click", function() {
+                var checkboxes = filterContainer.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(function(checkbox) {
+                    checkbox.checked = false;
+                });
+                var radios = filterContainer.querySelectorAll('input[type="radio"]');
+                radios.forEach(function(radio) {
+                    radio.checked = false;
+                });
+
+                console.log("Semua filter telah dibersihkan!");
+            });
+        }
+    });
+</script>
+
+<!-- [Page Specific JS] start -->
+<script>
+    // scroll-block
+    var tc = document.querySelectorAll('.scroll-block');
+    for (var t = 0; t < tc.length; t++) {
+        new SimpleBar(tc[t]);
+    }
+</script>

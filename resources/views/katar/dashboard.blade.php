@@ -23,56 +23,104 @@
         <!-- [ Main Content ] start -->
         <div class="row">
             <!-- [ sample-page ] start -->
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">Total Page Views</h6>
-                        <h4 class="mb-3">4,42,236 <span class="badge bg-light-primary border border-primary"><i
-                                    class="ti ti-trending-up"></i> 59.3%</span></h4>
-                        <p class="mb-0 text-muted text-sm">You made an extra <span class="text-primary">35,000</span>
-                            this year
-                        </p>
+            <div class="col-sm-4">
+                <div class="card bg-success text-white widget-visitor-card">
+                    <div class="card-body text-center">
+                        <h2 class="text-white">{{ number_format($totalJadwal ?? 0) }}</h2>
+                        <p class="text-white mb-0">Schedule Total</p>
+                        <i class="ti ti-clipboard-list f-46 text-white"></i>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">Total Users</h6>
-                        <h4 class="mb-3">78,250 <span class="badge bg-light-success border border-success"><i
-                                    class="ti ti-trending-up"></i> 70.5%</span></h4>
-                        <p class="mb-0 text-muted text-sm">You made an extra <span class="text-success">8,900</span>
-                            this year</p>
+            <div class="col-sm-4">
+                <div class="card bg-primary text-white widget-visitor-card">
+                    <div class="card-body text-center">
+                        <h2 class="text-white">{{ number_format($totalAktivitas ?? 0) }}</h2>
+                        <p class="text-white mb-0">Total Publikasi</p>
+                        <i class="ti ti-camera d-block f-46 text-white"></i>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">Total Order</h6>
-                        <h4 class="mb-3">18,800 <span class="badge bg-light-warning border border-warning"><i
-                                    class="ti ti-trending-down"></i> 27.4%</span></h4>
-                        <p class="mb-0 text-muted text-sm">You made an extra <span class="text-warning">1,943</span>
-                            this year</p>
+            <div class="col-sm-4">
+                <div class="card bg-danger text-white widget-visitor-card">
+                    <div class="card-body text-center">
+                        <h2 class="text-white">{{ number_format($totalJenisInventaris ?? 0) }}</h2>
+                        <p class="text-white mb-0">Total Jenis Inventaris</p>
+                        <i class="ti ti-folders d-block f-46 text-white"></i>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
+
+
+            <div class="col-md-12 col-xl-12">
+                <h5 class="mb-3">Inventaris Terbaru</h5>
+                <div class="card tbl-card">
                     <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">Total Sales</h6>
-                        <h4 class="mb-3">$35,078 <span class="badge bg-light-danger border border-danger"><i
-                                    class="ti ti-trending-down"></i> 27.4%</span></h4>
-                        <p class="mb-0 text-muted text-sm">You made an extra <span class="text-danger">$20,395</span>
-                            this year
-                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-borderless mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>NAMA BARANG</th>
+                                        <th>KATEGORI</th>
+                                        <th>KODE BARANG</th>
+                                        <th>KONDISI</th>
+                                        <th>STOCK SAAT INI</th>
+                                        <th>ACTIVITAS TERAKHIR</th>
+                                        <th>PENANGGUNG JAWAB</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($inventarisTerbaru as $item)
+                                        <tr>
+                                            <td>{{ $item->nama_barang }}</td>
+                                            <td>{{ $item->kategori }}</td>
+                                            <td>{{ $item->kode_barang }}</td>
+                                            <td>{{ $item->kondisi }}</td>
+                                            <td>
+                                                <strong>{{ $item->stok_akhir ?? 0 }}</strong> {{ $item->satuan }}
+                                            </td>
+                                            <td>
+                                                @if ($item->riwayatTerakhir)
+                                                    @if ($item->riwayatTerakhir->tipe_transaksi == 'Masuk')
+                                                        <span class="d-flex align-items-center gap-2">
+                                                            <i class="fas fa-circle text-success f-10 m-r-5"></i>
+                                                            Masuk ({{ $item->riwayatTerakhir->jumlah }})
+                                                        </span>
+                                                    @else
+                                                        <span class="d-flex align-items-center gap-2">
+                                                            <i class="fas fa-circle text-danger f-10 m-r-5"></i>
+                                                            Keluar ({{ $item->riwayatTerakhir->jumlah }})
+                                                        </span>
+                                                    @endif
+                                                    <small class="d-block">{{ $item->riwayatTerakhir->keterangan }}</small>
+                                                @else
+                                                    <span class="d-flex align-items-center gap-2">
+                                                        <i class="fas fa-circle text-warning f-10 m-r-5"></i>
+                                                        Belum ada aktivitas
+                                                    </span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                {{ $item->riwayatTerakhir?->penanggung_jawab ?? 'N/A' }}
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="7" class="text-center">
+                                                Belum ada data inventaris.
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-12 col-xl-8">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="mb-0">Unique Visitor</h5>
+                    <h5 class="mb-0">Statistics Inventory</h5>
                     <ul class="nav nav-pills justify-content-end mb-0" id="chart-tab-tab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="chart-tab-home-tab" data-bs-toggle="pill"
@@ -101,214 +149,67 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 col-xl-4">
-                <h5 class="mb-3">Income Overview</h5>
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">This Week Statistics</h6>
-                        <h3 class="mb-3">$7,650</h3>
-                        <div id="income-overview-chart"></div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-md-12 col-xl-8">
-                <h5 class="mb-3">Recent Orders</h5>
-                <div class="card tbl-card">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover table-borderless mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>TRACKING NO.</th>
-                                        <th>PRODUCT NAME</th>
-                                        <th>TOTAL ORDER</th>
-                                        <th>STATUS</th>
-                                        <th class="text-end">TOTAL AMOUNT</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Camera Lens</td>
-                                        <td>40</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-danger f-10 m-r-5"></i>Rejected</span>
-                                        </td>
-                                        <td class="text-end">$40,570</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Laptop</td>
-                                        <td>300</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-warning f-10 m-r-5"></i>Pending</span>
-                                        </td>
-                                        <td class="text-end">$180,139</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Mobile</td>
-                                        <td>355</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-success f-10 m-r-5"></i>Approved</span>
-                                        </td>
-                                        <td class="text-end">$180,139</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Camera Lens</td>
-                                        <td>40</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-danger f-10 m-r-5"></i>Rejected</span>
-                                        </td>
-                                        <td class="text-end">$40,570</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Laptop</td>
-                                        <td>300</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-warning f-10 m-r-5"></i>Pending</span>
-                                        </td>
-                                        <td class="text-end">$180,139</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Mobile</td>
-                                        <td>355</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-success f-10 m-r-5"></i>Approved</span>
-                                        </td>
-                                        <td class="text-end">$180,139</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Camera Lens</td>
-                                        <td>40</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-danger f-10 m-r-5"></i>Rejected</span>
-                                        </td>
-                                        <td class="text-end">$40,570</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Laptop</td>
-                                        <td>300</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-warning f-10 m-r-5"></i>Pending</span>
-                                        </td>
-                                        <td class="text-end">$180,139</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Mobile</td>
-                                        <td>355</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-success f-10 m-r-5"></i>Approved</span>
-                                        </td>
-                                        <td class="text-end">$180,139</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="text-muted">84564564</a></td>
-                                        <td>Mobile</td>
-                                        <td>355</td>
-                                        <td><span class="d-flex align-items-center gap-2"><i
-                                                    class="fas fa-circle text-success f-10 m-r-5"></i>Approved</span>
-                                        </td>
-                                        <td class="text-end">$180,139</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 col-xl-4">
-                <h5 class="mb-3">Analytics Report</h5>
-                <div class="card">
-                    <div class="list-group list-group-flush">
-                        <a href="#"
-                            class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">Company
-                            Finance Growth<span class="h5 mb-0">+45.14%</span></a>
-                        <a href="#"
-                            class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">Company
-                            Expenses Ratio<span class="h5 mb-0">0.58%</span></a>
-                        <a href="#"
-                            class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">Business
-                            Risk Cases<span class="h5 mb-0">Low</span></a>
-                    </div>
-                    <div class="card-body px-2">
-                        <div id="analytics-report-chart"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12 col-xl-8">
-                <h5 class="mb-3">Sales Report</h5>
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">This Week Statistics</h6>
-                        <h3 class="mb-0">$7,650</h3>
-                        <div id="sales-report-chart"></div>
-                    </div>
-                </div>
-            </div>
             <div class="col-md-12 col-xl-4">
                 <h5 class="mb-3">Transaction History</h5>
                 <div class="card">
                     <div class="list-group list-group-flush">
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex">
-                                <div class="shrink-0">
-                                    <div class="avtar avtar-s rounded-circle text-success bg-light-success">
-                                        <i class="ti ti-gift f-18"></i>
+
+                        @forelse ($riwayatTerbaru as $riwayat)
+                            @php
+                                // Logika untuk ikon dan warna (masih sama)
+                                $iconClass = 'ti ti-help';
+                                $bgClass = 'bg-light-secondary';
+                                $textClass = 'text-secondary';
+                                $prefix = '';
+
+                                if ($riwayat->tipe_transaksi == 'Masuk') {
+                                    $iconClass = 'ti ti-file-plus';
+                                    $bgClass = 'bg-light-success';
+                                    $textClass = 'text-success';
+                                    $prefix = '+ ';
+                                } elseif ($riwayat->tipe_transaksi == 'Keluar') {
+                                    $iconClass = 'ti ti-file-minus';
+                                    $bgClass = 'bg-light-danger';
+                                    $textClass = 'text-danger';
+                                    $prefix = '- ';
+                                } elseif ($riwayat->tipe_transaksi == 'Penyesuaian') {
+                                    $iconClass = 'ti ti-file-off';
+                                    $bgClass = 'bg-light-primary';
+                                    $textClass = 'text-primary';
+                                    $prefix = '± ';
+                                }
+                            @endphp
+
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex">
+                                    <div class="shrink-0">
+                                        <div class="avtar avtar-s rounded-circle {{ $bgClass }}">
+                                            <i class="{{ $iconClass }} f-18"></i>
+                                        </div>
+                                    </div>
+                                    <div class="grow ms-3">
+                                        <h5 class="mb-1">
+                                            <span class="{{ $textClass }}">
+                                                {{ $prefix }}{{ $riwayat->jumlah }}
+                                            </span>
+                                            {{ $riwayat->inventaris?->nama_barang ?? 'Barang Dihapus' }}
+                                            ({{ $riwayat->penanggung_jawab }})
+                                        </h5>
+
+                                        <p class="mb-0 text-muted fs-6">
+                                            {{ $riwayat->tanggal_transaksi->format('d M Y, H:i') }}
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="grow ms-3">
-                                    <h6 class="mb-1">Order #002434</h6>
-                                    <p class="mb-0 text-muted">Today, 2:00 AM</P>
-                                </div>
-                                <div class="shrink-0 text-end">
-                                    <h6 class="mb-1">+ $1,430</h6>
-                                    <p class="mb-0 text-muted">78%</P>
-                                </div>
+                            </a>
+
+                        @empty
+                            <div class="list-group-item">
+                                <p class="text-muted text-center mb-0">Belum ada riwayat transaksi.</p>
                             </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex">
-                                <div class="shrink-0">
-                                    <div class="avtar avtar-s rounded-circle text-primary bg-light-primary">
-                                        <i class="ti ti-message-circle f-18"></i>
-                                    </div>
-                                </div>
-                                <div class="grow ms-3">
-                                    <h6 class="mb-1">Order #984947</h6>
-                                    <p class="mb-0 text-muted">5 August, 1:45 PM</P>
-                                </div>
-                                <div class="shrink-0 text-end">
-                                    <h6 class="mb-1">- $302</h6>
-                                    <p class="mb-0 text-muted">8%</P>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex">
-                                <div class="shrink-0">
-                                    <div class="avtar avtar-s rounded-circle text-danger bg-light-danger">
-                                        <i class="ti ti-settings f-18"></i>
-                                    </div>
-                                </div>
-                                <div class="grow ms-3">
-                                    <h6 class="mb-1">Order #988784</h6>
-                                    <p class="mb-0 text-muted">7 hours ago</P>
-                                </div>
-                                <div class="shrink-0 text-end">
-                                    <h6 class="mb-1">- $682</h6>
-                                    <p class="mb-0 text-muted">16%</P>
-                                </div>
-                            </div>
-                        </a>
+                        @endforelse
+
                     </div>
                 </div>
             </div>
@@ -316,3 +217,107 @@
     </div>
     <!-- [ Main Content ] end -->
 @endsection
+
+@push('scripts')
+    <script>
+        if (typeof ApexCharts !== 'undefined') {
+
+            // --- AMBIL SEMUA DATA DARI CONTROLLER ---
+            var weekLabels = {!! json_encode($chartMingguanLabels) !!};
+            var weekDataMasuk = {!! json_encode($chartMingguanDataMasuk) !!};
+            var weekDataKeluar = {!! json_encode($chartMingguanDataKeluar) !!};
+
+            var monthLabels = {!! json_encode($chartBulananLabels) !!};
+            var monthDataMasuk = {!! json_encode($chartBulananDataMasuk) !!};
+            var monthDataKeluar = {!! json_encode($chartBulananDataKeluar) !!};
+
+            // --- OPSI CHART DEFAULT (Bisa dipakai ulang) ---
+            var chartOptions = {
+                chart: {
+                    type: 'area',
+                    height: 250,
+                    toolbar: {
+                        show: false
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    curve: 'smooth',
+                    width: 2
+                },
+                colors: ['#00E396', '#FF4560'], // Hijau (Masuk), Merah (Keluar)
+                yaxis: {
+                    title: {
+                        text: 'Jumlah Item'
+                    }
+                },
+                legend: {
+                    position: 'top',
+                    horizontalAlign: 'right'
+                }
+            };
+
+            // --- 1. RENDER CHART MINGGUAN (Default Aktif) ---
+            var weekChartOptions = {
+                ...chartOptions, // Salin opsi default
+                series: [{
+                        name: 'Barang Masuk',
+                        data: weekDataMasuk
+                    },
+                    {
+                        name: 'Barang Keluar',
+                        data: weekDataKeluar
+                    }
+                ],
+                xaxis: {
+                    categories: weekLabels
+                }
+            };
+
+            var weekChart = new ApexCharts(document.querySelector("#visitor-chart"), weekChartOptions);
+            weekChart.render();
+
+            // --- 2. RENDER CHART BULANAN (Saat Tab Diklik) ---
+            var monthChart = null; // Variabel untuk menyimpan chart bulanan
+            var monthTab = document.querySelector('#chart-tab-home-tab'); // Tombol tab 'Month'
+
+            // Dengarkan event 'shown.bs.tab' (event dari Bootstrap saat tab ditampilkan)
+            monthTab.addEventListener('shown.bs.tab', function(event) {
+
+                // Cek agar chart tidak di-render ulang setiap kali diklik
+                if (monthChart === null) {
+                    var monthChartOptions = {
+                        ...chartOptions, // Salin opsi default
+                        series: [{
+                                name: 'Barang Masuk',
+                                data: monthDataMasuk
+                            },
+                            {
+                                name: 'Barang Keluar',
+                                data: monthDataKeluar
+                            }
+                        ],
+                        xaxis: {
+                            categories: monthLabels,
+                            tickAmount: 5 // Batasi jumlah label di sumbu X agar tidak numpuk
+                        },
+                        tooltip: {
+                            x: {
+                                format: 'dd'
+                            }
+                        } // Tooltip untuk harian
+                    };
+
+                    // Targetkan div '#visitor-chart-1'
+                    monthChart = new ApexCharts(document.querySelector("#visitor-chart-1"), monthChartOptions);
+                    monthChart.render();
+                }
+            });
+
+        } else {
+            console.error("ApexCharts library is not loaded.");
+        }
+    </script>
+@endpush

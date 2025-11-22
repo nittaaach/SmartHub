@@ -1,4 +1,4 @@
-@extends('user-temp.head')
+@extends('user-temp.layout')
 @section('content')
     <!-- Hero Section -->
     <section id="hero" class="hero section">
@@ -1169,7 +1169,11 @@
                                         <div class="d-flex align-items-center">
                                             <i class="bi bi-folder2"></i>
                                             <span class="ps-2">
-                                                {{ $item->k_news->kategori_news ?? 'Tidak ada kategori' }}
+                                                @if ($item->kategori && $item->kategori->count() > 0)
+                                                    {{ $item->kategori->pluck('kategori_news')->implode(', ') }}
+                                                @else
+                                                    Tidak ada kategori
+                                                @endif
                                             </span>
                                         </div>
                                     </div>
@@ -1363,18 +1367,17 @@
     <!-- /Contact Section -->
 
     <section id="contact" class="contact section">
-        <div class="container section-title" data-aos="fade-up" style="margin=top:50px">
-            <p>LOKASI</p>
-            <h2>Sekertariat RW 12</h2>
-        </div><!-- End Section Title -->
-        <!-- Google Maps dengan jarak 100px -->
-        <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
-            <iframe style="border:0; width: 100%; height: 400px;"
-                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d247.87170514462053!2d106.921437154233!3d-6.270663441211563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMTYnMTQuNiJTIDEwNsKwNTUnMTcuMCJF!5e0!3m2!1sen!2sid!4v1759504656659!5m2!1sen!2sid"
-                frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="container">
+            <div class="section-title" data-aos="fade-up" style="margin-top: 50px;">
+                <p>LOKASI</p>
+                <h2>Sekertariat RW 12</h2>
+            </div>
+            <div class="mb-4" data-aos="fade-up" data-aos-delay="100">
+                <iframe style="border:0; width: 100%; height: 400px;"
+                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d247.87170514462053!2d106.921437154233!3d-6.270663441211563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMTYnMTQuNiJTIDEwNsKwNTUnMTcuMCJF!5e0!3m2!1sen!2sid!4v1759504656659!5m2!1sen!2sid"
+                    frameborder="0" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
         </div>
-        <!-- End Google Maps -->
     </section>
 @endsection
-
-@extends('user-temp.footer')

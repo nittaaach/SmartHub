@@ -63,7 +63,10 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->nama_layanan }}</td>
-                                                <td>{{ $item->deskripsi }}</td>
+                                                <td
+                                                    style="max-width: 200px; white-space: normal; overflow-wrap: break-word;">
+                                                    {{ $item->deskripsi }}
+                                                </td>
                                                 <td>
                                                     @if ($item->status_aktif == 1)
                                                         <span class="badge bg-success">Aktif</span>

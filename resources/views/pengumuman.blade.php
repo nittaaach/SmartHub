@@ -1,4 +1,4 @@
-@extends('user-temp.head')
+@extends('user-temp.layout')
 @section('content')
     <!-- Page Title -->
     <div class="page-title">
@@ -26,7 +26,10 @@
     <!-- ======= Section PKK ======= -->
     <section id="pkk-section" class="recent-posts section">
         <div class="container" data-aos="fade-up">
-            <h2 class="mb-4 fw-bold border-bottom pb-2">Pengumuman PKK</h2>
+            <div class="section-title text-center mb-5">
+                <h2>Pengumuman PKK</h2>
+                <p>Pengumuman Kegiatan PKK Anyelir RW 12</p>
+            </div>
             <div class="row gy-4">
                 @foreach ($jadwal_pkk as $jadwal)
                     <div class="col-12">
@@ -57,16 +60,19 @@
                 @endforeach
             </div>
             <div class="mt-4">
-                {{ $jadwal_pkk->links() }}
+                {{ $jadwal_pkk->appends(request()->query())->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </section>
     <!-- End Section PKK -->
 
     <!-- ======= Section KATAR ======= -->
-    <section id="katar-section" class="recent-posts section">
+    <section id="katar-section" class="recent-posts section bg-light">
         <div class="container" data-aos="fade-up">
-            <h2 class="mb-4 fw-bold border-bottom pb-2">Pengumuman KATAR</h2>
+            <div class="section-title text-center mb-5">
+                <h2>Pengumuman KATAR</h2>
+                <p>Pengumuman Kegiatan Karang Taruna RW 12</p>
+            </div>
             <div class="row gy-4">
                 @foreach ($jadwal_katar as $jadwal)
                     <div class="col-12">
@@ -97,12 +103,9 @@
                 @endforeach
             </div>
             <div class="mt-4">
-                {{ $jadwal_katar->links() }}
+                {{ $jadwal_katar->appends(request()->query())->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </section>
     <!-- End Section KATAR -->
 @endsection
-
-
-@extends('user-temp.footer')

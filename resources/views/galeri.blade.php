@@ -1,4 +1,4 @@
-@extends('user-temp.head')
+@extends('user-temp.layout')
 
 
 @section('content')
@@ -95,7 +95,7 @@
         <div class="container">
             <div class="section-title text-center mb-5">
                 <h2>Kegiatan Karang Taruna</h2>
-                <p>Dokumentasi kegiatan Karang Taruna RW 12</p>
+                <p>Dokumentasi Kegiatan Karang Taruna RW 12</p>
             </div>
             <div class="row gy-4">
                 @forelse ($katarActivities as $index => $activity)
@@ -155,4 +155,3 @@
         </div>
     </section>
 @endsection
-@extends('user-temp.footer')

@@ -1,4 +1,4 @@
-@extends('user-temp.head')
+@extends('user-temp.layout')
 @section('content')
     <!-- Page Title -->
     <div class="page-title">
@@ -142,5 +142,3 @@
         </a>
     </section><!-- /Team Section -->
 @endsection
-
-@extends('user-temp.footer')

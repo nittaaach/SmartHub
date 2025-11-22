@@ -62,10 +62,16 @@
                                                 <td>{{ $item->kategori }}</td>
                                                 <td>{{ $item->tanggal_mulai }}</td>
                                                 <td>{{ $item->tanggal_selesai }}</td>
-                                                <td>{{ $item->lokasi }}</td>
+                                                <td
+                                                    style="max-width: 200px; white-space: normal; overflow-wrap: break-word;">
+                                                    {{ $item->lokasi }}
+                                                </td>
                                                 <td>{{ $item->status }}</td>
                                                 <td>{{ $item->tanggal_tunda }}</td>
-                                                <td>{{ $item->catatan }}</td>
+                                                <td
+                                                    style="max-width: 200px; white-space: normal; overflow-wrap: break-word;">
+                                                    {{ $item->catatan }}
+                                                </td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary me-3"
                                                         data-bs-toggle="modal"

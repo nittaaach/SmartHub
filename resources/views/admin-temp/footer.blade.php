@@ -21,7 +21,7 @@
 
     <!-- [Page Specific JS] start -->
     <script src="../assets_admin/js/plugins/apexcharts.min.js"></script>
-    <script src="../assets_admin/js/pages/dashboard-default.js"></script>
+    {{-- <script src="../assets_admin/js/pages/dashboard-default.js"></script> --}}
     <script src="../assets_admin/js/plugins/popper.min.js"></script>
     <script src="../assets_admin/js/plugins/simplebar.min.js"></script>
     <script src="../assets_admin/js/plugins/bootstrap.min.js"></script>
@@ -44,6 +44,7 @@
     <script>
         layout_change('light');
     </script>
+    @stack('scripts')
     <script>
         change_box_container('false');
     </script>

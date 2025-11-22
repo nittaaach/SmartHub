@@ -70,7 +70,10 @@
                                                 <td>{{ $item->jabatan }}</td>
                                                 <td>{{ $item->tingkatan }}</td>
                                                 <td>{{ $item->datadiri->notelp }}</td>
-                                                <td>{{ $item->datadiri->alamat }}</td>
+                                                <td
+                                                    style="max-width: 200px; white-space: normal; overflow-wrap: break-word;">
+                                                    {{ $item->datadiri->alamat }}
+                                                </td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary me-3"
                                                         data-bs-toggle="modal"
@@ -437,51 +440,51 @@
     @endforeach
 @endsection
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const modal = document.getElementById('AddpenggunaModal');
-            if (!modal) {
-                return;
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('AddpenggunaModal');
+        if (!modal) {
+            return;
+        }
+
+        const checkbox = modal.querySelector('#is-new-user-checkbox');
+        const pilihPetugasGroup = modal.querySelector('#pilih-petugas-group');
+        const manualInputFields = modal.querySelector('#manual-input-fields');
+        const idDiriSelect = modal.querySelector('#id_datadiri_select');
+        const nameInput = modal.querySelector('#name_input');
+        const emailInput = modal.querySelector('#email_input');
+        const notelpInput = modal.querySelector('#notelp_input');
+        const alamatInput = modal.querySelector('#alamat_input');
+
+        function toggleFormMode() {
+            if (checkbox.checked) {
+                manualInputFields.style.display = 'block';
+                idDiriSelect.required = false;
+                nameInput.required = true;
+                emailInput.required = true;
+                notelpInput.required = true;
+                alamatInput.required = true;
+
+            } else {
+                pilihPetugasGroup.style.display = 'block';
+                manualInputFields.style.display = 'none';
+                idDiriSelect.required = true;
+                nameInput.required = false;
+                emailInput.required = false;
+                notelpInput.required = false;
+                alamatInput.required = false;
             }
-
-            const checkbox = modal.querySelector('#is-new-user-checkbox');
-            const pilihPetugasGroup = modal.querySelector('#pilih-petugas-group');
-            const manualInputFields = modal.querySelector('#manual-input-fields');
-            const idDiriSelect = modal.querySelector('#id_datadiri_select');
-            const nameInput = modal.querySelector('#name_input');
-            const emailInput = modal.querySelector('#email_input');
-            const notelpInput = modal.querySelector('#notelp_input');
-            const alamatInput = modal.querySelector('#alamat_input');
-
-            function toggleFormMode() {
-                if (checkbox.checked) {
-                    manualInputFields.style.display = 'block';
-                    idDiriSelect.required = false;
-                    nameInput.required = true;
-                    emailInput.required = true;
-                    notelpInput.required = true;
-                    alamatInput.required = true;
-
-                } else {
-                    pilihPetugasGroup.style.display = 'block';
-                    manualInputFields.style.display = 'none';
-                    idDiriSelect.required = true;
-                    nameInput.required = false;
-                    emailInput.required = false;
-                    notelpInput.required = false;
-                    alamatInput.required = false;
-                }
-            }
-            checkbox.addEventListener('change', toggleFormMode);
-            modal.addEventListener('show.bs.modal', function() {
-                checkbox.checked = false;
-                nameInput.value = '';
-                emailInput.value = '';
-                notelpInput.value = '';
-                alamatInput.value = '';
-                idDiriSelect.selectedIndex = 0;
-                toggleFormMode();
-            });
+        }
+        checkbox.addEventListener('change', toggleFormMode);
+        modal.addEventListener('show.bs.modal', function() {
+            checkbox.checked = false;
+            nameInput.value = '';
+            emailInput.value = '';
+            notelpInput.value = '';
+            alamatInput.value = '';
+            idDiriSelect.selectedIndex = 0;
             toggleFormMode();
         });
-    </script>
+        toggleFormMode();
+    });
+</script>

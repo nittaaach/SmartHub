@@ -169,7 +169,7 @@ Route::get('/detail_katalog/{id}', [KatalogController::class, 'detail_katalog'])
 
 //route news (user)
 Route::get('/news', [NewsController::class, 'news'])->name('news');
-Route::get('/news_detail', [NewsController::class, 'newsDetail'])->name('news_detail');
+Route::get('/news_detail/{id}', [NewsController::class, 'detail_news'])->name('detail_news');
 //routes for layanan
 Route::get('/detaillayanan', [LayananController::class, 'detaillayanan'])->name('detaillayanan');
 Route::get('/layanan', [LayananController::class, 'layanan'])->name('layanan');
@@ -185,10 +185,9 @@ Route::get('/fasilitas', [FasilitasController::class, 'fasilitas'])->name('fasil
 //news
 Route::get('/news', [NewsController::class, 'news'])->name('news');
 Route::get('/pengumuman', [NewsController::class, 'pengumuman'])->name('pengumuman');
-
+//activitas
 Route::get('/aktivitas', [NewsController::class, 'aktivitas'])->name('aktivitas');
 Route::get('/aktivitas/{type}/{id}', [NewsController::class, 'detail_aktivitas'])->name('detail.aktivitas');
-
 //galeri
 Route::get('/galeri', [GaleriController::class, 'galeri'])->name('galeri');
 Route::get('/galeri/{id}/{type}', [GaleriController::class, 'detailgaleri'])->name('galeri.detail');

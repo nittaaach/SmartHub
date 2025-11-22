@@ -1,4 +1,4 @@
-@extends('user-temp.head')
+@extends('user-temp.layout')
 
 @section('content')
     <!-- Page Title -->
@@ -59,11 +59,15 @@
                                     </li>
                                     <li class="d-flex align-items-center">
                                         <i class="bi bi-folder2"></i>
-                                        @if ($news->k_news)
-                                            <span>{{ $news->k_news->kategori_news }}</span>
-                                        @else
-                                            <span>Tidak ada kategori</span>
-                                        @endif
+                                        @if ($k_news->isNotEmpty())
+                                            @foreach ($k_news as $kategori)
+                                    <li>
+                                        <a href=""></a>{{ $kategori->kategori_news }}</a>
+                                    </li>
+                                    @endforeach
+                                @else
+                                    <span>Tidak ada kategori</span>
+                                    @endif
                                     </li>
                                 </ul>
                             </div><!-- End meta top -->
@@ -128,13 +132,17 @@
 
                         <h3 class="widget-title">Tags</h3>
                         <ul>
-                            <li><a href="">
-                                    @if ($news->k_news)
-                                        <span>{{ $news->k_news->kategori_news }}</span>
-                                    @else
-                                        <span>Tidak ada kategori</span>
-                                    @endif
-                                </a></li>
+                            @if ($k_news->isNotEmpty())
+                                @foreach ($k_news as $kategori)
+                                    <a href="">
+                                        <li>
+                                            <span>{{ $kategori->kategori_news }}</span>
+                                        </li>
+                                    </a>
+                                @endforeach
+                            @else
+                                <span>Tidak ada kategori</span>
+                            @endif
                         </ul>
                     </div><!--/Tags Widget -->
                 </div>
@@ -142,5 +150,3 @@
         </div>
     </div>
 @endsection
-
-@extends('user-temp.footer')

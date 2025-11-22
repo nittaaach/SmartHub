@@ -73,7 +73,10 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ $item->kategori }}</td>
-                                                <td>{{ $item->judul }}</td>
+                                                <td
+                                                    style="max-width: 200px; white-space: normal; overflow-wrap: break-word;">
+                                                    {{ $item->judul }}
+                                                </td>
 
                                                 <td>:
                                                     {{-- Format tanggal agar lebih mudah dibaca --}}
@@ -84,7 +87,10 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ $item->penyelenggara }}</td>
-                                                <td>{{ $item->lokasi }}</td>
+                                                <td
+                                                    style="max-width: 200px; white-space: normal; overflow-wrap: break-word;">
+                                                    {{ $item->lokasi }}
+                                                </td>
                                                 <td>{{ $item->status }}</td>
                                                 {{-- <td>{{ $item->deskripsi }}</td> --}}
 

@@ -1,4 +1,4 @@
-@extends('user-temp.head')
+@extends('user-temp.layout')
 @section('content')
     <!-- Page Title -->
     <div class="page-title">
@@ -32,7 +32,7 @@
             </div>
 
             <div class="row gy-5">
-                @forelse ($pkkActivities as $activity)
+                @forelse ($activities as $activity)
                     <div class="col-xl-4 col-md-6">
                         <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
 
@@ -115,7 +115,7 @@
             </div>
 
             <div class="row gy-5">
-                @forelse ($katarActivities as $activity)
+                @forelse ($activities as $activity)
                     <div class="col-xl-4 col-md-6">
                         <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
 
@@ -189,5 +189,3 @@
     </section>
     <!-- /Aktivitas Karang Taruna Section -->
 @endsection
-
-@extends('user-temp.footer')

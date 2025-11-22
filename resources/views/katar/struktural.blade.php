@@ -68,7 +68,10 @@
                                                 <td>{{ $item->jabatan }}</td>
                                                 <td>{{ $item->tingkatan }}</td>
                                                 <td>{{ $item->datadiri->notelp }}</td>
-                                                <td>{{ $item->datadiri->alamat }}</td>
+                                                <td
+                                                    style="max-width: 200px; white-space: normal; overflow-wrap: break-word;">
+                                                    {{ $item->datadiri->alamat }}
+                                                </td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary me-3"
                                                         data-bs-toggle="modal"
@@ -325,42 +328,43 @@
 
     <!-- Modal Delete struktural -->
     @foreach ($struktural as $item)
-        <div id="DeleteInventarisModal-{{ $item->id }}" class="modal fade" tabindex="-1" role="dialog"
-            aria-labelledby="DeleteInventarisModalTitle-{{ $item->id }}" aria-hidden="true">
+        <div id="DeletepenggunaModal-{{ $item->id }}" class="modal fade" tabindex="-1" role="dialog"
+            aria-labelledby="DeletepenggunaModalTitle-{{ $item->id }}" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-danger text-white">
-                        <h5 class="modal-title" id="DeleteInventarisModalTitle-{{ $item->id }}">Hapus Data Inventaris
+                        <h5 class="modal-title" id="DeletepenggunaModalTitle-{{ $item->id }}">Hapus Data Inventaris
                         </h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('inventaris.destroy_katar', $item->id) }}" method="POST">
+                        <form action="{{ route('struktural.destroy_rw', $item->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <div class="p-3 text-center">
+                            <div class="p-3">
+                                <div class="form-group">
+                                    <label class="form-label">Gambar Petugas</label>
+                                    @if ($item->gambar)
+                                        <div class="mt-2 text-center">
+                                            <img src="{{ asset('storage/' . $item->gambar) }}" alt="Gambar lama"
+                                                width="150" class="img-thumbnail">
+                                            <p class="text-muted mt-1">Gambar saat ini</p>
+                                        </div>
+                                    @endif
 
-                                @if ($item->gambar)
-                                    <div class="mt-2">
-                                        <img src="{{ asset('storage/' . $item->gambar) }}" alt="Gambar Barang"
-                                            width="150" class="img-thumbnail">
-                                    </div>
-                                @endif
-
-                                <h5 class="mt-3">
-                                    Yakin ingin menghapus barang ini?
-                                    <br>
-                                    <strong>{{ $item->nama_barang }}</strong>
+                                    @error('gambar')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <h5>Yakin ingin menghapus petugas PKK Anyelir?
+                                    <strong>{{ $item->datadiri?->name }}</strong>?
                                 </h5>
-                                <p class="text-muted">
-                                    Semua data barang dan **seluruh riwayat transaksinya** akan terhapus secara permanen.
-                                </p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                                 <button type="submit" class="btn btn-danger">
-                                    Ya, Hapus
+                                    <i class="ti ti-trash"></i> Hapus
                                 </button>
                             </div>
                         </form>

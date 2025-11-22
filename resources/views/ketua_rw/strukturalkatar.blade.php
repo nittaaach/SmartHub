@@ -70,7 +70,9 @@
                                                 <td>{{ $item->jabatan }}</td>
                                                 <td>{{ $item->tingkatan }}</td>
                                                 <td>{{ $item->datadiri->notelp }}</td>
-                                                <td>{{ $item->datadiri->alamat }}</td>
+                                                <td
+                                                    style="max-width: 200px; white-space: normal; overflow-wrap: break-word;">
+                                                    {{ $item->datadiri->alamat }}
                                                 <td>
                                                     <button type="button" class="btn btn-primary me-3"
                                                         data-bs-toggle="modal"

@@ -72,7 +72,10 @@
                                                 <td>{{ $item->kategori }}</td>
                                                 <td>{{ $item->lokasi_rt }}</td>
                                                 <td>{{ $item->condition }}</td>
-                                                <td>{{ $item->alamat }}</td>
+                                                <td
+                                                    style="max-width: 200px; white-space: normal; overflow-wrap: break-word;">
+                                                    {{ $item->alamat }}
+                                                </td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary me-3"
                                                         data-bs-toggle="modal"

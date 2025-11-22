@@ -1,4 +1,4 @@
-@extends('user-temp.head')
+@extends('user-temp.layout')
 @section('content')
     <!-- Page Title -->
     <div class="page-title">
@@ -115,5 +115,3 @@
     </section>
     <!-- /Bagan Struktur Section -->
 @endsection
-
-@extends('user-temp.footer')
