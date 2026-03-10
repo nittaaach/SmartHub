@@ -1,32 +1,14 @@
-<?php
+import re
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\VMController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\BerkasController;
-use App\Http\Controllers\GaleriController;
-use App\Http\Controllers\JadwalController;
-use App\Http\Controllers\KatalogController;
-use App\Http\Controllers\LayananController;
-use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FasilitasController;
-use App\Http\Controllers\StatistikController;
-use App\Http\Controllers\InventarisController;
+with open('routes/web.php', 'r') as f:
+    content = f.read()
 
-use App\Http\Controllers\StrukturalController;
-use App\Http\Controllers\DokumentasiController;
-use App\Http\Controllers\AdministrasiController;
-use App\Http\Controllers\ManagementPenggunaController;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+# 1. Provide a better structure for the auth groups
+# We will find the `Route::middleware(['auth', 'role...` lines and remove them since we'll group them.
+# We'll also remove the main `Route::middleware(['auth'])->group(function () {` and closing `});`.
 
-//route for auth
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.process');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
+# Here is the completely refactored auth routing section:
+new_routes = """
 //================ Auth Group: Ketua RW ================
 Route::middleware(['auth:rw', 'role:Ketua_RW'])->group(function () {
     Route::get('/ketua_rw/dashboard', [DashboardController::class, 'index'])->name('Ketua_RW.dashboard');
@@ -152,37 +134,20 @@ Route::middleware(['auth:katar', 'role:Ketua_Katar'])->group(function () {
 Route::middleware(['auth:rt', 'role:Ketua_RT'])->group(function () {
     Route::get('/rt/dashboard', [DashboardController::class, 'index'])->name('ketua_rt.dashboard');
 });
+"""
 
+# Find the start of the old auth routes:
+start_idx = content.find("Route::middleware(['auth', 'role:Ketua_RW'])->group(function () {")
+# Find the end of the old auth routes:
+end_idx = content.find("});\n\n\n//route for home")
+if end_idx == -1:
+    end_idx = content.find("//route for home")
 
-//route for home
-Route::get('/', [HomeController::class, 'HomeLanding'])->name('landing');
-Route::get('/landing', [HomeController::class, 'HomeLanding'])->name('landing');
-Route::get('/statistika', [StatistikController::class, 'stat'])->name('statistika');
-Route::get('/profil', [VMController::class, 'profil'])->name('profil');
-Route::get('/katalog', [KatalogController::class, 'katalog'])->name('katalog');
-Route::get('/detail_katalog/{id}', [KatalogController::class, 'detail_katalog'])->name('detail_katalog');
-
-//route news (user)
-Route::get('/news', [NewsController::class, 'news'])->name('news');
-Route::get('/news_detail/{id}', [NewsController::class, 'detail_news'])->name('detail_news');
-//routes for layanan
-Route::get('/detaillayanan', [LayananController::class, 'detaillayanan'])->name('detaillayanan');
-Route::get('/layanan', [LayananController::class, 'layanan'])->name('layanan');
-//zdministrasi
-Route::get('/administrasi', [AdministrasiController::class, 'administrasi'])->name('administrasi');
-//stuktural
-Route::get('/struktural', [StrukturalController::class, 'struktural'])->name('struktural');
-Route::get('/rw', [StrukturalController::class, 'rw'])->name('rw');
-Route::get('/katar', [StrukturalController::class, 'katar'])->name('katar');
-Route::get('/pkk', [StrukturalController::class, 'pkk'])->name('pkk');
-//fasilitas
-Route::get('/fasilitas', [FasilitasController::class, 'fasilitas'])->name('fasilitas');
-//news
-Route::get('/news', [NewsController::class, 'news'])->name('news');
-Route::get('/pengumuman', [NewsController::class, 'pengumuman'])->name('pengumuman');
-//activitas
-Route::get('/aktivitas', [NewsController::class, 'aktivitas'])->name('aktivitas');
-Route::get('/aktivitas/{type}/{id}', [NewsController::class, 'detail_aktivitas'])->name('detail.aktivitas');
-//galeri
-Route::get('/galeri', [GaleriController::class, 'galeri'])->name('galeri');
-Route::get('/galeri/{id}/{type}', [GaleriController::class, 'detailgaleri'])->name('galeri.detail');
+if start_idx != -1 and end_idx != -1:
+    # also remove any trailing }); from the big auth block before route for home
+    new_content = content[:start_idx] + new_routes + "\n\n" + content[end_idx:]
+    with open('routes/web.php', 'w') as f:
+        f.write(new_content)
+    print("Routes successfully rewritten!")
+else:
+    print("Could not find replacement indices.")
