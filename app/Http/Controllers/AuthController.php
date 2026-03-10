@@ -37,21 +37,27 @@ class AuthController extends Controller
                 ->withInput()
                 ->withErrors(['chapta_answer' => 'Jawaban penjumlahan salah.']);
         }
+
+        $guard = match($request->role) {
+            'Ketua_RW' => 'rw',
+            'Ketua_PKK' => 'pkk',
+            'Ketua_Katar' => 'katar',
+            'Ketua_RT' => 'rt',
+            default => 'web',
+        };
         
         // autentikasi user
         $credentials = $request->only('email', 'password');
-        if (! Auth::attempt($credentials, $request->filled('remember'))) {
+        if (! Auth::guard($guard)->attempt($credentials, $request->filled('remember'))) {
             return back()->withErrors(['email' => 'Email atau password salah.']);
         }
 
         $request->session()->regenerate();
-        $user = Auth::user();
+        $user = Auth::guard($guard)->user();
 
         // cek role
         if ($user->role !== $request->role) {
-            Auth::logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
+            Auth::guard($guard)->logout();
             return redirect('/login')->with('error', 'Role tidak sesuai.');
         }
 
@@ -67,20 +73,20 @@ class AuthController extends Controller
             'Ketua_PKK'      => redirect('pkk/dashboard'),
             'Ketua_Katar'    => redirect('katar/dashboard'),
             'Ketua_RT'       => redirect('rt/dashboard'),
-            default    => tap(back(), fn() => Auth::logout())
+            default    => tap(back(), fn() => Auth::guard($guard)->logout())
                 ->with('error', 'Tidak ada hak akses'),
         };
-
-
-        return back()->withErrors([
-            'email' => 'Email or Password are incorrect.',
-        ])->onlyInput('email');
     }
 
     // Logout
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('rw')->logout();
+        Auth::guard('pkk')->logout();
+        Auth::guard('katar')->logout();
+        Auth::guard('rt')->logout();
+        Auth::guard('web')->logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

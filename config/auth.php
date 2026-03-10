@@ -40,6 +40,22 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'rw' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'pkk' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'katar' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'rt' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
     ],
 
     /*

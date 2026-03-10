@@ -24,7 +24,19 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
 
         view()->composer('*', function ($view) {
-            $view->with('user', Auth::user());
+            $user = Auth::user();
+
+            if (!$user) {
+                // If route has no specific auth middleware, find if they are logged in anywhere
+                foreach (['rw', 'pkk', 'katar', 'rt', 'web'] as $guard) {
+                    if (Auth::guard($guard)->check()) {
+                        $user = Auth::guard($guard)->user();
+                        break;
+                    }
+                }
+            }
+
+            $view->with('user', $user);
         });
     }
 }
